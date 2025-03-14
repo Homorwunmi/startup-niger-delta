@@ -22,7 +22,7 @@ export function LoginForm({
           <Input
             id="email"
             type="email"
-            className="text-gray-400 custom-input"
+            className="text-gray-400 custom-input focus-visible:shadow-none focus-visible:border-balance"
             placeholder="Enter your email address"
             required
           />
