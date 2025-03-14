@@ -11,26 +11,32 @@ export function LoginForm({
   return (
     <form className={cn("flex flex-col gap-6", className)} {...props}>
       <div className="flex flex-col items-center text-center">
-        <h1 className="text-2xl text-green-950">Sign in</h1>
+        <h1 className="text-xl text-green-950">Sign in</h1>
         <p className="text-balance text-sm text-muted-foreground">
           Enter your account details
         </p>
       </div>
 
-      <div className="grid gap-6">
-        <div className="grid gap-2 ">
-          <Label htmlFor="email" className="text-gray-400">Email Address</Label>
+      <div className="grid gap-3">
+        <div className="grid gap-1">
+          <Label htmlFor="email" className="text-gray-400 text-xs">Email Address</Label>
           <Input
             id="email"
             type="email"
-            className="text-gray-400 custom-input custom-round focus-visible:shadow-none focus-visible:border-balance"
+            className="text-gray-400 placeholder:text-gray-400 custom-input text-xs placeholder:text-xs custom-round shadow-none border-gray-300 focus-visible:shadow-none focus-visible:border-balance"
             placeholder="Enter your email address"
             required
           />
         </div>
-        <div className="grid gap-2">
-          <Label htmlFor="password">Password</Label>
-          <Input id="password" type="password" className="text-gray-400 custom-input custom-round focus-visible:shadow-none focus-visible:border-balance" required />
+        <div className="grid gap-1">
+          <Label htmlFor="password" className="text-gray-400 text-xs">Password</Label>
+          <Input 
+          id="password" 
+          type="password"
+          className="text-gray-400 placeholder:text-gray-400 custom-input text-xs placeholder:text-xs custom-round shadow-none border-gray-300 focus-visible:shadow-none focus-visible:border-balance"
+          placeholder="Enter password" 
+          required 
+          />
         </div>
         <Button type="submit" className="w-full custom-round gradient-button">
           Sign in
