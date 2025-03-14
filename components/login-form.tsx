@@ -10,8 +10,8 @@ export function LoginForm({
 }: React.ComponentPropsWithoutRef<"form">) {
   return (
     <form className={cn("flex flex-col gap-6", className)} {...props}>
-      <div className="flex flex-col items-center gap-2 text-center">
-        <h1 className="text-2xl font-bold ">Sign in</h1>
+      <div className="flex flex-col items-center text-center">
+        <h1 className="text-2xl text-green-950">Sign in</h1>
         <p className="text-balance text-sm text-muted-foreground">
           Enter your account details
         </p>
