@@ -11,9 +11,9 @@ export function SignupForm({
   return (
     <form className={cn("flex flex-col gap-6", className)} {...props}>
       <div className="flex flex-col items-center text-center">
-        <h1 className="text-xl text-green-950">Sign in</h1>
+        <h1 className="text-xl text-green-950">Create an account</h1>
         <p className="text-balance text-sm text-muted-foreground">
-          Enter your account details
+          Let's get started with getting you in
         </p>
       </div>
 
@@ -49,7 +49,7 @@ export function SignupForm({
           />
         </div>
         <Button type="submit" className="w-full custom-round gradient-button">
-          Sign in
+          Sign up with email
         </Button>
         <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
           <span className="relative z-10 bg-background px-2 text-muted-foreground">
