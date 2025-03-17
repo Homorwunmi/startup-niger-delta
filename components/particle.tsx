@@ -1,3 +1,4 @@
+'use client';
 import { JSX } from "react";
 import { useCallback } from "react";
 import Particles from "react-particles";

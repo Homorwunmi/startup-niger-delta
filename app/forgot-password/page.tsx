@@ -1,12 +1,8 @@
-"use client";
-import Image from "next/image";
 import Logo from "@/public/images/Logo.svg";
-// import Particle from "@/components/particle";
-import { SignupForm } from "@/components/signup-form";
+import Image from "next/image";
 import Particle from "@/components/particle";
 
-export default function LoginPage() {
-
+export default function Page() {
   return (
     <section className="grid min-h-svh lg:grid-cols-7">
       <div className="flex flex-col items-center justify-center gap-10 col-span-2 bg-white p-6 md:p-14">
@@ -14,7 +10,7 @@ export default function LoginPage() {
           <Image src={Logo} alt="Niger Delta Logo" />
         </figure>
 
-        <SignupForm />
+        {/* <SignupForm /> */}
       </div>
 
       <Particle />
