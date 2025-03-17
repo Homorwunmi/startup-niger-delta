@@ -1,3 +1,4 @@
+import React from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -13,7 +14,7 @@ export function SignupForm({
       <div className="flex flex-col items-center text-center">
         <h1 className="text-xl text-green-950">Create an account</h1>
         <p className="text-balance text-sm text-muted-foreground">
-          Let's get started with getting you in
+          Let&apos;s get started with getting you in
         </p>
       </div>
 
