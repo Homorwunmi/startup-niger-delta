@@ -1,10 +1,13 @@
+'use client';
 import Logo from "@/public/images/Logo.svg";
 import Image from "next/image";
 import Particle from "@/components/particle";
-import { Form, FormField, FormItem } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -29,9 +32,15 @@ export default function Page() {
             <FormField
               control={form.control}
               name="email"
-              render={({ field }) => <FormItem></FormItem>}
+              render={({ field }) => <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input {...field} type="email" placeholder="Enter your registered email" />
+                </FormControl>
+              </FormItem>}
             />
           </form>
+          <Button type="submit" className="w-full">Reset Password</Button>
         </Form>
       </div>
 
