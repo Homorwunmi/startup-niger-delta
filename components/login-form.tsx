@@ -38,6 +38,13 @@ export function LoginForm({
           required 
           />
         </div>
+
+        <div className="flex justify-end">
+          <Link href="/forgot-password" className="text-green-800 text-sm">
+            Forgot password?
+          </Link>
+        </div>
+
         <Button type="submit" className="w-full custom-round gradient-button">
           Sign in
         </Button>
