@@ -67,8 +67,8 @@ export function LoginForm({
         </Button>
       </div>
 
-      <p className="text-center text-gray-500 text-xs w-5/6 mx-auto mb-8">
-        By clicking the button above, you agree to our Terms of Use and Privacy
+      <p className="text-center text-sm">
+        By clicking the button above, you agree to our Terms of Use and Privaccy
         Policy
       </p>
 
