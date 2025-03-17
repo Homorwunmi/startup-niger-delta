@@ -15,7 +15,7 @@ const eslintConfig = [
     "next/typescript",
     "airbnb",
     "airbnb/hooks",
-    "prettier"
+    "prettier",
   ),
   {
     files: ["**/*.ts", "**/*.tsx"],

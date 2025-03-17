@@ -1,16 +1,16 @@
-import React from 'react';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import Link from 'next/link';
+import React from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import Link from "next/link";
 
 export function SignupForm({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<'form'>) {
+}: React.ComponentPropsWithoutRef<"form">) {
   return (
-    <form className={cn('flex flex-col gap-6', className)} {...props}>
+    <form className={cn("flex flex-col gap-6", className)} {...props}>
       <div className="flex flex-col items-center text-center">
         <h1 className="text-xl text-green-950">Create an account</h1>
         <p className="text-balance text-sm text-muted-foreground">
@@ -20,7 +20,9 @@ export function SignupForm({
 
       <div className="grid gap-3">
         <div className="grid gap-1">
-          <Label htmlFor="email" className="text-gray-400 text-xs">Name</Label>
+          <Label htmlFor="email" className="text-gray-400 text-xs">
+            Name
+          </Label>
           <Input
             id="name"
             type="text"
@@ -30,7 +32,9 @@ export function SignupForm({
           />
         </div>
         <div className="grid gap-1">
-          <Label htmlFor="email" className="text-gray-400 text-xs">Email Address</Label>
+          <Label htmlFor="email" className="text-gray-400 text-xs">
+            Email Address
+          </Label>
           <Input
             id="email"
             type="email"
@@ -40,7 +44,9 @@ export function SignupForm({
           />
         </div>
         <div className="grid gap-1">
-          <Label htmlFor="password" className="text-gray-400 text-xs">Password</Label>
+          <Label htmlFor="password" className="text-gray-400 text-xs">
+            Password
+          </Label>
           <Input
             id="password"
             type="password"
@@ -84,8 +90,7 @@ export function SignupForm({
       </p>
 
       <div className="text-center text-sm">
-        Already have an account?
-        {' '}
+        Already have an account?{" "}
         <Link href="/" className="text-green-800">
           Sign in
         </Link>
