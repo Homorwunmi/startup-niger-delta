@@ -10,7 +10,20 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.extends(
+    "next/core-web-vitals",
+    "next/typescript",
+    "airbnb",
+    "airbnb/hooks"
+  ),
+  {
+    files: ["**/*.ts", "**/*.tsx"],
+    rules: {
+      // Example: Customize rules if needed
+      "react/react-in-jsx-scope": "off", // Next.js doesn't require React in scope
+      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+    },
+  },
 ];
 
 export default eslintConfig;

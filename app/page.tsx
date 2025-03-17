@@ -1,11 +1,11 @@
-"use client";
-import { LoginForm } from "@/components/login-form";
-import Image from "next/image";
-import Logo from "@/public/images/Logo.svg";
-import Particle from "@/components/particle";
+'use client';
+
+import { LoginForm } from '@/components/login-form';
+import Image from 'next/image';
+import Logo from '@/public/images/Logo.svg';
+import Particle from '@/components/particle';
 
 export default function LoginPage() {
-
   return (
     <section className="grid min-h-svh lg:grid-cols-7">
       <div className="flex flex-col items-center justify-center gap-10 col-span-2 bg-white p-6 md:p-14">
