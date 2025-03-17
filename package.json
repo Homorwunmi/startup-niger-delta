@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "firebase": "^11.4.0"
+  },
+  "name": "startup-niger-delta",
+  "description": "��#\u0000 \u0000S\u0000t\u0000a\u0000r\u0000t\u0000u\u0000p\u0000 \u0000N\u0000i\u0000g\u0000e\u0000r\u0000 \u0000D\u0000e\u0000l\u0000t\u0000a\u0000\r\u0000 \u0000",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Homorwunmi/startup-niger-delta/issues"
+  },
+  "homepage": "https://github.com/Homorwunmi/startup-niger-delta#readme",
+  "type": "module"
+}
