@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import Logo from "@/public/images/Logo.svg";
-// import Particle from "@/components/particle";
 import { SignupForm } from "@/components/signup-form";
 import Particle from "@/components/particle";
 
