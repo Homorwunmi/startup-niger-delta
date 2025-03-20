@@ -53,7 +53,7 @@ export default function Page() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full custom-round gradient-button">
               Reset Password
             </Button>
           </form>
