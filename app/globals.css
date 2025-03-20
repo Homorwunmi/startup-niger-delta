@@ -141,3 +141,7 @@
   background: linear-gradient(to bottom, #0d726f 40%, #184341);
   color: white;
 }
+
+nav > div {
+  @apply w-full;
+}
