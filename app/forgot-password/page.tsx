@@ -29,13 +29,13 @@ export default function Page() {
   });
   return (
     <section className="grid min-h-svh lg:grid-cols-7">
-      <div className="flex flex-col items-center justify-center gap-10 col-span-2 bg-white p-6 md:p-14">
+      <div className="flex flex-col items-center justify-center gap-15 col-span-2 bg-white p-6 md:p-14">
         <figure>
           <Image src={Logo} alt="Niger Delta Logo" />
         </figure>
 
         <Form {...form}>
-          <form className="flex flex-col gap-3">
+          <form className="flex flex-col gap-3 w-full">
             <FormField
               control={form.control}
               name="email"
@@ -47,6 +47,7 @@ export default function Page() {
                       {...field}
                       type="email"
                       placeholder="Enter your registered email"
+                      className="text-gray-400 placeholder:text-gray-400 custom-input text-xs placeholder:text-xs custom-round shadow-none border-gray-300 focus-visible:shadow-none focus-visible:border-balance"
                     />
                   </FormControl>
                 </FormItem>
