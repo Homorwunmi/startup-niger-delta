@@ -3,4 +3,4 @@ import { registerUser, sendVerificationEmail, loginUser, resetPassword } from '.
 const a = await registerUser('omotayomowunmi@gmail.com', 'password123');
 const b = await sendVerificationEmail(a);
 const c = await loginUser('omotayomowunmi@gmail.com', 'password123');
-const d = await resetPassword(a);
+const d = await resetPassword();
