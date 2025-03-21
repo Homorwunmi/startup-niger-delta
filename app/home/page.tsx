@@ -20,21 +20,14 @@ import {
 } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z, ZodType } from "zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { MdOutlinePlayCircleFilled } from "react-icons/md";
-
-interface Email {
-  email: string;
-}
-
-const subscriptionSchema: ZodType<Email> = z.object({
-  email: z.string().email(),
-});
+import { Subscription } from "@/types/User";
+import { subscriptionSchema } from "@/helpers/validation";
 
 export default function Page() {
-  const form = useForm<Email>({
+  const form = useForm<Subscription>({
     defaultValues: {
       email: "",
     },
