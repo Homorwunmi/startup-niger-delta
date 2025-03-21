@@ -52,7 +52,7 @@ export default function Page() {
             <Image src={Logo} alt="Niger Delta Logo" />
           </figure>
 
-          <NavigationMenuItem className="flex items-center gap-8">
+          <NavigationMenuItem className="flex items-center gap-8 text-custom-green">
             <NavigationMenuLink
               href="/home"
               className="hover:bg-transparent p-0"
@@ -101,7 +101,7 @@ export default function Page() {
 
       <header className="flex items-center gap-3 px-20 h-[80vh]">
         <section className="flex flex-col justify-center gap-4 w-[70%]">
-          <h1 className="text-5xl font-bold text-green-900 leading-tight">
+          <h1 className="text-5xl font-bold text-custom-green leading-tight">
             Niger Delta Innovation Ecosystem
           </h1>
 
