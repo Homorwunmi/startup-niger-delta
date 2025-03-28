@@ -176,17 +176,19 @@ export default function Page() {
           {Ecosystem.map((item, index) => (
             <Card
               key={item.title}
-              className={`relative flex items-center gap-4 w-1/3 px-3 pt-12 pb-0 ${(index+1) % 2 !== 0 ? "bg-custom-green text-white" : "bg-light-custom-green text-custom-green"}`}
+              className={`relative flex items-center gap-4 w-1/3 px-3 pt-12 pb-0 ${(index + 1) % 2 !== 0 ? "bg-custom-green text-white" : "bg-light-custom-green text-custom-green"}`}
               style={{
                 backgroundImage: `url("/home/ecosystem-bg.svg")`,
                 backgroundSize: "cover",
                 backgroundBlendMode: "overlay",
               }}
             >
-              <div className={`absolute top-0 w-4/5 h-3 ${(index+1) % 2 !== 0 ? "bg-light-custom-green" : "bg-custom-green"}`} />
+              <div
+                className={`absolute top-0 w-4/5 h-3 ${(index + 1) % 2 !== 0 ? "bg-light-custom-green" : "bg-custom-green"}`}
+              />
 
               <div
-                className={`absolute bottom-0 right-0 w-50 h-60 rounded-b-xl ${(index+1) % 2 !== 0 ? "bg-custom-green" : "bg-light-custom-green"}`}
+                className={`absolute bottom-0 right-0 w-50 h-60 rounded-b-xl ${(index + 1) % 2 !== 0 ? "bg-custom-green" : "bg-light-custom-green"}`}
                 style={{
                   clipPath: "polygon(0 100%, 100% 0, 100% 100%)",
                 }}
@@ -199,12 +201,16 @@ export default function Page() {
                 >
                   {item.title}
                 </CardTitle>
-                <CardDescription className={`text-xs font-poppins leading-5 ${(index+1) % 2 !== 0 ? "text-white" : "text-custom-green"}`}>
+                <CardDescription
+                  className={`text-xs font-poppins leading-5 ${(index + 1) % 2 !== 0 ? "text-white" : "text-custom-green"}`}
+                >
                   {item.description}
                 </CardDescription>
               </CardHeader>
               <CardContent className="relative flex mt-auto">
-                <Button className="px-7 py-6 text-base bg-custom-orange self-center mt-8">Meet them</Button>
+                <Button className="px-7 py-6 text-base bg-custom-orange self-center mt-8">
+                  Meet them
+                </Button>
                 <figure>
                   <Image
                     src={item.image}
