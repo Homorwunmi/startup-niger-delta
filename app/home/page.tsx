@@ -37,6 +37,7 @@ import Logo from "@/public/images/Logo.svg";
 import headerImage from "@/public/images/header-image.svg";
 import headerBg from "@/public/images/header-bg.svg";
 import { Ecosystem } from "@/lib/home";
+import Investment from "@/public/home/investment.svg";
 
 export default function Page() {
   const form = useForm<Subscription>({
@@ -223,6 +224,39 @@ export default function Page() {
             </Card>
           ))}
         </div>
+      </section>
+
+      {/* Investment and Opportunities */}
+      <section
+        className="grid grid-cols-2 gap-16 p-20 bg-custom-green"
+        style={{
+          backgroundImage: `url("/home/ecosystem-bg.svg")`,
+          backgroundSize: "cover",
+          backgroundBlendMode: "overlay",
+        }}
+      >
+        <div className="flex flex-col items-start gap-6 text-white">
+          <h2 className="text-5xl flex flex-col items-start gap-3 font-poppins">
+            <span>Investment &</span>
+            <span>Opportunities.</span>
+          </h2>
+          
+          <span className="w-1/5 h-1 bg-light-custom-green" />
+
+          <p className="text-lg font-poppins">
+            Join our exclusive network of a thriving community of digital
+            technology pioneers, explore investment opportunities, and stay at
+            the cutting edge of technological advancements.{" "}
+          </p>
+        </div>
+
+        <figure>
+          <Image src={Investment} alt="Investment and Opportunities" />
+        </figure>
+
+        {/* <ul>
+
+        </ul> */}
       </section>
     </main>
   );

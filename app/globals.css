@@ -6,11 +6,8 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme {
-  --font-poppins: "Poppins", sans-serif;
-}
-
 @theme inline {
+  --font-poppins: "Poppins", sans-serif;
   --color-background: var(--background);
   --color-custom-green: #184341;
   --color-light-custom-green: #b8cea2;
