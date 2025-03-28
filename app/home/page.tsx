@@ -36,7 +36,7 @@ import { subscriptionSchema } from "@/helpers/validation";
 import Logo from "@/public/images/Logo.svg";
 import headerImage from "@/public/images/header-image.svg";
 import headerBg from "@/public/images/header-bg.svg";
-import { Ecosystem } from "@/lib/home";
+import { Ecosystem, InvestmentList } from "@/lib/home";
 import Investment from "@/public/home/investment.svg";
 
 export default function Page() {
@@ -228,7 +228,7 @@ export default function Page() {
 
       {/* Investment and Opportunities */}
       <section
-        className="grid grid-cols-2 gap-16 p-20 bg-custom-green"
+        className="grid grid-cols-2 gap-16 pt-20 px-20 bg-custom-green"
         style={{
           backgroundImage: `url("/home/ecosystem-bg.svg")`,
           backgroundSize: "cover",
@@ -240,7 +240,7 @@ export default function Page() {
             <span>Investment &</span>
             <span>Opportunities.</span>
           </h2>
-          
+
           <span className="w-1/5 h-1 bg-light-custom-green" />
 
           <p className="text-lg font-poppins">
@@ -254,9 +254,24 @@ export default function Page() {
           <Image src={Investment} alt="Investment and Opportunities" />
         </figure>
 
-        {/* <ul>
-
-        </ul> */}
+        <ul className="flex items-stretch justify-between w-full col-span-2">
+          {InvestmentList.map((item) => (
+            <li key={item.title} className="flex flex-col items-start gap-8 bg-custom-green-1 bg-opacity-50 px-5 pt-12 pb-5 rounded-t-3xl w-1/6">
+              <figure className="w-10 h-10">
+                <Image
+                  src={item.icon}
+                  alt={item.title}
+                  width={500}
+                  height={500}
+                  className="w-full h-full"
+                />
+              </figure>
+              <figcaption className="text-white font-bold text-sm font-poppins">
+                {item.title}
+              </figcaption>
+            </li>
+          ))}
+        </ul>
       </section>
     </main>
   );

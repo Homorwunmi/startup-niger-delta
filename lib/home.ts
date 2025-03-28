@@ -12,3 +12,22 @@ export const Ecosystem = [
     image: "/home/ecosystem-img-2.svg",
   },
 ];
+
+export const InvestmentList = [
+  {
+    icon: "/home/startup-icon.svg",
+    title: "Startups",
+  },
+  {
+    icon: "/home/investors-icon.svg",
+    title: "Angel Investors",
+  },
+  {
+    icon: "/home/capitalists-icon.svg",
+    title: "Venture Capitalists",
+  },
+  {
+    icon: "/home/accelerators-icon.svg",
+    title: "Accelerators, Innovation Hubs, Incubators & more",
+  }
+]
