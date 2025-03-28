@@ -1,15 +1,11 @@
 // Import the functions you need from the SDKs you need
-import { app } from "./config.js";
-import { getAuth,
-  createUserWithEmailAndPassword,
+import { auth } from "./config.js";
+import { createUserWithEmailAndPassword,
   sendEmailVerification,
   signInWithEmailAndPassword,
   sendPasswordResetEmail
 } from 'firebase/auth';
 
-
-// Initialize Firebase
-const auth = getAuth(app);
 
 export const registerUser = async (email, password) => {
   try {
@@ -40,7 +36,8 @@ export const loginUser = async (email, password) => {
 
 export const resetPassword = async () => {
   try {
-    return await sendPasswordResetEmail(auth, auth.currentUser.email);
+    const passwordReset = await sendPasswordResetEmail(auth, auth.currentUser.email);
+    return passwordReset;
   } catch (error) {
     throw error;
   }
