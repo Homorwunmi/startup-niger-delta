@@ -7,10 +7,6 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import Image from "next/image";
-import Logo from "@/public/images/Logo.svg";
-import headerImage from "@/public/images/header-image.svg";
-import headerBg from "@/public/images/header-bg.svg";
 import {
   Form,
   FormControl,
@@ -18,13 +14,29 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { MdOutlinePlayCircleFilled } from "react-icons/md";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import Image from "next/image";
+
 import { Subscription } from "@/types/User";
 import { subscriptionSchema } from "@/helpers/validation";
+
+import Logo from "@/public/images/Logo.svg";
+import headerImage from "@/public/images/header-image.svg";
+import headerBg from "@/public/images/header-bg.svg";
+import { Ecosystem } from "@/lib/home";
 
 export default function Page() {
   const form = useForm<Subscription>({
@@ -152,6 +164,60 @@ export default function Page() {
           />
         </section>
       </header>
+
+      {/* Our Ecosystem */}
+      <section className="flex flex-col items-center gap-16 p-20 bg-gray-100">
+        <h2 className="text-4xl flex flex-col items-center gap-3">
+          <span>Our Ecosystem</span>
+          <span className="w-1/4 h-1 bg-custom-orange" />
+        </h2>
+
+        <div className="flex items-stretch justify-center gap-16 w-full">
+          {Ecosystem.map((item, index) => (
+            <Card
+              key={item.title}
+              className={`relative flex items-center gap-4 w-1/3 px-3 pt-12 pb-0 ${(index+1) % 2 !== 0 ? "bg-custom-green text-white" : "bg-light-custom-green text-custom-green"}`}
+              style={{
+                backgroundImage: `url("/home/ecosystem-bg.svg")`,
+                backgroundSize: "cover",
+                backgroundBlendMode: "overlay",
+              }}
+            >
+              <div className={`absolute top-0 w-4/5 h-3 ${(index+1) % 2 !== 0 ? "bg-light-custom-green" : "bg-custom-green"}`} />
+
+              <div
+                className={`absolute bottom-0 right-0 w-50 h-60 rounded-b-xl ${(index+1) % 2 !== 0 ? "bg-custom-green" : "bg-light-custom-green"}`}
+                style={{
+                  clipPath: "polygon(0 100%, 100% 0, 100% 100%)",
+                }}
+              />
+
+              <CardHeader className="relative w-full gap-3">
+                <CardTitle
+                  className="font text-3xl"
+                  style={{ fontFamily: "Times New Roman, serif" }}
+                >
+                  {item.title}
+                </CardTitle>
+                <CardDescription className={`text-xs font-poppins leading-5 ${(index+1) % 2 !== 0 ? "text-white" : "text-custom-green"}`}>
+                  {item.description}
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="relative flex mt-auto">
+                <Button className="px-7 py-6 text-base bg-custom-orange self-center mt-8">Meet them</Button>
+                <figure>
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    width={200}
+                    height={200}
+                  />
+                </figure>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }

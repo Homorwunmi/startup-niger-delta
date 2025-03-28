@@ -8,12 +8,13 @@
 
 @theme {
   --font-poppins: "Poppins", sans-serif;
-  --font-geist-sans: var(--font-poppins);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-custom-green: #184341;
+  --color-light-custom-green: #B8CEA2;
+  --color-custom-orange: #FF7D05;
   --font-inter: "Inter", sans-serif;
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
