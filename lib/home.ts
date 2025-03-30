@@ -29,5 +29,5 @@ export const InvestmentList = [
   {
     icon: "/home/accelerators-icon.svg",
     title: "Accelerators, Innovation Hubs, Incubators & more",
-  }
-]
+  },
+];

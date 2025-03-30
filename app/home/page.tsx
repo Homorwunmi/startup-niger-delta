@@ -203,13 +203,13 @@ export default function Page() {
                   {item.title}
                 </CardTitle>
                 <CardDescription
-                  className={`text-xs font-poppins leading-5 ${(index + 1) % 2 !== 0 ? "text-white" : "text-custom-green"}`}
+                  className={`text-sm font-poppins leading-5 ${(index + 1) % 2 !== 0 ? "text-white" : "text-custom-green"}`}
                 >
                   {item.description}
                 </CardDescription>
               </CardHeader>
               <CardContent className="relative flex mt-auto">
-                <Button className="px-7 py-6 text-base bg-custom-orange self-center mt-8">
+                <Button className="px-7 py-6 text-base bg-custom-orange hover:bg-custom-orange self-center mt-8">
                   Meet them
                 </Button>
                 <figure>
@@ -256,8 +256,11 @@ export default function Page() {
 
         <ul className="flex items-stretch justify-between w-full col-span-2">
           {InvestmentList.map((item) => (
-            <li key={item.title} className="flex flex-col items-start gap-8 bg-custom-green-1 bg-opacity-50 px-5 pt-12 pb-5 rounded-t-3xl w-1/6">
-              <figure className="w-10 h-10">
+            <li
+              key={item.title}
+              className="flex flex-col items-start gap-4 bg-custom-green-1 bg-opacity-50 px-5 pt-12 pb-5 rounded-t-3xl w-1/5"
+            >
+              <figure className="w-16 h-16">
                 <Image
                   src={item.icon}
                   alt={item.title}
@@ -266,7 +269,7 @@ export default function Page() {
                   className="w-full h-full"
                 />
               </figure>
-              <figcaption className="text-white font-bold text-sm font-poppins">
+              <figcaption className="text-white font-bold text-lg font-poppins">
                 {item.title}
               </figcaption>
             </li>
