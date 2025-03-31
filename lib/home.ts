@@ -55,22 +55,27 @@ export const Partners = [
 
 export const resourcesList = [
   {
+    img: "/home/resources/network-bulb.svg",
     title: "Tech Piooner Network",
     desc: "Connect with digital innovators",
   },
   {
+    img: "/home/resources/investment-hub.svg",
     title: "Investment Hub",
     desc: "Discover promising opportunities",
   },
   {
+    img: "home/resources/playground.svg",
     title: "Innovation Playground",
     desc: "Where ideas become reality",
   },
   {
+    img: "home/resources/trend-tracker.svg",
     title: "Tech Trends Tracker",
     desc: "Stay ahead of the curve",
   },
   {
+    img: "home/resources/visionary.svg",
     title: "Community of Visionaries",
     desc: "Connect, collaborate, innovate",
   },

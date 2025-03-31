@@ -44,10 +44,7 @@ const eslintConfig = [
         "error",
         { extensions: [".jsx", ".tsx"] },
       ],
-      "no-underscore-dangle": [
-        "error",
-        { allow: ["__filename", "__dirname"] },
-      ],
+      "no-underscore-dangle": ["error", { allow: ["__filename", "__dirname"] }],
     },
     settings: {
       "import/resolver": {

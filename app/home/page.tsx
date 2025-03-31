@@ -5,7 +5,6 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import {
   Form,
@@ -36,7 +35,7 @@ import { subscriptionSchema } from "@/helpers/validation";
 import Logo from "@/public/images/Logo.svg";
 import headerImage from "@/public/images/header-image.svg";
 import headerBg from "@/public/images/header-bg.svg";
-import { Ecosystem, InvestmentList, Partners } from "@/lib/home";
+import { Ecosystem, InvestmentList, Partners, resourcesList } from "@/lib/home";
 import Investment from "@/public/home/investment.svg";
 
 export default function Page() {
@@ -65,9 +64,9 @@ export default function Page() {
             >
               Home
             </NavigationMenuLink>
-            <NavigationMenuTrigger className="hover:bg-transparent hover:p-0 p-0">
+            <NavigationMenu className="hover:bg-transparent hover:p-0 p-0">
               Explore
-            </NavigationMenuTrigger>
+            </NavigationMenu>
             <NavigationMenuLink
               href="/funding"
               className="hover:bg-transparent p-0"
@@ -131,12 +130,12 @@ export default function Page() {
                           {...field}
                           type="email"
                           placeholder="Enter your email address"
-                          className="w-full rounded-r-none custom-input"
+                          className="w-full rounded-r-none py-5 px-8 custom-input"
                         />
                       </FormControl>
                       <Button
                         type="submit"
-                        className="gradient-button rounded-l-none w-30"
+                        className="gradient-button rounded-l-none py-5 px-8 w-30"
                       >
                         Subscribe
                       </Button>
@@ -146,7 +145,7 @@ export default function Page() {
               />
             </form>
           </Form>
-          <Button className="gradient-button self-start rounded-full flex items-center justify-center gap-2 px-4">
+          <Button className="gradient-button self-start rounded-full flex items-center justify-center gap-2 px-8 py-5">
             <span>How we work</span>
             <MdOutlinePlayCircleFilled color="bg-gray-900" />
           </Button>
@@ -277,6 +276,7 @@ export default function Page() {
         </ul>
       </section>
 
+      {/* Partners */}
       <section className="carousel-container">
         <ul className="carousel-track">
           {Partners.map((partner, index) => (
@@ -297,6 +297,63 @@ export default function Page() {
                 width={100}
                 height={100}
               />
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* resources */}
+      <section
+        className="flex items-center gap-10 p-20 bg-custom-green"
+        style={{
+          backgroundImage: `url("/home/ecosystem-bg.svg")`,
+          backgroundSize: "cover",
+          backgroundBlendMode: "overlay",
+        }}
+      >
+        <div className="flex flex-col items-start gap-5 text-white w-3/5">
+          <h2 className="text-5xl font-medium flex flex-col items-start gap-3 font-poppins">
+            Resources.
+          </h2>
+
+          <span className="w-1/5 h-1 bg-light-custom-green" />
+
+          <p className="mt-5 text-xl font-medium font-poppins">
+            SNG is proud to offer such a wide variety of technology assets
+            within the geographical locations on its platform. All these
+            encompass our goal of turbo-charging investments towards
+            sustainable, innovative and most importantly inclusive growth.
+          </p>
+
+          <Button className="px-7 py-6 text-base bg-custom-orange hover:bg-custom-orange mt-8">
+            Get Started
+          </Button>
+        </div>
+
+        <ul className="flex-1 flex flex-col gap-5">
+          {resourcesList.map((resource) => (
+            <li
+              key={resource.title}
+              className="flex items-center gap-4 bg-gray-100 py-2 px-3 rounded-lg"
+            >
+              <figure className="w-14 h-14">
+                <Image
+                  src={resource.img}
+                  alt=""
+                  width={400}
+                  height={400}
+                  className="w-full h-full"
+                />
+              </figure>
+
+              <div className="leading-tight">
+                <h3 className="font-semibold">{resource.title}</h3>
+                <p>{resource.desc}</p>
+              </div>
+
+              <div className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center ml-auto">
+                ?
+              </div>
             </li>
           ))}
         </ul>
