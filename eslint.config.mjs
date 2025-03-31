@@ -2,11 +2,11 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const filename = fileURLToPath(import.meta.url);
+const currentDirname = dirname(filename);
 
 const compat = new FlatCompat({
-  baseDirectory: __dirname,
+  baseDirectory: currentDirname,
 });
 
 const eslintConfig = [
@@ -23,6 +23,7 @@ const eslintConfig = [
       "react/react-in-jsx-scope": "off",
       "react/jsx-props-no-spreading": "off",
       "import/prefer-default-export": "off",
+      "react/no-array-index-key": "off",
       "react/jsx-no-constructed-context-values": "warn",
       "react/require-default-props": "off",
       "@typescript-eslint/no-unused-vars": [
@@ -42,6 +43,10 @@ const eslintConfig = [
       "react/jsx-filename-extension": [
         "error",
         { extensions: [".jsx", ".tsx"] },
+      ],
+      "no-underscore-dangle": [
+        "error",
+        { allow: ["__filename", "__dirname"] },
       ],
     },
     settings: {

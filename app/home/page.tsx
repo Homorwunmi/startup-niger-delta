@@ -36,7 +36,7 @@ import { subscriptionSchema } from "@/helpers/validation";
 import Logo from "@/public/images/Logo.svg";
 import headerImage from "@/public/images/header-image.svg";
 import headerBg from "@/public/images/header-bg.svg";
-import { Ecosystem, InvestmentList } from "@/lib/home";
+import { Ecosystem, InvestmentList, Partners } from "@/lib/home";
 import Investment from "@/public/home/investment.svg";
 
 export default function Page() {
@@ -272,6 +272,31 @@ export default function Page() {
               <figcaption className="text-white font-bold text-lg font-poppins">
                 {item.title}
               </figcaption>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="carousel-container">
+        <ul className="carousel-track">
+          {Partners.map((partner, index) => (
+            <li key={`partner-${index}`} className="carousel-card">
+              <Image
+                src={partner.image}
+                alt="Partner Logo"
+                width={100}
+                height={100}
+              />
+            </li>
+          ))}
+          {Partners.map((partner, index) => (
+            <li key={`partner-duplicate-${index}`} className="carousel-card">
+              <Image
+                src={partner.image}
+                alt="Partner Logo Duplicate"
+                width={100}
+                height={100}
+              />
             </li>
           ))}
         </ul>

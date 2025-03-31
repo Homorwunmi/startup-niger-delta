@@ -31,3 +31,47 @@ export const InvestmentList = [
     title: "Accelerators, Innovation Hubs, Incubators & more",
   },
 ];
+
+export const Partners = [
+  {
+    image: "/home/partners/fct.svg",
+  },
+  {
+    image: "/home/partners/dsg.svg",
+  },
+  {
+    image: "/home/partners/fct.svg",
+  },
+  {
+    image: "/home/partners/dsg.svg",
+  },
+  {
+    image: "/home/partners/fct.svg",
+  },
+  {
+    image: "/home/partners/dsg.svg",
+  },
+];
+
+export const resourcesList = [
+  {
+    title: "Tech Piooner Network",
+    desc: "Connect with digital innovators",
+  },
+  {
+    title: "Investment Hub",
+    desc: "Discover promising opportunities",
+  },
+  {
+    title: "Innovation Playground",
+    desc: "Where ideas become reality",
+  },
+  {
+    title: "Tech Trends Tracker",
+    desc: "Stay ahead of the curve",
+  },
+  {
+    title: "Community of Visionaries",
+    desc: "Connect, collaborate, innovate",
+  },
+];
