@@ -1,10 +1,17 @@
-import { registerUser, sendVerificationEmail, loginUser, resetPassword } from './src/auth.js';
+import { registerUser, sendVerificationEmail, loginUser, resetPassword, signInWithGoogle } from './src/auth.js';
 import { onboardingRegistration } from './src/onboarding.js';
 
+//Uncomment the following lines to test other authentication methods
 // const a = await registerUser('test@gmail.com', 'password123');
 // const b = await sendVerificationEmail(a);
 const c = await loginUser('test@gmail.com', 'password123');
 // const d = await resetPassword();
+
+//Test Google Sign-In
+const e = await signInWithGoogle();
+console.log("Google Sign-In: ", e);
+
+//Test Onboarding Registration
 await onboardingRegistration('startup', 'company_profile', {
     company_name: 'Test Company',
     year_of_incorporation: '1999',
