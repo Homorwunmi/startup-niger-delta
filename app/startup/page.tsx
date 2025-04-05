@@ -57,23 +57,42 @@ export default function Page() {
           <form className="grid grid-cols-2 gap-8 w-full">
             <div className="flex flex-col gap-2">
               <Label>Company Name</Label>
-              <Input type="text" placeholder="Registered name" className="border-custom-green-1 focus-visible:ring-0" />
+              <Input
+                type="text"
+                placeholder="Registered name"
+                className="border-custom-green-1 focus-visible:ring-0"
+              />
             </div>
             <div className="flex flex-col gap-2">
               <Label>Year of Incorporation</Label>
-              <Input type="text" placeholder="Registered name" className="focus-visible:ring-0" />
+              <Input
+                type="text"
+                placeholder="Registered name"
+                className="focus-visible:ring-0"
+              />
             </div>
             <div className="flex flex-col gap-2">
               <Label>RC Number</Label>
-              <Input type="text" placeholder="Registered number" className="focus-visible:ring-0" />
+              <Input
+                type="text"
+                placeholder="Registered number"
+                className="focus-visible:ring-0"
+              />
             </div>
             <div className="flex flex-col gap-2">
               <Label>Industry</Label>
-              <Input type="text" placeholder="Registered name" className="focus-visible:ring-0" />
+              <Input
+                type="text"
+                placeholder="Registered name"
+                className="focus-visible:ring-0"
+              />
             </div>
             <div className="flex flex-col gap-2">
               <Label>Startup Description</Label>
-              <Textarea placeholder="Solution" className="h-48 focus-visible:ring-0" />
+              <Textarea
+                placeholder="Solution"
+                className="h-48 focus-visible:ring-0"
+              />
             </div>
             <div className="flex flex-col gap-2">
               <Label>Funding Interest</Label>

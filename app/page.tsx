@@ -326,7 +326,7 @@ export default function Page() {
             sustainable, innovative and most importantly inclusive growth.
           </p>
 
-          <Link href='/sign-up'>
+          <Link href="/sign-up">
             <Button className="px-7 py-6 text-base bg-custom-orange hover:bg-custom-orange mt-8 hover:cursor-pointer">
               Get Started
             </Button>
