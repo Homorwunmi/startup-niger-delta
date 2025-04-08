@@ -52,8 +52,7 @@ export default function Sidebar({
                         Component: item.Component,
                         src: item.src,
                       });
-                    }}
-                  >
+                    }}>
                     {item.title}
                   </Button>
                 </li>
