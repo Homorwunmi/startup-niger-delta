@@ -10,7 +10,8 @@ export default function AngelFormInvestment() {
         <div className="relative">
           <Label
             htmlFor="angel"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+          >
             Angel
           </Label>
           <Input
@@ -23,7 +24,8 @@ export default function AngelFormInvestment() {
         <div className="relative">
           <Label
             htmlFor="investmentExperience"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+          >
             Investment Experience
           </Label>
           <Input
@@ -36,7 +38,8 @@ export default function AngelFormInvestment() {
         <div className="relative">
           <Label
             htmlFor="investmentProof"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+          >
             Investment Proof
           </Label>
           <Input
@@ -49,7 +52,8 @@ export default function AngelFormInvestment() {
         <div className="relative">
           <Label
             htmlFor="investmentSize"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+          >
             Investment Size
           </Label>
           <Input

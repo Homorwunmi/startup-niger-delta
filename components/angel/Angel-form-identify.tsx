@@ -11,7 +11,8 @@ export default function AngelFormIdentify() {
         <div className="relative">
           <Label
             htmlFor="meansofIdentification"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+          >
             Means of Identification
           </Label>
           <Input
@@ -24,7 +25,8 @@ export default function AngelFormIdentify() {
         <div className="relative">
           <Label
             htmlFor="Nationality"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+          >
             Nationality
           </Label>
           <Input
@@ -37,7 +39,8 @@ export default function AngelFormIdentify() {
         <div className="relative">
           <Label
             htmlFor="investmentProof"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+          >
             Investment Proof
           </Label>
           <Textarea

@@ -10,7 +10,8 @@ export default function AngelForm() {
         <div className="relative">
           <Label
             htmlFor="companyName"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+          >
             Company / Individual Name
           </Label>
           <Input
@@ -24,7 +25,8 @@ export default function AngelForm() {
         <div className="relative">
           <Label
             htmlFor="Industry"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+          >
             Industry
           </Label>
           <Input
@@ -37,7 +39,8 @@ export default function AngelForm() {
         <div className="relative">
           <Label
             htmlFor="BusinessDescription"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+          >
             Business Description
           </Label>
           <Textarea
@@ -49,7 +52,8 @@ export default function AngelForm() {
         <div className="relative">
           <Label
             htmlFor="fundingInterest"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+          >
             Funding Interest
           </Label>
           <Input

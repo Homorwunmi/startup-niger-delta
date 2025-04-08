@@ -10,7 +10,8 @@ export default function AngelFormInfo() {
         <div className="relative">
           <Label
             htmlFor="companyEmail"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+          >
             Company Email
           </Label>
           <Input
@@ -23,7 +24,8 @@ export default function AngelFormInfo() {
         <div className="relative">
           <Label
             htmlFor="companyPhone"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+          >
             Company Phone Number
           </Label>
           <Input
@@ -35,7 +37,8 @@ export default function AngelFormInfo() {
         <div className="relative">
           <Label
             htmlFor="BusinessDescription"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+          >
             Company Address
           </Label>
           <Textarea
@@ -47,7 +50,8 @@ export default function AngelFormInfo() {
         <div className="relative">
           <Label
             htmlFor="companyWebsite"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+          >
             Company Website
           </Label>
           <Input
