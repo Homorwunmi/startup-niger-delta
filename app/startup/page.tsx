@@ -10,37 +10,12 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import Logo from "@/public/images/Logo.svg";
-import Image from "next/image";
+import Navbar from "@/components/shared/Navbar";
 
 export default function Page() {
   return (
     <section className="">
-      <div
-        className="flex items-center justify-between px-20 py-4 bg-custom-green-2"
-        style={{
-          backgroundImage: `url("/home/ecosystem-bg.svg")`,
-          backgroundBlendMode: "overlay",
-        }}
-      >
-        <figure className="w-40">
-          <Image
-            src={Logo}
-            alt="Logo"
-            width={100}
-            height={100}
-            className="w-full h-auto"
-          />
-        </figure>
-
-        <p className="font-bold flex items-center justify-center gap-4">
-          <span>Need Help</span>
-          <span className="rounded-full block bg-black text-white w-4 h-4 p-3 flex items-center justify-center">
-            ?
-          </span>
-        </p>
-      </div>
-
+      <Navbar />
       <div className="bg-custom-green-3 h-screen px-20 py-10 flex items-start gap-10">
         <div className="flex flex-col gap-3 w-[30%]">
           <h2 className="text-2xl">Startup Registration</h2>
