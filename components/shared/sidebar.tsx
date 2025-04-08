@@ -1,7 +1,9 @@
 "use client";
-import { useState, ReactElement } from "react";
-import AngelForm from "../angel/Angel-form-profile";
+
+import React, { ReactElement } from "react";
 import Image from "next/image";
+// import AngelForm from "../angel/Angel-form-profile";
+import { Button } from "../ui/button";
 
 interface SidebarProps {
   sidebarItems: {
@@ -10,16 +12,29 @@ interface SidebarProps {
     src: string;
   }[];
   value: string;
+  activeTab: {
+    title: string;
+    Component: React.JSX.Element;
+    src: string;
+  };
+  setActiveTab: React.Dispatch<
+    React.SetStateAction<{
+      title: string;
+      Component: React.JSX.Element;
+      src: string;
+    }>
+  >;
 }
-export default function Sidebar({ sidebarItems, value }: SidebarProps) {
-  const [activeTab, setActiveTab] = useState({
-    title: "Company Profile",
-    Component: <AngelForm />,
-    src: "/angel/bgTrailer1.svg",
-  });
+
+export default function Sidebar({
+  sidebarItems,
+  value,
+  activeTab,
+  setActiveTab,
+}: SidebarProps) {
   return (
     <section className="w-full pt-6">
-      <h1 className="w-[392px] text-[#184341] font-poppins font-semibold text-3xl px-20">
+      <h1 className="w-2/5 text-custom-green font-poppins font-semibold text-3xl px-20">
         {value}
       </h1>
       <section className="flex gap-[222px] z-20 px-20">
@@ -27,17 +42,19 @@ export default function Sidebar({ sidebarItems, value }: SidebarProps) {
           {sidebarItems.map((item, index) => (
             <div key={index} className="flex items-center">
               <ul>
-                <li
-                  className={`text-[#184341] font-semibold text-lg cursor-pointer ${activeTab.title === item.title ? "text-black text-xl" : ""}`}
-                  onClick={() => {
-                    setActiveTab({
-                      title: item.title,
-                      Component: item.Component,
-                      src: item.src,
-                    });
-                  }}
-                >
-                  {item.title}
+                <li key={index}>
+                  <Button
+                    type="button"
+                    className={`bg-transparent hover:bg-transparent cursor-pointer shadow-none text-lg text-light-custom-green-1 font-semibold ${activeTab.title === item.title ? "text-black text-xl" : ""}`}
+                    onClick={() => {
+                      setActiveTab({
+                        title: item.title,
+                        Component: item.Component,
+                        src: item.src,
+                      });
+                    }}>
+                    {item.title}
+                  </Button>
                 </li>
               </ul>
             </div>
@@ -54,13 +71,15 @@ export default function Sidebar({ sidebarItems, value }: SidebarProps) {
         </div>
       </section>
 
-      <Image
-        src={activeTab.src}
-        alt="Angel Background"
-        width={100}
-        height={100}
-        className="absolute bottom-0 right-0 w-full"
-      />
+      <figure className="w-full absolute bottom-0 left-0">
+        <Image
+          src={activeTab.src}
+          alt="Angel Background"
+          width={100}
+          height={100}
+          className="w-full object-cover"
+        />
+      </figure>
     </section>
   );
 }
