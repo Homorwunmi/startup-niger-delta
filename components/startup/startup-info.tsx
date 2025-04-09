@@ -9,7 +9,8 @@ export default function StartupInfo() {
         <div className="relative w-full">
           <Label
             htmlFor="company-email"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+          >
             Company Email
           </Label>
           <Input
@@ -23,7 +24,8 @@ export default function StartupInfo() {
         <div className="relative w-full">
           <Label
             htmlFor="website"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+          >
             Company Website
           </Label>
           <Input
@@ -36,7 +38,8 @@ export default function StartupInfo() {
         <div className="relative w-full">
           <Label
             htmlFor="company-address"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+          >
             Company Address
           </Label>
           <Input
@@ -49,7 +52,8 @@ export default function StartupInfo() {
         <div className="relative w-full">
           <Label
             htmlFor="industry"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+          >
             Company Phone
           </Label>
           <Input
