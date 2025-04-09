@@ -32,3 +32,26 @@ export const sideBarData: SideBarItem[] = [
     src: "/angel/bgTrailer4.svg",
   },
 ];
+
+export const startUpData: SideBarItem[] = [
+  {
+    title: "Company Profile",
+    Component: <AngelForm />,
+    src: "/angel/bgTrailer1.svg",
+  },
+  {
+    title: "Contact Info",
+    Component: <AngelFormInfo />,
+    src: "/angel/bgTrailer2.svg",
+  },
+  {
+    title: "Investment Info",
+    Component: <AngelFormInvestment />,
+    src: "/angel/bgTrailer3.svg",
+  },
+  {
+    title: "Identification",
+    Component: <AngelFormIdentify />,
+    src: "/angel/bgTrailer4.svg",
+  },
+];

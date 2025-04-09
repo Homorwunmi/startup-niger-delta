@@ -3,7 +3,7 @@
 import Navbar from "@/components/shared/Navbar";
 import Status from "@/components/shared/status";
 import Sidebar from "@/components/shared/sidebar";
-import { sideBarData } from "@/lib/data";
+import { startUpData } from "@/lib/data";
 import { useState } from "react";
 import AngelForm from "@/components/angel/Angel-form-profile";
 
@@ -19,7 +19,7 @@ export default function Page() {
       <Navbar />
       <Status />
       <Sidebar
-        sidebarItems={sideBarData}
+        sidebarItems={startUpData}
         value="Startup Registration"
         setActiveTab={setActiveTab}
         activeTab={activeTab}
