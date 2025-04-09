@@ -1,33 +1,13 @@
 "use client";
 
-import React, { ReactElement } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { SidebarProps } from "@/types/Onboarding.d";
 import { Button } from "../ui/button";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Label } from "../ui/label";
-
-interface SidebarProps {
-  sidebarItems: {
-    title: string;
-    Component: ReactElement;
-    src: string;
-  }[];
-  value: string;
-  activeTab: {
-    title: string;
-    Component: React.JSX.Element;
-    src: string;
-  };
-  setActiveTab: React.Dispatch<
-    React.SetStateAction<{
-      title: string;
-      Component: React.JSX.Element;
-      src: string;
-    }>
-  >;
-}
 
 export default function Sidebar({
   sidebarItems,
@@ -57,8 +37,7 @@ export default function Sidebar({
                         Component: item.Component,
                         src: item.src,
                       });
-                    }}
-                  >
+                    }}>
                     {item.title}
                   </Button>
                 </li>
@@ -76,8 +55,7 @@ export default function Sidebar({
                   <RadioGroup defaultValue="option-one">
                     <Link
                       href="/startup"
-                      className="flex items-center space-x-2"
-                    >
+                      className="flex items-center space-x-2">
                       <RadioGroupItem
                         value="startup"
                         id="startup"
@@ -91,8 +69,7 @@ export default function Sidebar({
                   <RadioGroup defaultValue="option-one">
                     <Link
                       href="/angel-investor"
-                      className="flex items-center space-x-2"
-                    >
+                      className="flex items-center space-x-2">
                       <RadioGroupItem
                         value="angel-investor"
                         id="angel-investor"
@@ -106,8 +83,7 @@ export default function Sidebar({
                   <RadioGroup defaultValue="option-one">
                     <Link
                       href="/venture-capitalist"
-                      className="flex items-center space-x-2"
-                    >
+                      className="flex items-center space-x-2">
                       <RadioGroupItem
                         value="venture-capitalist"
                         id="venture-capitalist"
@@ -123,8 +99,7 @@ export default function Sidebar({
                   <RadioGroup defaultValue="option-one">
                     <Link
                       href="/accelerator"
-                      className="flex items-center space-x-2"
-                    >
+                      className="flex items-center space-x-2">
                       <RadioGroupItem
                         value="accelerator"
                         id="accelerator"

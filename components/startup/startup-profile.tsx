@@ -6,7 +6,7 @@ import { Label } from "../ui/label";
 export default function StartupProfile() {
   return (
     <form action="w-full">
-      <div className="grid grid-cols-2 gap-y-6 gap-x-10 justify-between p-8">
+      <div className="grid grid-cols-2 gap-y-6 gap-x-10 justify-between py-6 px-4">
         <div className="relative w-full">
           <Label
             htmlFor="companyName"

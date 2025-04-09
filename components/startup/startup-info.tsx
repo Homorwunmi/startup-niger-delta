@@ -5,7 +5,7 @@ import { Label } from "../ui/label";
 export default function StartupInfo() {
   return (
     <form className="flex flex-col h-full">
-      <div className="grid grid-cols-2 gap-y-6 gap-x-10 p-8">
+      <div className="grid grid-cols-2 gap-y-6 gap-x-10 py-6 px-4">
         <div className="relative w-full">
           <Label
             htmlFor="company-email"
