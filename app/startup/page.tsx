@@ -5,12 +5,12 @@ import Status from "@/components/shared/status";
 import Sidebar from "@/components/shared/sidebar";
 import { startUpData } from "@/lib/data";
 import { useState } from "react";
-import AngelForm from "@/components/angel/Angel-form-profile";
+import StartupProfile from "@/components/startup/startup-profile";
 
 export default function Page() {
   const [activeTab, setActiveTab] = useState({
     title: "Company Profile",
-    Component: <AngelForm />,
+    Component: <StartupProfile />,
     src: "/angel/bgTrailer1.svg",
   });
 
