@@ -4,6 +4,7 @@ import AngelFormInfo from "@/components/angel/Angel-form-info";
 import AngelFormInvestment from "@/components/angel/Angel-form-investment";
 import AngelFormIdentify from "@/components/angel/Angel-form-identify";
 import StartupProfile from "@/components/startup/startup-profile";
+import StartupInfo from "@/components/startup/startup-info";
 
 interface SideBarItem {
   title: string;
@@ -42,7 +43,7 @@ export const startUpData: SideBarItem[] = [
   },
   {
     title: "Contact Info",
-    Component: <AngelFormInfo />,
+    Component: <StartupInfo />,
     src: "/angel/bgTrailer2.svg",
   },
   {

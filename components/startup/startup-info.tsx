@@ -1,61 +1,61 @@
 import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 
-export default function AngelForm() {
+export default function StartupInfo() {
   return (
-    <form action="w-full">
-      <div className="grid grid-cols-2 gap-y-6 gap-x-10 justify-between p-8">
+    <form action="w-full h-screen">
+      <div className="grid grid-cols-2 gap-y-6 gap-x-10 p-8">
         <div className="relative w-full">
           <Label
-            htmlFor="companyName"
+            htmlFor="company-email"
             className="text-[#184341] text-base bg-white absolute -top-1 left-6">
-            Company / Individual Name
+            Company Email
           </Label>
           <Input
             type="text"
-            id="companyName"
+            id="company-email"
             name="compnayName"
-            placeholder="Registered name"
+            placeholder="username@domain.com"
             className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative w-full">
           <Label
-            htmlFor="Industry"
+            htmlFor="website"
             className="text-[#184341] text-base bg-white absolute -top-1 left-6">
-            Industry
+            Company Website
           </Label>
           <Input
-            type="text"
-            id="Industry"
-            placeholder="Select Your Industry"
-            className="w-[300px] mt-2 py-5 px-4 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+            type="date"
+            id="website"
+            placeholder="www.businessdomain.com"
+            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative w-full">
           <Label
-            htmlFor="BusinessDescription"
+            htmlFor="company-address"
             className="text-[#184341] text-base bg-white absolute -top-1 left-6">
-            Business Description
+            Company Address
           </Label>
-          <Textarea
-            id="BusinessDescription"
-            placeholder="Your solution in one sentence"
-            className="w-full h-[200px] mt-2 py-3 px-6 border-custom-green-2 border-2 rounded-md resize-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+          <Input
+            type="text"
+            id="company-address"
+            placeholder="Address information"
+            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative w-full">
           <Label
-            htmlFor="fundingInterest"
+            htmlFor="industry"
             className="text-[#184341] text-base bg-white absolute -top-1 left-6">
-            Funding Interest
+            Company Phone
           </Label>
           <Input
-            type="text"
-            id="fundingInterest"
-            placeholder="Investment Interest"
+            type="tel"
+            id="industry"
+            placeholder="+234"
             className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
