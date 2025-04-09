@@ -10,8 +10,7 @@ export default function StartupProfile() {
         <div className="relative w-full">
           <Label
             htmlFor="companyName"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
-          >
+            className="text-[#184341] text-base bg-white absolute -top-1 left-6">
             Company Name
           </Label>
           <Input
@@ -25,8 +24,7 @@ export default function StartupProfile() {
         <div className="relative w-full">
           <Label
             htmlFor="Industry"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
-          >
+            className="text-[#184341] text-base bg-white absolute -top-1 left-6">
             Year of Incorporation
           </Label>
           <Input
@@ -39,22 +37,20 @@ export default function StartupProfile() {
         <div className="relative w-full">
           <Label
             htmlFor="BusinessDescription"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
-          >
+            className="text-[#184341] text-base bg-white absolute -top-1 left-6">
             RC Number
           </Label>
           <Input
             type="text"
             id="BusinessDescription"
             placeholder="Your solution in one sentence"
-            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative w-full">
           <Label
             htmlFor="industry"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
-          >
+            className="text-[#184341] text-base bg-white absolute -top-1 left-6">
             Industry
           </Label>
           <Input
@@ -67,21 +63,19 @@ export default function StartupProfile() {
         <div className="relative w-full">
           <Label
             htmlFor="startup-description"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
-          >
+            className="text-[#184341] text-base bg-white absolute -top-1 left-6">
             Startup Description
           </Label>
           <Textarea
             id="startup-description"
             placeholder="Solution"
-            className="w-full h-[200px] mt-2 py-3 px-6 border-custom-green-2 border-2 rounded-md resize-none focus-visible:ring-0 focus-visible:border-custom-green-2"
+            className="w-full h-40 mt-2 py-3 px-6 border-custom-green-2 border-2 rounded-md resize-none focus-visible:ring-0 focus-visible:border-custom-green-2"
           />
         </div>
         <div className="relative w-full">
           <Label
             htmlFor="fundingInterest"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
-          >
+            className="text-[#184341] text-base bg-white absolute -top-1 left-6">
             Funding Interest
           </Label>
           <Input

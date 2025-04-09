@@ -42,7 +42,7 @@ export default function Sidebar({
       <h1 className="w-2/5 text-custom-green font-poppins font-semibold text-3xl px-20">
         {value}
       </h1>
-      <section className="flex gap-[222px] z-20 px-20 h-screen">
+      <section className="flex gap-[222px] z-20 px-20 h-[80vh]">
         <div className="flex flex-col gap-10 mt-11">
           {sidebarItems.map((item, index) => (
             <div key={index} className="flex items-center">
@@ -57,8 +57,7 @@ export default function Sidebar({
                         Component: item.Component,
                         src: item.src,
                       });
-                    }}
-                  >
+                    }}>
                     {item.title}
                   </Button>
                 </li>
@@ -67,17 +66,16 @@ export default function Sidebar({
           ))}
         </div>
 
-        <div className="h-[70%]">
+        <div className="h-full">
           {activeTab.Component && (
-            <div className="flex flex-col bg-white flex-1 rounded-xl px-5 h-full">
+            <div className="flex flex-col bg-white flex-1 rounded-xl px-5 h-[90%]">
               {/* Top Navigation Bar */}
               <ul className="flex items-center text-sm gap-3 border-b-1 w-5/6 mx-auto py-4">
                 <li>
                   <RadioGroup defaultValue="option-one">
                     <Link
                       href="/startup"
-                      className="flex items-center space-x-2"
-                    >
+                      className="flex items-center space-x-2">
                       <RadioGroupItem
                         value="startup"
                         id="startup"
@@ -91,8 +89,7 @@ export default function Sidebar({
                   <RadioGroup defaultValue="option-one">
                     <Link
                       href="/angel-investor"
-                      className="flex items-center space-x-2"
-                    >
+                      className="flex items-center space-x-2">
                       <RadioGroupItem
                         value="angel-investor"
                         id="angel-investor"
@@ -106,8 +103,7 @@ export default function Sidebar({
                   <RadioGroup defaultValue="option-one">
                     <Link
                       href="/venture-capitalist"
-                      className="flex items-center space-x-2"
-                    >
+                      className="flex items-center space-x-2">
                       <RadioGroupItem
                         value="venture-capitalist"
                         id="venture-capitalist"
@@ -123,8 +119,7 @@ export default function Sidebar({
                   <RadioGroup defaultValue="option-one">
                     <Link
                       href="/accelerator"
-                      className="flex items-center space-x-2"
-                    >
+                      className="flex items-center space-x-2">
                       <RadioGroupItem
                         value="accelerator"
                         id="accelerator"

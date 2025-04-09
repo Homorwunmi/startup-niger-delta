@@ -5,6 +5,7 @@ import AngelFormInvestment from "@/components/angel/Angel-form-investment";
 import AngelFormIdentify from "@/components/angel/Angel-form-identify";
 import StartupProfile from "@/components/startup/startup-profile";
 import StartupInfo from "@/components/startup/startup-info";
+import StartupFounder from "@/components/startup/startup-founder";
 
 interface SideBarItem {
   title: string;
@@ -47,8 +48,8 @@ export const startUpData: SideBarItem[] = [
     src: "/angel/bgTrailer2.svg",
   },
   {
-    title: "Investment Info",
-    Component: <AngelFormInvestment />,
+    title: "Founder/Co-founder Profile",
+    Component: <StartupFounder />,
     src: "/angel/bgTrailer3.svg",
   },
   {
