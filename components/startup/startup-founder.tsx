@@ -9,7 +9,8 @@ export default function StartupFounder() {
         <div className="relative w-full">
           <Label
             htmlFor="founder-name"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+          >
             Founder&apos;s name
           </Label>
           <Input
@@ -23,7 +24,8 @@ export default function StartupFounder() {
         <div className="relative w-full">
           <Label
             htmlFor="founder-email"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+          >
             Founder&apos;s Email
           </Label>
           <Input
@@ -36,7 +38,8 @@ export default function StartupFounder() {
         <div className="relative w-full">
           <Label
             htmlFor="founder-address"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+          >
             Founder&apos;s Address
           </Label>
           <Input
@@ -49,7 +52,8 @@ export default function StartupFounder() {
         <div className="relative w-full">
           <Label
             htmlFor="founder-phone"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+          >
             Founder&apos;s Phone
           </Label>
           <Input
@@ -62,7 +66,8 @@ export default function StartupFounder() {
         <div className="relative w-full">
           <Label
             htmlFor="founder-phone"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6">
+            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+          >
             No of Founder
           </Label>
           <Input
