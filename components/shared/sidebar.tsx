@@ -37,7 +37,8 @@ export default function Sidebar({
                         Component: item.Component,
                         src: item.src,
                       });
-                    }}>
+                    }}
+                  >
                     {item.title}
                   </Button>
                 </li>
@@ -55,7 +56,8 @@ export default function Sidebar({
                   <RadioGroup defaultValue="option-one">
                     <Link
                       href="/startup"
-                      className="flex items-center space-x-2">
+                      className="flex items-center space-x-2"
+                    >
                       <RadioGroupItem
                         value="startup"
                         id="startup"
@@ -69,7 +71,8 @@ export default function Sidebar({
                   <RadioGroup defaultValue="option-one">
                     <Link
                       href="/angel-investor"
-                      className="flex items-center space-x-2">
+                      className="flex items-center space-x-2"
+                    >
                       <RadioGroupItem
                         value="angel-investor"
                         id="angel-investor"
@@ -83,7 +86,8 @@ export default function Sidebar({
                   <RadioGroup defaultValue="option-one">
                     <Link
                       href="/venture-capitalist"
-                      className="flex items-center space-x-2">
+                      className="flex items-center space-x-2"
+                    >
                       <RadioGroupItem
                         value="venture-capitalist"
                         id="venture-capitalist"
@@ -99,7 +103,8 @@ export default function Sidebar({
                   <RadioGroup defaultValue="option-one">
                     <Link
                       href="/accelerator"
-                      className="flex items-center space-x-2">
+                      className="flex items-center space-x-2"
+                    >
                       <RadioGroupItem
                         value="accelerator"
                         id="accelerator"

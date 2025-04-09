@@ -14,7 +14,7 @@ export default function Particle(): JSX.Element {
     async (container: Container | undefined) => {
       console.log(container);
     },
-    []
+    [],
   );
 
   return (
