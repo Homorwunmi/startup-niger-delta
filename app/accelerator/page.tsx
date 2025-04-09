@@ -15,7 +15,7 @@ export default function Page() {
   });
 
   return (
-    <section className="bg-[#C6D9B5] h-screen w-full">
+    <section className="bg-[#C6D9B5] w-full relative overflow-hidden">
       <Navbar />
       <Status />
       <Sidebar
