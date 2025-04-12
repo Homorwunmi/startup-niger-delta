@@ -10,7 +10,8 @@ export default function FrequentlyAsked(): React.JSX.Element {
         style={{
           backgroundImage: `url("/home/ecosystem-bg.svg")`,
           backgroundBlendMode: "soft-light",
-        }}>
+        }}
+      >
         <h2 className="text-4xl decoration-light-custom-green underline-offset-[15px] underline mb-4 flex flex-col items-start">
           <span>FAQ.</span>
         </h2>
