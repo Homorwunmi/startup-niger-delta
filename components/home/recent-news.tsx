@@ -33,7 +33,8 @@ export default function RecentNews(): React.JSX.Element {
             <Button
               type="button"
               onClick={() => handleSetActive("latest")}
-              className={`rounded-full px-10 shadow-none ${isActive === "latest" ? "text-white bg-custom-green hover:bg-custom-green" : "text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent"}`}>
+              className={`rounded-full px-10 shadow-none ${isActive === "latest" ? "text-white bg-custom-green hover:bg-custom-green" : "text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent"}`}
+            >
               Latest
             </Button>
           </li>
@@ -41,7 +42,8 @@ export default function RecentNews(): React.JSX.Element {
             <Button
               type="button"
               onClick={() => handleSetActive("news")}
-              className={`rounded-full px-10 shadow-none ${isActive === "news" ? "text-white bg-custom-green hover:bg-custom-green" : "text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent"}`}>
+              className={`rounded-full px-10 shadow-none ${isActive === "news" ? "text-white bg-custom-green hover:bg-custom-green" : "text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent"}`}
+            >
               News
             </Button>
           </li>
@@ -49,7 +51,8 @@ export default function RecentNews(): React.JSX.Element {
             <Button
               type="button"
               onClick={() => handleSetActive("funding")}
-              className={`rounded-full px-10 shadow-none ${isActive === "funding" ? "text-white bg-custom-green hover:bg-custom-green" : "text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent"}`}>
+              className={`rounded-full px-10 shadow-none ${isActive === "funding" ? "text-white bg-custom-green hover:bg-custom-green" : "text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent"}`}
+            >
               Funding
             </Button>
           </li>
@@ -62,7 +65,8 @@ export default function RecentNews(): React.JSX.Element {
           .map((_, i) => (
             <Card
               className="w-1/3 shadow-none bg-transparent rounded-none gap-2"
-              key={`card-${i}`}>
+              key={`card-${i}`}
+            >
               <CardHeader className="px-0">
                 <CardTitle className="text-xl">
                   How collaboration makes us better business person

@@ -1,1 +1,1 @@
-export type NewsType = "latest" | "news" | "funding"
+export type NewsType = "latest" | "news" | "funding";
