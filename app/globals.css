@@ -9,13 +9,17 @@
 @theme inline {
   --font-poppins: "Poppins", sans-serif;
   --color-background: var(--background);
+
   --color-custom-green: #184341;
   --color-custom-green-1: #476864;
   --color-custom-green-2: #0d726f;
   --color-custom-green-3: #c6d9b5;
   --color-light-custom-green: #b8cea2;
   --color-light-custom-green-1: #e3ecda;
+
   --color-custom-orange: #ff7d05;
+  --color-custom-orange-dark: #7e3d00;
+
   --font-inter: "Inter", sans-serif;
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -152,6 +156,33 @@ body {
 
 nav > div {
   @apply w-full;
+}
+
+.slick-list {
+  height: 500px !important;
+}
+
+.slick-dots li button:before {
+  content: "" !important;
+  background-color: #ff7d05;
+  border-radius: 100%;
+  margin-top: 10px;
+  width: 15px !important;
+  height: 15px !important;
+}
+
+.slick-arrow {
+  display: none !important;
+}
+
+.slick-dots {
+  position: absolute !important;
+  right: -50px !important;
+  top: 40%;
+  width: fit-content !important;
+
+  display: flex !important;
+  flex-direction: column;
 }
 
 .carousel-container {
