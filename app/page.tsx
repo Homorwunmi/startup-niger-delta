@@ -72,7 +72,7 @@ export default function Page() {
                 Home
               </NavigationMenuLink>
               <NavigationMenu className="hover:bg-transparent hover:p-0 p-0">
-                Explore
+                Explores
               </NavigationMenu>
               <NavigationMenuLink
                 href="/funding"
