@@ -36,7 +36,8 @@ function SimpleSlider() {
           .map((_, i) => (
             <li
               key={i}
-              className="!flex flex-col items-stretch justify-center gap-4 h-full mt-12 px-10 py-4 relative">
+              className="!flex flex-col items-stretch justify-center gap-4 h-full mt-12 px-10 py-4 relative"
+            >
               <div className="flex items-center gap-5">
                 <figure className="w-14 h-14 rounded-full overflow-hidden">
                   <Image
@@ -95,7 +96,8 @@ export default function Testimonial() {
         style={{
           backgroundImage: `url("/home/ecosystem-bg.svg")`,
           backgroundBlendMode: "soft-light",
-        }}>
+        }}
+      >
         <h2 className="text-4xl text-center text-white font-semibold flex flex-col items-end gap-3">
           <span className="uppercase">Testimonies.</span>
           <span className="w-1/3 h-1 bg-custom-orange inline-block" />
