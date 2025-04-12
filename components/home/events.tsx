@@ -49,7 +49,8 @@ function MultipleItems() {
           .map((_, i) => (
             <li
               key={`card-${i}`}
-              className="!grid grid-cols-10 items-center gap-4 mt-4 bg-white/70 rounded-lg shadow-lg px-10 py-4">
+              className="!grid grid-cols-10 items-center gap-4 mt-4 bg-white/70 rounded-lg shadow-lg px-10 py-4"
+            >
               <div className="col-span-1 flex flex-col items-start gap-3">
                 <p className="font-bold">27 Sep 2024</p>
                 <p className="font-medium">
