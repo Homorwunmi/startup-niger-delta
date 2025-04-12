@@ -7,15 +7,24 @@ import Image from "next/image";
 import React from "react";
 import Slider from "react-slick";
 
+import TestimonialImage from "@/public/images/testimonial.svg";
+
 function SimpleSlider() {
+  const name = [
+    "Olatunji Salawu",
+    "Muhyideen Akanni",
+    "Tolulope Ayo",
+    "Jesutofunmi Ayoola",
+  ];
+
   const settings = {
     // dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // autoplay: true,
-    // autoplaySpeed: 2000,
+    autoplay: true,
+    autoplaySpeed: 2000,
   };
   return (
     <ul className="slider-container absolute top-1/2 left-10 transform -translate-y-1/2 h-1/2 w-3/5 bg-white z-10">
@@ -25,14 +34,17 @@ function SimpleSlider() {
           .map((_, i) => (
             <li
               key={i}
-              className="!flex flex-col items-stretch justify-center gap-4 h-full mt-12 px-10 py-4"
-            >
-              <div className="flex items-center gap-8">
+              className="!flex flex-col items-stretch justify-center gap-4 h-full mt-12 px-10 py-4">
+              <div className="flex items-center gap-5">
                 <figure className="w-14 h-14 rounded-full overflow-hidden">
-                  <Image src="" alt="" className="w-full h-full rounded-full" />
+                  <Image
+                    src={TestimonialImage}
+                    alt=""
+                    className="w-full h-full rounded-full"
+                  />
                 </figure>
                 <div>
-                  <h3 className="text-2xl font-semibold">Olatunji Salawu</h3>
+                  <h3 className="text-2xl font-semibold">{name[i]}</h3>
                   <p className="text-custom-orange text-lg font-semibold">
                     Head of Linie House Group
                   </p>
@@ -62,8 +74,7 @@ export default function Testimonial() {
         style={{
           backgroundImage: `url("/home/ecosystem-bg.svg")`,
           backgroundBlendMode: "soft-light",
-        }}
-      >
+        }}>
         <h2 className="text-4xl text-center text-white font-semibold flex flex-col items-end gap-3">
           <span className="uppercase">Testimonies.</span>
           <span className="w-1/3 h-1 bg-custom-orange inline-block" />
