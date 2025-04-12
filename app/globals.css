@@ -158,6 +158,13 @@ nav > div {
   @apply w-full;
 }
 
+/* .slick-slider,
+.slick-list,
+.slick-track,
+.slick-slide > div {
+  height: 100% !important;
+} */
+
 .slick-list {
   height: 500px !important;
 }

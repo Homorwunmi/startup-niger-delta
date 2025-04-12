@@ -42,6 +42,7 @@ import Investment from "@/public/home/investment.svg";
 import Link from "next/link";
 import RecentNews from "@/components/home/recent-news";
 import Events from "@/components/home/events";
+import Testimonial from "@/components/home/testimonial";
 
 export default function Page() {
   const form = useForm<Subscription>({
@@ -56,8 +57,7 @@ export default function Page() {
       <main>
         <NavigationMenu
           className="py-4 px-20 text-green-900 font-medium border-b-2 border-green-900 border-opacity-50"
-          style={{ maxWidth: "100%" }}
-        >
+          style={{ maxWidth: "100%" }}>
           <NavigationMenuList className="">
             <figure className="mr-auto">
               <Image src={Logo} alt="Niger Delta Logo" />
@@ -66,8 +66,7 @@ export default function Page() {
             <NavigationMenuItem className="flex items-center gap-8 text-custom-green">
               <NavigationMenuLink
                 href="/home"
-                className="hover:bg-transparent p-0"
-              >
+                className="hover:bg-transparent p-0">
                 Home
               </NavigationMenuLink>
               <NavigationMenu className="hover:bg-transparent hover:p-0 p-0">
@@ -75,8 +74,7 @@ export default function Page() {
               </NavigationMenu>
               <NavigationMenuLink
                 href="/funding"
-                className="hover:bg-transparent p-0"
-              >
+                className="hover:bg-transparent p-0">
                 Funding
               </NavigationMenuLink>
               <NavigationMenuLink className="hover:bg-transparent p-0">
@@ -96,14 +94,12 @@ export default function Page() {
             <NavigationMenuItem className="flex items-center gap-4 ml-auto">
               <NavigationMenuLink
                 href="/login"
-                className="underline hover:bg-transparent p-0"
-              >
+                className="underline hover:bg-transparent p-0">
                 Login
               </NavigationMenuLink>
               <NavigationMenuLink
                 href="/sign-up"
-                className="gradient-button w-30 text-center"
-              >
+                className="gradient-button w-30 text-center">
                 Get Started
               </NavigationMenuLink>
             </NavigationMenuItem>
@@ -141,8 +137,7 @@ export default function Page() {
                         </FormControl>
                         <Button
                           type="submit"
-                          className="gradient-button rounded-l-none py-5 px-8 w-30"
-                        >
+                          className="gradient-button rounded-l-none py-5 px-8 w-30">
                           Subscribe
                         </Button>
                       </div>
@@ -187,8 +182,7 @@ export default function Page() {
                   backgroundImage: `url("/home/ecosystem-bg.svg")`,
                   backgroundSize: "cover",
                   backgroundBlendMode: "overlay",
-                }}
-              >
+                }}>
                 <div
                   className={`absolute top-0 w-4/5 h-3 ${(index + 1) % 2 !== 0 ? "bg-light-custom-green" : "bg-custom-green"}`}
                 />
@@ -203,13 +197,11 @@ export default function Page() {
                 <CardHeader className="relative w-full gap-3">
                   <CardTitle
                     className="font text-3xl"
-                    style={{ fontFamily: "Times New Roman, serif" }}
-                  >
+                    style={{ fontFamily: "Times New Roman, serif" }}>
                     {item.title}
                   </CardTitle>
                   <CardDescription
-                    className={`text-sm font-poppins leading-5 ${(index + 1) % 2 !== 0 ? "text-white" : "text-custom-green"}`}
-                  >
+                    className={`text-sm font-poppins leading-5 ${(index + 1) % 2 !== 0 ? "text-white" : "text-custom-green"}`}>
                     {item.description}
                   </CardDescription>
                 </CardHeader>
@@ -238,8 +230,7 @@ export default function Page() {
             backgroundImage: `url("/home/ecosystem-bg.svg")`,
             backgroundSize: "cover",
             backgroundBlendMode: "overlay",
-          }}
-        >
+          }}>
           <div className="flex flex-col items-start gap-6 text-white">
             <h2 className="text-5xl flex flex-col items-start gap-3 font-poppins">
               <span>Investment &</span>
@@ -263,8 +254,7 @@ export default function Page() {
             {InvestmentList.map((item) => (
               <li
                 key={item.title}
-                className="flex flex-col items-start gap-4 bg-custom-green-1 bg-opacity-50 px-5 pt-12 pb-5 rounded-t-3xl w-1/5"
-              >
+                className="flex flex-col items-start gap-4 bg-custom-green-1 bg-opacity-50 px-5 pt-12 pb-5 rounded-t-3xl w-1/5">
                 <figure className="w-16 h-16">
                   <Image
                     src={item.icon}
@@ -314,8 +304,7 @@ export default function Page() {
           style={{
             backgroundImage: `url("/home/ecosystem-bg.svg")`,
             backgroundBlendMode: "soft-light",
-          }}
-        >
+          }}>
           <div className="flex flex-col items-start gap-5 text-white w-3/5">
             <h2 className="text-5xl font-medium flex flex-col items-start gap-3 font-poppins">
               Resources.
@@ -341,8 +330,7 @@ export default function Page() {
             {resourcesList.map((resource) => (
               <li
                 key={resource.title}
-                className="flex items-center gap-4 bg-gray-100 py-2 px-3 rounded-lg"
-              >
+                className="flex items-center gap-4 bg-gray-100 py-2 px-3 rounded-lg">
                 <figure className="w-14 h-14">
                   <Image
                     src={resource.img}
@@ -366,6 +354,8 @@ export default function Page() {
           </ul>
         </section>
 
+        <Testimonial />
+
         <RecentNews />
 
         <Events />
@@ -377,8 +367,7 @@ export default function Page() {
         style={{
           backgroundImage: `url("/home/ecosystem-bg.svg")`,
           backgroundBlendMode: "soft-light",
-        }}
-      >
+        }}>
         <div className="absolute top-0 left-0 w-full h-2 bg-custom-orange" />
 
         <section className="col-span-3 flex flex-col items-stretch gap-8">
