@@ -20,7 +20,8 @@ export default function FrequentlyAsked(): React.JSX.Element {
         style={{
           backgroundImage: `url("/home/ecosystem-bg.svg")`,
           backgroundBlendMode: "soft-light",
-        }}>
+        }}
+      >
         <h2 className="text-4xl decoration-light-custom-green underline-offset-[20px] underline mb-4 flex flex-col items-start">
           FAQ.
         </h2>
@@ -48,7 +49,8 @@ export default function FrequentlyAsked(): React.JSX.Element {
             <Accordion type="single" collapsible key={`faqs-${i}`}>
               <AccordionItem
                 value="item-1"
-                className="bg-white text-black rounded-lg shadow-md mb-6 px-5 !py-[.5px]">
+                className="bg-white text-black rounded-lg shadow-md mb-6 px-5 !py-[.5px]"
+              >
                 <AccordionTrigger className="hover:no-underline">
                   {faq.ques}
                 </AccordionTrigger>
