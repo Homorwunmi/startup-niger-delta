@@ -44,6 +44,7 @@ import RecentNews from '@/components/home/recent-news';
 import Events from '@/components/home/events';
 import Testimonial from '@/components/home/testimonial';
 import FrequentlyAsked from '@/components/home/faq';
+import Alert from '@/components/home/alert';
 
 export default function Page() {
   const form = useForm<Subscription>({
@@ -367,6 +368,8 @@ export default function Page() {
             ))}
           </ul>
         </section>
+
+        <Alert />
 
         <Testimonial />
 
