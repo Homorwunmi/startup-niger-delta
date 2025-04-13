@@ -234,3 +234,27 @@ nav > div {
     left: -100%;
   }
 }
+
+/* slidejs */
+.splide__track {
+  width: 80% !important;
+  margin-inline: auto !important;
+}
+
+.splide__pagination {
+  bottom: -2rem !important;
+}
+
+.splide__slide.is-active.is-visible {
+  transform: scale(1) !important;
+}
+
+.splide__slide {
+  transform: scale(0.8);
+}
+
+.splide__list {
+  padding: 0px;
+  display: flex;
+  justify-content: space-around;
+}
