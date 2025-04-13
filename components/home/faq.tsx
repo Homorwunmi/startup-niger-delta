@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import React from "react";
-import QuestionMark from "@/public/images/question-mark.svg";
-import FaqMain from "@/public/images/faq-main.svg";
-import Mail from "@/public/images/mail.svg";
+import React from 'react';
+import QuestionMark from '@/public/images/question-mark.svg';
+import FaqMain from '@/public/images/faq-main.svg';
+import Mail from '@/public/images/mail.svg';
 
-import Image from "next/image";
-import { faqs } from "@/lib/home";
-import { FaPhoneAlt } from "react-icons/fa";
-import { RiAtLine } from "react-icons/ri";
+import Image from 'next/image';
+import { faqs } from '@/lib/home';
+import { FaPhoneAlt } from 'react-icons/fa';
+import { RiAtLine } from 'react-icons/ri';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../ui/accordion";
+} from '../ui/accordion';
 
 export default function FrequentlyAsked(): React.JSX.Element {
   return (
@@ -23,7 +23,7 @@ export default function FrequentlyAsked(): React.JSX.Element {
         className="bg-custom-green p-20 h-96 font-poppins flex flex-col gap-2 relative"
         style={{
           backgroundImage: `url("/home/ecosystem-bg.svg")`,
-          backgroundBlendMode: "soft-light",
+          backgroundBlendMode: 'soft-light',
         }}
       >
         <h2 className="text-4xl decoration-light-custom-green underline-offset-[20px] underline mb-4 flex flex-col items-start">
