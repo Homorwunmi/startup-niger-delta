@@ -1,8 +1,8 @@
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { RadioGroupItem, RadioGroup } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "../ui/textarea";
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { RadioGroupItem, RadioGroup } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '../ui/textarea';
 
 export default function AngelFormIdentify() {
   return (

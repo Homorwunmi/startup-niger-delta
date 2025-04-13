@@ -1,22 +1,22 @@
-"use client";
+'use client';
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-import Image from "next/image";
-import React from "react";
-import Slider from "react-slick";
+import Image from 'next/image';
+import React from 'react';
+import Slider from 'react-slick';
 
-import TestimonialImage from "@/public/images/testimonial.svg";
-import QuoteImage from "@/public/images/quotation.svg";
-import { IoMdStar } from "react-icons/io";
+import TestimonialImage from '@/public/images/testimonial.svg';
+import QuoteImage from '@/public/images/quotation.svg';
+import { IoMdStar } from 'react-icons/io';
 
 function SimpleSlider() {
   const name = [
-    "Olatunji Salawu",
-    "Muhyideen Akanni",
-    "Tolulope Ayo",
-    "Jesutofunmi Ayoola",
+    'Olatunji Salawu',
+    'Muhyideen Akanni',
+    'Tolulope Ayo',
+    'Jesutofunmi Ayoola',
   ];
 
   const settings = {
@@ -95,7 +95,7 @@ export default function Testimonial() {
         className="absolute right-0 top-0 w-4/5 h-full bg-custom-green p-20 flex flex-col items-end gap-4"
         style={{
           backgroundImage: `url("/home/ecosystem-bg.svg")`,
-          backgroundBlendMode: "soft-light",
+          backgroundBlendMode: 'soft-light',
         }}
       >
         <h2 className="text-4xl text-center text-white font-semibold flex flex-col items-end gap-3">

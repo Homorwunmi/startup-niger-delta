@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { JSX, useCallback } from "react";
-import Particles from "react-particles";
-import type { Container, Engine } from "tsparticles-engine";
-import { loadSlim } from "tsparticles-slim";
+import { JSX, useCallback } from 'react';
+import Particles from 'react-particles';
+import type { Container, Engine } from 'tsparticles-engine';
+import { loadSlim } from 'tsparticles-slim';
 
 export default function Particle(): JSX.Element {
   const particlesInit = useCallback(async (engine: Engine) => {
@@ -14,7 +14,7 @@ export default function Particle(): JSX.Element {
     async (container: Container | undefined) => {
       console.log(container);
     },
-    [],
+    []
   );
 
   return (
@@ -26,7 +26,7 @@ export default function Particle(): JSX.Element {
         options={{
           background: {
             color: {
-              value: "#2ec4bf",
+              value: '#2ec4bf',
             },
           },
           fpsLimit: 120,
@@ -34,11 +34,11 @@ export default function Particle(): JSX.Element {
             events: {
               onClick: {
                 enable: true,
-                mode: "push",
+                mode: 'push',
               },
               onHover: {
                 enable: true,
-                mode: "repulse",
+                mode: 'repulse',
               },
               resize: {
                 enable: true,
@@ -57,20 +57,20 @@ export default function Particle(): JSX.Element {
           },
           particles: {
             color: {
-              value: "#ffffff",
+              value: '#ffffff',
             },
             links: {
-              color: "#ffffff",
+              color: '#ffffff',
               distance: 150,
               enable: true,
               opacity: 0.5,
               width: 0.5,
             },
             move: {
-              direction: "none",
+              direction: 'none',
               enable: true,
               outModes: {
-                default: "bounce",
+                default: 'bounce',
               },
               random: false,
               speed: 6,
@@ -87,7 +87,7 @@ export default function Particle(): JSX.Element {
               value: 0.5,
             },
             shape: {
-              type: "circle",
+              type: 'circle',
             },
             size: {
               value: { min: 1, max: 3 },

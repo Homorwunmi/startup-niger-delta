@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
-import React from "react";
-import Slider from "react-slick";
+import React from 'react';
+import Slider from 'react-slick';
 
-import NewsImage1 from "@/public/images/news-image-1.svg";
-import NewsImage2 from "@/public/images/news-image-2.svg";
-import NewsImage3 from "@/public/images/news-image-3.svg";
-import Image from "next/image";
-import { Button } from "../ui/button";
+import NewsImage1 from '@/public/images/news-image-1.svg';
+import NewsImage2 from '@/public/images/news-image-2.svg';
+import NewsImage3 from '@/public/images/news-image-3.svg';
+import Image from 'next/image';
+import { Button } from '../ui/button';
 
 function MultipleItems() {
   const images = [NewsImage1, NewsImage2, NewsImage3];
@@ -37,7 +37,7 @@ function MultipleItems() {
     autoplay: true,
     speed: 500,
     autoplaySpeed: 1500,
-    cssEase: "linear",
+    cssEase: 'linear',
     pauseOnHover: false,
   };
 
@@ -54,7 +54,7 @@ function MultipleItems() {
               <div className="col-span-1 flex flex-col items-start gap-3">
                 <p className="font-bold">27 Sep 2024</p>
                 <p className="font-medium">
-                  10:30 am <span className="block">-</span> 3:30 pm{" "}
+                  10:30 am <span className="block">-</span> 3:30 pm{' '}
                 </p>
               </div>
 
