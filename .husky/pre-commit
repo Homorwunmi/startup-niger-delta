@@ -18,9 +18,11 @@ spinner() {
 }
 
 # Run pnpm format with a spinner
-(pnpm format) & spinner
+echo "Formatting..."
+(pnpm format > /dev/null 2>&1) & spinner
 echo "Formatting completed!"
 
 # Run pnpm lint with a spinner
-(pnpm lint) & spinner
+echo "Linting..."
+(pnpm lint > /dev/null 2>&1) & spinner
 echo "Linting completed!"
