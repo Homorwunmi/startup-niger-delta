@@ -1,5 +1,5 @@
 import { db, auth, storage } from "./config.js";
-import { doc, setDoc  } from "firebase/firestore";\
+import { doc, setDoc  } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 
@@ -12,11 +12,18 @@ export const uploadIdentification = async (cacFile, logoFile) => {
     const cacRef = ref(storage, `founder-identification/${auth.currentUser.uid}/CAC.png`);
     const logoRef = ref(storage, `founder-identification/${auth.currentUser.uid}/logo.png`);
 
-    uploadBytes(cacRef, cacFile).then((snapshot) => {
-        console.log('Uploaded a blob or file!');
+    await uploadBytes(cacRef, cacFile);
+    console.log("CAC file uploaded successfully");
+    const cacUrl = await getDownloadURL(cacRef);
+
+    await uploadBytes(logoRef, logoFile);
+    console.log("Logo file uploaded successfully");
+    const logoUrl = await getDownloadURL(logoRef);
+
+    onboardingRegistration('startup', 'founder_identification', {
+        cac_url: cacUrl,
+        logo_url: logoUrl
     });
-    uploadBytes(logoRef, logoFile).then((snapshot) => {
-        console.log('Uploaded a blob or file!');
-    });
+    console.log("Onboarding registration completed successfully");
     return url;
 }
