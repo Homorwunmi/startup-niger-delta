@@ -236,9 +236,15 @@ nav > div {
 }
 
 /* slidejs */
+.splide.is-initialized.is-overflow.splide--loop.splide--ltr.splide--draggable.is-active {
+  width: 100% !important;
+}
+
 .splide__track {
-  width: 80% !important;
+  width: 85% !important;
   margin-inline: auto !important;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 .splide__pagination {
@@ -246,15 +252,16 @@ nav > div {
 }
 
 .splide__slide.is-active.is-visible {
-  transform: scale(1) !important;
+  transform: scale(1.1) !important;
 }
 
 .splide__slide {
-  transform: scale(0.8);
+  transform: scale(0.9);
 }
 
 .splide__list {
   padding: 0px;
   display: flex;
   justify-content: space-around;
+  gap: 10px !important;
 }
