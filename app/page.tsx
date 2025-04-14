@@ -1,53 +1,55 @@
-"use client";
+'use client';
 
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-} from "@/components/ui/navigation-menu";
+} from '@/components/ui/navigation-menu';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { MdOutlinePlayCircleFilled } from "react-icons/md";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { MdOutlinePlayCircleFilled } from 'react-icons/md';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import Image from "next/image";
+import Image from 'next/image';
 
-import { Subscription } from "@/types/User";
-import { subscriptionSchema } from "@/helpers/validation";
+import { Subscription } from '@/types/User';
+import { subscriptionSchema } from '@/helpers/validation';
 
-import Logo from "@/public/images/Logo.svg";
-import FooterLogo from "@/public/images/footer-logo.svg";
-import Arrow from "@/public/images/arrow.svg";
-import headerImage from "@/public/images/header-image.svg";
-import headerBg from "@/public/images/header-bg.svg";
-import { Ecosystem, InvestmentList, Partners, resourcesList } from "@/lib/home";
-import Investment from "@/public/home/investment.svg";
-import Link from "next/link";
-import RecentNews from "@/components/home/recent-news";
-import Events from "@/components/home/events";
-import Testimonial from "@/components/home/testimonial";
+import Logo from '@/public/images/Logo.svg';
+import FooterLogo from '@/public/images/footer-logo.svg';
+import Arrow from '@/public/images/arrow.svg';
+import headerImage from '@/public/images/header-image.svg';
+import headerBg from '@/public/images/header-bg.svg';
+import { Ecosystem, InvestmentList, Partners, resourcesList } from '@/lib/home';
+import Investment from '@/public/home/investment.svg';
+import Link from 'next/link';
+import RecentNews from '@/components/home/recent-news';
+import Events from '@/components/home/events';
+import Testimonial from '@/components/home/testimonial';
+import FrequentlyAsked from '@/components/home/faq';
+import Alert from '@/components/home/alert';
 
 export default function Page() {
   const form = useForm<Subscription>({
     defaultValues: {
-      email: "",
+      email: '',
     },
     resolver: zodResolver(subscriptionSchema),
   });
@@ -57,7 +59,7 @@ export default function Page() {
       <main>
         <NavigationMenu
           className="py-4 px-20 text-green-900 font-medium border-b-2 border-green-900 border-opacity-50"
-          style={{ maxWidth: "100%" }}
+          style={{ maxWidth: '100%' }}
         >
           <NavigationMenuList className="">
             <figure className="mr-auto">
@@ -183,33 +185,33 @@ export default function Page() {
             {Ecosystem.map((item, index) => (
               <Card
                 key={item.title}
-                className={`relative flex items-center gap-4 w-1/3 px-3 pt-12 pb-0 ${(index + 1) % 2 !== 0 ? "bg-custom-green text-white" : "bg-light-custom-green text-custom-green"}`}
+                className={`relative flex items-center gap-4 w-1/3 px-3 pt-12 pb-0 ${(index + 1) % 2 !== 0 ? 'bg-custom-green text-white' : 'bg-light-custom-green text-custom-green'}`}
                 style={{
                   backgroundImage: `url("/home/ecosystem-bg.svg")`,
-                  backgroundSize: "cover",
-                  backgroundBlendMode: "overlay",
+                  backgroundSize: 'cover',
+                  backgroundBlendMode: 'overlay',
                 }}
               >
                 <div
-                  className={`absolute top-0 w-4/5 h-3 ${(index + 1) % 2 !== 0 ? "bg-light-custom-green" : "bg-custom-green"}`}
+                  className={`absolute top-0 w-4/5 h-3 ${(index + 1) % 2 !== 0 ? 'bg-light-custom-green' : 'bg-custom-green'}`}
                 />
 
                 <div
-                  className={`absolute bottom-0 right-0 w-50 h-60 rounded-b-xl ${(index + 1) % 2 !== 0 ? "bg-custom-green" : "bg-light-custom-green"}`}
+                  className={`absolute bottom-0 right-0 w-50 h-60 rounded-b-xl ${(index + 1) % 2 !== 0 ? 'bg-custom-green' : 'bg-light-custom-green'}`}
                   style={{
-                    clipPath: "polygon(0 100%, 100% 0, 100% 100%)",
+                    clipPath: 'polygon(0 100%, 100% 0, 100% 100%)',
                   }}
                 />
 
                 <CardHeader className="relative w-full gap-3">
                   <CardTitle
                     className="font text-3xl"
-                    style={{ fontFamily: "Times New Roman, serif" }}
+                    style={{ fontFamily: 'Times New Roman, serif' }}
                   >
                     {item.title}
                   </CardTitle>
                   <CardDescription
-                    className={`text-sm font-poppins leading-5 ${(index + 1) % 2 !== 0 ? "text-white" : "text-custom-green"}`}
+                    className={`text-sm font-poppins leading-5 ${(index + 1) % 2 !== 0 ? 'text-white' : 'text-custom-green'}`}
                   >
                     {item.description}
                   </CardDescription>
@@ -237,8 +239,8 @@ export default function Page() {
           className="grid grid-cols-2 gap-16 pt-20 px-20 bg-custom-green"
           style={{
             backgroundImage: `url("/home/ecosystem-bg.svg")`,
-            backgroundSize: "cover",
-            backgroundBlendMode: "overlay",
+            backgroundSize: 'cover',
+            backgroundBlendMode: 'overlay',
           }}
         >
           <div className="flex flex-col items-start gap-6 text-white">
@@ -252,7 +254,7 @@ export default function Page() {
             <p className="text-lg font-poppins">
               Join our exclusive network of a thriving community of digital
               technology pioneers, explore investment opportunities, and stay at
-              the cutting edge of technological advancements.{" "}
+              the cutting edge of technological advancements.{' '}
             </p>
           </div>
 
@@ -314,7 +316,7 @@ export default function Page() {
           className="flex items-center gap-10 p-20 bg-custom-green"
           style={{
             backgroundImage: `url("/home/ecosystem-bg.svg")`,
-            backgroundBlendMode: "soft-light",
+            backgroundBlendMode: 'soft-light',
           }}
         >
           <div className="flex flex-col items-start gap-5 text-white w-3/5">
@@ -367,11 +369,15 @@ export default function Page() {
           </ul>
         </section>
 
+        <Alert />
+
         <Testimonial />
 
         <RecentNews />
 
         <Events />
+
+        <FrequentlyAsked />
       </main>
 
       {/* Footer */}
@@ -379,7 +385,7 @@ export default function Page() {
         className="grid grid-cols-8 gap-10 p-20 text-white bg-custom-green relative"
         style={{
           backgroundImage: `url("/home/ecosystem-bg.svg")`,
-          backgroundBlendMode: "soft-light",
+          backgroundBlendMode: 'soft-light',
         }}
       >
         <div className="absolute top-0 left-0 w-full h-2 bg-custom-orange" />

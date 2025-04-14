@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import Logo from "@/public/images/Logo.svg";
-import Image from "next/image";
-import Particle from "@/components/particle";
+import Logo from '@/public/images/Logo.svg';
+import Image from 'next/image';
+import Particle from '@/components/particle';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-} from "@/components/ui/form";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+} from '@/components/ui/form';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -23,7 +23,7 @@ const formSchema = z.object({
 export default function Page() {
   const form = useForm({
     defaultValues: {
-      email: "",
+      email: '',
     },
     resolver: zodResolver(formSchema),
   });

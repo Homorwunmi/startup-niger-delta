@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { LoginForm } from "@/components/login-form";
-import Image from "next/image";
-import Logo from "@/public/images/Logo.svg";
-import Particle from "@/components/particle";
+import { LoginForm } from '@/components/login-form';
+import Image from 'next/image';
+import Logo from '@/public/images/Logo.svg';
+import Particle from '@/components/particle';
 
 export default function LoginPage() {
   return (

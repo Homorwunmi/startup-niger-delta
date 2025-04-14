@@ -1,28 +1,28 @@
-import React from "react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import Link from "next/link";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { subscriptionSchema } from "@/helpers/validation";
-import { Form } from "./ui/form";
+import React from 'react';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import Link from 'next/link';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { subscriptionSchema } from '@/helpers/validation';
+import { Form } from './ui/form';
 
 export function LoginForm({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<"form">) {
+}: React.ComponentPropsWithoutRef<'form'>) {
   const form = useForm({
     defaultValues: {
-      email: "",
+      email: '',
     },
     resolver: zodResolver(subscriptionSchema),
   });
 
   return (
     <Form {...form}>
-      <form className={cn("flex flex-col gap-6", className)} {...props}>
+      <form className={cn('flex flex-col gap-6', className)} {...props}>
         <div className="flex flex-col items-center text-center">
           <h1 className="text-xl text-green-950">Sign in</h1>
           <p className="text-balance text-sm text-muted-foreground">
@@ -97,7 +97,7 @@ export function LoginForm({
         </p>
 
         <div className="text-center text-sm">
-          Don&apos;t have an account?{" "}
+          Don&apos;t have an account?{' '}
           <Link href="/create-account" className="text-green-800">
             Sign up
           </Link>

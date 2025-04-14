@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { SidebarProps } from "@/types/Onboarding.d";
-import { Button } from "../ui/button";
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { Label } from "../ui/label";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { SidebarProps } from '@/types/Onboarding.d';
+import { Button } from '../ui/button';
+import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
+import { Label } from '../ui/label';
 
 export default function Sidebar({
   sidebarItems,
@@ -30,7 +30,7 @@ export default function Sidebar({
                 <li key={index}>
                   <Button
                     type="button"
-                    className={`bg-transparent hover:bg-transparent cursor-pointer shadow-none text-lg text-light-custom-green-1 font-semibold ${activeTab.title === item.title ? "text-black text-xl" : ""}`}
+                    className={`bg-transparent hover:bg-transparent cursor-pointer shadow-none text-lg text-light-custom-green-1 font-semibold ${activeTab.title === item.title ? 'text-black text-xl' : ''}`}
                     onClick={() => {
                       setActiveTab({
                         title: item.title,
@@ -61,7 +61,7 @@ export default function Sidebar({
                       <RadioGroupItem
                         value="startup"
                         id="startup"
-                        checked={pathname === "/startup"}
+                        checked={pathname === '/startup'}
                       />
                       <Label htmlFor="startup">Startup</Label>
                     </Link>
@@ -76,7 +76,7 @@ export default function Sidebar({
                       <RadioGroupItem
                         value="angel-investor"
                         id="angel-investor"
-                        checked={pathname === "/angel-investor"}
+                        checked={pathname === '/angel-investor'}
                       />
                       <Label htmlFor="angel-investor">Angel Investor</Label>
                     </Link>
@@ -91,7 +91,7 @@ export default function Sidebar({
                       <RadioGroupItem
                         value="venture-capitalist"
                         id="venture-capitalist"
-                        checked={pathname === "/venture-capitalist"}
+                        checked={pathname === '/venture-capitalist'}
                       />
                       <Label htmlFor="venture-capitalist">
                         Venture Capitalist
@@ -108,11 +108,11 @@ export default function Sidebar({
                       <RadioGroupItem
                         value="accelerator"
                         id="accelerator"
-                        checked={pathname === "/accelerator"}
+                        checked={pathname === '/accelerator'}
                       />
                       <Label htmlFor="accelerator">
                         Accelerators, Innovation Hubs & Incubators
-                        Registration{" "}
+                        Registration{' '}
                       </Label>
                     </Link>
                   </RadioGroup>

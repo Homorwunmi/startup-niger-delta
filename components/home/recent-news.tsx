@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { NewsType } from "@/types/Home";
-import NewsImage1 from "@/public/images/news-image-1.svg";
-import NewsImage2 from "@/public/images/news-image-2.svg";
-import NewsImage3 from "@/public/images/news-image-3.svg";
+import { NewsType } from '@/types/Home';
+import NewsImage1 from '@/public/images/news-image-1.svg';
+import NewsImage2 from '@/public/images/news-image-2.svg';
+import NewsImage3 from '@/public/images/news-image-3.svg';
 
-import Image from "next/image";
+import Image from 'next/image';
 
-import { Button } from "../ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Button } from '../ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 
 export default function RecentNews(): React.JSX.Element {
-  const [isActive, setIsActive] = useState<NewsType>("latest");
+  const [isActive, setIsActive] = useState<NewsType>('latest');
   const images = [NewsImage1, NewsImage2, NewsImage3];
 
   function handleSetActive(type: NewsType) {
@@ -32,8 +32,8 @@ export default function RecentNews(): React.JSX.Element {
           <li>
             <Button
               type="button"
-              onClick={() => handleSetActive("latest")}
-              className={`rounded-full px-10 shadow-none ${isActive === "latest" ? "text-white bg-custom-green hover:bg-custom-green" : "text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent"}`}
+              onClick={() => handleSetActive('latest')}
+              className={`rounded-full px-10 shadow-none ${isActive === 'latest' ? 'text-white bg-custom-green hover:bg-custom-green' : 'text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent'}`}
             >
               Latest
             </Button>
@@ -41,8 +41,8 @@ export default function RecentNews(): React.JSX.Element {
           <li>
             <Button
               type="button"
-              onClick={() => handleSetActive("news")}
-              className={`rounded-full px-10 shadow-none ${isActive === "news" ? "text-white bg-custom-green hover:bg-custom-green" : "text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent"}`}
+              onClick={() => handleSetActive('news')}
+              className={`rounded-full px-10 shadow-none ${isActive === 'news' ? 'text-white bg-custom-green hover:bg-custom-green' : 'text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent'}`}
             >
               News
             </Button>
@@ -50,8 +50,8 @@ export default function RecentNews(): React.JSX.Element {
           <li>
             <Button
               type="button"
-              onClick={() => handleSetActive("funding")}
-              className={`rounded-full px-10 shadow-none ${isActive === "funding" ? "text-white bg-custom-green hover:bg-custom-green" : "text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent"}`}
+              onClick={() => handleSetActive('funding')}
+              className={`rounded-full px-10 shadow-none ${isActive === 'funding' ? 'text-white bg-custom-green hover:bg-custom-green' : 'text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent'}`}
             >
               Funding
             </Button>

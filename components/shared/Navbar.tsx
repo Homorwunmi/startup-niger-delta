@@ -1,5 +1,5 @@
-import Image from "next/image";
-import Logo from "@/public/images/Logo.svg";
+import Image from 'next/image';
+import Logo from '@/public/images/Logo.svg';
 
 export default function Navbar() {
   return (
@@ -8,7 +8,7 @@ export default function Navbar() {
         className="flex items-center justify-between px-20 py-4 bg-custom-green-2"
         style={{
           backgroundImage: `url("/home/ecosystem-bg.svg")`,
-          backgroundBlendMode: "soft-light",
+          backgroundBlendMode: 'soft-light',
         }}
       >
         <figure className="w-40">

@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import Navbar from "@/components/shared/Navbar";
-import Status from "@/components/shared/status";
-import Sidebar from "@/components/shared/sidebar";
-import { sideBarData } from "@/lib/data";
-import { useState } from "react";
-import AngelForm from "@/components/angel/Angel-form-profile";
+import Navbar from '@/components/shared/Navbar';
+import Status from '@/components/shared/status';
+import Sidebar from '@/components/shared/sidebar';
+import { sideBarData } from '@/lib/data';
+import { useState } from 'react';
+import AngelForm from '@/components/angel/Angel-form-profile';
 
 export default function Page() {
   const [activeTab, setActiveTab] = useState({
-    title: "Company Profile",
+    title: 'Company Profile',
     Component: <AngelForm />,
-    src: "/angel/bgTrailer1.svg",
+    src: '/angel/bgTrailer1.svg',
   });
 
   return (

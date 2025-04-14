@@ -1,7 +1,7 @@
-import { Input } from "@/components/ui/input";
+import { Input } from '@/components/ui/input';
 // import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { Label } from "../ui/label";
+import { Button } from '@/components/ui/button';
+import { Label } from '../ui/label';
 
 export default function AngelFormInvestment() {
   return (

@@ -1,16 +1,16 @@
-import React from "react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import Link from "next/link";
+import React from 'react';
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import Link from 'next/link';
 
 export function SignupForm({
   className,
   ...props
-}: React.ComponentPropsWithoutRef<"form">) {
+}: React.ComponentPropsWithoutRef<'form'>) {
   return (
-    <form className={cn("flex flex-col gap-6", className)} {...props}>
+    <form className={cn('flex flex-col gap-6', className)} {...props}>
       <div className="flex flex-col items-center text-center">
         <h1 className="text-xl text-green-950">Create an account</h1>
         <p className="text-balance text-sm text-muted-foreground">
@@ -90,7 +90,7 @@ export function SignupForm({
       </p>
 
       <div className="text-center text-sm">
-        Already have an account?{" "}
+        Already have an account?{' '}
         <Link href="/" className="text-green-800">
           Sign in
         </Link>
