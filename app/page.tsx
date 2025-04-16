@@ -114,17 +114,17 @@ export default function Page() {
         </NavigationMenu>
 
         <header className="flex flex-col lg:flex-row items-center gap-3 lg:px-20 lg:h-[80vh]">
-          <section className="flex flex-col items-center justify-center gap-4 px-20 py-10 lg:w-[70%]">
-            <h1 className="text-5xl text-center lg:text-left font-bold text-custom-green leading-tight">
+          <section className="flex flex-col items-center justify-center gap-4 p-5 lg:px-20 lg:w-[70%]">
+            <h1 className="text-3xl text-center lg:text-5xl lg:text-left font-bold text-custom-green leading-tight">
               Niger Delta Innovation Ecosystem
             </h1>
 
-            <p className="text-gray-800 font-semibold text-4xl text-center lg:text-left lg:w-3/4">
+            <p className="text-gray-800 font-semibold text-lg lg:text-4xl text-center lg:text-left lg:w-3/4">
               Unlocking The Next Startup Innovative & Burgeoning Opportunities
             </p>
 
             <Form {...form}>
-              <form className="w-3/4 mt-2">
+              <form className="lg:w-3/4 mt-2">
                 <FormField
                   control={form.control}
                   name="email"
@@ -184,17 +184,17 @@ export default function Page() {
         </header>
 
         {/* Our Ecosystem */}
-        <section className="flex flex-col items-center gap-16 p-20 bg-gray-100">
+        <section className="flex flex-col items-center gap-16 p-5 lg:p-20 bg-gray-100">
           <h2 className="text-4xl flex flex-col items-center gap-3">
             <span>Our Ecosystem</span>
             <span className="w-1/4 h-1 bg-custom-orange" />
           </h2>
 
-          <div className="flex items-stretch justify-center gap-16 w-full">
+          <div className="flex flex-col items-center lg:flex-row lg:items-stretch justify-center gap-16 w-full">
             {Ecosystem.map((item, index) => (
               <Card
                 key={item.title}
-                className={`relative flex items-center gap-4 w-1/3 px-3 pt-12 pb-0 ${(index + 1) % 2 !== 0 ? 'bg-custom-green text-white' : 'bg-light-custom-green text-custom-green'}`}
+                className={`relative flex items-center gap-4 lg:w-1/3 px-3 pt-12 pb-0 ${(index + 1) % 2 !== 0 ? 'bg-custom-green text-white' : 'bg-light-custom-green text-custom-green'}`}
                 style={{
                   backgroundImage: `url("/home/ecosystem-bg.svg")`,
                   backgroundSize: 'cover',
@@ -245,14 +245,14 @@ export default function Page() {
 
         {/* Investment and Opportunities */}
         <section
-          className="grid grid-cols-2 gap-16 pt-20 px-20 bg-custom-green"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-16 pt-20 lg:px-20 bg-custom-green"
           style={{
             backgroundImage: `url("/home/ecosystem-bg.svg")`,
             backgroundSize: 'cover',
             backgroundBlendMode: 'overlay',
           }}
         >
-          <div className="flex flex-col items-start gap-6 text-white">
+          <div className="flex flex-col items-start gap-6 text-white col-span-2 lg:col-span-1">
             <h2 className="text-5xl flex flex-col items-start gap-3 font-poppins">
               <span>Investment &</span>
               <span>Opportunities.</span>
@@ -267,15 +267,15 @@ export default function Page() {
             </p>
           </div>
 
-          <figure>
+          <figure className="col-span-2 flex items-center justify-center lg:col-span-1">
             <Image src={Investment} alt="Investment and Opportunities" />
           </figure>
 
-          <ul className="flex items-end justify-between gap-10 w-full col-span-2">
+          <ul className="grid grid-cols-2 lg:flex lg:items-end lg:justify-between gap-10 w-full col-span-2">
             {InvestmentList.map((item) => (
               <li
                 key={item.title}
-                className="flex flex-col items-start gap-4 bg-custom-green-1 hover:bg-custom-orange transition-all duration-300 bg-opacity-50 px-5 pt-12 pb-5 rounded-t-3xl w-1/4 group h-[200px] hover:h-[350px]"
+                className="flex flex-col items-start gap-4 bg-custom-green-1 hover:bg-custom-orange transition-all duration-300 bg-opacity-50 px-5 pt-12 pb-5 rounded-t-3xl lg:w-1/4 group lg:h-[200px] hover:h-[350px]"
               >
                 <figure className="w-16 h-16">
                   <Image
@@ -290,7 +290,7 @@ export default function Page() {
                   {item.title}
                 </figcaption>
 
-                <p className="w-0 h-0 transition-all delay-300 hidden group-hover:block group-hover:w-full group-hover:h-full group-hover:text-white">
+                <p className=" transition-all delay-300 text-white lg:hidden group-hover:block group-hover:w-full group-hover:h-full">
                   {item.content}
                 </p>
 
