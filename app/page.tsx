@@ -105,7 +105,7 @@ export default function Page() {
               </NavigationMenuLink>
               <NavigationMenuLink
                 href="/sign-up"
-                className="gradient-button w-30 text-center"
+                className="bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark text-white hover:text-white w-30 text-center"
               >
                 Get Started
               </NavigationMenuLink>
@@ -113,13 +113,13 @@ export default function Page() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <header className="flex items-center gap-3 px-20 h-[80vh]">
-          <section className="flex flex-col justify-center gap-4 w-[70%]">
-            <h1 className="text-5xl font-bold text-custom-green leading-tight">
+        <header className="flex flex-col lg:flex-row items-center gap-3 lg:px-20 lg:h-[80vh]">
+          <section className="flex flex-col items-center justify-center gap-4 px-20 py-10 lg:w-[70%]">
+            <h1 className="text-5xl text-center lg:text-left font-bold text-custom-green leading-tight">
               Niger Delta Innovation Ecosystem
             </h1>
 
-            <p className="text-gray-800 font-semibold text-4xl w-3/4">
+            <p className="text-gray-800 font-semibold text-4xl text-center lg:text-left lg:w-3/4">
               Unlocking The Next Startup Innovative & Burgeoning Opportunities
             </p>
 
@@ -130,7 +130,7 @@ export default function Page() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-normal italic">
+                      <FormLabel className="font-normal italic hidden lg:block">
                         Subscribe to our newsletter
                       </FormLabel>
                       <div className="flex items-center">
@@ -144,7 +144,7 @@ export default function Page() {
                         </FormControl>
                         <Button
                           type="submit"
-                          className="gradient-button rounded-l-none py-5 px-8 w-30"
+                          className="bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark rounded-l-none py-5 px-8 w-30"
                         >
                           Subscribe
                         </Button>
@@ -154,22 +154,31 @@ export default function Page() {
                 />
               </form>
             </Form>
-            <Button className="gradient-button self-start rounded-full flex items-center justify-center gap-2 px-8 py-5">
+            <Button className="gradient-button lg:self-start rounded-full flex items-center justify-center gap-2 px-8 py-5">
               <span>How we work</span>
               <MdOutlinePlayCircleFilled color="bg-gray-900" />
             </Button>
           </section>
 
-          <section className="relative h-full">
+          <section className="relative h-full w-full">
             <Image
               src={headerImage}
               alt="Niger Delta Logo"
-              className="block transform translate-y-10 -translate-x-10"
+              className="block w-full transform lg:translate-y-10 lg:-translate-x-10"
             />
             <Image
               src={headerBg}
               alt="Niger Delta Logo"
-              className="absolute top-0 -right-20 block w-full h-full -z-10"
+              className="hidden lg:block absolute top-0 -right-20 block w-full h-full -z-10"
+            />
+
+            <div
+              className="absolute top-0 left-0 bg-light-custom-green w-full h-full -z-10"
+              style={{
+                backgroundImage: `url("/home/ecosystem-bg.svg")`,
+                backgroundSize: '50%',
+                backgroundBlendMode: 'overlay',
+              }}
             />
           </section>
         </header>
@@ -217,7 +226,7 @@ export default function Page() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="relative flex mt-auto">
-                  <Button className="px-7 py-6 text-base bg-custom-orange hover:bg-custom-orange self-center mt-8">
+                  <Button className="px-7 py-6 text-base bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark hover:bg-custom-orange self-center mt-8">
                     Meet them
                   </Button>
                   <figure>
@@ -262,11 +271,11 @@ export default function Page() {
             <Image src={Investment} alt="Investment and Opportunities" />
           </figure>
 
-          <ul className="flex items-stretch justify-between gap-10 w-full col-span-2">
+          <ul className="flex items-end justify-between gap-10 w-full col-span-2">
             {InvestmentList.map((item) => (
               <li
                 key={item.title}
-                className="flex flex-col items-start gap-4 bg-custom-green-1 bg-opacity-50 px-5 pt-12 pb-5 rounded-t-3xl w-1/4"
+                className="flex flex-col items-start gap-4 bg-custom-green-1 hover:bg-custom-orange transition-all duration-300 bg-opacity-50 px-5 pt-12 pb-5 rounded-t-3xl w-1/4 group h-[200px] hover:h-[350px]"
               >
                 <figure className="w-16 h-16">
                   <Image
@@ -281,9 +290,11 @@ export default function Page() {
                   {item.title}
                 </figcaption>
 
-                <p>{item.content}</p>
+                <p className="w-0 h-0 transition-all delay-300 hidden group-hover:block group-hover:w-full group-hover:h-full group-hover:text-white">
+                  {item.content}
+                </p>
 
-                <Button className="bg-white hover:bg-custom-green-2 hover:text-white text-black font-semibold">
+                <Button className="bg-white hover:text-white text-black font-semibold hidden transition-all delay-300 hover:bg-custom-green-2 group-hover:block">
                   Connect
                 </Button>
               </li>
@@ -367,7 +378,7 @@ export default function Page() {
                   <p>{resource.desc}</p>
                 </div>
 
-                <div className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center ml-auto">
+                <div className="w-6 h-6 rounded-full bg-custom-green text-white flex items-center justify-center ml-auto">
                   ?
                 </div>
               </li>

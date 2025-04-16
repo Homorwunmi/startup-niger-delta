@@ -17,22 +17,26 @@ export const InvestmentList = [
   {
     icon: '/home/startup-icon.svg',
     title: 'Startups',
-    content: 'You are a holder or repository of a product or process in digital technology or the owner/author of registered software.'
+    content:
+      'You are a holder or repository of a product or process in digital technology or the owner/author of registered software.',
   },
   {
     icon: '/home/investors-icon.svg',
     title: 'Angel Investors',
-    content: 'You are a holder or repository of a product or process in digital technology or the owner/author of registered software.'
+    content:
+      'You are a holder or repository of a product or process in digital technology or the owner/author of registered software.',
   },
   {
     icon: '/home/capitalists-icon.svg',
     title: 'Venture Capitalists',
-    content: 'You are a holder or repository of a product or process in digital technology or the owner/author of registered software.'
+    content:
+      'You are a holder or repository of a product or process in digital technology or the owner/author of registered software.',
   },
   {
     icon: '/home/accelerators-icon.svg',
     title: 'Accelerators, Innovation Hubs, Incubators & more',
-    content: 'You are a holder or repository of a product or process author of registered software.'
+    content:
+      'You are a holder or repository of a product or process author of registered software.',
   },
 ];
 
