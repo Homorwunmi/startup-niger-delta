@@ -117,7 +117,7 @@ function SplideCenterMode() {
 
 export default function Alert(): React.JSX.Element {
   return (
-    <section className="p-20 bg-gray-200 flex flex-col items-center gap-8">
+    <section className="p-20 bg-gray-200 flex flex-col items-center gap-8 relative">
       <h2 className="text-5xl font-medium flex flex-col items-center gap-4">
         <span>Funding Alerts.</span>
         <span className="w-1/3 h-1 bg-light-custom-green" />
@@ -128,6 +128,9 @@ export default function Alert(): React.JSX.Element {
         <h3 className="uppercase underline underline-offset-4">Category</h3>
         <h3 className="uppercase underline underline-offset-4">Year</h3>
       </div>
+
+      {/* <div className="w-10 h-10 bg-gray-100/50 rounded-xl absolute top-[330px] left-[205px] z-10 w-[310px] h-[410px]" />
+      <div className="w-10 h-10 bg-gray-100/50 rounded-xl absolute top-[330px] right-[185px] z-10 w-[310px] h-[410px]" /> */}
 
       <SplideCenterMode />
     </section>

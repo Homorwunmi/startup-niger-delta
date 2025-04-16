@@ -265,3 +265,15 @@ nav > div {
   justify-content: space-around;
   gap: 10px !important;
 }
+
+.is-prev:not(.is-active) {
+  opacity: 0.5;
+}
+
+.is-visible.is-next:not(.is-active) {
+  opacity: 0.5;
+}
+
+.is-active {
+  opacity: 1 !important;
+}
