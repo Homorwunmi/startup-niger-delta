@@ -262,11 +262,11 @@ export default function Page() {
             <Image src={Investment} alt="Investment and Opportunities" />
           </figure>
 
-          <ul className="flex items-stretch justify-between w-full col-span-2">
+          <ul className="flex items-stretch justify-between gap-10 w-full col-span-2">
             {InvestmentList.map((item) => (
               <li
                 key={item.title}
-                className="flex flex-col items-start gap-4 bg-custom-green-1 bg-opacity-50 px-5 pt-12 pb-5 rounded-t-3xl w-1/5"
+                className="flex flex-col items-start gap-4 bg-custom-green-1 bg-opacity-50 px-5 pt-12 pb-5 rounded-t-3xl w-1/4"
               >
                 <figure className="w-16 h-16">
                   <Image
@@ -280,6 +280,12 @@ export default function Page() {
                 <figcaption className="text-white font-bold text-lg font-poppins">
                   {item.title}
                 </figcaption>
+
+                <p>{item.content}</p>
+
+                <Button className="bg-white hover:bg-custom-green-2 hover:text-white text-black font-semibold">
+                  Connect
+                </Button>
               </li>
             ))}
           </ul>

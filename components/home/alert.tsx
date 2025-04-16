@@ -26,11 +26,11 @@ function SplideCenterMode() {
     padding: '1rem',
     arrows: true,
     pagination: true,
-    // autoplay: true,
+    autoplay: true,
     interval: 3000,
     pauseOnHover: false,
     breakpoints: {
-      768: {
+      600: {
         perPage: 1,
         padding: '2rem',
       },
