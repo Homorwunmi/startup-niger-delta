@@ -114,12 +114,12 @@ export default function Page() {
         </NavigationMenu>
 
         <header className="flex flex-col lg:flex-row items-center gap-3 lg:px-20 lg:h-[80vh]">
-          <section className="flex flex-col items-center justify-center gap-4 p-5 lg:px-20 lg:w-[70%]">
+          <section className="flex flex-col items-center lg:items-stretch justify-center gap-4 p-5 lg:p-0 lg:w-[70%]">
             <h1 className="text-3xl text-center lg:text-5xl lg:text-left font-bold text-custom-green leading-tight">
               Niger Delta Innovation Ecosystem
             </h1>
 
-            <p className="text-gray-800 font-semibold text-lg lg:text-4xl text-center lg:text-left lg:w-3/4">
+            <p className="text-gray-800 font-semibold text-lg text-center lg:text-4xl lg:text-left lg:w-3/4">
               Unlocking The Next Startup Innovative & Burgeoning Opportunities
             </p>
 
@@ -160,7 +160,7 @@ export default function Page() {
             </Button>
           </section>
 
-          <section className="relative h-full w-full">
+          <section className="relative h-full w-full lg:w-auto">
             <Image
               src={headerImage}
               alt="Niger Delta Logo"
@@ -173,7 +173,7 @@ export default function Page() {
             />
 
             <div
-              className="absolute top-0 left-0 bg-light-custom-green w-full h-full -z-10"
+              className="absolute top-0 left-0 bg-light-custom-green w-full h-full -z-10 lg:hidden"
               style={{
                 backgroundImage: `url("/home/ecosystem-bg.svg")`,
                 backgroundSize: '50%',
@@ -330,13 +330,13 @@ export default function Page() {
 
         {/* resources */}
         <section
-          className="flex items-center gap-10 p-20 bg-custom-green"
+          className="flex flex-col lg:flex-row lg:items-center gap-10 px-5 py-10 lg:p-20 bg-custom-green"
           style={{
             backgroundImage: `url("/home/ecosystem-bg.svg")`,
             backgroundBlendMode: 'soft-light',
           }}
         >
-          <div className="flex flex-col items-start gap-5 text-white w-3/5">
+          <div className="flex flex-col items-start gap-5 text-white lg:w-3/5">
             <h2 className="text-5xl font-medium flex flex-col items-start gap-3 font-poppins">
               Resources.
             </h2>
@@ -351,7 +351,7 @@ export default function Page() {
             </p>
 
             <Link href="/sign-up">
-              <Button className="px-7 py-6 text-base bg-custom-orange hover:bg-custom-orange mt-8 hover:cursor-pointer">
+              <Button className="hidden lg:inline-block px-7 py-6 text-base bg-custom-orange hover:bg-custom-orange mt-8 hover:cursor-pointer">
                 Get Started
               </Button>
             </Link>
@@ -361,7 +361,7 @@ export default function Page() {
             {resourcesList.map((resource) => (
               <li
                 key={resource.title}
-                className="flex items-center gap-4 bg-gray-100 py-2 px-3 rounded-lg"
+                className="flex items-center gap-4 text-white lg:bg-gray-100 py-2 px-3 rounded-lg"
               >
                 <figure className="w-14 h-14">
                   <Image
@@ -378,7 +378,7 @@ export default function Page() {
                   <p>{resource.desc}</p>
                 </div>
 
-                <div className="w-6 h-6 rounded-full bg-custom-green text-white flex items-center justify-center ml-auto">
+                <div className="hidden lg:block w-6 h-6 rounded-full bg-custom-green text-white flex items-center justify-center ml-auto">
                   ?
                 </div>
               </li>

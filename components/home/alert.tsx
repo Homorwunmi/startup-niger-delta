@@ -26,11 +26,11 @@ function SplideCenterMode() {
     padding: '1rem',
     arrows: true,
     pagination: true,
-    autoplay: true,
+    // autoplay: true,
     interval: 3000,
     pauseOnHover: false,
     breakpoints: {
-      600: {
+      800: {
         perPage: 1,
         padding: '2rem',
       },
@@ -117,13 +117,13 @@ function SplideCenterMode() {
 
 export default function Alert(): React.JSX.Element {
   return (
-    <section className="p-20 bg-gray-200 flex flex-col items-center gap-8 relative">
+    <section className="p-5 lg:p-20 bg-gray-200 flex flex-col items-center gap-8 relative">
       <h2 className="text-5xl font-medium flex flex-col items-center gap-4">
         <span>Funding Alerts.</span>
         <span className="w-1/3 h-1 bg-light-custom-green" />
       </h2>
 
-      <div className="flex items-center justify-between w-1/2 px-24 py-4 font-semibold bg-white shadow-md">
+      <div className="flex items-center justify-between w-5/6 lg:w-1/2 px-24 py-4 font-semibold bg-white shadow-md">
         <h3 className="uppercase underline underline-offset-4">Type</h3>
         <h3 className="uppercase underline underline-offset-4">Category</h3>
         <h3 className="uppercase underline underline-offset-4">Year</h3>
