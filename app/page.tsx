@@ -361,7 +361,7 @@ export default function Page() {
             {resourcesList.map((resource) => (
               <li
                 key={resource.title}
-                className="flex items-center gap-4 text-white lg:bg-gray-100 py-2 px-3 rounded-lg"
+                className="flex items-center gap-4 text-white lg:text-custom-green lg:bg-gray-100 py-2 px-3 rounded-lg"
               >
                 <figure className="w-14 h-14">
                   <Image
@@ -378,7 +378,7 @@ export default function Page() {
                   <p>{resource.desc}</p>
                 </div>
 
-                <div className="hidden lg:block w-6 h-6 rounded-full bg-custom-green text-white flex items-center justify-center ml-auto">
+                <div className="hidden w-6 h-6 rounded-full bg-custom-green text-white lg:flex items-center justify-center ml-auto">
                   ?
                 </div>
               </li>
