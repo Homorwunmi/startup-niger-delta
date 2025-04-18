@@ -166,10 +166,6 @@ nav > div {
   height: 100% !important;
 } */
 
-.slick-list {
-  height: 550px !important;
-}
-
 .slick-dots li button:before {
   content: '' !important;
   background-color: #ff7d05;
@@ -181,16 +177,6 @@ nav > div {
 
 .slick-arrow {
   display: none !important;
-}
-
-.slick-dots {
-  position: absolute !important;
-  right: -50px !important;
-  top: 40%;
-  width: fit-content !important;
-
-  display: flex !important;
-  flex-direction: column;
 }
 
 .carousel-container {
@@ -233,6 +219,10 @@ nav > div {
   100% {
     left: -100%;
   }
+}
+
+.slick-list {
+  height: 500px !important;
 }
 
 /* slidejs */
@@ -286,6 +276,20 @@ nav > div {
 
   .splide__pagination {
     bottom: -2rem !important;
+  }
+
+  .slick-dots {
+    position: absolute !important;
+    right: -50px !important;
+    top: 40%;
+    width: fit-content !important;
+
+    display: flex !important;
+    flex-direction: column;
+  }
+
+  .slick-list {
+    height: 550px !important;
   }
 }
 

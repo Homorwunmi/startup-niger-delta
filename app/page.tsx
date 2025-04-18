@@ -33,8 +33,6 @@ import { Subscription } from '@/types/User';
 import { subscriptionSchema } from '@/helpers/validation';
 
 import Logo from '@/public/images/Logo.svg';
-import FooterLogo from '@/public/images/footer-logo.svg';
-import Arrow from '@/public/images/arrow.svg';
 import headerImage from '@/public/images/header-image.svg';
 import headerBg from '@/public/images/header-bg.svg';
 import { Ecosystem, InvestmentList, Partners, resourcesList } from '@/lib/home';
@@ -45,6 +43,7 @@ import Events from '@/components/home/events';
 import Testimonial from '@/components/home/testimonial';
 import FrequentlyAsked from '@/components/home/faq';
 import Alert from '@/components/home/alert';
+import Footer from '@/components/shared/footer';
 
 export default function Page() {
   const form = useForm<Subscription>({
@@ -66,7 +65,7 @@ export default function Page() {
               <Image src={Logo} alt="Niger Delta Logo" />
             </figure>
 
-            <NavigationMenuItem className="flex items-center gap-8 text-custom-green">
+            <NavigationMenuItem className="hidden lg:flex items-center gap-8 text-custom-green">
               <NavigationMenuLink
                 href="/home"
                 className="hover:bg-transparent p-0"
@@ -96,7 +95,7 @@ export default function Page() {
               </NavigationMenuLink>
             </NavigationMenuItem>
 
-            <NavigationMenuItem className="flex items-center gap-4 ml-auto">
+            <NavigationMenuItem className="hidden lg:flex items-center gap-4 ml-auto">
               <NavigationMenuLink
                 href="/login"
                 className="underline hover:bg-transparent p-0"
@@ -271,7 +270,7 @@ export default function Page() {
             <Image src={Investment} alt="Investment and Opportunities" />
           </figure>
 
-          <ul className="grid grid-cols-2 lg:flex lg:items-end lg:justify-between gap-10 w-full col-span-2">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:items-end lg:justify-between gap-10 w-full col-span-2">
             {InvestmentList.map((item) => (
               <li
                 key={item.title}
@@ -398,103 +397,7 @@ export default function Page() {
       </main>
 
       {/* Footer */}
-      <footer
-        className="grid grid-cols-8 gap-10 p-20 text-white bg-custom-green relative"
-        style={{
-          backgroundImage: `url("/home/ecosystem-bg.svg")`,
-          backgroundBlendMode: 'soft-light',
-        }}
-      >
-        <div className="absolute top-0 left-0 w-full h-2 bg-custom-orange" />
-
-        <section className="col-span-3 flex flex-col items-stretch gap-8">
-          <figure className="w-1/2">
-            <Image
-              src={FooterLogo}
-              alt="footer-logo"
-              width={100}
-              height={100}
-              className="w-full h-full"
-            />
-          </figure>
-
-          <p className="font-poppins font-light">
-            We are actively involved in fostering a vibrant network of startups
-            dedicated to advancing economic prosperity, preserving cultural
-            heritage, and promoting environmental sustainability in the Niger
-            Delta Region.
-          </p>
-
-          <Link href="/sign-up">
-            <Button className="px-7 py-6 text-base bg-custom-orange hover:bg-custom-orange hover:cursor-pointer">
-              Get Started
-            </Button>
-          </Link>
-        </section>
-
-        <section className="flex flex-col gap-20">
-          <h3 className="text-xl flex flex-col items-start gap-4">
-            <span>Quick Links</span>
-            <span className="w-1/2 h-1 bg-custom-orange" />
-          </h3>
-          <ul className="flex flex-col gap-3">
-            <li className="flex items-center gap-3">
-              <Image src={Arrow} alt="arrow-icon" />
-              <span>About</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <Image src={Arrow} alt="arrow-icon" />
-              <span>Investors</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <Image src={Arrow} alt="arrow-icon" />
-              <span>Event</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <Image src={Arrow} alt="arrow-icon" />
-              <span>Funding</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <Image src={Arrow} alt="arrow-icon" />
-              <span>Funding Blog</span>
-            </li>
-          </ul>
-        </section>
-
-        <section className="flex flex-col gap-20 col-span-2">
-          <h3 className="text-xl flex flex-col items-start gap-4">
-            <span>Contact Info</span>
-            <span className="w-1/6 h-1 bg-custom-orange" />
-          </h3>
-          <ul className="flex flex-col gap-3">
-            <li>
-              <h4 className="font-bold">Phone Number</h4>
-              <p>+234 90 200 000 0000 User@startupnigerdelta.gov.ng</p>
-            </li>
-            <li>
-              <h4 className="font-bold">Address</h4>
-              <p>22 Office Street, Somewhere Lane, Asaba, Delta NG</p>
-            </li>
-          </ul>
-        </section>
-
-        <section>
-          <h3 className="text-xl flex flex-col items-start gap-4">
-            <span>Gallery</span>
-            <span className="w-1/3 h-1 bg-custom-orange" />
-          </h3>
-        </section>
-
-        <div className="flex items-center justify-between absolute bottom-0 left-0 w-full px-20 py-4 bg-gray-800">
-          <p>Copyright &copy; Startup Niger Delta right reserved</p>
-
-          <ul className="flex items-center gap-4">
-            <li>About</li>
-            <li>Privacy Policy</li>
-            <li>Services</li>
-          </ul>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

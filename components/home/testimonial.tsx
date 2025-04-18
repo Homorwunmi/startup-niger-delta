@@ -61,7 +61,7 @@ function SimpleSlider() {
           .map((_, i) => (
             <li
               key={i}
-              className="!flex flex-col items-stretch justify-center gap-4 h-full mt-8 lg:mt-12 px-10 py-4 relative"
+              className="!flex flex-col items-stretch justify-center gap-4 h-full mt-8 lg:mt-12 px-5 lg:px-10 py-4 relative"
             >
               <div className="flex items-center gap-5">
                 <figure className="w-14 h-14 rounded-full overflow-hidden">
@@ -83,14 +83,16 @@ function SimpleSlider() {
                         />
                       ))}
                   </figure>
-                  <h3 className="text-2xl font-semibold">{name[i]}</h3>
-                  <p className="text-custom-orange text-lg font-semibold">
+                  <h3 className="text-xs lg:text-2xl font-semibold">
+                    {name[i]}
+                  </h3>
+                  <p className="text-custom-orange text-xs lg:text-lg font-semibold">
                     Head of Linie House Group
                   </p>
                 </div>
               </div>
 
-              <figure className="absolute top-0 right-10 w-20 h-20">
+              <figure className="absolute -top-5 right-5  w-10 h-10 lg:top-0 lg:right-10 lg:w-20 lg:h-20">
                 <Image
                   src={QuoteImage}
                   alt="quotation-mark"
@@ -98,7 +100,7 @@ function SimpleSlider() {
                 />
               </figure>
 
-              <p className="text-xl text-gray-500">
+              <p className="text-xs lg:text-xl text-gray-500">
                 SNG serves as an ideal platform for showcasing, connecting, and
                 securing funds for innovative projects. It provides a strategic
                 avenue to foster the growth and success of startups and their
