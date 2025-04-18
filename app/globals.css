@@ -167,7 +167,7 @@ nav > div {
 } */
 
 .slick-list {
-  height: 500px !important;
+  height: 550px !important;
 }
 
 .slick-dots li button:before {
@@ -287,4 +287,20 @@ nav > div {
   .splide__pagination {
     bottom: -2rem !important;
   }
+}
+
+@keyframes move-up-down {
+  0% {
+    transform: translateY(10px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+.move-up-down-animation {
+  animation: move-up-down 3s infinite linear;
 }

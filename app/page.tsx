@@ -164,7 +164,7 @@ export default function Page() {
             <Image
               src={headerImage}
               alt="Niger Delta Logo"
-              className="block w-full transform lg:translate-y-10 lg:-translate-x-10"
+              className="block w-full transform lg:translate-y-10 lg:-translate-x-10 move-up-down-animation"
             />
             <Image
               src={headerBg}
