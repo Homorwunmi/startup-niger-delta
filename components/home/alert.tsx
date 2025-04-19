@@ -32,7 +32,6 @@ function SplideCenterMode() {
     breakpoints: {
       800: {
         perPage: 1,
-        // padding: '2rem',
         width: '100%',
       },
     },

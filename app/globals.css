@@ -159,22 +159,6 @@ nav > div {
   @apply w-full;
 }
 
-/* .slick-slider,
-.slick-list,
-.slick-track,
-.slick-slide > div {
-  height: 100% !important;
-} */
-
-.slick-dots li button:before {
-  content: '' !important;
-  background-color: #ff7d05;
-  border-radius: 100%;
-  margin-top: 10px;
-  width: 15px !important;
-  height: 15px !important;
-}
-
 .slick-arrow {
   display: none !important;
 }
@@ -194,10 +178,10 @@ nav > div {
   height: 100%;
 }
 
-.carousel-card > img {
+/* .carousel-card > img {
   height: 70%;
   width: 70%;
-}
+} */
 
 .carousel-track {
   display: flex;
@@ -290,6 +274,15 @@ nav > div {
 
   .slick-list {
     height: 550px !important;
+  }
+
+  .slick-dots li button:before {
+    content: '' !important;
+    background-color: #ff7d05;
+    border-radius: 100%;
+    margin-top: 10px;
+    width: 15px !important;
+    height: 15px !important;
   }
 }
 

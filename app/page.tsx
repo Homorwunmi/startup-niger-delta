@@ -244,7 +244,7 @@ export default function Page() {
 
         {/* Investment and Opportunities */}
         <section
-          className="grid grid-cols-1 lg:grid-cols-2 gap-16 pt-20 lg:px-20 bg-custom-green"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-16 pt-20 px-5 lg:px-20 bg-custom-green"
           style={{
             backgroundImage: `url("/home/ecosystem-bg.svg")`,
             backgroundSize: 'cover',
@@ -252,7 +252,7 @@ export default function Page() {
           }}
         >
           <div className="flex flex-col items-start gap-6 text-white col-span-2 lg:col-span-1">
-            <h2 className="text-5xl flex flex-col items-start gap-3 font-poppins">
+            <h2 className="text-3xl lg:text-5xl flex flex-col items-start lg:gap-3 font-poppins">
               <span>Investment &</span>
               <span>Opportunities.</span>
             </h2>
@@ -342,7 +342,7 @@ export default function Page() {
 
             <span className="w-1/5 h-1 bg-light-custom-green" />
 
-            <p className="mt-5 text-xl font-medium font-poppins">
+            <p className="mt-5 text-base lg:text-xl font-medium font-poppins">
               SNG is proud to offer such a wide variety of technology assets
               within the geographical locations on its platform. All these
               encompass our goal of turbo-charging investments towards
