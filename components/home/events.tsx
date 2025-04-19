@@ -95,7 +95,7 @@ export default function Events(): React.JSX.Element {
           <span>Events.</span>
           <span className="w-4/5 h-1 bg-custom-orange inline-block" />
         </h2>
-        <p className="w-3/4 lg:w-2/3 text-center text-custom-green font-medium">
+        <p className="lg:w-2/3 text-center text-custom-green font-medium">
           Discover upcoming events, business conferences, trade shows, seminars,
           networking meets, and workshops. Additionally, a list of past events
           within the last 6 months.

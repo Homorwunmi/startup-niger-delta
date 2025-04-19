@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -18,20 +18,10 @@ import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 
 function MobileCarousel() {
-  useEffect(() => {
-    const elements = document.querySelectorAll(
-      '.recent-container .slick-slide'
-    );
-    elements.forEach((element) => {
-      const htmlElement = element as HTMLElement;
-      htmlElement.style.marginRight = '20px';
-    });
-  }, []);
-
   const settings = {
     infinite: true,
     speed: 500,
-    slidesToShow: 2,
+    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2500,
@@ -41,7 +31,7 @@ function MobileCarousel() {
   const images = [NewsImage1, NewsImage2, NewsImage3];
 
   return (
-    <div className="slider-container recent-container pl-5 lg:hidden">
+    <div className="slider-container recent-container px-5 lg:hidden">
       <Slider {...settings}>
         {Array(3)
           .fill(null)
@@ -51,7 +41,7 @@ function MobileCarousel() {
               key={`card-${i}`}
             >
               <CardHeader className="px-0">
-                <CardTitle className="text-xl">
+                <CardTitle className="text-base">
                   How collaboration makes us better business person
                 </CardTitle>
               </CardHeader>
@@ -63,7 +53,7 @@ function MobileCarousel() {
                   <span>By Admin, NDS</span>
                   <span>Jan 6, 2024 - 2 min Read</span>
                 </p>
-                <p className="w-full">
+                <p className="w-full text-sm">
                   Lorem ipsum dolor sit amet consectetur. Ont Condimentum
                   adipiscing at iaculis m wqwa adiscing convallis ut feugiat
                   morbi. Indo...
@@ -92,7 +82,7 @@ export default function RecentNews(): React.JSX.Element {
           <span className="w-1/2 h-1 bg-custom-orange" />
         </h2>
 
-        <ul className="flex items-center gap-4">
+        <ul className="hidden lg:flex items-center gap-4">
           <li>
             <Button
               type="button"

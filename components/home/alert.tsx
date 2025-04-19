@@ -32,7 +32,8 @@ function SplideCenterMode() {
     breakpoints: {
       800: {
         perPage: 1,
-        padding: '2rem',
+        // padding: '2rem',
+        width: '100%',
       },
     },
   };
@@ -118,19 +119,16 @@ function SplideCenterMode() {
 export default function Alert(): React.JSX.Element {
   return (
     <section className="p-5 lg:p-20 bg-gray-200 flex flex-col items-center gap-8 relative">
-      <h2 className="text-5xl font-medium flex flex-col items-center gap-4">
+      <h2 className="text-xl lg:text-5xl font-medium flex flex-col items-center gap-4">
         <span>Funding Alerts.</span>
         <span className="w-1/3 h-1 bg-light-custom-green" />
       </h2>
 
-      <div className="flex items-center justify-between w-5/6 lg:w-1/2 px-24 py-4 font-semibold bg-white shadow-md">
+      <div className="flex items-center justify-between w-5/6 px-5 text-xs lg:text-base lg:w-1/2 lg:px-24 py-4 font-semibold bg-white shadow-md">
         <h3 className="uppercase underline underline-offset-4">Type</h3>
         <h3 className="uppercase underline underline-offset-4">Category</h3>
         <h3 className="uppercase underline underline-offset-4">Year</h3>
       </div>
-
-      {/* <div className="w-10 h-10 bg-gray-100/50 rounded-xl absolute top-[330px] left-[205px] z-10 w-[310px] h-[410px]" />
-      <div className="w-10 h-10 bg-gray-100/50 rounded-xl absolute top-[330px] right-[185px] z-10 w-[310px] h-[410px]" /> */}
 
       <SplideCenterMode />
     </section>

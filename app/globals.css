@@ -230,13 +230,6 @@ nav > div {
   width: 100% !important;
 }
 
-.splide__track {
-  width: 85% !important;
-  margin-inline: auto !important;
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-
 .splide__list {
   padding: 0px;
   display: flex;
@@ -276,6 +269,13 @@ nav > div {
 
   .splide__pagination {
     bottom: -2rem !important;
+  }
+
+  .splide__track {
+    width: 85% !important;
+    margin-inline: auto !important;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 
   .slick-dots {
