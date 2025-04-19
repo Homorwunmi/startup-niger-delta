@@ -2,6 +2,9 @@
 
 import React, { useState } from 'react';
 
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 import { NewsType } from '@/types/Home';
 import NewsImage1 from '@/public/images/news-image-1.svg';
 import NewsImage2 from '@/public/images/news-image-2.svg';
@@ -9,8 +12,59 @@ import NewsImage3 from '@/public/images/news-image-3.svg';
 
 import Image from 'next/image';
 
+import Slider from 'react-slick';
+
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+
+function MobileCarousel() {
+  const settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2500,
+    pauseOnHover: false,
+  };
+
+  const images = [NewsImage1, NewsImage2, NewsImage3];
+
+  return (
+    <div className="slider-container recent-container px-5 lg:hidden">
+      <Slider {...settings}>
+        {Array(3)
+          .fill(null)
+          .map((_, i) => (
+            <Card
+              className="shadow-none bg-transparent rounded-none gap-2"
+              key={`card-${i}`}
+            >
+              <CardHeader className="px-0">
+                <CardTitle className="text-base">
+                  How collaboration makes us better business person
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="w-full px-0 flex flex-col items-stretch gap-2">
+                <figure className="w-full">
+                  <Image src={images[i]} alt="news-image" className="w-full" />
+                </figure>
+                <p className="flex items-center justify-between">
+                  <span>By Admin, NDS</span>
+                  <span>Jan 6, 2024 - 2 min Read</span>
+                </p>
+                <p className="w-full text-sm">
+                  Lorem ipsum dolor sit amet consectetur. Ont Condimentum
+                  adipiscing at iaculis m wqwa adiscing convallis ut feugiat
+                  morbi. Indo...
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+      </Slider>
+    </div>
+  );
+}
 
 export default function RecentNews(): React.JSX.Element {
   const [isActive, setIsActive] = useState<NewsType>('latest');
@@ -21,14 +75,14 @@ export default function RecentNews(): React.JSX.Element {
   }
 
   return (
-    <section className="flex flex-col items-stretch gap-10 p-20 bg-gray-200">
-      <div className="flex items-end justify-between w-full">
+    <section className="flex flex-col items-stretch gap-10  lg:p-20 bg-gray-200">
+      <div className="flex items-end justify-between w-full px-5 py-10 lg:p-0">
         <h2 className="flex flex-col item-start gap-2 text-4xl">
           <span>Recent News.</span>
           <span className="w-1/2 h-1 bg-custom-orange" />
         </h2>
 
-        <ul className="flex items-center gap-4">
+        <ul className="hidden lg:flex items-center gap-4">
           <li>
             <Button
               type="button"
@@ -59,12 +113,14 @@ export default function RecentNews(): React.JSX.Element {
         </ul>
       </div>
 
-      <div className="flex items-center w-full gap-6">
+      <MobileCarousel />
+
+      <div className="hidden lg:flex lg:flex-row items-center w-full gap-6">
         {Array(3)
           .fill(null)
           .map((_, i) => (
             <Card
-              className="w-1/3 shadow-none bg-transparent rounded-none gap-2"
+              className="lg:w-1/3 shadow-none bg-transparent rounded-none gap-2"
               key={`card-${i}`}
             >
               <CardHeader className="px-0">

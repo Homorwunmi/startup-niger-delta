@@ -49,22 +49,26 @@ function MultipleItems() {
           .map((_, i) => (
             <li
               key={`card-${i}`}
-              className="!grid grid-cols-10 items-center gap-4 mt-4 bg-white/70 rounded-lg shadow-lg px-10 py-4"
+              className="!grid auto-rows-max lg:auto-rows-min grid-cols-10 items-center gap-4 mt-4 bg-white/70 rounded-lg shadow-lg px-4 lg:px-10 py-4"
             >
-              <div className="col-span-1 flex flex-col items-start gap-3">
-                <p className="font-bold">27 Sep 2024</p>
-                <p className="font-medium">
-                  10:30 am <span className="block">-</span> 3:30 pm{' '}
+              <div className="row-start-2 lg:row-start-1 col-span-4 lg:col-span-1 flex flex-col items-start gap-3">
+                <p className="font-bold hidden lg:block">27 Sep 2024</p>
+                <p className="font-bold flex flex-col items-start leading-none lg:font-medium">
+                  10:30 am <span>-</span> 3:30 pm{' '}
                 </p>
               </div>
 
-              <figure className="col-span-1">
-                <Image src={getImageForIndex(i)} alt="card-image" />
+              <figure className="col-span-4 lg:col-span-2 w-full h-full lg:w-auto lg:h-auto">
+                <Image
+                  src={getImageForIndex(i)}
+                  alt="card-image"
+                  className="w-full h-full lg:w-auto lg:h-auto object-cover rounded-lg"
+                />
               </figure>
 
-              <div className="col-span-7 flex flex-col items-stretch gap-1">
+              <div className="col-span-6 lg:col-span-6 flex flex-col items-stretch gap-1">
                 <h3 className="font-bold text-lg">Conference</h3>
-                <p className="text-lg w-5/6">
+                <p className="text-sm lg:text-lg lg:w-5/6">
                   Join industry leaders and innovators at our Tech Innovation
                   Summit 2022 for insightful discussions, networking
                   opportunities, and the latest technological trends and
@@ -72,7 +76,7 @@ function MultipleItems() {
                 </p>
               </div>
 
-              <Button className="col-span-1 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark">
+              <Button className="col-span-3 lg:col-span-1 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark">
                 Action
               </Button>
             </li>
@@ -85,13 +89,13 @@ function MultipleItems() {
 // Events component
 export default function Events(): React.JSX.Element {
   return (
-    <section className="p-20 flex flex-col items-stretch gap-10 bg-light-custom-green/70">
+    <section className="px-5 py-10 lg:p-20 flex flex-col items-stretch gap-10 bg-light-custom-green/70">
       <div className="flex flex-col items-center gap-6">
         <h2 className="text-4xl text-center text-custom-green font-semibold flex flex-col items-center gap-3">
           <span>Events.</span>
           <span className="w-4/5 h-1 bg-custom-orange inline-block" />
         </h2>
-        <p className="w-2/3 text-center text-custom-green font-medium">
+        <p className="lg:w-2/3 text-center text-custom-green font-medium">
           Discover upcoming events, business conferences, trade shows, seminars,
           networking meets, and workshops. Additionally, a list of past events
           within the last 6 months.
