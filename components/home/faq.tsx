@@ -20,7 +20,7 @@ export default function FrequentlyAsked(): React.JSX.Element {
   return (
     <section className="text-white relative">
       <div
-        className="bg-custom-green p-20 h-96 font-poppins flex flex-col gap-2 relative"
+        className="bg-custom-green px-5 py-10 lg:p-20 h-96 font-poppins flex flex-col gap-2 relative"
         style={{
           backgroundImage: `url("/home/ecosystem-bg.svg")`,
           backgroundBlendMode: 'soft-light',
@@ -43,7 +43,7 @@ export default function FrequentlyAsked(): React.JSX.Element {
         </figure>
       </div>
 
-      <ul className="flex items-center gap-10 w-fit text-custom-green absolute top-1/5 left-20">
+      <ul className="hidden lg:flex items-center gap-10 w-fit text-custom-green absolute top-1/5 left-20">
         <li className="w-48 h-48 bg-gray-100 rounded-md shadow-lg pt-10 flex flex-col items-center justify-center gap-7 transition-all duration-300 hover:bg-light-custom-green">
           <FaPhoneAlt size={45} />
           <p className="text-lg font-medium">Call</p>
@@ -60,8 +60,8 @@ export default function FrequentlyAsked(): React.JSX.Element {
         </li>
       </ul>
 
-      <div className="p-20 bg-white flex items-stretch">
-        <figure className="w-1/2">
+      <div className="px-5 py-10 lg:p-20 bg-white flex items-stretch">
+        <figure className="hidden lg:block w-1/2">
           <Image src={FaqMain} alt="faq-main" className="w-full h-auto" />
         </figure>
 

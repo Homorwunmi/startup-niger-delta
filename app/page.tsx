@@ -33,8 +33,6 @@ import { Subscription } from '@/types/User';
 import { subscriptionSchema } from '@/helpers/validation';
 
 import Logo from '@/public/images/Logo.svg';
-import FooterLogo from '@/public/images/footer-logo.svg';
-import Arrow from '@/public/images/arrow.svg';
 import headerImage from '@/public/images/header-image.svg';
 import headerBg from '@/public/images/header-bg.svg';
 import { Ecosystem, InvestmentList, Partners, resourcesList } from '@/lib/home';
@@ -45,6 +43,7 @@ import Events from '@/components/home/events';
 import Testimonial from '@/components/home/testimonial';
 import FrequentlyAsked from '@/components/home/faq';
 import Alert from '@/components/home/alert';
+import Footer from '@/components/shared/footer';
 
 export default function Page() {
   const form = useForm<Subscription>({
@@ -66,7 +65,7 @@ export default function Page() {
               <Image src={Logo} alt="Niger Delta Logo" />
             </figure>
 
-            <NavigationMenuItem className="flex items-center gap-8 text-custom-green">
+            <NavigationMenuItem className="hidden lg:flex items-center gap-8 text-custom-green">
               <NavigationMenuLink
                 href="/home"
                 className="hover:bg-transparent p-0"
@@ -96,7 +95,7 @@ export default function Page() {
               </NavigationMenuLink>
             </NavigationMenuItem>
 
-            <NavigationMenuItem className="flex items-center gap-4 ml-auto">
+            <NavigationMenuItem className="hidden lg:flex items-center gap-4 ml-auto">
               <NavigationMenuLink
                 href="/login"
                 className="underline hover:bg-transparent p-0"
@@ -105,7 +104,7 @@ export default function Page() {
               </NavigationMenuLink>
               <NavigationMenuLink
                 href="/sign-up"
-                className="gradient-button w-30 text-center"
+                className="bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark text-white hover:text-white w-30 text-center"
               >
                 Get Started
               </NavigationMenuLink>
@@ -113,24 +112,24 @@ export default function Page() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <header className="flex items-center gap-3 px-20 h-[80vh]">
-          <section className="flex flex-col justify-center gap-4 w-[70%]">
-            <h1 className="text-5xl font-bold text-custom-green leading-tight">
+        <header className="flex flex-col lg:flex-row items-center gap-3 lg:px-20 lg:h-[80vh]">
+          <section className="flex flex-col items-center lg:items-stretch justify-center gap-4 p-5 lg:p-0 lg:w-[70%]">
+            <h1 className="text-3xl text-center lg:text-5xl lg:text-left font-bold text-custom-green leading-tight">
               Niger Delta Innovation Ecosystem
             </h1>
 
-            <p className="text-gray-800 font-semibold text-4xl w-3/4">
+            <p className="text-gray-800 font-semibold text-lg text-center lg:text-4xl lg:text-left lg:w-3/4">
               Unlocking The Next Startup Innovative & Burgeoning Opportunities
             </p>
 
             <Form {...form}>
-              <form className="w-3/4 mt-2">
+              <form className="lg:w-3/4 mt-2">
                 <FormField
                   control={form.control}
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-normal italic">
+                      <FormLabel className="font-normal italic hidden lg:block">
                         Subscribe to our newsletter
                       </FormLabel>
                       <div className="flex items-center">
@@ -144,7 +143,7 @@ export default function Page() {
                         </FormControl>
                         <Button
                           type="submit"
-                          className="gradient-button rounded-l-none py-5 px-8 w-30"
+                          className="bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark rounded-l-none py-5 px-8 w-30"
                         >
                           Subscribe
                         </Button>
@@ -154,38 +153,47 @@ export default function Page() {
                 />
               </form>
             </Form>
-            <Button className="gradient-button self-start rounded-full flex items-center justify-center gap-2 px-8 py-5">
+            <Button className="gradient-button lg:self-start rounded-full flex items-center justify-center gap-2 px-8 py-5">
               <span>How we work</span>
               <MdOutlinePlayCircleFilled color="bg-gray-900" />
             </Button>
           </section>
 
-          <section className="relative h-full">
+          <section className="relative h-full w-full lg:w-auto">
             <Image
               src={headerImage}
               alt="Niger Delta Logo"
-              className="block transform translate-y-10 -translate-x-10"
+              className="block w-full transform lg:translate-y-10 lg:-translate-x-10 move-up-down-animation"
             />
             <Image
               src={headerBg}
               alt="Niger Delta Logo"
-              className="absolute top-0 -right-20 block w-full h-full -z-10"
+              className="hidden lg:block absolute top-0 -right-20 block w-full h-full -z-10"
+            />
+
+            <div
+              className="absolute top-0 left-0 bg-light-custom-green w-full h-full -z-10 lg:hidden"
+              style={{
+                backgroundImage: `url("/home/ecosystem-bg.svg")`,
+                backgroundSize: '50%',
+                backgroundBlendMode: 'overlay',
+              }}
             />
           </section>
         </header>
 
         {/* Our Ecosystem */}
-        <section className="flex flex-col items-center gap-16 p-20 bg-gray-100">
+        <section className="flex flex-col items-center gap-16 p-5 lg:p-20 bg-gray-100">
           <h2 className="text-4xl flex flex-col items-center gap-3">
             <span>Our Ecosystem</span>
             <span className="w-1/4 h-1 bg-custom-orange" />
           </h2>
 
-          <div className="flex items-stretch justify-center gap-16 w-full">
+          <div className="flex flex-col items-center lg:flex-row lg:items-stretch justify-center gap-16 w-full">
             {Ecosystem.map((item, index) => (
               <Card
                 key={item.title}
-                className={`relative flex items-center gap-4 w-1/3 px-3 pt-12 pb-0 ${(index + 1) % 2 !== 0 ? 'bg-custom-green text-white' : 'bg-light-custom-green text-custom-green'}`}
+                className={`relative flex items-center gap-4 lg:w-1/3 px-3 pt-12 pb-0 ${(index + 1) % 2 !== 0 ? 'bg-custom-green text-white' : 'bg-light-custom-green text-custom-green'}`}
                 style={{
                   backgroundImage: `url("/home/ecosystem-bg.svg")`,
                   backgroundSize: 'cover',
@@ -217,7 +225,7 @@ export default function Page() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="relative flex mt-auto">
-                  <Button className="px-7 py-6 text-base bg-custom-orange hover:bg-custom-orange self-center mt-8">
+                  <Button className="px-7 py-6 text-base bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark hover:bg-custom-orange self-center mt-8">
                     Meet them
                   </Button>
                   <figure>
@@ -236,15 +244,15 @@ export default function Page() {
 
         {/* Investment and Opportunities */}
         <section
-          className="grid grid-cols-2 gap-16 pt-20 px-20 bg-custom-green"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-16 pt-20 px-5 lg:px-20 bg-custom-green"
           style={{
             backgroundImage: `url("/home/ecosystem-bg.svg")`,
             backgroundSize: 'cover',
             backgroundBlendMode: 'overlay',
           }}
         >
-          <div className="flex flex-col items-start gap-6 text-white">
-            <h2 className="text-5xl flex flex-col items-start gap-3 font-poppins">
+          <div className="flex flex-col items-start gap-6 text-white col-span-2 lg:col-span-1">
+            <h2 className="text-3xl lg:text-5xl flex flex-col items-start lg:gap-3 font-poppins">
               <span>Investment &</span>
               <span>Opportunities.</span>
             </h2>
@@ -258,15 +266,15 @@ export default function Page() {
             </p>
           </div>
 
-          <figure>
+          <figure className="col-span-2 flex items-center justify-center lg:col-span-1">
             <Image src={Investment} alt="Investment and Opportunities" />
           </figure>
 
-          <ul className="flex items-stretch justify-between w-full col-span-2">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:items-end lg:justify-between gap-10 w-full col-span-2">
             {InvestmentList.map((item) => (
               <li
                 key={item.title}
-                className="flex flex-col items-start gap-4 bg-custom-green-1 bg-opacity-50 px-5 pt-12 pb-5 rounded-t-3xl w-1/5"
+                className="flex flex-col items-start gap-4 bg-custom-green-1 hover:bg-custom-orange transition-all duration-300 bg-opacity-50 px-5 pt-12 pb-5 rounded-t-3xl lg:w-1/4 group lg:h-[200px] hover:h-[350px]"
               >
                 <figure className="w-16 h-16">
                   <Image
@@ -280,6 +288,14 @@ export default function Page() {
                 <figcaption className="text-white font-bold text-lg font-poppins">
                   {item.title}
                 </figcaption>
+
+                <p className=" transition-all delay-300 text-white lg:hidden group-hover:block group-hover:w-full group-hover:h-full">
+                  {item.content}
+                </p>
+
+                <Button className="bg-white hover:text-white text-black font-semibold hidden transition-all delay-300 hover:bg-custom-green-2 group-hover:block">
+                  Connect
+                </Button>
               </li>
             ))}
           </ul>
@@ -313,20 +329,20 @@ export default function Page() {
 
         {/* resources */}
         <section
-          className="flex items-center gap-10 p-20 bg-custom-green"
+          className="flex flex-col lg:flex-row lg:items-center gap-10 px-5 py-10 lg:p-20 bg-custom-green"
           style={{
             backgroundImage: `url("/home/ecosystem-bg.svg")`,
             backgroundBlendMode: 'soft-light',
           }}
         >
-          <div className="flex flex-col items-start gap-5 text-white w-3/5">
+          <div className="flex flex-col items-start gap-5 text-white lg:w-3/5">
             <h2 className="text-5xl font-medium flex flex-col items-start gap-3 font-poppins">
               Resources.
             </h2>
 
             <span className="w-1/5 h-1 bg-light-custom-green" />
 
-            <p className="mt-5 text-xl font-medium font-poppins">
+            <p className="mt-5 text-base lg:text-xl font-medium font-poppins">
               SNG is proud to offer such a wide variety of technology assets
               within the geographical locations on its platform. All these
               encompass our goal of turbo-charging investments towards
@@ -334,7 +350,7 @@ export default function Page() {
             </p>
 
             <Link href="/sign-up">
-              <Button className="px-7 py-6 text-base bg-custom-orange hover:bg-custom-orange mt-8 hover:cursor-pointer">
+              <Button className="hidden lg:inline-block px-7 py-6 text-base bg-custom-orange hover:bg-custom-orange mt-8 hover:cursor-pointer">
                 Get Started
               </Button>
             </Link>
@@ -344,7 +360,7 @@ export default function Page() {
             {resourcesList.map((resource) => (
               <li
                 key={resource.title}
-                className="flex items-center gap-4 bg-gray-100 py-2 px-3 rounded-lg"
+                className="flex items-center gap-4 text-white lg:text-custom-green lg:bg-gray-100 py-2 px-3 rounded-lg"
               >
                 <figure className="w-14 h-14">
                   <Image
@@ -361,7 +377,7 @@ export default function Page() {
                   <p>{resource.desc}</p>
                 </div>
 
-                <div className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center ml-auto">
+                <div className="hidden w-6 h-6 rounded-full bg-custom-green text-white lg:flex items-center justify-center ml-auto">
                   ?
                 </div>
               </li>
@@ -381,103 +397,7 @@ export default function Page() {
       </main>
 
       {/* Footer */}
-      <footer
-        className="grid grid-cols-8 gap-10 p-20 text-white bg-custom-green relative"
-        style={{
-          backgroundImage: `url("/home/ecosystem-bg.svg")`,
-          backgroundBlendMode: 'soft-light',
-        }}
-      >
-        <div className="absolute top-0 left-0 w-full h-2 bg-custom-orange" />
-
-        <section className="col-span-3 flex flex-col items-stretch gap-8">
-          <figure className="w-1/2">
-            <Image
-              src={FooterLogo}
-              alt="footer-logo"
-              width={100}
-              height={100}
-              className="w-full h-full"
-            />
-          </figure>
-
-          <p className="font-poppins font-light">
-            We are actively involved in fostering a vibrant network of startups
-            dedicated to advancing economic prosperity, preserving cultural
-            heritage, and promoting environmental sustainability in the Niger
-            Delta Region.
-          </p>
-
-          <Link href="/sign-up">
-            <Button className="px-7 py-6 text-base bg-custom-orange hover:bg-custom-orange hover:cursor-pointer">
-              Get Started
-            </Button>
-          </Link>
-        </section>
-
-        <section className="flex flex-col gap-20">
-          <h3 className="text-xl flex flex-col items-start gap-4">
-            <span>Quick Links</span>
-            <span className="w-1/2 h-1 bg-custom-orange" />
-          </h3>
-          <ul className="flex flex-col gap-3">
-            <li className="flex items-center gap-3">
-              <Image src={Arrow} alt="arrow-icon" />
-              <span>About</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <Image src={Arrow} alt="arrow-icon" />
-              <span>Investors</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <Image src={Arrow} alt="arrow-icon" />
-              <span>Event</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <Image src={Arrow} alt="arrow-icon" />
-              <span>Funding</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <Image src={Arrow} alt="arrow-icon" />
-              <span>Funding Blog</span>
-            </li>
-          </ul>
-        </section>
-
-        <section className="flex flex-col gap-20 col-span-2">
-          <h3 className="text-xl flex flex-col items-start gap-4">
-            <span>Contact Info</span>
-            <span className="w-1/6 h-1 bg-custom-orange" />
-          </h3>
-          <ul className="flex flex-col gap-3">
-            <li>
-              <h4 className="font-bold">Phone Number</h4>
-              <p>+234 90 200 000 0000 User@startupnigerdelta.gov.ng</p>
-            </li>
-            <li>
-              <h4 className="font-bold">Address</h4>
-              <p>22 Office Street, Somewhere Lane, Asaba, Delta NG</p>
-            </li>
-          </ul>
-        </section>
-
-        <section>
-          <h3 className="text-xl flex flex-col items-start gap-4">
-            <span>Gallery</span>
-            <span className="w-1/3 h-1 bg-custom-orange" />
-          </h3>
-        </section>
-
-        <div className="flex items-center justify-between absolute bottom-0 left-0 w-full px-20 py-4 bg-gray-800">
-          <p>Copyright &copy; Startup Niger Delta right reserved</p>
-
-          <ul className="flex items-center gap-4">
-            <li>About</li>
-            <li>Privacy Policy</li>
-            <li>Services</li>
-          </ul>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
