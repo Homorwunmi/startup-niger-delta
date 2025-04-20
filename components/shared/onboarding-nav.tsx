@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Logo from '@/public/images/Logo.svg';
 
-export default function Navbar() {
+export default function OnboardingNavbar() {
   return (
     <nav>
       <div
