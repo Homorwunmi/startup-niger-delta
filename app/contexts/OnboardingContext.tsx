@@ -2,10 +2,10 @@
 
 import React, { createContext, useContext, useState } from 'react';
 
-const OnboardContext = createContext<
-  | { range: number; setRange: React.Dispatch<React.SetStateAction<number>> }
-  | undefined
->(undefined);
+const OnboardContext = createContext<{
+  range: number;
+  setRange: React.Dispatch<React.SetStateAction<number>>;
+}>({ range: 0, setRange: () => {} });
 
 export function OnboardingProvider({
   children,

@@ -1,12 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 // import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { SidebarProps } from '@/types/Onboarding.d';
-import { Button } from '../ui/button';
+import { usePathname } from 'next/navigation';
+
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
+import { Button } from '../ui/button';
 import { Label } from '../ui/label';
 
 export default function Sidebar({
@@ -15,7 +17,7 @@ export default function Sidebar({
   activeTab,
   setActiveTab,
 }: SidebarProps) {
-  const [range, setRange] = useState<number>(0);
+  const { range, setRange } = useOnboardContext();
   const pathname = usePathname();
 
   function handleChange(
