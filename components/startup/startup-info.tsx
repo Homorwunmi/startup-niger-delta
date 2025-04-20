@@ -9,7 +9,7 @@ export default function StartupInfo() {
         <div className="relative w-full">
           <Label
             htmlFor="company-email"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Company Email
           </Label>
@@ -18,13 +18,13 @@ export default function StartupInfo() {
             id="company-email"
             name="compnayName"
             placeholder="username@domain.com"
-            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative w-full">
           <Label
             htmlFor="website"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Company Website
           </Label>
@@ -32,13 +32,13 @@ export default function StartupInfo() {
             type="date"
             id="website"
             placeholder="www.businessdomain.com"
-            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative w-full">
           <Label
             htmlFor="company-address"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Company Address
           </Label>
@@ -46,13 +46,13 @@ export default function StartupInfo() {
             type="text"
             id="company-address"
             placeholder="Address information"
-            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative w-full">
           <Label
             htmlFor="industry"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Company Phone
           </Label>
@@ -60,7 +60,7 @@ export default function StartupInfo() {
             type="tel"
             id="industry"
             placeholder="+234"
-            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
       </div>

@@ -10,7 +10,7 @@ export default function StartupProfile() {
         <div className="relative w-full">
           <Label
             htmlFor="companyName"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Company Name
           </Label>
@@ -19,13 +19,13 @@ export default function StartupProfile() {
             id="companyName"
             name="compnayName"
             placeholder="Registered name"
-            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative w-full">
           <Label
             htmlFor="Industry"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Year of Incorporation
           </Label>
@@ -33,13 +33,13 @@ export default function StartupProfile() {
             type="date"
             id="Industry"
             placeholder="Select Your Industry"
-            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative w-full">
           <Label
             htmlFor="BusinessDescription"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             RC Number
           </Label>
@@ -53,7 +53,7 @@ export default function StartupProfile() {
         <div className="relative w-full">
           <Label
             htmlFor="industry"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Industry
           </Label>
@@ -61,13 +61,13 @@ export default function StartupProfile() {
             type="text"
             id="industry"
             placeholder="Select your Industry"
-            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative w-full">
           <Label
             htmlFor="startup-description"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Startup Description
           </Label>
@@ -80,7 +80,7 @@ export default function StartupProfile() {
         <div className="relative w-full">
           <Label
             htmlFor="fundingInterest"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Funding Interest
           </Label>
@@ -88,7 +88,7 @@ export default function StartupProfile() {
             type="text"
             id="fundingInterest"
             placeholder="Investment Interest"
-            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
 
