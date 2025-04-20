@@ -97,12 +97,8 @@ export default function StartupProfile() {
             *You must fill in all field to be able to continue
           </p>
           <div className="flex gap-3">
-            <Button type="submit" className="px-10 bg-gray-200">
-              Back
-            </Button>
-            <Button type="submit" className="px-10 bg-custom-orange">
-              Next
-            </Button>
+            <Button className="px-10 bg-gray-200">Back</Button>
+            <Button className="px-10 bg-custom-orange">Next</Button>
           </div>
         </div>
       </div>
