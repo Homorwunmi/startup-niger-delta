@@ -350,7 +350,7 @@ export default function Page() {
             </p>
 
             <Link href="/sign-up">
-              <Button className="hidden lg:inline-block px-7 py-6 text-base bg-custom-orange hover:bg-custom-orange mt-8 hover:cursor-pointer">
+              <Button className="hidden lg:inline-block px-7 py-6 text-base bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark hover:bg-custom-orange mt-8 hover:cursor-pointer">
                 Get Started
               </Button>
             </Link>

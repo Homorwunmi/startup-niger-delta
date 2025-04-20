@@ -1,9 +1,14 @@
+'use client';
+
+import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
 import { Label } from '../ui/label';
 
 export default function StartupProfile() {
+  const { setRange } = useOnboardContext();
+
   return (
     <form action="w-full">
       <div className="grid grid-cols-2 gap-y-6 gap-x-10 justify-between py-6 px-4">
@@ -97,8 +102,19 @@ export default function StartupProfile() {
             *You must fill in all field to be able to continue
           </p>
           <div className="flex gap-3">
-            <Button className="px-10 bg-gray-200">Back</Button>
-            <Button className="px-10 bg-custom-orange">Next</Button>
+            <Button
+              type="button"
+              className="px-10 bg-gray-200 hover:bg-gray-200"
+            >
+              Back
+            </Button>
+            <Button
+              type="button"
+              className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
+              onClick={() => setRange(1)}
+            >
+              Next
+            </Button>
           </div>
         </div>
       </div>
