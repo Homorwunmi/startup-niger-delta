@@ -9,7 +9,7 @@ export default function StartupFounder() {
         <div className="relative w-full">
           <Label
             htmlFor="founder-name"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Founder&apos;s name
           </Label>
@@ -18,13 +18,13 @@ export default function StartupFounder() {
             id="founder-name"
             name="compnayName"
             placeholder="Full name"
-            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative w-full">
           <Label
             htmlFor="founder-email"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Founder&apos;s Email
           </Label>
@@ -32,13 +32,13 @@ export default function StartupFounder() {
             type="date"
             id="founder-email"
             placeholder="username@domain.com"
-            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative w-full">
           <Label
             htmlFor="founder-address"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Founder&apos;s Address
           </Label>
@@ -46,13 +46,13 @@ export default function StartupFounder() {
             type="text"
             id="founder-address"
             placeholder="Address information"
-            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative w-full">
           <Label
             htmlFor="founder-phone"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Founder&apos;s Phone
           </Label>
@@ -60,13 +60,13 @@ export default function StartupFounder() {
             type="tel"
             id="founder-phone"
             placeholder="+234"
-            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative w-full">
           <Label
             htmlFor="founder-phone"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             No of Founder
           </Label>
@@ -74,12 +74,12 @@ export default function StartupFounder() {
             type="text"
             id="founder-phone"
             placeholder="Choose number of founder"
-            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
       </div>
 
-      <div className="col-span-2 flex items-end justify-between w-full mt-auto p-8">
+      <div className="col-span-2 flex items-end justify-between w-full mt-auto pb-8 px-4">
         <p className="text-custom-orange">
           *You must fill in all field to be able to continue
         </p>

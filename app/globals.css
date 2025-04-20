@@ -178,11 +178,6 @@ nav > div {
   height: 100%;
 }
 
-/* .carousel-card > img {
-  height: 70%;
-  width: 70%;
-} */
-
 .carousel-track {
   display: flex;
   position: absolute;
