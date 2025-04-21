@@ -1,8 +1,26 @@
+'use client';
+
+import { useCallback } from 'react';
+import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { Label } from '../ui/label';
+import StartupFounder from './startup-founder';
 
 export default function StartupInfo() {
+  const { setRange, setActiveTab } = useOnboardContext();
+
+  const handleNext = useCallback(() => {
+    setRange(2);
+
+    setActiveTab({
+      title: 'Company Profile',
+      Component: <StartupFounder />,
+      src: '/angel/bgTrailer1.svg',
+    });
+  }, [setRange, setActiveTab]);
+
   return (
     <form className="flex flex-col h-full">
       <div className="grid grid-cols-2 gap-y-6 gap-x-10 py-6 px-4">
@@ -65,15 +83,19 @@ export default function StartupInfo() {
         </div>
       </div>
 
-      <div className="col-span-2 flex items-end justify-between w-full mt-auto p-8">
+      <div className="col-span-2 flex items-end justify-between w-full mt-auto">
         <p className="text-custom-orange">
           *You must fill in all field to be able to continue
         </p>
         <div className="flex gap-3">
-          <Button type="submit" className="px-10 bg-gray-200">
+          <Button type="button" className="px-10 bg-gray-200 hover:bg-gray-200">
             Back
           </Button>
-          <Button type="submit" className="px-10 bg-custom-orange">
+          <Button
+            type="button"
+            onClick={handleNext}
+            className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
+          >
             Next
           </Button>
         </div>

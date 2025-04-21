@@ -1,17 +1,29 @@
 'use client';
 
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { useCallback } from 'react';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
 import { Label } from '../ui/label';
+import StartupInfo from './startup-info';
 
 export default function StartupProfile() {
-  const { setRange } = useOnboardContext();
+  const { setRange, setActiveTab } = useOnboardContext();
+
+  const handleNext = useCallback(() => {
+    setRange(1);
+
+    setActiveTab({
+      title: 'Company Profile',
+      Component: <StartupInfo />,
+      src: '/angel/bgTrailer1.svg',
+    });
+  }, [setRange, setActiveTab]);
 
   return (
-    <form action="w-full">
-      <div className="grid grid-cols-2 gap-y-6 gap-x-10 justify-between py-6 px-4">
+    <form action="w-full" style={{ height: '100%' }}>
+      <div className="grid grid-cols-2 gap-y-6 gap-x-10 justify-between py-6 px-4 h-full">
         <div className="relative w-full">
           <Label
             htmlFor="companyName"
@@ -97,7 +109,7 @@ export default function StartupProfile() {
           />
         </div>
 
-        <div className="col-span-2 flex items-end justify-between w-full mt-4">
+        <div className="col-span-2 flex items-end justify-between w-full mt-auto">
           <p className="text-custom-orange">
             *You must fill in all field to be able to continue
           </p>
@@ -111,7 +123,7 @@ export default function StartupProfile() {
             <Button
               type="button"
               className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
-              onClick={() => setRange(1)}
+              onClick={handleNext}
             >
               Next
             </Button>
