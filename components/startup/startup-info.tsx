@@ -7,6 +7,7 @@ import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { Label } from '../ui/label';
 import StartupFounder from './startup-founder';
+import StartupProfile from './startup-profile';
 
 export default function StartupInfo() {
   const { setRange, setActiveTab } = useOnboardContext();
@@ -17,6 +18,16 @@ export default function StartupInfo() {
     setActiveTab({
       title: 'Company Profile',
       Component: <StartupFounder />,
+      src: '/angel/bgTrailer1.svg',
+    });
+  }, [setRange, setActiveTab]);
+
+  const handlePrev = useCallback(() => {
+    setRange(0);
+
+    setActiveTab({
+      title: 'Company Profile',
+      Component: <StartupProfile />,
       src: '/angel/bgTrailer1.svg',
     });
   }, [setRange, setActiveTab]);
@@ -83,12 +94,16 @@ export default function StartupInfo() {
         </div>
       </div>
 
-      <div className="col-span-2 flex items-end justify-between w-full mt-auto">
+      <div className="col-span-2 flex items-end justify-between w-full mt-auto pb-6">
         <p className="text-custom-orange">
           *You must fill in all field to be able to continue
         </p>
         <div className="flex gap-3">
-          <Button type="button" className="px-10 bg-gray-200 hover:bg-gray-200">
+          <Button
+            type="button"
+            onClick={handlePrev}
+            className="px-10 bg-gray-200 hover:bg-gray-200"
+          >
             Back
           </Button>
           <Button

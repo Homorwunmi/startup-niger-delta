@@ -1,8 +1,22 @@
+import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { useCallback } from 'react';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { Label } from '../ui/label';
 
 export default function StartupFounder() {
+  const { setRange, setActiveTab } = useOnboardContext();
+
+  const handleNext = useCallback(() => {
+    setRange(3);
+
+    setActiveTab({
+      title: 'Company Profile',
+      Component: <StartupFounder />,
+      src: '/angel/bgTrailer1.svg',
+    });
+  }, [setRange, setActiveTab]);
+
   return (
     <form className="flex flex-col h-full">
       <div className="grid grid-cols-2 gap-y-6 gap-x-10 py-6 px-4">
@@ -84,10 +98,14 @@ export default function StartupFounder() {
           *You must fill in all field to be able to continue
         </p>
         <div className="flex gap-3">
-          <Button type="submit" className="px-10 bg-gray-200">
+          <Button type="button" className="px-10 bg-gray-200 hover:bg-gray-200">
             Back
           </Button>
-          <Button type="submit" className="px-10 bg-custom-orange">
+          <Button
+            type="button"
+            onClick={handleNext}
+            className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
+          >
             Next
           </Button>
         </div>
