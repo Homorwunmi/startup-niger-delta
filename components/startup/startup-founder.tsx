@@ -1,8 +1,11 @@
+/* eslint-disable import/no-cycle */
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { useCallback } from 'react';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import { Label } from '../ui/label';
+import StartupInfo from './startup-info';
+import StartupIdentity from './startup-identification';
 
 export default function StartupFounder() {
   const { setRange, setActiveTab } = useOnboardContext();
@@ -12,7 +15,17 @@ export default function StartupFounder() {
 
     setActiveTab({
       title: 'Company Profile',
-      Component: <StartupFounder />,
+      Component: <StartupIdentity />,
+      src: '/angel/bgTrailer1.svg',
+    });
+  }, [setRange, setActiveTab]);
+
+  const handlePrev = useCallback(() => {
+    setRange(1);
+
+    setActiveTab({
+      title: 'Company Profile',
+      Component: <StartupInfo />,
       src: '/angel/bgTrailer1.svg',
     });
   }, [setRange, setActiveTab]);
@@ -98,7 +111,11 @@ export default function StartupFounder() {
           *You must fill in all field to be able to continue
         </p>
         <div className="flex gap-3">
-          <Button type="button" className="px-10 bg-gray-200 hover:bg-gray-200">
+          <Button
+            type="button"
+            onClick={handlePrev}
+            className="px-10 bg-gray-200 hover:bg-gray-200"
+          >
             Back
           </Button>
           <Button

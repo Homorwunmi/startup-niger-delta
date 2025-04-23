@@ -6,6 +6,7 @@ import AngelFormIdentify from '@/components/angel/Angel-form-identify';
 import StartupProfile from '@/components/startup/startup-profile';
 import StartupInfo from '@/components/startup/startup-info';
 import StartupFounder from '@/components/startup/startup-founder';
+import StartupIdentity from '@/components/startup/startup-identification';
 
 interface SideBarItem {
   title: string;
@@ -31,7 +32,7 @@ export const startUpData: SideBarItem[] = [
   },
   {
     title: "Founder's Identification",
-    Component: <AngelFormIdentify />,
+    Component: <StartupIdentity />,
     src: '/angel/bgTrailer4.svg',
   },
 ];
