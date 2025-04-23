@@ -11,13 +11,8 @@ import { RadioGroup, RadioGroupItem } from '../ui/radio-group';
 import { Button } from '../ui/button';
 import { Label } from '../ui/label';
 
-export default function Sidebar({
-  sidebarItems,
-  value,
-  activeTab,
-  setActiveTab,
-}: SidebarProps) {
-  const { range, setRange } = useOnboardContext();
+export default function Sidebar({ sidebarItems, value }: SidebarProps) {
+  const { range, setRange, activeTab, setActiveTab } = useOnboardContext();
   const pathname = usePathname();
 
   function handleChange(
@@ -59,7 +54,7 @@ export default function Sidebar({
             <li key={index}>
               <Button
                 type="button"
-                className={`bg-transparent hover:bg-transparent cursor-pointer shadow-none text-lg text-light-custom-green-1 font-semibold pl-0 ${activeTab.title === item.title ? 'text-black text-xl' : ''}`}
+                className={`bg-transparent hover:bg-transparent cursor-pointer shadow-none text-lg text-light-custom-green-1 font-semibold pl-0 ${range === index ? 'text-black text-xl' : ''}`}
                 onClick={() =>
                   handleChange(item.title, item.Component, item.src, index)
                 }

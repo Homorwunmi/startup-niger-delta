@@ -9,7 +9,7 @@ import Status from '@/components/shared/status';
 import { useOnboardContext } from '../contexts/OnboardingContext';
 
 export default function Page() {
-  const { activeTab, setActiveTab } = useOnboardContext();
+  const { setActiveTab } = useOnboardContext();
 
   useEffect(
     () =>
@@ -30,8 +30,8 @@ export default function Page() {
       <Sidebar
         sidebarItems={startUpData}
         value="Startup Registration"
-        setActiveTab={setActiveTab}
-        activeTab={activeTab}
+        // setActiveTab={setActiveTab}
+        // activeTab={activeTab}
       />
     </section>
   );
