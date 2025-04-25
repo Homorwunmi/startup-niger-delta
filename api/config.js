@@ -4,7 +4,7 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 export const app = initializeApp({
-  apiKey: "AIzaSyAhrV0PrLYajbV6urlFoVoxR2PPm7uyaZ0",
+  apiKey: process.env.API_KEY,
   authDomain: "nigerdeltastartup.firebaseapp.com",
   databaseURL: "https://nigerdeltastartup-default-rtdb.firebaseio.com",
   projectId: "nigerdeltastartup",

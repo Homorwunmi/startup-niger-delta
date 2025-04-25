@@ -1,4 +1,4 @@
-import { db, auth } from "./config.js";
+import { db, auth } from "../config.js";
 import { addDoc, collection } from "firebase/firestore";
 
 

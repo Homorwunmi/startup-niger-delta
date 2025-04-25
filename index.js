@@ -1,6 +1,6 @@
 import { registerUser, sendVerificationEmail, loginUser, resetPassword, signInWithGoogle } from './src/auth.js';
-import { onboardingRegistration } from './src/onboarding.js';
-import { createNewsBlog } from './src/blog.js';
+import { onboardingRegistration } from './api/onboarding/onboarding.js';
+import { createNewsBlog } from './api/blog/blog.js';
 
 //Uncomment the following lines to test other authentication methods
 // const a = await registerUser('test@gmail.com', 'password123');
