@@ -10,7 +10,7 @@ export const app = initializeApp({
   projectId: "nigerdeltastartup",
   storageBucket: "nigerdeltastartup.firebasestorage.app",
   messagingSenderId: "509243735998",
-  appId: "1:509243735998:web:8492362389763745e283ef",
+  appId: process.env.APP_ID,
   measurementId: "G-0PKRYT7LS0"
 });
 
