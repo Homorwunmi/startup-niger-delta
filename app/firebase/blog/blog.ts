@@ -1,9 +1,15 @@
-import { addDoc, collection, DocumentData, DocumentReference } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  DocumentData,
+  DocumentReference,
+} from 'firebase/firestore';
 import { CreateBlogType } from '@/types/Blog';
 import { db } from '../config';
 
-
-async function createNewsBlog(data: CreateBlogType): Promise<DocumentReference<DocumentData, DocumentData>> {
+async function createNewsBlog(
+  data: CreateBlogType
+): Promise<DocumentReference<DocumentData, DocumentData>> {
   const author = 'admin';
 
   const doc = await addDoc(collection(db, 'news'), {
@@ -15,7 +21,7 @@ async function createNewsBlog(data: CreateBlogType): Promise<DocumentReference<D
     author,
   });
 
-  return doc
+  return doc;
 }
 
 export default createNewsBlog;

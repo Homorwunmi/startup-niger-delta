@@ -3,6 +3,6 @@ export interface CreateBlogType {
   content: string;
   image: File;
   date: string;
-  category: string,
-  author: string
+  category: string;
+  author: string;
 }
