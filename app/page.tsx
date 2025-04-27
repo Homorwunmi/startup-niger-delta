@@ -56,10 +56,7 @@ export default function Page() {
   return (
     <>
       <main>
-        <NavigationMenu
-          className="py-4 px-20 text-green-900 font-medium border-b-2 border-green-900 border-opacity-50"
-          style={{ maxWidth: '100%' }}
-        >
+        <NavigationMenu className="py-4 px-20 text-green-900 font-medium border-b-2 border-green-900 border-opacity-50 max-w-screen 2xl:container 2xl:mx-auto">
           <NavigationMenuList className="">
             <figure className="mr-auto">
               <Image src={Logo} alt="Niger Delta Logo" />
@@ -112,13 +109,13 @@ export default function Page() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <header className="flex flex-col lg:flex-row items-center gap-3 lg:px-20 lg:h-[80vh]">
+        <header className="flex flex-col lg:flex-row items-center gap-3 lg:pl-20 lg:h-[80vh] 2xl:h-[40vh] 2xl:container 2xl:mx-auto">
           <section className="flex flex-col items-center lg:items-stretch justify-center gap-4 p-5 lg:p-0 lg:w-[70%]">
-            <h1 className="text-3xl text-center lg:text-5xl lg:text-left font-bold text-custom-green leading-tight">
+            <h1 className="text-3xl text-center font-bold text-custom-green leading-none lg:text-6xl lg:text-left 2xl:text-5xl">
               Niger Delta Innovation Ecosystem
             </h1>
 
-            <p className="text-gray-800 font-semibold text-lg text-center lg:text-4xl lg:text-left lg:w-3/4">
+            <p className="text-gray-800 text-lg text-center font-semibold lg:text-4xl lg:text-left lg:w-2/3 2xl:w-1/2">
               Unlocking The Next Startup Innovative & Burgeoning Opportunities
             </p>
 
@@ -159,16 +156,17 @@ export default function Page() {
             </Button>
           </section>
 
-          <section className="relative h-full w-full lg:w-auto">
+          <section className="relative flex-1 h-full w-full py-10 lg:w-auto">
             <Image
               src={headerImage}
               alt="Niger Delta Logo"
-              className="block w-full transform lg:translate-y-10 lg:-translate-x-10 move-up-down-animation"
+              className="absolute top-1/2 transform lg:-translate-y-1/2 -translate-x-1/3 z-10 scale-140 move-up-down-animation 2xl:scale-130"
             />
             <Image
               src={headerBg}
               alt="Niger Delta Logo"
-              className="hidden lg:block absolute top-0 -right-20 block w-full h-full -z-10"
+              // className="hidden absolute top-0 -right-20 lg:block w-full h-full -z-10"
+              className="hidden lg:block w-full h-full scale-140"
             />
 
             <div
@@ -183,62 +181,64 @@ export default function Page() {
         </header>
 
         {/* Our Ecosystem */}
-        <section className="flex flex-col items-center gap-16 p-5 lg:p-20 bg-gray-100">
-          <h2 className="text-4xl flex flex-col items-center gap-3">
-            <span>Our Ecosystem</span>
-            <span className="w-1/4 h-1 bg-custom-orange" />
-          </h2>
+        <section className="bg-gray-100 p-5 lg:p-20">
+          <div className="flex flex-col items-center gap-16 2xl:container 2xl:mx-auto">
+            <h2 className="text-4xl lg:text-6xl font-medium font-poppins text-custom-green flex flex-col items-center gap-6">
+              <span>Our Ecosystem.</span>
+              <span className="w-1/4 h-1 bg-custom-orange" />
+            </h2>
 
-          <div className="flex flex-col items-center lg:flex-row lg:items-stretch justify-center gap-16 w-full">
-            {Ecosystem.map((item, index) => (
-              <Card
-                key={item.title}
-                className={`relative flex items-center gap-4 lg:w-1/3 px-3 pt-12 pb-0 ${(index + 1) % 2 !== 0 ? 'bg-custom-green text-white' : 'bg-light-custom-green text-custom-green'}`}
-                style={{
-                  backgroundImage: `url("/home/ecosystem-bg.svg")`,
-                  backgroundSize: 'cover',
-                  backgroundBlendMode: 'overlay',
-                }}
-              >
-                <div
-                  className={`absolute top-0 w-4/5 h-3 ${(index + 1) % 2 !== 0 ? 'bg-light-custom-green' : 'bg-custom-green'}`}
-                />
-
-                <div
-                  className={`absolute bottom-0 right-0 w-50 h-60 rounded-b-xl ${(index + 1) % 2 !== 0 ? 'bg-custom-green' : 'bg-light-custom-green'}`}
+            <div className="flex flex-col items-center lg:flex-row lg:items-stretch justify-center gap-16 w-full">
+              {Ecosystem.map((item, index) => (
+                <Card
+                  key={item.title}
+                  className={`relative flex items-center gap-4 lg:w-1/3 px-3 pt-12 pb-0 ${(index + 1) % 2 !== 0 ? 'bg-custom-green text-white' : 'bg-light-custom-green text-custom-green'}`}
                   style={{
-                    clipPath: 'polygon(0 100%, 100% 0, 100% 100%)',
+                    backgroundImage: `url("/home/ecosystem-bg.svg")`,
+                    backgroundSize: 'cover',
+                    backgroundBlendMode: 'overlay',
                   }}
-                />
+                >
+                  <div
+                    className={`absolute top-0 w-4/5 h-3 ${(index + 1) % 2 !== 0 ? 'bg-light-custom-green' : 'bg-custom-green'}`}
+                  />
 
-                <CardHeader className="relative w-full gap-3">
-                  <CardTitle
-                    className="font text-3xl"
-                    style={{ fontFamily: 'Times New Roman, serif' }}
-                  >
-                    {item.title}
-                  </CardTitle>
-                  <CardDescription
-                    className={`text-sm font-poppins leading-5 ${(index + 1) % 2 !== 0 ? 'text-white' : 'text-custom-green'}`}
-                  >
-                    {item.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="relative flex mt-auto">
-                  <Button className="px-7 py-6 text-base bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark hover:bg-custom-orange self-center mt-8">
-                    Meet them
-                  </Button>
-                  <figure>
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      width={200}
-                      height={200}
-                    />
-                  </figure>
-                </CardContent>
-              </Card>
-            ))}
+                  <div
+                    className={`absolute bottom-0 right-0 w-50 h-60 rounded-b-xl ${(index + 1) % 2 !== 0 ? 'bg-custom-green' : 'bg-light-custom-green'}`}
+                    style={{
+                      clipPath: 'polygon(0 100%, 100% 0, 100% 100%)',
+                    }}
+                  />
+
+                  <CardHeader className="relative w-full gap-3">
+                    <CardTitle
+                      className="font text-3xl"
+                      style={{ fontFamily: 'Times New Roman, serif' }}
+                    >
+                      {item.title}
+                    </CardTitle>
+                    <CardDescription
+                      className={`text-sm font-poppins leading-5 ${(index + 1) % 2 !== 0 ? 'text-white' : 'text-custom-green'}`}
+                    >
+                      {item.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="relative flex mt-auto">
+                    <Button className="px-7 py-6 text-base bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark hover:bg-custom-orange self-center mt-8">
+                      Meet them
+                    </Button>
+                    <figure>
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={200}
+                        height={200}
+                      />
+                    </figure>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </section>
 
