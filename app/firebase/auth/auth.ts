@@ -1,5 +1,5 @@
-// Import the functions you need from the SDKs you need
-import { auth } from './config.js';
+/* eslint-disable no-useless-catch */
+
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
@@ -9,7 +9,9 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 
-export const registerUser = async (email, password) => {
+import { auth } from '../config';
+
+async function registerUser(email: string, password: string) {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -22,8 +24,11 @@ export const registerUser = async (email, password) => {
   }
 };
 
-export const sendVerificationEmail = async () => {
+async function sendVerificationEmail() {
   try {
+    if (!auth.currentUser) {
+      throw new Error('No user is currently signed in.');
+    }
     const verificationDetails = await sendEmailVerification(auth.currentUser);
     return verificationDetails;
   } catch (error) {
@@ -31,7 +36,7 @@ export const sendVerificationEmail = async () => {
   }
 };
 
-export const loginUser = async (email, password) => {
+async function loginUser(email: string, password: string) {
   try {
     const userCredential = await signInWithEmailAndPassword(
       auth,
@@ -44,8 +49,12 @@ export const loginUser = async (email, password) => {
   }
 };
 
-export const resetPassword = async () => {
+async function resetPassword() {
   try {
+    if (!auth.currentUser || !auth.currentUser.email) {
+      throw new Error('No user is currently signed in or email is unavailable.');
+    }
+
     const passwordReset = await sendPasswordResetEmail(
       auth,
       auth.currentUser.email
@@ -56,18 +65,21 @@ export const resetPassword = async () => {
   }
 };
 
-//Google Sign-In setup
 const provider = new GoogleAuthProvider();
-
-export const signInWithGoogle = async () => {
+async function signInWithGoogle() {
   try {
     const result = await signInWithPopup(auth, provider);
-    // The signed-in user info
-    const user = result.user;
-    console.log('User signed in: ', user);
+    const { user } = result;
     return user;
   } catch (error) {
-    console.error('Error signing in with Google: ', error);
     throw error;
   }
 };
+
+export {
+  loginUser,
+  registerUser,
+  resetPassword,
+  signInWithGoogle,
+  sendVerificationEmail
+}
