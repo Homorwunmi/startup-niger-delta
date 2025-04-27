@@ -1,4 +1,10 @@
-import { registerUser, sendVerificationEmail, loginUser, resetPassword, signInWithGoogle } from './src/auth.js';
+import {
+  registerUser,
+  sendVerificationEmail,
+  loginUser,
+  resetPassword,
+  signInWithGoogle,
+} from './src/auth.js';
 import { onboardingRegistration } from './api/onboarding/onboarding.js';
 import { createNewsBlog } from './api/blog/blog.js';
 
@@ -23,12 +29,12 @@ const c = await loginUser('test@gmail.com', 'password123');
 // });
 
 //Test Blog Creation
-await createNewsBlog({ 
-    title: 'Test Blog',
-    content: 'This is a test blog content',
-    image: 'https://example.com/image.jpg',
-    date: new Date().toISOString(),
-    category: 'Test Category',
-})
+await createNewsBlog({
+  title: 'Test Blog',
+  content: 'This is a test blog content',
+  image: 'https://example.com/image.jpg',
+  date: new Date().toISOString(),
+  category: 'Test Category',
+});
 
-console.log("Done");
+console.log('Done');

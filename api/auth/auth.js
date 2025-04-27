@@ -1,17 +1,21 @@
 // Import the functions you need from the SDKs you need
-import { auth } from "./config.js";
-import { createUserWithEmailAndPassword,
+import { auth } from './config.js';
+import {
+  createUserWithEmailAndPassword,
   sendEmailVerification,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   GoogleAuthProvider,
-  signInWithPopup
+  signInWithPopup,
 } from 'firebase/auth';
-
 
 export const registerUser = async (email, password) => {
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
     return userCredential.user;
   } catch (error) {
     throw error;
@@ -29,7 +33,11 @@ export const sendVerificationEmail = async () => {
 
 export const loginUser = async (email, password) => {
   try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
     return userCredential.user;
   } catch (error) {
     throw error;
@@ -38,7 +46,10 @@ export const loginUser = async (email, password) => {
 
 export const resetPassword = async () => {
   try {
-    const passwordReset = await sendPasswordResetEmail(auth, auth.currentUser.email);
+    const passwordReset = await sendPasswordResetEmail(
+      auth,
+      auth.currentUser.email
+    );
     return passwordReset;
   } catch (error) {
     throw error;
@@ -53,11 +64,10 @@ export const signInWithGoogle = async () => {
     const result = await signInWithPopup(auth, provider);
     // The signed-in user info
     const user = result.user;
-    console.log("User signed in: ", user);
+    console.log('User signed in: ', user);
     return user;
-  }
-  catch (error) {
-    console.error("Error signing in with Google: ", error);
+  } catch (error) {
+    console.error('Error signing in with Google: ', error);
     throw error;
   }
 };
