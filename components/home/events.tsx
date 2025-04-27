@@ -89,20 +89,22 @@ function MultipleItems() {
 // Events component
 export default function Events(): React.JSX.Element {
   return (
-    <section className="px-5 py-10 lg:p-20 flex flex-col items-stretch gap-10 bg-light-custom-green/70">
-      <div className="flex flex-col items-center gap-6">
-        <h2 className="text-4xl text-center text-custom-green font-semibold flex flex-col items-center gap-3">
-          <span>Events.</span>
-          <span className="w-4/5 h-1 bg-custom-orange inline-block" />
-        </h2>
-        <p className="lg:w-2/3 text-center text-custom-green font-medium">
-          Discover upcoming events, business conferences, trade shows, seminars,
-          networking meets, and workshops. Additionally, a list of past events
-          within the last 6 months.
-        </p>
-      </div>
+    <section className="px-5 py-10 lg:p-20 bg-light-custom-green/70">
+      <div className="flex flex-col items-stretch gap-10 2xl:container 2xl:mx-auto">
+        <div className="flex flex-col items-center gap-6">
+          <h2 className="text-4xl lg:text-6xl text-center text-custom-green font-medium font-poppins flex flex-col items-center gap-6">
+            <span>Events.</span>
+            <span className="w-4/5 h-1 bg-custom-orange inline-block" />
+          </h2>
+          <p className="lg:w-2/3 text-center text-custom-green font-medium">
+            Discover upcoming events, business conferences, trade shows,
+            seminars, networking meets, and workshops. Additionally, a list of
+            past events within the last 6 months.
+          </p>
+        </div>
 
-      <MultipleItems />
+        <MultipleItems />
+      </div>
     </section>
   );
 }
