@@ -22,7 +22,7 @@ async function registerUser(email: string, password: string) {
   } catch (error) {
     throw error;
   }
-};
+}
 
 async function sendVerificationEmail() {
   try {
@@ -34,7 +34,7 @@ async function sendVerificationEmail() {
   } catch (error) {
     throw error;
   }
-};
+}
 
 async function loginUser(email: string, password: string) {
   try {
@@ -47,12 +47,14 @@ async function loginUser(email: string, password: string) {
   } catch (error) {
     throw error;
   }
-};
+}
 
 async function resetPassword() {
   try {
     if (!auth.currentUser || !auth.currentUser.email) {
-      throw new Error('No user is currently signed in or email is unavailable.');
+      throw new Error(
+        'No user is currently signed in or email is unavailable.'
+      );
     }
 
     const passwordReset = await sendPasswordResetEmail(
@@ -63,7 +65,7 @@ async function resetPassword() {
   } catch (error) {
     throw error;
   }
-};
+}
 
 const provider = new GoogleAuthProvider();
 async function signInWithGoogle() {
@@ -74,12 +76,12 @@ async function signInWithGoogle() {
   } catch (error) {
     throw error;
   }
-};
+}
 
 export {
   loginUser,
   registerUser,
   resetPassword,
   signInWithGoogle,
-  sendVerificationEmail
-}
+  sendVerificationEmail,
+};
