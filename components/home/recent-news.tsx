@@ -75,75 +75,81 @@ export default function RecentNews(): React.JSX.Element {
   }
 
   return (
-    <section className="flex flex-col items-stretch gap-10  lg:p-20 bg-gray-200">
-      <div className="flex items-end justify-between w-full px-5 py-10 lg:p-0">
-        <h2 className="flex flex-col item-start gap-2 text-4xl">
-          <span>Recent News.</span>
-          <span className="w-1/2 h-1 bg-custom-orange" />
-        </h2>
+    <section className="lg:p-20 bg-gray-200">
+      <div className="flex flex-col items-stretch gap-10 2xl:container 2xl:mx-auto">
+        <div className="flex items-end justify-between w-full px-5 py-10 lg:p-0">
+          <h2 className="flex flex-col item-start gap-6 text-4xl font-poppins font-medium lg:text-6xl">
+            <span>Recent News.</span>
+            <span className="w-1/2 h-1 bg-custom-orange" />
+          </h2>
 
-        <ul className="hidden lg:flex items-center gap-4">
-          <li>
-            <Button
-              type="button"
-              onClick={() => handleSetActive('latest')}
-              className={`rounded-full px-10 shadow-none ${isActive === 'latest' ? 'text-white bg-custom-green hover:bg-custom-green' : 'text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent'}`}
-            >
-              Latest
-            </Button>
-          </li>
-          <li>
-            <Button
-              type="button"
-              onClick={() => handleSetActive('news')}
-              className={`rounded-full px-10 shadow-none ${isActive === 'news' ? 'text-white bg-custom-green hover:bg-custom-green' : 'text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent'}`}
-            >
-              News
-            </Button>
-          </li>
-          <li>
-            <Button
-              type="button"
-              onClick={() => handleSetActive('funding')}
-              className={`rounded-full px-10 shadow-none ${isActive === 'funding' ? 'text-white bg-custom-green hover:bg-custom-green' : 'text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent'}`}
-            >
-              Funding
-            </Button>
-          </li>
-        </ul>
-      </div>
+          <ul className="hidden lg:flex items-center gap-4">
+            <li>
+              <Button
+                type="button"
+                onClick={() => handleSetActive('latest')}
+                className={`rounded-full px-10 shadow-none ${isActive === 'latest' ? 'text-white bg-custom-green hover:bg-custom-green' : 'text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent'}`}
+              >
+                Latest
+              </Button>
+            </li>
+            <li>
+              <Button
+                type="button"
+                onClick={() => handleSetActive('news')}
+                className={`rounded-full px-10 shadow-none ${isActive === 'news' ? 'text-white bg-custom-green hover:bg-custom-green' : 'text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent'}`}
+              >
+                News
+              </Button>
+            </li>
+            <li>
+              <Button
+                type="button"
+                onClick={() => handleSetActive('funding')}
+                className={`rounded-full px-10 shadow-none ${isActive === 'funding' ? 'text-white bg-custom-green hover:bg-custom-green' : 'text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent'}`}
+              >
+                Funding
+              </Button>
+            </li>
+          </ul>
+        </div>
 
-      <MobileCarousel />
+        <MobileCarousel />
 
-      <div className="hidden lg:flex lg:flex-row items-center w-full gap-6">
-        {Array(3)
-          .fill(null)
-          .map((_, i) => (
-            <Card
-              className="lg:w-1/3 shadow-none bg-transparent rounded-none gap-2"
-              key={`card-${i}`}
-            >
-              <CardHeader className="px-0">
-                <CardTitle className="text-xl">
-                  How collaboration makes us better business person
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="w-full px-0 flex flex-col items-stretch gap-2">
-                <figure className="w-full">
-                  <Image src={images[i]} alt="news-image" className="w-full" />
-                </figure>
-                <p className="flex items-center justify-between">
-                  <span>By Admin, NDS</span>
-                  <span>Jan 6, 2024 - 2 min Read</span>
-                </p>
-                <p className="w-full">
-                  Lorem ipsum dolor sit amet consectetur. Ont Condimentum
-                  adipiscing at iaculis m wqwa adiscing convallis ut feugiat
-                  morbi. Indo...
-                </p>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="hidden lg:flex lg:flex-row items-center w-full gap-6">
+          {Array(3)
+            .fill(null)
+            .map((_, i) => (
+              <Card
+                className="lg:w-1/3 shadow-none bg-transparent rounded-none gap-2"
+                key={`card-${i}`}
+              >
+                <CardHeader className="px-0">
+                  <CardTitle className="text-xl">
+                    How collaboration makes us better business person
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="w-full px-0 flex flex-col items-stretch gap-2">
+                  <figure className="w-full">
+                    <Image
+                      src={images[i]}
+                      alt="news-image"
+                      className="w-full"
+                    />
+                  </figure>
+                  <p className="flex items-center justify-between">
+                    <span>By Admin, NDS</span>
+                    <span>Jan 6, 2024 - 2 min Read</span>
+                  </p>
+                  <p className="w-full">
+                    Lorem ipsum dolor sit amet consectetur. Ont Condimentum
+                    adipiscing at iaculis m wqwa adiscing convallis ut feugiat
+                    morbi. Indo...
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+        </div>
       </div>
     </section>
   );
