@@ -27,11 +27,11 @@ export default function FrequentlyAsked(): React.JSX.Element {
         }}
       />
       <div className="2xl:container 2xl:mx-auto relative">
-        <div className="px-5 py-10 lg:p-20 h-96 font-poppins flex flex-col gap-2">
-          <h2 className="text-4xl decoration-light-custom-green underline-offset-[20px] underline mb-4 flex flex-col items-start">
+        <div className="px-5 py-10 lg:p-16 h-96 font-poppins flex flex-col gap-2">
+          <h2 className="text-4xl lg:text-6xl font-medium decoration-light-custom-green underline-offset-[20px] underline mb-4 flex flex-col items-start">
             FAQ.
           </h2>
-          <p className="capitalize text-xl">Do you have questions?</p>
+          <p className="capitalize text-2xl">Do you have questions?</p>
           <p className="text-4xl text-custom-green-4 font-semibold">
             Get in Touch.
           </p>
