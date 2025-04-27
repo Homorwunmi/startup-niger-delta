@@ -1,16 +1,20 @@
-import { db, auth, storage } from '../config.js';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, DocumentData, setDoc, WithFieldValue } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { db, auth, storage } from '../config';
 
-export const onboardingRegistration = async (regType, regSection, data) => {
-  // Add a new document in collection "cities"
+export const onboardingRegistration = async (regType: string, regSection: string, data: WithFieldValue<DocumentData>) => {
+  if (!auth.currentUser) throw new Error('user not found')
+
   await setDoc(
     doc(db, `onboarding/${auth.currentUser.uid}/${regType}`, regSection),
     data
   );
 };
 
-export const uploadIdentification = async (cacFile, logoFile) => {
+export const uploadIdentification = async (cacFile: File, logoFile: File) => {
+  if (!auth.currentUser) throw new Error('user not found')
+
+
   const cacRef = ref(
     storage,
     `founder-identification/${auth.currentUser.uid}/CAC.png`
@@ -21,17 +25,15 @@ export const uploadIdentification = async (cacFile, logoFile) => {
   );
 
   await uploadBytes(cacRef, cacFile);
-  console.log('CAC file uploaded successfully');
   const cacUrl = await getDownloadURL(cacRef);
 
   await uploadBytes(logoRef, logoFile);
-  console.log('Logo file uploaded successfully');
   const logoUrl = await getDownloadURL(logoRef);
 
-  onboardingRegistration('startup', 'founder_identification', {
+  const url = onboardingRegistration('startup', 'founder_identification', {
     cac_url: cacUrl,
     logo_url: logoUrl,
   });
-  console.log('Onboarding registration completed successfully');
+
   return url;
 };
