@@ -2,8 +2,12 @@ import { doc, DocumentData, setDoc, WithFieldValue } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db, auth, storage } from '../config';
 
-export const onboardingRegistration = async (regType: string, regSection: string, data: WithFieldValue<DocumentData>) => {
-  if (!auth.currentUser) throw new Error('user not found')
+export const onboardingRegistration = async (
+  regType: string,
+  regSection: string,
+  data: WithFieldValue<DocumentData>
+) => {
+  if (!auth.currentUser) throw new Error('user not found');
 
   await setDoc(
     doc(db, `onboarding/${auth.currentUser.uid}/${regType}`, regSection),
@@ -12,8 +16,7 @@ export const onboardingRegistration = async (regType: string, regSection: string
 };
 
 export const uploadIdentification = async (cacFile: File, logoFile: File) => {
-  if (!auth.currentUser) throw new Error('user not found')
-
+  if (!auth.currentUser) throw new Error('user not found');
 
   const cacRef = ref(
     storage,
