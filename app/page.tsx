@@ -109,7 +109,7 @@ export default function Page() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <header className="flex flex-col lg:flex-row items-center gap-3 lg:pl-20 lg:h-[80vh] 2xl:h-[40vh] 2xl:container 2xl:mx-auto">
+        <header className="flex flex-col lg:flex-row items-center gap-3 lg:pl-20 lg:h-[80vh] 2xl:container 2xl:mx-auto">
           <section className="flex flex-col items-center lg:items-stretch justify-center gap-4 p-5 lg:p-0 lg:w-[70%]">
             <h1 className="text-3xl text-center font-bold text-custom-green leading-none lg:text-6xl lg:text-left 2xl:text-5xl">
               Niger Delta Innovation Ecosystem
