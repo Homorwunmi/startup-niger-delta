@@ -18,12 +18,21 @@ export default function StartupReview() {
     const style = document.createElement('style');
     document.head.appendChild(style);
     const stylesheet = style.sheet;
-    stylesheet?.insertRule(``, stylesheet.insertRule.length);
+
+    if (stylesheet)
+      stylesheet?.insertRule(
+        `.table-container {height: 10px; overflow: scroll;}`,
+        0
+      );
+
+    return () => {
+      document.head.removeChild(style);
+    };
   }, []);
 
   return (
     <section className="flex flex-col items-stretch h-full pb-10 review">
-      <Table className="mt-10 max-h-64 overflow-y-auto">
+      <Table className="mt-10 max-h-[10px] overflow-y-auto">
         <TableHeader>
           <TableRow>
             <TableHead

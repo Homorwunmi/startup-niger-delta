@@ -296,3 +296,8 @@ nav > div {
 .move-up-down-animation {
   animation: move-up-down 3s infinite linear;
 }
+
+.table-container {
+  height: 10px !important;
+  overflow: scroll;
+}
