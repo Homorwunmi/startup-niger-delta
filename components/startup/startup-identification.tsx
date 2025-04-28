@@ -10,10 +10,8 @@ import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
-import dynamic from 'next/dynamic';
-
-const StartupFounder = dynamic(() => import('./startup-founder'));
-const StartupReview = dynamic(() => import('./startup-review'));
+import StartupFounder from './startup-founder';
+import StartupReview from './startup-review';
 
 export default function StartupIdentity() {
   const [review, setReview] = useState<boolean>(() =>
