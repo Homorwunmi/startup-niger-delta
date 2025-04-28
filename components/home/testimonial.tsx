@@ -115,21 +115,21 @@ function SimpleSlider() {
 
 export default function Testimonial() {
   return (
-    <section className="bg-white relative min-h-[650px]">
+    <section className="bg-white relative min-h-[650px] 2xl:container 2xl:mx-auto">
       <SimpleSlider />
 
       <div
-        className="absolute right-0 top-0 w-full lg:w-4/5 h-full bg-custom-green px-5 py-10 flex flex-col items-center gap-4 lg:p-20 lg:items-end"
+        className="absolute right-0 top-0 w-full h-full bg-custom-green px-5 py-10 flex flex-col items-center gap-4 lg:w-4/5 lg:p-20 lg:items-end"
         style={{
           backgroundImage: `url("/home/ecosystem-bg.svg")`,
           backgroundBlendMode: 'soft-light',
         }}
       >
-        <h2 className="text-4xl text-center text-white font-semibold flex flex-col items-center lg:items-end gap-3">
+        <h2 className="text-4xl lg:text-6xl text-center text-white font-medium font-poppins flex flex-col items-center lg:items-end gap-6">
           <span className="uppercase">Testimonies.</span>
           <span className="w-1/3 h-1 bg-custom-orange inline-block" />
         </h2>
-        <p className="text-2xl text-white">What people say about us</p>
+        <p className="text-3xl text-white">What people say about us</p>
       </div>
     </section>
   );

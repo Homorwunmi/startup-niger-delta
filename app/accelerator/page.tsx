@@ -1,6 +1,6 @@
 'use client';
 
-import Navbar from '@/components/shared/Navbar';
+import OnboardingNavbar from '@/components/shared/onboarding-nav';
 import Status from '@/components/shared/status';
 import Sidebar from '@/components/shared/sidebar';
 import { sideBarData } from '@/lib/data';
@@ -16,7 +16,7 @@ export default function Page() {
 
   return (
     <section className="bg-[#C6D9B5] w-full relative overflow-hidden">
-      <Navbar />
+      <OnboardingNavbar />
       <Status />
       <Sidebar
         sidebarItems={sideBarData}

@@ -1,16 +1,35 @@
+/* eslint-disable import/no-cycle */
+
+'use client';
+
+import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { useCallback } from 'react';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
 import { Label } from '../ui/label';
+import StartupInfo from './startup-info';
 
 export default function StartupProfile() {
+  const { setRange, setActiveTab } = useOnboardContext();
+
+  const handleNext = useCallback(() => {
+    setRange(1);
+
+    setActiveTab({
+      title: 'Company Profile',
+      Component: <StartupInfo />,
+      src: '/angel/bgTrailer1.svg',
+    });
+  }, [setRange, setActiveTab]);
+
   return (
-    <form action="w-full">
-      <div className="grid grid-cols-2 gap-y-6 gap-x-10 justify-between py-6 px-4">
+    <form action="w-full" style={{ height: '100%' }}>
+      <div className="grid grid-cols-2 gap-y-6 gap-x-10 justify-between py-6 px-4 h-full">
         <div className="relative w-full">
           <Label
             htmlFor="companyName"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Company Name
           </Label>
@@ -19,13 +38,13 @@ export default function StartupProfile() {
             id="companyName"
             name="compnayName"
             placeholder="Registered name"
-            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative w-full">
           <Label
             htmlFor="Industry"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Year of Incorporation
           </Label>
@@ -33,13 +52,13 @@ export default function StartupProfile() {
             type="date"
             id="Industry"
             placeholder="Select Your Industry"
-            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative w-full">
           <Label
             htmlFor="BusinessDescription"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             RC Number
           </Label>
@@ -53,7 +72,7 @@ export default function StartupProfile() {
         <div className="relative w-full">
           <Label
             htmlFor="industry"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Industry
           </Label>
@@ -61,13 +80,13 @@ export default function StartupProfile() {
             type="text"
             id="industry"
             placeholder="Select your Industry"
-            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative w-full">
           <Label
             htmlFor="startup-description"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Startup Description
           </Label>
@@ -80,7 +99,7 @@ export default function StartupProfile() {
         <div className="relative w-full">
           <Label
             htmlFor="fundingInterest"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-6"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Funding Interest
           </Label>
@@ -88,19 +107,26 @@ export default function StartupProfile() {
             type="text"
             id="fundingInterest"
             placeholder="Investment Interest"
-            className="w-[300px] mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
 
-        <div className="col-span-2 flex items-end justify-between w-full mt-4">
+        <div className="col-span-2 flex items-end justify-between w-full mt-auto">
           <p className="text-custom-orange">
             *You must fill in all field to be able to continue
           </p>
           <div className="flex gap-3">
-            <Button type="submit" className="px-10 bg-gray-200">
+            <Button
+              type="button"
+              className="px-10 bg-gray-200 hover:bg-gray-200"
+            >
               Back
             </Button>
-            <Button type="submit" className="px-10 bg-custom-orange">
+            <Button
+              type="button"
+              className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
+              onClick={handleNext}
+            >
               Next
             </Button>
           </div>

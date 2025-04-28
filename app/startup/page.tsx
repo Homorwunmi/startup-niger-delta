@@ -1,28 +1,37 @@
 'use client';
 
-import Navbar from '@/components/shared/Navbar';
-import Status from '@/components/shared/status';
-import Sidebar from '@/components/shared/sidebar';
+import { useEffect } from 'react';
 import { startUpData } from '@/lib/data';
-import { useState } from 'react';
+import OnboardingNavbar from '@/components/shared/onboarding-nav';
 import StartupProfile from '@/components/startup/startup-profile';
+import Sidebar from '@/components/shared/sidebar';
+import Status from '@/components/shared/status';
+import { useOnboardContext } from '../contexts/OnboardingContext';
 
 export default function Page() {
-  const [activeTab, setActiveTab] = useState({
-    title: 'Company Profile',
-    Component: <StartupProfile />,
-    src: '/angel/bgTrailer1.svg',
-  });
+  const { setActiveTab } = useOnboardContext();
+
+  useEffect(
+    () =>
+      setActiveTab({
+        title: 'Company Profile',
+        Component: <StartupProfile />,
+        src: '/angel/bgTrailer1.svg',
+      }),
+    [setActiveTab]
+  );
 
   return (
     <section className="bg-[#C6D9B5] h-screen w-full">
-      <Navbar />
+      <OnboardingNavbar />
+
       <Status />
+
       <Sidebar
         sidebarItems={startUpData}
         value="Startup Registration"
-        setActiveTab={setActiveTab}
-        activeTab={activeTab}
+        // setActiveTab={setActiveTab}
+        // activeTab={activeTab}
       />
     </section>
   );

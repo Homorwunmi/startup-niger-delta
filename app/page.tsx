@@ -56,10 +56,7 @@ export default function Page() {
   return (
     <>
       <main>
-        <NavigationMenu
-          className="py-4 px-20 text-green-900 font-medium border-b-2 border-green-900 border-opacity-50"
-          style={{ maxWidth: '100%' }}
-        >
+        <NavigationMenu className="py-4 px-20 text-green-900 font-medium border-b-2 border-green-900 border-opacity-50 max-w-screen 2xl:container 2xl:mx-auto">
           <NavigationMenuList className="">
             <figure className="mr-auto">
               <Image src={Logo} alt="Niger Delta Logo" />
@@ -112,13 +109,13 @@ export default function Page() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <header className="flex flex-col lg:flex-row items-center gap-3 lg:px-20 lg:h-[80vh]">
+        <header className="flex flex-col lg:flex-row items-center gap-3 lg:pl-20 lg:h-[80vh] 2xl:h-[40vh] 2xl:container 2xl:mx-auto">
           <section className="flex flex-col items-center lg:items-stretch justify-center gap-4 p-5 lg:p-0 lg:w-[70%]">
-            <h1 className="text-3xl text-center lg:text-5xl lg:text-left font-bold text-custom-green leading-tight">
+            <h1 className="text-3xl text-center font-bold text-custom-green leading-none lg:text-6xl lg:text-left 2xl:text-5xl">
               Niger Delta Innovation Ecosystem
             </h1>
 
-            <p className="text-gray-800 font-semibold text-lg text-center lg:text-4xl lg:text-left lg:w-3/4">
+            <p className="text-gray-800 text-lg text-center font-semibold lg:text-4xl lg:text-left lg:w-2/3 2xl:w-1/2">
               Unlocking The Next Startup Innovative & Burgeoning Opportunities
             </p>
 
@@ -159,16 +156,17 @@ export default function Page() {
             </Button>
           </section>
 
-          <section className="relative h-full w-full lg:w-auto">
+          <section className="relative flex-1 h-full w-full py-10 lg:w-auto">
             <Image
               src={headerImage}
               alt="Niger Delta Logo"
-              className="block w-full transform lg:translate-y-10 lg:-translate-x-10 move-up-down-animation"
+              className="absolute top-1/2 transform lg:-translate-y-1/2 -translate-x-1/3 z-10 scale-140 move-up-down-animation 2xl:scale-130"
             />
             <Image
               src={headerBg}
               alt="Niger Delta Logo"
-              className="hidden lg:block absolute top-0 -right-20 block w-full h-full -z-10"
+              // className="hidden absolute top-0 -right-20 lg:block w-full h-full -z-10"
+              className="hidden lg:block w-full h-full scale-140"
             />
 
             <div
@@ -183,122 +181,126 @@ export default function Page() {
         </header>
 
         {/* Our Ecosystem */}
-        <section className="flex flex-col items-center gap-16 p-5 lg:p-20 bg-gray-100">
-          <h2 className="text-4xl flex flex-col items-center gap-3">
-            <span>Our Ecosystem</span>
-            <span className="w-1/4 h-1 bg-custom-orange" />
-          </h2>
+        <section className="bg-gray-100 p-5 lg:p-20">
+          <div className="flex flex-col items-center gap-16 2xl:container 2xl:mx-auto">
+            <h2 className="text-4xl lg:text-6xl font-medium font-poppins text-custom-green flex flex-col items-center gap-6">
+              <span>Our Ecosystem.</span>
+              <span className="w-1/4 h-1 bg-custom-orange" />
+            </h2>
 
-          <div className="flex flex-col items-center lg:flex-row lg:items-stretch justify-center gap-16 w-full">
-            {Ecosystem.map((item, index) => (
-              <Card
-                key={item.title}
-                className={`relative flex items-center gap-4 lg:w-1/3 px-3 pt-12 pb-0 ${(index + 1) % 2 !== 0 ? 'bg-custom-green text-white' : 'bg-light-custom-green text-custom-green'}`}
-                style={{
-                  backgroundImage: `url("/home/ecosystem-bg.svg")`,
-                  backgroundSize: 'cover',
-                  backgroundBlendMode: 'overlay',
-                }}
-              >
-                <div
-                  className={`absolute top-0 w-4/5 h-3 ${(index + 1) % 2 !== 0 ? 'bg-light-custom-green' : 'bg-custom-green'}`}
-                />
-
-                <div
-                  className={`absolute bottom-0 right-0 w-50 h-60 rounded-b-xl ${(index + 1) % 2 !== 0 ? 'bg-custom-green' : 'bg-light-custom-green'}`}
+            <div className="flex flex-col items-center lg:flex-row lg:items-stretch justify-center gap-16 w-full">
+              {Ecosystem.map((item, index) => (
+                <Card
+                  key={item.title}
+                  className={`relative flex items-center gap-4 lg:w-1/3 px-3 pt-12 pb-0 ${(index + 1) % 2 !== 0 ? 'bg-custom-green text-white' : 'bg-light-custom-green text-custom-green'}`}
                   style={{
-                    clipPath: 'polygon(0 100%, 100% 0, 100% 100%)',
+                    backgroundImage: `url("/home/ecosystem-bg.svg")`,
+                    backgroundSize: 'cover',
+                    backgroundBlendMode: 'overlay',
                   }}
-                />
+                >
+                  <div
+                    className={`absolute top-0 w-4/5 h-3 ${(index + 1) % 2 !== 0 ? 'bg-light-custom-green' : 'bg-custom-green'}`}
+                  />
 
-                <CardHeader className="relative w-full gap-3">
-                  <CardTitle
-                    className="font text-3xl"
-                    style={{ fontFamily: 'Times New Roman, serif' }}
-                  >
-                    {item.title}
-                  </CardTitle>
-                  <CardDescription
-                    className={`text-sm font-poppins leading-5 ${(index + 1) % 2 !== 0 ? 'text-white' : 'text-custom-green'}`}
-                  >
-                    {item.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="relative flex mt-auto">
-                  <Button className="px-7 py-6 text-base bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark hover:bg-custom-orange self-center mt-8">
-                    Meet them
-                  </Button>
-                  <figure>
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      width={200}
-                      height={200}
-                    />
-                  </figure>
-                </CardContent>
-              </Card>
-            ))}
+                  <div
+                    className={`absolute bottom-0 right-0 w-50 h-60 rounded-b-xl ${(index + 1) % 2 !== 0 ? 'bg-custom-green' : 'bg-light-custom-green'}`}
+                    style={{
+                      clipPath: 'polygon(0 100%, 100% 0, 100% 100%)',
+                    }}
+                  />
+
+                  <CardHeader className="relative w-full gap-3">
+                    <CardTitle
+                      className="font text-3xl"
+                      style={{ fontFamily: 'Times New Roman, serif' }}
+                    >
+                      {item.title}
+                    </CardTitle>
+                    <CardDescription
+                      className={`text-sm font-poppins leading-5 ${(index + 1) % 2 !== 0 ? 'text-white' : 'text-custom-green'}`}
+                    >
+                      {item.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="relative flex mt-auto">
+                    <Button className="px-7 py-6 text-base bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark hover:bg-custom-orange self-center mt-8">
+                      Meet them
+                    </Button>
+                    <figure>
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={200}
+                        height={200}
+                      />
+                    </figure>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* Investment and Opportunities */}
         <section
-          className="grid grid-cols-1 lg:grid-cols-2 gap-16 pt-20 px-5 lg:px-20 bg-custom-green"
+          className="pt-20 px-5 lg:px-20 bg-custom-green"
           style={{
             backgroundImage: `url("/home/ecosystem-bg.svg")`,
             backgroundSize: 'cover',
             backgroundBlendMode: 'overlay',
           }}
         >
-          <div className="flex flex-col items-start gap-6 text-white col-span-2 lg:col-span-1">
-            <h2 className="text-3xl lg:text-5xl flex flex-col items-start lg:gap-3 font-poppins">
-              <span>Investment &</span>
-              <span>Opportunities.</span>
-            </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 2xl:container 2xl:mx-auto">
+            <div className="flex flex-col items-start gap-6 text-white col-span-2 lg:col-span-1">
+              <h2 className="text-3xl lg:text-5xl flex flex-col items-start lg:gap-3 font-poppins">
+                <span>Investment &</span>
+                <span>Opportunities.</span>
+              </h2>
 
-            <span className="w-1/5 h-1 bg-light-custom-green" />
+              <span className="w-1/5 h-1 bg-light-custom-green" />
 
-            <p className="text-lg font-poppins">
-              Join our exclusive network of a thriving community of digital
-              technology pioneers, explore investment opportunities, and stay at
-              the cutting edge of technological advancements.{' '}
-            </p>
+              <p className="text-lg font-poppins">
+                Join our exclusive network of a thriving community of digital
+                technology pioneers, explore investment opportunities, and stay
+                at the cutting edge of technological advancements.{' '}
+              </p>
+            </div>
+
+            <figure className="col-span-2 flex items-center justify-center lg:col-span-1">
+              <Image src={Investment} alt="Investment and Opportunities" />
+            </figure>
+
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:items-end lg:justify-between gap-10 w-full col-span-2">
+              {InvestmentList.map((item) => (
+                <li
+                  key={item.title}
+                  className="flex flex-col items-start gap-4 bg-custom-green-1 hover:bg-custom-orange transition-all duration-300 bg-opacity-50 px-5 pt-12 pb-5 rounded-t-3xl lg:w-1/4 group lg:h-[200px] hover:h-[350px]"
+                >
+                  <figure className="w-16 h-16">
+                    <Image
+                      src={item.icon}
+                      alt={item.title}
+                      width={500}
+                      height={500}
+                      className="w-full h-full"
+                    />
+                  </figure>
+                  <figcaption className="text-white font-bold text-lg font-poppins">
+                    {item.title}
+                  </figcaption>
+
+                  <p className=" transition-all delay-300 text-white lg:hidden group-hover:block group-hover:w-full group-hover:h-full">
+                    {item.content}
+                  </p>
+
+                  <Button className="bg-white hover:text-white text-black font-semibold hidden transition-all delay-300 hover:bg-custom-green-2 group-hover:block">
+                    Connect
+                  </Button>
+                </li>
+              ))}
+            </ul>
           </div>
-
-          <figure className="col-span-2 flex items-center justify-center lg:col-span-1">
-            <Image src={Investment} alt="Investment and Opportunities" />
-          </figure>
-
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:items-end lg:justify-between gap-10 w-full col-span-2">
-            {InvestmentList.map((item) => (
-              <li
-                key={item.title}
-                className="flex flex-col items-start gap-4 bg-custom-green-1 hover:bg-custom-orange transition-all duration-300 bg-opacity-50 px-5 pt-12 pb-5 rounded-t-3xl lg:w-1/4 group lg:h-[200px] hover:h-[350px]"
-              >
-                <figure className="w-16 h-16">
-                  <Image
-                    src={item.icon}
-                    alt={item.title}
-                    width={500}
-                    height={500}
-                    className="w-full h-full"
-                  />
-                </figure>
-                <figcaption className="text-white font-bold text-lg font-poppins">
-                  {item.title}
-                </figcaption>
-
-                <p className=" transition-all delay-300 text-white lg:hidden group-hover:block group-hover:w-full group-hover:h-full">
-                  {item.content}
-                </p>
-
-                <Button className="bg-white hover:text-white text-black font-semibold hidden transition-all delay-300 hover:bg-custom-green-2 group-hover:block">
-                  Connect
-                </Button>
-              </li>
-            ))}
-          </ul>
         </section>
 
         {/* Partners */}
@@ -309,8 +311,8 @@ export default function Page() {
                 <Image
                   src={partner.image}
                   alt="Partner Logo"
-                  width={100}
-                  height={100}
+                  width={300}
+                  height={300}
                 />
               </li>
             ))}
@@ -319,8 +321,8 @@ export default function Page() {
                 <Image
                   src={partner.image}
                   alt="Partner Logo Duplicate"
-                  width={100}
-                  height={100}
+                  width={300}
+                  height={300}
                 />
               </li>
             ))}
@@ -329,60 +331,62 @@ export default function Page() {
 
         {/* resources */}
         <section
-          className="flex flex-col lg:flex-row lg:items-center gap-10 px-5 py-10 lg:p-20 bg-custom-green"
+          className="px-5 py-10 lg:p-20 bg-custom-green"
           style={{
             backgroundImage: `url("/home/ecosystem-bg.svg")`,
             backgroundBlendMode: 'soft-light',
           }}
         >
-          <div className="flex flex-col items-start gap-5 text-white lg:w-3/5">
-            <h2 className="text-5xl font-medium flex flex-col items-start gap-3 font-poppins">
-              Resources.
-            </h2>
+          <div className="flex flex-col lg:flex-row lg:items-center gap-10 2xl:container 2xl:mx-auto">
+            <div className="flex flex-col items-start gap-5 text-white lg:w-3/5">
+              <h2 className="text-5xl font-medium flex flex-col items-start gap-3 font-poppins">
+                Resources.
+              </h2>
 
-            <span className="w-1/5 h-1 bg-light-custom-green" />
+              <span className="w-1/5 h-1 bg-light-custom-green" />
 
-            <p className="mt-5 text-base lg:text-xl font-medium font-poppins">
-              SNG is proud to offer such a wide variety of technology assets
-              within the geographical locations on its platform. All these
-              encompass our goal of turbo-charging investments towards
-              sustainable, innovative and most importantly inclusive growth.
-            </p>
+              <p className="mt-5 text-base lg:text-xl font-medium font-poppins">
+                SNG is proud to offer such a wide variety of technology assets
+                within the geographical locations on its platform. All these
+                encompass our goal of turbo-charging investments towards
+                sustainable, innovative and most importantly inclusive growth.
+              </p>
 
-            <Link href="/sign-up">
-              <Button className="hidden lg:inline-block px-7 py-6 text-base bg-custom-orange hover:bg-custom-orange mt-8 hover:cursor-pointer">
-                Get Started
-              </Button>
-            </Link>
+              <Link href="/sign-up">
+                <Button className="hidden lg:inline-block px-7 py-6 text-base bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark hover:bg-custom-orange mt-8 hover:cursor-pointer">
+                  Get Started
+                </Button>
+              </Link>
+            </div>
+
+            <ul className="flex-1 flex flex-col gap-5">
+              {resourcesList.map((resource) => (
+                <li
+                  key={resource.title}
+                  className="flex items-center gap-4 text-white lg:text-custom-green lg:bg-gray-100 py-2 px-3 rounded-lg"
+                >
+                  <figure className="w-14 h-14">
+                    <Image
+                      src={resource.img}
+                      alt=""
+                      width={400}
+                      height={400}
+                      className="w-full h-full"
+                    />
+                  </figure>
+
+                  <div className="leading-tight">
+                    <h3 className="font-semibold">{resource.title}</h3>
+                    <p>{resource.desc}</p>
+                  </div>
+
+                  <div className="hidden w-6 h-6 rounded-full bg-custom-green text-white lg:flex items-center justify-center ml-auto">
+                    ?
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
-
-          <ul className="flex-1 flex flex-col gap-5">
-            {resourcesList.map((resource) => (
-              <li
-                key={resource.title}
-                className="flex items-center gap-4 text-white lg:text-custom-green lg:bg-gray-100 py-2 px-3 rounded-lg"
-              >
-                <figure className="w-14 h-14">
-                  <Image
-                    src={resource.img}
-                    alt=""
-                    width={400}
-                    height={400}
-                    className="w-full h-full"
-                  />
-                </figure>
-
-                <div className="leading-tight">
-                  <h3 className="font-semibold">{resource.title}</h3>
-                  <p>{resource.desc}</p>
-                </div>
-
-                <div className="hidden w-6 h-6 rounded-full bg-custom-green text-white lg:flex items-center justify-center ml-auto">
-                  ?
-                </div>
-              </li>
-            ))}
-          </ul>
         </section>
 
         <Alert />

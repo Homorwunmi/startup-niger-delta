@@ -6,35 +6,13 @@ import AngelFormIdentify from '@/components/angel/Angel-form-identify';
 import StartupProfile from '@/components/startup/startup-profile';
 import StartupInfo from '@/components/startup/startup-info';
 import StartupFounder from '@/components/startup/startup-founder';
+import StartupIdentity from '@/components/startup/startup-identification';
 
 interface SideBarItem {
   title: string;
   Component: ReactElement;
   src: string;
 }
-
-export const sideBarData: SideBarItem[] = [
-  {
-    title: 'Company Profile',
-    Component: <AngelForm />,
-    src: '/angel/bgTrailer1.svg',
-  },
-  {
-    title: 'Contact Info',
-    Component: <AngelFormInfo />,
-    src: '/angel/bgTrailer2.svg',
-  },
-  {
-    title: 'Investment Info',
-    Component: <AngelFormInvestment />,
-    src: '/angel/bgTrailer3.svg',
-  },
-  {
-    title: 'Identification',
-    Component: <AngelFormIdentify />,
-    src: '/angel/bgTrailer4.svg',
-  },
-];
 
 export const startUpData: SideBarItem[] = [
   {
@@ -50,6 +28,29 @@ export const startUpData: SideBarItem[] = [
   {
     title: 'Founder/Co-founder Profile',
     Component: <StartupFounder />,
+    src: '/angel/bgTrailer3.svg',
+  },
+  {
+    title: "Founder's Identification",
+    Component: <StartupIdentity />,
+    src: '/angel/bgTrailer4.svg',
+  },
+];
+
+export const sideBarData: SideBarItem[] = [
+  {
+    title: 'Company Profile',
+    Component: <AngelForm />,
+    src: '/angel/bgTrailer1.svg',
+  },
+  {
+    title: 'Contact Info',
+    Component: <AngelFormInfo />,
+    src: '/angel/bgTrailer2.svg',
+  },
+  {
+    title: 'Investment Info',
+    Component: <AngelFormInvestment />,
     src: '/angel/bgTrailer3.svg',
   },
   {

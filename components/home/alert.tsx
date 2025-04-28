@@ -117,19 +117,21 @@ function SplideCenterMode() {
 
 export default function Alert(): React.JSX.Element {
   return (
-    <section className="p-5 lg:p-20 bg-gray-200 flex flex-col items-center gap-8 relative">
-      <h2 className="text-xl lg:text-5xl font-medium flex flex-col items-center gap-4">
-        <span>Funding Alerts.</span>
-        <span className="w-1/3 h-1 bg-light-custom-green" />
-      </h2>
+    <section className="p-5 lg:p-20 bg-gray-200">
+      <div className="flex flex-col items-center gap-8 relative 2xl:container 2xl:mx-auto">
+        <h2 className="text-xl lg:text-6xl font-medium font-poppins flex flex-col items-center gap-6">
+          <span>Funding Alerts.</span>
+          <span className="w-1/3 h-1 bg-light-custom-green" />
+        </h2>
 
-      <div className="flex items-center justify-between w-5/6 px-5 text-xs lg:text-base lg:w-1/2 lg:px-24 py-4 font-semibold bg-white shadow-md">
-        <h3 className="uppercase underline underline-offset-4">Type</h3>
-        <h3 className="uppercase underline underline-offset-4">Category</h3>
-        <h3 className="uppercase underline underline-offset-4">Year</h3>
+        <div className="flex items-center justify-between w-5/6 px-5 text-xs lg:text-base lg:w-1/2 lg:px-24 py-4 font-semibold bg-white shadow-md">
+          <h3 className="uppercase underline underline-offset-4">Type</h3>
+          <h3 className="uppercase underline underline-offset-4">Category</h3>
+          <h3 className="uppercase underline underline-offset-4">Year</h3>
+        </div>
+
+        <SplideCenterMode />
       </div>
-
-      <SplideCenterMode />
     </section>
   );
 }

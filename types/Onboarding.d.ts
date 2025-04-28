@@ -7,12 +7,12 @@ export interface SidebarProps {
     src: string;
   }[];
   value: string;
-  activeTab: {
+  activeTab?: {
     title: string;
     Component: React.JSX.Element;
     src: string;
   };
-  setActiveTab: React.Dispatch<
+  setActiveTab?: React.Dispatch<
     React.SetStateAction<{
       title: string;
       Component: React.JSX.Element;
