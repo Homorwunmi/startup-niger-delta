@@ -150,6 +150,10 @@ export default function RecentNews(): React.JSX.Element {
               </Card>
             ))}
         </div>
+
+        <Button className="self-center bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark mt-8 hover:bg-custom-orange px-8 py-6 font-poppins font-semibold text-xl">
+          Load more...
+        </Button>
       </div>
     </section>
   );

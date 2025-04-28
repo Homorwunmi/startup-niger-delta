@@ -55,7 +55,7 @@ export default function Page() {
 
   return (
     <>
-      <main>
+      <main className="overflow-hidden">
         <NavigationMenu className="py-4 px-20 text-green-900 font-medium border-b-2 border-green-900 border-opacity-50 max-w-screen 2xl:container 2xl:mx-auto">
           <NavigationMenuList className="">
             <figure className="mr-auto">
@@ -352,11 +352,9 @@ export default function Page() {
                 sustainable, innovative and most importantly inclusive growth.
               </p>
 
-              <Link href="/sign-up">
-                <Button className="hidden lg:inline-block px-7 py-6 text-base bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark hover:bg-custom-orange mt-8 hover:cursor-pointer">
-                  Get Started
-                </Button>
-              </Link>
+              <Button className="!flex hidden lg:inline-block px-7 py-6 text-base bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark mt-8 hover:bg-custom-orange hover:cursor-pointer">
+                <Link href="/sign-up">Get Started</Link>
+              </Button>
             </div>
 
             <ul className="flex-1 flex flex-col gap-5">
