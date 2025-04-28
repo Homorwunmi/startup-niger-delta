@@ -1,3 +1,5 @@
+/* eslint-disable import/no-cycle */
+
 'use client';
 
 import { RxUpload } from 'react-icons/rx';
