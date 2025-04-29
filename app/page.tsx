@@ -56,52 +56,56 @@ export default function Page() {
   return (
     <>
       <main className="overflow-hidden">
-        <NavigationMenu className="py-4 px-20 text-green-900 font-medium border-b-2 border-green-900 border-opacity-50 max-w-screen 2xl:container 2xl:mx-auto">
-          <NavigationMenuList className="">
-            <figure className="mr-auto">
-              <Image src={Logo} alt="Niger Delta Logo" />
+        <NavigationMenu className="py-4 px-20 2xl:py-10 text-green-900 font-medium border-b-2 border-green-900 border-opacity-50 max-w-screen">
+          <NavigationMenuList className="w-full">
+            <figure className="mr-auto 2xl:w-64">
+              <Image
+                src={Logo}
+                alt="Niger Delta Logo"
+                className="w-full h-full"
+              />
             </figure>
 
             <NavigationMenuItem className="hidden lg:flex items-center gap-8 text-custom-green">
               <NavigationMenuLink
                 href="/home"
-                className="hover:bg-transparent p-0"
+                className="hover:bg-transparent p-0 2xl:!text-3xl"
               >
                 Home
               </NavigationMenuLink>
-              <NavigationMenu className="hover:bg-transparent hover:p-0 p-0">
+              <NavigationMenu className="hover:bg-transparent hover:p-0 p-0 2xl:!text-3xl">
                 Explores
               </NavigationMenu>
               <NavigationMenuLink
                 href="/funding"
-                className="hover:bg-transparent p-0"
+                className="hover:bg-transparent p-0 2xl:!text-3xl"
               >
                 Funding
               </NavigationMenuLink>
-              <NavigationMenuLink className="hover:bg-transparent p-0">
+              <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-3xl">
                 Reports
               </NavigationMenuLink>
-              <NavigationMenuLink className="hover:bg-transparent p-0">
+              <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-3xl">
                 News
               </NavigationMenuLink>
-              <NavigationMenuLink className="hover:bg-transparent p-0">
+              <NavigationMenuLink className="hover:bg-transparent p-02 xl:!text-3xl">
                 Events
               </NavigationMenuLink>
-              <NavigationMenuLink className="hover:bg-transparent p-0">
+              <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-3xl">
                 FAQ
               </NavigationMenuLink>
             </NavigationMenuItem>
 
-            <NavigationMenuItem className="hidden lg:flex items-center gap-4 ml-auto">
+            <NavigationMenuItem className="hidden lg:flex items-center gap-4 2xl:gap-10 ml-auto">
               <NavigationMenuLink
                 href="/login"
-                className="underline hover:bg-transparent p-0"
+                className="underline hover:bg-transparent p-0 2xl:!text-3xl"
               >
                 Login
               </NavigationMenuLink>
               <NavigationMenuLink
                 href="/sign-up"
-                className="bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark text-white hover:text-white w-30 text-center"
+                className="bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark text-white hover:text-white px-10 py-4 text-center 2xl:!text-3xl"
               >
                 Get Started
               </NavigationMenuLink>
@@ -109,24 +113,24 @@ export default function Page() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <header className="flex flex-col lg:flex-row items-center gap-3 lg:pl-20 lg:min-h-[80vh] 2xl:container 2xl:mx-auto">
-          <section className="flex flex-col items-center lg:items-stretch justify-center gap-4 p-5 lg:p-0 lg:w-[70%]">
-            <h1 className="text-3xl text-center font-bold text-custom-green leading-none lg:text-6xl lg:text-left 2xl:text-5xl">
+        <header className="flex flex-col lg:flex-row items-stretch gap-3 lg:pl-20 lg:min-h-[80vh] 2xl:h-fit 2xl:mx-auto">
+          <section className="flex flex-col items-center lg:items-stretch justify-center gap-4 p-5 lg:p-0 lg:w-[60%]">
+            <h1 className="text-3xl text-center font-bold text-custom-green leading-none lg:text-6xl lg:text-left 2xl:w-2/3 2xl:text-7xl">
               Niger Delta Innovation Ecosystem
             </h1>
 
-            <p className="text-gray-800 text-lg text-center font-semibold lg:text-4xl lg:text-left lg:w-2/3 2xl:w-1/2">
+            <p className="text-gray-800 text-lg text-center font-semibold lg:text-4xl lg:text-left lg:w-2/3 2xl:w-1/2 2xl:text-5xl">
               Unlocking The Next Startup Innovative & Burgeoning Opportunities
             </p>
 
             <Form {...form}>
-              <form className="lg:w-3/4 mt-2">
+              <form className="lg:w-1/2 2xl:w-1/4 mt-2">
                 <FormField
                   control={form.control}
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="font-normal italic hidden lg:block">
+                      <FormLabel className="font-normal italic hidden lg:block 2xl:text-lg">
                         Subscribe to our newsletter
                       </FormLabel>
                       <div className="flex items-center">
@@ -135,12 +139,12 @@ export default function Page() {
                             {...field}
                             type="email"
                             placeholder="Enter your email address"
-                            className="w-full rounded-r-none py-5 px-8 custom-input"
+                            className="w-full rounded-r-none py-5 px-8 custom-input focus-visible:border-none bg-gray-100 2xl:text-lg"
                           />
                         </FormControl>
                         <Button
                           type="submit"
-                          className="bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark rounded-l-none py-5 px-8 w-30"
+                          className="bg-custom-orange hover:bg-linear-to-b hover:from-custom-orange-dark hover:to-custom-orange hover:cursor-pointer rounded-l-none !rounded-r-sm py-5 px-8 w-30 font-bold border border-custom-orange hover:border-none 2xl:text-lg"
                         >
                           Subscribe
                         </Button>
@@ -150,24 +154,27 @@ export default function Page() {
                 />
               </form>
             </Form>
-            <Button className="gradient-button lg:self-start rounded-full flex items-center justify-center gap-2 px-8 py-5">
+
+            <Button className="gradient-button lg:self-start rounded-full flex items-center justify-center gap-2 px-8 py-5 2xl:text-2xl 2xl:!px-10 2xl:!py-8">
               <span>How we work</span>
-              <MdOutlinePlayCircleFilled color="bg-gray-900" />
+              <MdOutlinePlayCircleFilled color="bg-gray-900" size={32} />
             </Button>
           </section>
 
-          <section className="relative flex-1 h-full w-full py-10 lg:w-auto">
+          <section className="relative flex-1 h-[80vh] pt-10 lg:w-auto">
             <Image
               src={headerImage}
-              alt="Niger Delta Logo"
-              className="absolute top-1/2 transform lg:-translate-y-1/2 -translate-x-1/3 z-10 scale-140 move-up-down-animation 2xl:scale-130"
+              alt="app-dashboard-img"
+              className="absolute top-1/2 transform lg:-translate-y-1/2 -translate-x-1/3 z-10 move-up-down-animation w-full h-full"
             />
-            <Image
-              src={headerBg}
-              alt="Niger Delta Logo"
-              // className="hidden absolute top-0 -right-20 lg:block w-full h-full -z-10"
-              className="hidden lg:block w-full h-full scale-140"
-            />
+
+            <div className="w-full h-full relative overflow-hidden">
+              <Image
+                src={headerBg}
+                alt="header-background"
+                className="hidden w-full h-full object-cover rounded-tl-[5rem] lg:block 2xl:scale-100 2xl:h-screen"
+              />
+            </div>
 
             <div
               className="absolute top-0 left-0 bg-light-custom-green w-full h-full -z-10 lg:hidden"
@@ -183,9 +190,9 @@ export default function Page() {
         {/* Our Ecosystem */}
         <section className="bg-gray-100 p-5 lg:p-20">
           <div className="flex flex-col items-center gap-16 2xl:container 2xl:mx-auto">
-            <h2 className="text-4xl lg:text-6xl font-medium font-poppins text-custom-green flex flex-col items-center gap-6">
+            <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-medium font-poppins text-custom-green flex flex-col items-center gap-6">
               <span>Our Ecosystem.</span>
-              <span className="w-1/4 h-1 bg-custom-orange" />
+              <span className="w-1/4 2xl:w-1/3 h-1 2xl:h-2 bg-custom-orange" />
             </h2>
 
             <div className="flex flex-col items-center lg:flex-row lg:items-stretch justify-center gap-16 w-full">
@@ -212,19 +219,19 @@ export default function Page() {
 
                   <CardHeader className="relative w-full gap-3">
                     <CardTitle
-                      className="font text-3xl"
+                      className="font text-3xl 2xl:text-5xl"
                       style={{ fontFamily: 'Times New Roman, serif' }}
                     >
                       {item.title}
                     </CardTitle>
                     <CardDescription
-                      className={`text-sm font-poppins leading-5 ${(index + 1) % 2 !== 0 ? 'text-white' : 'text-custom-green'}`}
+                      className={`text-sm font-poppins leading-5 2xl:text-lg 2xl:leading-tight ${(index + 1) % 2 !== 0 ? 'text-white' : 'text-custom-green'}`}
                     >
                       {item.description}
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="relative flex mt-auto">
-                    <Button className="px-7 py-6 text-base bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark hover:bg-custom-orange self-center mt-8">
+                    <Button className="px-7 py-6 text-base bg-custom-orange hover:bg-linear-to-b hover:from-custom-orange-dark hover:to-custom-orange self-center mt-8">
                       Meet them
                     </Button>
                     <figure>
