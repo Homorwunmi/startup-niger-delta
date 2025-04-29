@@ -88,7 +88,7 @@ export default function Page() {
               <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-3xl">
                 News
               </NavigationMenuLink>
-              <NavigationMenuLink className="hover:bg-transparent p-02 xl:!text-3xl">
+              <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-3xl">
                 Events
               </NavigationMenuLink>
               <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-3xl">
@@ -260,14 +260,14 @@ export default function Page() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 2xl:container 2xl:mx-auto">
             <div className="flex flex-col items-start gap-6 text-white col-span-2 lg:col-span-1">
-              <h2 className="text-3xl lg:text-5xl flex flex-col items-start lg:gap-3 font-poppins">
+              <h2 className="text-3xl lg:text-5xl 2xl:text-6xl flex flex-col items-start lg:gap-3 font-poppins">
                 <span>Investment &</span>
                 <span>Opportunities.</span>
               </h2>
 
               <span className="w-1/5 h-1 bg-light-custom-green" />
 
-              <p className="text-lg font-poppins">
+              <p className="text-lg 2xl:text-3xl  font-poppins">
                 Join our exclusive network of a thriving community of digital
                 technology pioneers, explore investment opportunities, and stay
                 at the cutting edge of technological advancements.{' '}
@@ -278,11 +278,11 @@ export default function Page() {
               <Image src={Investment} alt="Investment and Opportunities" />
             </figure>
 
-            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:items-end lg:justify-between gap-10 w-full col-span-2">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:items-end lg:justify-between gap-10 w-full col-span-2 h-[350px]">
               {InvestmentList.map((item) => (
                 <li
                   key={item.title}
-                  className="flex flex-col items-start gap-4 bg-custom-green-1 hover:bg-custom-orange transition-all duration-300 bg-opacity-50 px-5 pt-12 pb-5 rounded-t-3xl lg:w-1/4 group lg:h-[200px] hover:h-[350px]"
+                  className="flex flex-col items-start gap-4 bg-custom-green-1 hover:bg-custom-orange transition-all duration-300 bg-opacity-50 px-5 pt-12 pb-5 rounded-t-3xl lg:w-1/4 group lg:h-[200px] transition-all delay-100 duration-500 hover:h-[350px]"
                 >
                   <figure className="w-16 h-16">
                     <Image
