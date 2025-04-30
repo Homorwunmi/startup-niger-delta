@@ -254,13 +254,12 @@ export default function Page() {
           className="pt-20 px-5 lg:px-20 bg-custom-green"
           style={{
             backgroundImage: `url("/home/ecosystem-bg.svg")`,
-            backgroundSize: 'cover',
             backgroundBlendMode: 'overlay',
           }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 2xl:container 2xl:mx-auto">
             <div className="flex flex-col items-start gap-6 text-white col-span-2 lg:col-span-1">
-              <h2 className="text-3xl lg:text-5xl 2xl:text-6xl flex flex-col items-start lg:gap-3 font-poppins">
+              <h2 className="text-3xl lg:text-5xl 2xl:text-7xl flex flex-col items-start lg:gap-3 font-poppins">
                 <span>Investment &</span>
                 <span>Opportunities.</span>
               </h2>
@@ -282,9 +281,9 @@ export default function Page() {
               {InvestmentList.map((item) => (
                 <li
                   key={item.title}
-                  className="flex flex-col items-start gap-4 bg-custom-green-1 hover:bg-custom-orange transition-all duration-300 bg-opacity-50 px-5 pt-12 pb-5 rounded-t-3xl lg:w-1/4 group lg:h-[200px] transition-all delay-100 duration-500 hover:h-[350px]"
+                  className="flex flex-col items-start gap-4 2xl:gap-3 bg-custom-green-1 hover:bg-custom-orange transition-all duration-300 bg-opacity-50 px-5 pt-12 pb-5 2xl:pb-12 rounded-t-3xl lg:w-1/4 group lg:h-[200px] transition-all delay-100 duration-500 hover:h-[350px]"
                 >
-                  <figure className="w-16 h-16">
+                  <figure className="w-16 h-16 2xl:w-20 2xl:h-20">
                     <Image
                       src={item.icon}
                       alt={item.title}
@@ -293,15 +292,15 @@ export default function Page() {
                       className="w-full h-full"
                     />
                   </figure>
-                  <figcaption className="text-white font-bold text-lg font-poppins">
+                  <figcaption className="text-white font-bold text-lg font-poppins 2xl:text-2xl">
                     {item.title}
                   </figcaption>
 
-                  <p className=" transition-all delay-300 text-white lg:hidden group-hover:block group-hover:w-full group-hover:h-full">
+                  <p className=" transition-all delay-300 text-white 2xl:text-xl lg:hidden group-hover:block group-hover:w-full group-hover:h-full">
                     {item.content}
                   </p>
 
-                  <Button className="bg-white hover:text-white text-black font-semibold hidden transition-all delay-300 hover:bg-custom-green-2 group-hover:block">
+                  <Button className="flex items-center justify-center bg-white hover:text-white text-black font-semibold 2xl:text-lg hidden transition-all delay-300 hover:bg-custom-green-2 group-hover:block">
                     Connect
                   </Button>
                 </li>
