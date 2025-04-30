@@ -28,7 +28,7 @@ export default function FrequentlyAsked(): React.JSX.Element {
       />
       <div className="2xl:container 2xl:mx-auto relative">
         <div className="px-5 py-10 lg:p-16 h-96 font-poppins flex flex-col gap-2">
-          <h2 className="text-4xl lg:text-6xl font-medium decoration-light-custom-green underline-offset-[20px] underline mb-4 flex flex-col items-start">
+          <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-medium decoration-light-custom-green underline-offset-[20px] underline mb-4 flex flex-col items-start">
             FAQ.
           </h2>
           <p className="capitalize text-2xl">Do you have questions?</p>
@@ -36,7 +36,7 @@ export default function FrequentlyAsked(): React.JSX.Element {
             Get in Touch.
           </p>
 
-          <figure className="absolute top-18 2xl:top-10 left-0 w-full">
+          <figure className="absolute top-18 2xl:top-5 left-0 w-full">
             <Image
               src={QuestionMark}
               alt="question-mark-icon"
@@ -45,7 +45,7 @@ export default function FrequentlyAsked(): React.JSX.Element {
           </figure>
         </div>
 
-        <ul className="hidden lg:flex items-center gap-10 w-fit text-custom-green absolute top-1/5 left-20">
+        <ul className="hidden lg:flex items-center gap-10 w-fit text-custom-green absolute top-1/5 2xl:top-1/6 left-20">
           <li className="w-48 h-48 bg-gray-100 rounded-md shadow-lg pt-10 flex flex-col items-center justify-center gap-7 transition-all duration-300 hover:bg-light-custom-green">
             <FaPhoneAlt size={45} />
             <p className="text-lg font-medium">Call</p>
@@ -74,10 +74,12 @@ export default function FrequentlyAsked(): React.JSX.Element {
                   value="item-1"
                   className="bg-white text-black rounded-lg shadow-md mb-6 px-5 !py-[.5px]"
                 >
-                  <AccordionTrigger className="hover:no-underline">
+                  <AccordionTrigger className="hover:no-underline 2xl:text-xl">
                     {faq.ques}
                   </AccordionTrigger>
-                  <AccordionContent>{faq.ans}</AccordionContent>
+                  <AccordionContent className="2xl:text-lg">
+                    {faq.ans}
+                  </AccordionContent>
                 </AccordionItem>
               </Accordion>
             ))}
