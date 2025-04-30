@@ -36,7 +36,7 @@ function MultipleItems() {
 
     autoplay: true,
     speed: 500,
-    autoplaySpeed: 1500,
+    autoplaySpeed: 3000,
     cssEase: 'linear',
     pauseOnHover: false,
   };
