@@ -44,6 +44,7 @@ import Testimonial from '@/components/home/testimonial';
 import FrequentlyAsked from '@/components/home/faq';
 import Alert from '@/components/home/alert';
 import Footer from '@/components/shared/footer';
+import { RxHamburgerMenu } from 'react-icons/rx';
 
 export default function Page() {
   const form = useForm<Subscription>({
@@ -56,7 +57,7 @@ export default function Page() {
   return (
     <>
       <main className="overflow-hidden">
-        <NavigationMenu className="py-4 px-20 2xl:py-10 text-green-900 font-medium border-b-2 border-green-900 border-opacity-50 max-w-screen">
+        <NavigationMenu className="py-4 px-5 lg:px-20 2xl:py-10 text-green-900 font-medium border-b-2 border-green-900 border-opacity-50 max-w-screen">
           <NavigationMenuList className="w-full">
             <figure className="mr-auto 2xl:w-64">
               <Image
@@ -110,6 +111,8 @@ export default function Page() {
                 Get Started
               </NavigationMenuLink>
             </NavigationMenuItem>
+
+            <RxHamburgerMenu size={32} className="lg:hidden" />
           </NavigationMenuList>
         </NavigationMenu>
 
