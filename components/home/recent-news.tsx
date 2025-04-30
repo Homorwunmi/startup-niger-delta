@@ -153,7 +153,7 @@ export default function RecentNews(): React.JSX.Element {
 
         <Button
           className="self-center bg-custom-orange hover:bg-linear-to-b hover:from-custom-orange-dark hover:to-custom-orange
-         px-8 py-6 font-poppins font-semibold -mt-20 text-xl 2xl:text-2xl"
+         px-8 py-6 font-poppins font-semibold -mt-20 lg:mt-5 text-xl 2xl:text-2xl"
         >
           Load more...
         </Button>
