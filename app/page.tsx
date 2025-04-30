@@ -70,29 +70,29 @@ export default function Page() {
             <NavigationMenuItem className="hidden lg:flex items-center gap-8 text-custom-green">
               <NavigationMenuLink
                 href="/home"
-                className="hover:bg-transparent p-0 2xl:!text-3xl"
+                className="hover:bg-transparent p-0 2xl:!text-2xl"
               >
                 Home
               </NavigationMenuLink>
-              <NavigationMenu className="hover:bg-transparent hover:p-0 p-0 2xl:!text-3xl">
+              <NavigationMenu className="hover:bg-transparent hover:p-0 p-0 2xl:!text-2xl">
                 Explores
               </NavigationMenu>
               <NavigationMenuLink
                 href="/funding"
-                className="hover:bg-transparent p-0 2xl:!text-3xl"
+                className="hover:bg-transparent p-0 2xl:!text-2xl"
               >
                 Funding
               </NavigationMenuLink>
-              <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-3xl">
+              <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-2xl">
                 Reports
               </NavigationMenuLink>
-              <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-3xl">
+              <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-2xl">
                 News
               </NavigationMenuLink>
-              <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-3xl">
+              <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-2xl">
                 Events
               </NavigationMenuLink>
-              <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-3xl">
+              <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-2xl">
                 FAQ
               </NavigationMenuLink>
             </NavigationMenuItem>
@@ -100,13 +100,13 @@ export default function Page() {
             <NavigationMenuItem className="hidden lg:flex items-center gap-4 2xl:gap-10 ml-auto">
               <NavigationMenuLink
                 href="/login"
-                className="underline hover:bg-transparent p-0 2xl:!text-3xl"
+                className="underline hover:bg-transparent p-0 2xl:!text-2xl"
               >
                 Login
               </NavigationMenuLink>
               <NavigationMenuLink
                 href="/sign-up"
-                className="bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark text-white hover:text-white px-10 py-4 text-center 2xl:!text-3xl"
+                className="bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark text-white hover:text-white px-10 py-4 text-center 2xl:!text-2xl 2xl:px-5 2xl:py-2"
               >
                 Get Started
               </NavigationMenuLink>
