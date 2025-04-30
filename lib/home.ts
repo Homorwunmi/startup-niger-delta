@@ -66,30 +66,31 @@ export const resourcesList = [
     img: '/home/resources/network-bulb.svg',
     title: 'Tech Piooner Network',
     desc: 'Connect with digital innovators',
-    tip: 'Join a vibrant community of trailblazers in digital technology, where ideas thrive, investments flourish, and the future is being shaped every day'
+    tip: 'Join a vibrant community of trailblazers in digital technology, where ideas thrive, investments flourish, and the future is being shaped every day',
   },
   {
     img: '/home/resources/investment-hub.svg',
     title: 'Investment Hub',
     desc: 'Discover promising opportunities',
-    tip: 'Join a vibrant community of trailblazers in digital technology, where ideas thrive, investments flourish, and the future is being shaped every day'
+    tip: 'Join a vibrant community of trailblazers in digital technology, where ideas thrive, investments flourish, and the future is being shaped every day',
   },
   {
     img: 'home/resources/playground.svg',
     title: 'Innovation Playground',
     desc: 'Where ideas become reality',
-    tip: 'Join a vibrant community of trailblazers in digital technology, where ideas thrive, investments flourish, and the future is being shaped every day'
+    tip: 'Join a vibrant community of trailblazers in digital technology, where ideas thrive, investments flourish, and the future is being shaped every day',
   },
   {
     img: 'home/resources/trend-tracker.svg',
     title: 'Tech Trends Tracker',
     desc: 'Stay ahead of the curve',
-    tip: 'Join a vibrant community of trailblazers in digital technology, where ideas thrive, investments flourish, and the future is being shaped every day'
+    tip: 'Join a vibrant community of trailblazers in digital technology, where ideas thrive, investments flourish, and the future is being shaped every day',
   },
   {
     img: 'home/resources/visionary.svg',
     title: 'Community of Visionaries',
     desc: 'Connect, collaborate, innovate',
+    tip: 'Join a vibrant community of trailblazers in digital technology, where ideas thrive, investments flourish, and the future is being shaped every day',
   },
 ];
 

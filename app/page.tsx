@@ -106,7 +106,7 @@ export default function Page() {
               </NavigationMenuLink>
               <NavigationMenuLink
                 href="/sign-up"
-                className="bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark text-white hover:text-white px-10 py-4 text-center 2xl:!text-2xl 2xl:px-5 2xl:py-2"
+                className="bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark text-white hover:text-white px-5 py-2 text-center 2xl:!text-2xl"
               >
                 Get Started
               </NavigationMenuLink>
