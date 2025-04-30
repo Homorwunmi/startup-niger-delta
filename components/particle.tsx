@@ -26,7 +26,7 @@ export default function Particle(): JSX.Element {
         options={{
           background: {
             color: {
-              value: '#2ec4bf',
+              value: '#1e807a',
             },
           },
           fpsLimit: 120,
