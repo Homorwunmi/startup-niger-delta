@@ -44,7 +44,7 @@ function SplideCenterMode() {
         .map((_, i) => (
           <SplideSlide key={i}>
             <Card
-              className="border-2 border-custom-green p-8 shadow-custom-green/10"
+              className="border-2 border-custom-green p-4 lg:p-8 shadow-custom-green/10"
               style={{
                 boxShadow: '0px 0px 10px rgba(21, 50, 48, 0.8)',
               }}

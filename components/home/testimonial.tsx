@@ -125,11 +125,11 @@ export default function Testimonial() {
           backgroundBlendMode: 'soft-light',
         }}
       >
-        <h2 className="text-4xl lg:text-6xl 2xl:text-7xl text-center text-white font-medium font-poppins flex flex-col items-center lg:items-end gap-6">
+        <h2 className="text-3xl lg:text-6xl 2xl:text-7xl text-center text-white font-medium font-poppins flex flex-col items-center lg:items-end gap-2 lg:gap-6">
           <span className="uppercase">Testimonies.</span>
           <span className="w-1/3 h-1 2xl:h-2 bg-custom-orange inline-block" />
         </h2>
-        <p className="text-3xl text-white 2xl:text-4xl">
+        <p className="text-white text-xl lg:text-3xl 2xl:text-4xl">
           What people say about us
         </p>
       </div>

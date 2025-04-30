@@ -75,8 +75,8 @@ export default function RecentNews(): React.JSX.Element {
   }
   return (
     <section className="lg:p-20 bg-gray-200">
-      <div className="flex flex-col items-stretch gap-10 2xl:container 2xl:mx-auto">
-        <div className="flex items-end justify-between w-full px-5 py-10 lg:p-0">
+      <div className="flex flex-col items-stretch lg:gap-10 py-5 2xl:container 2xl:mx-auto">
+        <div className="flex items-end justify-between w-full px-5 lg:p-0">
           <h2 className="flex flex-col item-start gap-6 text-4xl font-poppins font-medium lg:text-6xl 2xl:text-7xl">
             <span>Recent News.</span>
             <span className="w-1/2 h-1 2xl:h-2 bg-custom-orange" />
@@ -153,7 +153,7 @@ export default function RecentNews(): React.JSX.Element {
 
         <Button
           className="self-center bg-custom-orange hover:bg-linear-to-b hover:from-custom-orange-dark hover:to-custom-orange
-         px-8 py-6 font-poppins font-semibold text-xl 2xl:text-2xl"
+         px-8 py-6 font-poppins font-semibold -mt-20 text-xl 2xl:text-2xl"
         >
           Load more...
         </Button>

@@ -27,7 +27,7 @@ export default function FrequentlyAsked(): React.JSX.Element {
         }}
       />
       <div className="2xl:container 2xl:mx-auto relative">
-        <div className="px-5 py-10 lg:p-16 h-96 font-poppins flex flex-col gap-2">
+        <div className="px-5 py-10 lg:p-16 lg:h-96 font-poppins flex flex-col gap-2">
           <h2 className="text-4xl lg:text-6xl 2xl:text-7xl font-medium decoration-light-custom-green underline-offset-[20px] underline mb-4 flex flex-col items-start">
             FAQ.
           </h2>
@@ -36,7 +36,7 @@ export default function FrequentlyAsked(): React.JSX.Element {
             Get in Touch.
           </p>
 
-          <figure className="absolute top-18 2xl:top-5 left-0 w-full">
+          <figure className="absolute top-32 lg:top-18 2xl:top-5 left-0 w-full">
             <Image
               src={QuestionMark}
               alt="question-mark-icon"

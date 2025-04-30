@@ -139,7 +139,7 @@ export default function Page() {
                             {...field}
                             type="email"
                             placeholder="Enter your email address"
-                            className="w-full rounded-r-none py-5 px-8 custom-input focus-visible:border-none bg-gray-100 2xl:text-lg"
+                            className="w-full rounded-r-none py-5 px-4 lg:px-8 custom-input focus-visible:border-none bg-gray-100 2xl:text-lg"
                           />
                         </FormControl>
                         <Button
@@ -161,11 +161,11 @@ export default function Page() {
             </Button>
           </section>
 
-          <section className="relative flex-1 h-[80vh] pt-10 lg:w-auto">
+          <section className="relative h-96 lg:flex-1 lg:h-[80vh] pt-10 lg:w-auto">
             <Image
               src={headerImage}
               alt="app-dashboard-img"
-              className="absolute top-1/2 transform lg:-translate-y-1/2 -translate-x-1/3 z-10 move-up-down-animation w-full h-full"
+              className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:left-auto lg:-translate-x-1/3 z-10 move-up-down-animation w-full h-full"
             />
 
             <div className="w-full h-full relative overflow-hidden">
@@ -277,7 +277,7 @@ export default function Page() {
               <Image src={Investment} alt="Investment and Opportunities" />
             </figure>
 
-            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:items-end lg:justify-between gap-10 w-full col-span-2 h-[350px]">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:items-end lg:justify-between gap-10 w-full col-span-2 lg:h-[350px]">
               {InvestmentList.map((item) => (
                 <li
                   key={item.title}
