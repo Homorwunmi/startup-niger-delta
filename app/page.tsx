@@ -118,16 +118,16 @@ export default function Page() {
 
         <header className="flex flex-col lg:flex-row items-stretch gap-3 lg:pl-20 lg:min-h-[80vh] 2xl:h-fit 2xl:mx-auto">
           <section className="flex flex-col items-center lg:items-stretch justify-center gap-4 p-5 lg:p-0 lg:w-[60%]">
-            <h1 className="text-3xl text-center font-bold text-custom-green leading-none lg:text-6xl lg:text-left 2xl:w-2/3 2xl:text-7xl">
+            <h1 className="text-3xl text-center font-bold text-custom-green leading-none lg:text-6xl lg:text-left 2xl:w-[60%] 2xl:text-5xl niger-heading">
               Niger Delta Innovation Ecosystem
             </h1>
 
-            <p className="text-gray-800 text-lg text-center font-semibold lg:text-4xl lg:text-left lg:w-2/3 2xl:w-1/2 2xl:text-5xl">
+            <p className="text-gray-800 text-lg text-center font-semibold lg:text-4xl lg:text-left lg:w-[60%] 2xl:text-4xl">
               Unlocking The Next Startup Innovative & Burgeoning Opportunities
             </p>
 
             <Form {...form}>
-              <form className="lg:w-1/2 2xl:w-1/4 mt-2">
+              <form className="lg:w-1/2 2xl:w-[40%] mt-2 form-subscription">
                 <FormField
                   control={form.control}
                   name="email"

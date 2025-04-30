@@ -301,3 +301,13 @@ nav > div {
   height: 10px !important;
   overflow: scroll;
 }
+
+@media (width >= 2560px) {
+  .niger-heading {
+    width: 60%;
+  }
+
+  .form-subscription {
+    width: 20%;
+  }
+}

@@ -87,10 +87,14 @@ function SplideCenterMode() {
 
                 <Table>
                   <TableHeader>
-                    <TableRow className="bg-light-custom-green-1 hover:bg-light-custom-green-1 p-2 flex items-center gap-2">
-                      <TableHead className="px-0 h-fit">Geography</TableHead>
-                      <TableHead className="px-0 h-fit">Reference</TableHead>
-                      <TableHead className="px-0 h-fit">
+                    <TableRow className="bg-light-custom-green-1 hover:bg-light-custom-green-1 p-2 flex items-center justify-between gap-2">
+                      <TableHead className="px-0 h-fit font-bold">
+                        Geography
+                      </TableHead>
+                      <TableHead className="px-0 h-fit font-bold">
+                        Reference
+                      </TableHead>
+                      <TableHead className="px-0 h-fit text-center font-bold">
                         Industry focus
                       </TableHead>
                     </TableRow>
