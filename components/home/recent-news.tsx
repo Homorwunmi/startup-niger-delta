@@ -73,14 +73,13 @@ export default function RecentNews(): React.JSX.Element {
   function handleSetActive(type: NewsType) {
     setIsActive(type);
   }
-
   return (
     <section className="lg:p-20 bg-gray-200">
       <div className="flex flex-col items-stretch gap-10 2xl:container 2xl:mx-auto">
         <div className="flex items-end justify-between w-full px-5 py-10 lg:p-0">
-          <h2 className="flex flex-col item-start gap-6 text-4xl font-poppins font-medium lg:text-6xl">
+          <h2 className="flex flex-col item-start gap-6 text-4xl font-poppins font-medium lg:text-6xl 2xl:text-7xl">
             <span>Recent News.</span>
-            <span className="w-1/2 h-1 bg-custom-orange" />
+            <span className="w-1/2 h-1 2xl:h-2 bg-custom-orange" />
           </h2>
 
           <ul className="hidden lg:flex items-center gap-4">
@@ -88,7 +87,7 @@ export default function RecentNews(): React.JSX.Element {
               <Button
                 type="button"
                 onClick={() => handleSetActive('latest')}
-                className={`rounded-full px-10 shadow-none ${isActive === 'latest' ? 'text-white bg-custom-green hover:bg-custom-green' : 'text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent'}`}
+                className={`rounded-full px-10 shadow-none 2xl:text-lg ${isActive === 'latest' ? 'text-white bg-custom-green hover:bg-custom-green' : 'text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent'}`}
               >
                 Latest
               </Button>
@@ -97,7 +96,7 @@ export default function RecentNews(): React.JSX.Element {
               <Button
                 type="button"
                 onClick={() => handleSetActive('news')}
-                className={`rounded-full px-10 shadow-none ${isActive === 'news' ? 'text-white bg-custom-green hover:bg-custom-green' : 'text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent'}`}
+                className={`rounded-full px-10 shadow-none 2xl:text-lg ${isActive === 'news' ? 'text-white bg-custom-green hover:bg-custom-green' : 'text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent'}`}
               >
                 News
               </Button>
@@ -106,7 +105,7 @@ export default function RecentNews(): React.JSX.Element {
               <Button
                 type="button"
                 onClick={() => handleSetActive('funding')}
-                className={`rounded-full px-10 shadow-none ${isActive === 'funding' ? 'text-white bg-custom-green hover:bg-custom-green' : 'text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent'}`}
+                className={`rounded-full px-10 shadow-none 2xl:text-lg ${isActive === 'funding' ? 'text-white bg-custom-green hover:bg-custom-green' : 'text-custom-green border-1 border-custom-green bg-transparent hover:bg-transparent'}`}
               >
                 Funding
               </Button>
@@ -121,27 +120,28 @@ export default function RecentNews(): React.JSX.Element {
             .fill(null)
             .map((_, i) => (
               <Card
-                className="lg:w-1/3 shadow-none bg-transparent rounded-none gap-2"
+                className="lg:w-1/3 shadow-none bg-transparent rounded-none gap-2 group"
                 key={`card-${i}`}
               >
                 <CardHeader className="px-0">
-                  <CardTitle className="text-xl">
+                  <CardTitle className="text-xl group-hover:text-custom-orange 2xl:text-3xl">
                     How collaboration makes us better business person
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="w-full px-0 flex flex-col items-stretch gap-2">
-                  <figure className="w-full">
+                  <figure className="w-full relative">
                     <Image
                       src={images[i]}
                       alt="news-image"
                       className="w-full"
                     />
+                    <div className="hidden group-hover:block rounded-lg w-full h-full bg-black/50 absolute top-0 left-0 z-10" />
                   </figure>
-                  <p className="flex items-center justify-between">
+                  <p className="flex items-center justify-between 2xl:text-xl">
                     <span>By Admin, NDS</span>
                     <span>Jan 6, 2024 - 2 min Read</span>
                   </p>
-                  <p className="w-full">
+                  <p className="w-full 2xl:text-2xl group-hover:underline">
                     Lorem ipsum dolor sit amet consectetur. Ont Condimentum
                     adipiscing at iaculis m wqwa adiscing convallis ut feugiat
                     morbi. Indo...
@@ -151,7 +151,10 @@ export default function RecentNews(): React.JSX.Element {
             ))}
         </div>
 
-        <Button className="self-center bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark mt-8 hover:bg-custom-orange px-8 py-6 font-poppins font-semibold text-xl">
+        <Button
+          className="self-center bg-custom-orange hover:bg-linear-to-b hover:from-custom-orange-dark hover:to-custom-orange
+         px-8 py-6 font-poppins font-semibold text-xl 2xl:text-2xl"
+        >
           Load more...
         </Button>
       </div>

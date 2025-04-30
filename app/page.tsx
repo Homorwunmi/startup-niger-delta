@@ -345,20 +345,20 @@ export default function Page() {
         >
           <div className="flex flex-col lg:flex-row lg:items-center gap-10 2xl:container 2xl:mx-auto">
             <div className="flex flex-col items-start gap-5 text-white lg:w-3/5">
-              <h2 className="text-5xl font-medium flex flex-col items-start gap-3 font-poppins">
+              <h2 className="text-5xl 2xl:text-7xl font-medium flex flex-col items-start gap-3 font-poppins">
                 Resources.
               </h2>
 
-              <span className="w-1/5 h-1 bg-light-custom-green" />
+              <span className="w-1/5 h-1 2xl:h-2 bg-light-custom-green" />
 
-              <p className="mt-5 text-base lg:text-xl font-medium font-poppins">
+              <p className="mt-5 text-base lg:text-xl 2xl:text-2xl font-medium font-poppins">
                 SNG is proud to offer such a wide variety of technology assets
                 within the geographical locations on its platform. All these
                 encompass our goal of turbo-charging investments towards
                 sustainable, innovative and most importantly inclusive growth.
               </p>
 
-              <Button className="!flex hidden lg:inline-block px-7 py-6 text-base bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark mt-8 hover:bg-custom-orange hover:cursor-pointer">
+              <Button className="!flex hidden lg:inline-block px-7 py-6 text-base bg-custom-orange hover:bg-linear-to-b hover:from-custom-orange-dark hover:to-custom-orange hover:cursor-pointer 2xl:text-xl">
                 <Link href="/sign-up">Get Started</Link>
               </Button>
             </div>
@@ -369,7 +369,7 @@ export default function Page() {
                   key={resource.title}
                   className="flex items-center gap-4 text-white lg:text-custom-green lg:bg-gray-100 py-2 px-3 rounded-lg"
                 >
-                  <figure className="w-14 h-14">
+                  <figure className="w-14 h-14 2xl:w-20 2xl:h-20">
                     <Image
                       src={resource.img}
                       alt=""
@@ -379,12 +379,12 @@ export default function Page() {
                     />
                   </figure>
 
-                  <div className="leading-tight">
+                  <div className="leading-tight 2xl:text-2xl">
                     <h3 className="font-semibold">{resource.title}</h3>
                     <p>{resource.desc}</p>
                   </div>
 
-                  <div className="hidden w-6 h-6 rounded-full bg-custom-green text-white lg:flex items-center justify-center ml-auto">
+                  <div className="hidden w-6 h-6 2xl:w-10 2xl:h-10 2xl:text-xl rounded-full bg-custom-green text-white lg:flex items-center justify-center ml-auto">
                     ?
                   </div>
                 </li>

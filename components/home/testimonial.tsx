@@ -83,10 +83,10 @@ function SimpleSlider() {
                         />
                       ))}
                   </figure>
-                  <h3 className="text-xs lg:text-2xl font-semibold">
+                  <h3 className="text-xs lg:text-2xl 2xl:text-4xl font-semibold">
                     {name[i]}
                   </h3>
-                  <p className="text-custom-orange text-xs lg:text-lg font-semibold">
+                  <p className="text-custom-orange text-xs lg:text-lg 2xl:text-2xl font-semibold">
                     Head of Linie House Group
                   </p>
                 </div>
@@ -100,7 +100,7 @@ function SimpleSlider() {
                 />
               </figure>
 
-              <p className="text-xs lg:text-xl text-gray-500">
+              <p className="text-xs lg:text-xl 2xl:text-2xl text-gray-500">
                 SNG serves as an ideal platform for showcasing, connecting, and
                 securing funds for innovative projects. It provides a strategic
                 avenue to foster the growth and success of startups and their
@@ -115,21 +115,23 @@ function SimpleSlider() {
 
 export default function Testimonial() {
   return (
-    <section className="bg-white relative min-h-[650px] 2xl:container 2xl:mx-auto">
+    <section className="bg-white relative min-h-[650px]">
       <SimpleSlider />
 
       <div
-        className="absolute right-0 top-0 w-full h-full bg-custom-green px-5 py-10 flex flex-col items-center gap-4 lg:w-4/5 lg:p-20 lg:items-end"
+        className="absolute right-0 top-0 w-full h-full bg-custom-green px-5 py-10 flex flex-col items-center gap-4 lg:w-3/4 lg:p-20 lg:items-end"
         style={{
           backgroundImage: `url("/home/ecosystem-bg.svg")`,
           backgroundBlendMode: 'soft-light',
         }}
       >
-        <h2 className="text-4xl lg:text-6xl text-center text-white font-medium font-poppins flex flex-col items-center lg:items-end gap-6">
+        <h2 className="text-4xl lg:text-6xl 2xl:text-7xl text-center text-white font-medium font-poppins flex flex-col items-center lg:items-end gap-6">
           <span className="uppercase">Testimonies.</span>
-          <span className="w-1/3 h-1 bg-custom-orange inline-block" />
+          <span className="w-1/3 h-1 2xl:h-2 bg-custom-orange inline-block" />
         </h2>
-        <p className="text-3xl text-white">What people say about us</p>
+        <p className="text-3xl text-white 2xl:text-4xl">
+          What people say about us
+        </p>
       </div>
     </section>
   );
