@@ -72,25 +72,25 @@ export const resourcesList = [
     img: '/home/resources/investment-hub.svg',
     title: 'Investment Hub',
     desc: 'Discover promising opportunities',
-    tip: 'Join a vibrant community of trailblazers in digital technology, where ideas thrive, investments flourish, and the future is being shaped every day',
+    tip: ' Explore exclusive investment opportunities in cutting-edge startups and emerging technologies, guided by insights from industry leaders and experts',
   },
   {
     img: 'home/resources/playground.svg',
     title: 'Innovation Playground',
     desc: 'Where ideas become reality',
-    tip: 'Join a vibrant community of trailblazers in digital technology, where ideas thrive, investments flourish, and the future is being shaped every day',
+    tip: "Dive into a playground of innovation, where breakthrough ideas are nurtured, developed, and transformed into tomorrow's digital solutions.",
   },
   {
     img: 'home/resources/trend-tracker.svg',
     title: 'Tech Trends Tracker',
     desc: 'Stay ahead of the curve',
-    tip: 'Join a vibrant community of trailblazers in digital technology, where ideas thrive, investments flourish, and the future is being shaped every day',
+    tip: "Keep pace with the latest technological advancements and trends shaping industries worldwide, ensuring you're always at the forefront of innovation.",
   },
   {
     img: 'home/resources/visionary.svg',
     title: 'Community of Visionaries',
     desc: 'Connect, collaborate, innovate',
-    tip: 'Join a vibrant community of trailblazers in digital technology, where ideas thrive, investments flourish, and the future is being shaped every day',
+    tip: "Engage with a dynamic community of digital visionaries, collaborate on groundbreaking projects, and drive forward the future of technology together.",
   },
 ];
 

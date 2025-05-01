@@ -370,7 +370,7 @@ export default function Page() {
               {resourcesList.map((resource) => (
                 <li
                   key={resource.title}
-                  className="flex items-center gap-4 text-white lg:text-custom-green lg:bg-gray-100 py-2 px-3 rounded-lg"
+                  className="flex items-center gap-4 text-white lg:text-custom-green lg:bg-gray-100 py-2 px-3 rounded-lg relative group"
                 >
                   <figure className="w-14 h-14 2xl:w-20 2xl:h-20">
                     <Image
@@ -390,6 +390,10 @@ export default function Page() {
                   <div className="hidden w-6 h-6 2xl:w-10 2xl:h-10 2xl:text-xl rounded-full bg-custom-green text-white lg:flex items-center justify-center ml-auto">
                     ?
                   </div>
+
+                  <p className="absolute -top-28 right-0 py-2 px-4 rounded-lg text-xl w-[35rem] bg-gray-100 hidden group-hover:block">
+                    {resource.tip}
+                  </p>
                 </li>
               ))}
             </ul>
