@@ -44,7 +44,7 @@ function SplideCenterMode() {
         .map((_, i) => (
           <SplideSlide key={i}>
             <Card
-              className="border-2 border-custom-green p-4 lg:p-8 shadow-custom-green/10"
+              className="border-2 border-custom-green p-2 xl:p-8 shadow-custom-green/10"
               style={{
                 boxShadow: '0px 0px 10px rgba(21, 50, 48, 0.8)',
               }}
@@ -85,9 +85,12 @@ function SplideCenterMode() {
                   </div>
                 </div>
 
-                <Table>
-                  <TableHeader>
-                    <TableRow className="bg-light-custom-green-1 hover:bg-light-custom-green-1 p-2 flex items-center justify-between gap-2">
+                <Table className="w-full overflow-hidden">
+                  <TableHeader className="bg-light-custom-green-1 hover:bg-light-custom-green-1">
+                    <TableRow
+                      className="py-2 px-1 flex items-center justify-between gap-2"
+                      style={{ minWidth: 0, flexShrink: 1 }}
+                    >
                       <TableHead className="px-0 h-fit font-bold">
                         Geography
                       </TableHead>

@@ -90,7 +90,7 @@ export const resourcesList = [
     img: 'home/resources/visionary.svg',
     title: 'Community of Visionaries',
     desc: 'Connect, collaborate, innovate',
-    tip: "Engage with a dynamic community of digital visionaries, collaborate on groundbreaking projects, and drive forward the future of technology together.",
+    tip: 'Engage with a dynamic community of digital visionaries, collaborate on groundbreaking projects, and drive forward the future of technology together.',
   },
 ];
 
