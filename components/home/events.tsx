@@ -76,7 +76,7 @@ function MultipleItems() {
                 </p>
               </div>
 
-              <Button className="col-span-3 lg:col-span-1 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark 2xl:text-xl">
+              <Button className="col-span-3 lg:col-span-1 bg-custom-orange hover:bg-gradient-to-b hover:from-custom-orange hover:via-custom-orange hover:to-custom-orange-dark 2xl:text-xl">
                 Action
               </Button>
             </li>

@@ -106,7 +106,7 @@ export default function Page() {
               </NavigationMenuLink>
               <NavigationMenuLink
                 href="/sign-up"
-                className="bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark text-white hover:text-white px-5 py-2 text-center 2xl:!text-2xl"
+                className="bg-custom-orange hover:bg-gradient-to-b hover:from-custom-orange hover:via-custom-orange hover:to-custom-orange-dark text-white hover:text-white px-5 py-2 text-center 2xl:!text-2xl"
               >
                 Get Started
               </NavigationMenuLink>
@@ -147,7 +147,7 @@ export default function Page() {
                         </FormControl>
                         <Button
                           type="submit"
-                          className="bg-custom-orange hover:bg-linear-to-b hover:from-custom-orange-dark hover:to-custom-orange hover:cursor-pointer rounded-l-none !rounded-r-sm py-5 px-8 w-30 font-bold border border-custom-orange hover:border-none 2xl:text-lg"
+                          className="bg-custom-orange hover:bg-gradient-to-b hover:from-custom-orange hover:via-custom-orange hover:to-custom-orange-dark rounded-l-none !rounded-r-sm py-5 px-8 w-30 font-bold border border-custom-orange hover:border-none 2xl:text-lg"
                         >
                           Subscribe
                         </Button>
@@ -234,7 +234,7 @@ export default function Page() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="relative flex mt-auto">
-                    <Button className="px-7 py-6 text-base bg-custom-orange hover:bg-linear-to-b hover:from-custom-orange-dark hover:to-custom-orange self-center mt-8">
+                    <Button className="px-7 py-6 text-base bg-custom-orange hover:bg-gradient-to-b hover:from-custom-orange hover:via-custom-orange hover:to-custom-orange-dark self-center mt-8">
                       Meet them
                     </Button>
                     <figure>
@@ -254,7 +254,7 @@ export default function Page() {
 
         {/* Investment and Opportunities */}
         <section
-          className="pt-20 px-5 lg:px-20 bg-custom-green"
+          className="pt-20 px-5 lg:px-20 bg-custom-green overflow-y-hidden"
           style={{
             backgroundImage: `url("/home/ecosystem-bg.svg")`,
             backgroundBlendMode: 'overlay',
@@ -361,7 +361,7 @@ export default function Page() {
                 sustainable, innovative and most importantly inclusive growth.
               </p>
 
-              <Button className="!flex hidden lg:inline-block px-7 py-6 text-base bg-custom-orange hover:bg-linear-to-b hover:from-custom-orange-dark hover:to-custom-orange hover:cursor-pointer 2xl:text-xl">
+              <Button className="!flex hidden lg:inline-block px-7 py-6 text-base bg-custom-orange hover:bg-gradient-to-b hover:from-custom-orange hover:via-custom-orange hover:to-custom-orange-dark hover:cursor-pointer 2xl:text-xl">
                 <Link href="/sign-up">Get Started</Link>
               </Button>
             </div>

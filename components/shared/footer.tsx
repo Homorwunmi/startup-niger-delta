@@ -39,7 +39,7 @@ export default function Footer() {
           </p>
 
           <Link href="/sign-up" className="self-start">
-            <Button className="px-7 py-6 text-base bg-custom-orange hover:bg-radial hover:from-custom-orange/70 hover:to-custom-orange-dark hover:cursor-pointer 2xl:text-xl">
+            <Button className="px-7 py-6 text-base bg-custom-orange hover:bg-gradient-to-b hover:from-custom-orange hover:via-custom-orange hover:to-custom-orange-dark hover:cursor-pointer 2xl:text-xl">
               Get Started
             </Button>
           </Link>
