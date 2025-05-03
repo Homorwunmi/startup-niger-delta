@@ -1,16 +1,41 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { useCallback } from 'react';
+import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Label } from '../ui/label';
+import AngelForm from './Angel-form-profile';
 
 export default function AngelFormInfo() {
+  const { setRange, setActiveTab } = useOnboardContext();
+
+  const handlePrev = useCallback(() => {
+    setRange(0);
+
+    setActiveTab({
+      title: 'Company Profile',
+      Component: <AngelForm />,
+      src: '/angel/bgTrailer1.svg',
+    });
+  }, [setRange, setActiveTab]);
+
+  const handleNext = useCallback(() => {
+    setRange(2);
+
+    setActiveTab({
+      title: 'Company Profile',
+      Component: <AngelFormInfo />,
+      src: '/angel/bgTrailer1.svg',
+    });
+  }, [setRange, setActiveTab]);
+
   return (
-    <form action="w-full">
-      <div className="flex flex-wrap gap-6 justify-between py-8">
+    <form className="flex flex-col h-full">
+      <div className="grid grid-cols-2 gap-y-6 gap-x-10 justify-between py-6 px-4 h-full">
         <div className="relative">
           <Label
             htmlFor="companyEmail"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Company Email
           </Label>
@@ -18,39 +43,39 @@ export default function AngelFormInfo() {
             type="text"
             id="companyEmail"
             placeholder="Registered Email"
-            className="w-[300px] mt-2 py-5 px-4 border-[#0D726F] border-2 outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 resize-none"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative">
           <Label
             htmlFor="companyPhone"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Company Phone Number
           </Label>
           <Input
             id="companyPhone"
             placeholder="+234"
-            className="w-[300px] mt-2 py-5 px-4 border-[#0D726F] border-2 h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 resize-none"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative">
           <Label
             htmlFor="BusinessDescription"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Company Address
           </Label>
           <Textarea
             id="companyAddress"
             placeholder="Your company address"
-            className="w-[300px] h-[120px] mt-2 py-5 px-4 border-[#0D726F] border-2 focus-visible:ring-0 focus-visible:border-custom-green-2 resize-none"
+            className="w-full h-40 mt-2 py-3 px-6 border-custom-green-2 border-2 rounded-md resize-none focus-visible:ring-0 focus-visible:border-custom-green-2"
           />
         </div>
         <div className="relative">
           <Label
             htmlFor="companyWebsite"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Company Website
           </Label>
@@ -58,19 +83,27 @@ export default function AngelFormInfo() {
             type="text"
             id="companyWebsite"
             placeholder="www.yourcompany.com"
-            className="w-[300px] mt-2 py-5 px-4 border-[#0D726F] border-2 h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 resize-none"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
 
-        <div className="col-span-2 flex items-end justify-between w-full mt-4">
+        <div className="col-span-2 flex items-end justify-between w-full mt-auto">
           <p className="text-custom-orange">
             *You must fill in all field to be able to continue
           </p>
           <div className="flex gap-3">
-            <Button type="submit" className="px-10 bg-gray-200">
+            <Button
+              type="button"
+              onClick={handlePrev}
+              className="px-10 bg-gray-200 hover:bg-gray-200"
+            >
               Back
             </Button>
-            <Button type="submit" className="px-10 bg-custom-orange">
+            <Button
+              type="button"
+              className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
+              onClick={handleNext}
+            >
               Next
             </Button>
           </div>
