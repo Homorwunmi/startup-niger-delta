@@ -31,13 +31,13 @@ export const startUpData: SideBarItem[] = [
     src: '/angel/bgTrailer3.svg',
   },
   {
-    title: "Founder's Identification",
+    title: 'Identification',
     Component: <StartupIdentity />,
     src: '/angel/bgTrailer4.svg',
   },
 ];
 
-export const sideBarData: SideBarItem[] = [
+export const angelInvestorData: SideBarItem[] = [
   {
     title: 'Company Profile',
     Component: <AngelForm />,

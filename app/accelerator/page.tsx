@@ -3,7 +3,7 @@
 import OnboardingNavbar from '@/components/shared/onboarding-nav';
 import Status from '@/components/shared/status';
 import Sidebar from '@/components/shared/sidebar';
-import { sideBarData } from '@/lib/data';
+import { angelInvestorData } from '@/lib/data';
 import { useState } from 'react';
 import AngelForm from '@/components/angel/Angel-form-profile';
 
@@ -19,7 +19,7 @@ export default function Page() {
       <OnboardingNavbar />
       <Status />
       <Sidebar
-        sidebarItems={sideBarData}
+        sidebarItems={angelInvestorData}
         value="Accelerators, Innovation Hubs & Incubators Registration"
         setActiveTab={setActiveTab}
         activeTab={activeTab}
