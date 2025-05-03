@@ -24,7 +24,7 @@ export default function StartupFounder() {
     setRange(1);
 
     setActiveTab({
-      title: 'Company Profile',
+      title: 'Contact Info ',
       Component: <StartupInfo />,
       src: '/angel/bgTrailer1.svg',
     });

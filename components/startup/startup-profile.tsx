@@ -24,7 +24,7 @@ export default function StartupProfile() {
   }, [setRange, setActiveTab]);
 
   return (
-    <form action="w-full" style={{ height: '100%' }}>
+    <form className="w-full" style={{ height: '100%' }}>
       <div className="grid grid-cols-2 gap-y-6 gap-x-10 justify-between py-6 px-4 h-full">
         <div className="relative w-full">
           <Label

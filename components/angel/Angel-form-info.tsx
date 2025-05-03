@@ -5,6 +5,7 @@ import { useCallback } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Label } from '../ui/label';
 import AngelForm from './Angel-form-profile';
+import AngelFormInvestment from './Angel-form-investment';
 
 export default function AngelFormInfo() {
   const { setRange, setActiveTab } = useOnboardContext();
@@ -24,7 +25,7 @@ export default function AngelFormInfo() {
 
     setActiveTab({
       title: 'Company Profile',
-      Component: <AngelFormInfo />,
+      Component: <AngelFormInvestment />,
       src: '/angel/bgTrailer1.svg',
     });
   }, [setRange, setActiveTab]);
