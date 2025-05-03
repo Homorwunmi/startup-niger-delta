@@ -1,9 +1,23 @@
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { JSX, useCallback } from 'react';
+import { IoMdCheckmark } from 'react-icons/io';
 
-function Circle(): JSX.Element {
+function Circle({ prop }: { prop: number }): JSX.Element {
+  const { range } = useOnboardContext();
+
+  function bgColor(propNum: number): string {
+    if (range === propNum) return 'bg-green-600/50';
+    if (range > propNum) return 'bg-green-700';
+
+    return 'bg-white';
+  }
+
   return (
-    <div className="w-10 h-10 border-3 border-custom-orange rounded-full" />
+    <div
+      className={`w-10 h-10 border-3 border-custom-orange rounded-full flex items-center justify-center ${bgColor(prop)}`}
+    >
+      {range > prop ? <IoMdCheckmark size={24} className="text-white" /> : prop}
+    </div>
   );
 }
 
@@ -60,11 +74,11 @@ function Status(): JSX.Element {
       </div>
 
       <div className="flex items-center justify-center">
-        <Circle />
+        <Circle prop={1} />
         <StatusBar getStatusBarWidth={getStatusBarWidthFirst} />
-        <Circle />
+        <Circle prop={2} />
         <StatusBar getStatusBarWidth={getStatusBarWidthSec} />
-        <Circle />
+        <Circle prop={3} />
       </div>
     </section>
   );
