@@ -25,24 +25,24 @@ export interface ActiveTab {
   title: string;
   Component: ReactElement;
   src: string;
-};
+}
 
 export interface StartupInitialData {
-  companyName: string,
-  incorporation: string,
-  rcNumber: string,
-  industry: string,
-  description: string,
-  fundingInterest: string,
-  companyEmail: string,
-  companyWebsite: string,
-  companyAddress: string,
-  companyPhone: string,
-  founderName: string,
-  founderEmail: string,
-  founderAddress: string,
-  founderMobile: string,
-  founderNo: string,
-  certificate: File,
-  logo: File,
+  companyName: string;
+  incorporation: string;
+  rcNumber: string;
+  industry: string;
+  description: string;
+  fundingInterest: string;
+  companyEmail: string;
+  companyWebsite: string;
+  companyAddress: string;
+  companyPhone: string;
+  founderName: string;
+  founderEmail: string;
+  founderAddress: string;
+  founderMobile: string;
+  founderNo: string;
+  certificate: File;
+  logo: File;
 }
