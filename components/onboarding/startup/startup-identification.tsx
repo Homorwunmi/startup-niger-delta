@@ -7,9 +7,9 @@ import { RxUpload } from 'react-icons/rx';
 import { useCallback, useState } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 
-import { Button } from '../ui/button';
-import { Input } from '../ui/input';
-import { Label } from '../ui/label';
+import { Input } from '../../ui/input';
+import { Button } from '../../ui/button';
+import { Label } from '../../ui/label';
 import StartupFounder from './startup-founder';
 import StartupReview from './startup-review';
 

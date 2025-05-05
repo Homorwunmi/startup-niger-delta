@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Button } from '../ui/button';
-import { Checkbox } from '../ui/checkbox';
-import { Label } from '../ui/label';
+import { Button } from '../../ui/button';
+import { Checkbox } from '../../ui/checkbox';
+import { Label } from '../../ui/label';
 import {
   Table,
   TableBody,
@@ -11,7 +11,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '../ui/table';
+} from '../../ui/table';
 
 export default function StartupReview() {
   useEffect(() => {

@@ -1,9 +1,9 @@
 /* eslint-disable import/no-cycle */
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { useCallback } from 'react';
-import { Input } from '../ui/input';
-import { Button } from '../ui/button';
-import { Label } from '../ui/label';
+import { Input } from '../../ui/input';
+import { Button } from '../../ui/button';
+import { Label } from '../../ui/label';
 import StartupInfo from './startup-info';
 import StartupIdentity from './startup-identification';
 

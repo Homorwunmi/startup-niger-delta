@@ -5,9 +5,9 @@
 import { useCallback } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 
-import { Input } from '../ui/input';
-import { Button } from '../ui/button';
-import { Label } from '../ui/label';
+import { Input } from '../../ui/input';
+import { Button } from '../../ui/button';
+import { Label } from '../../ui/label';
 import StartupFounder from './startup-founder';
 import StartupProfile from './startup-profile';
 
