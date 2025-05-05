@@ -3,10 +3,10 @@ import AngelForm from '@/components/onboarding/angel/Angel-form-profile';
 import AngelFormInfo from '@/components/onboarding/angel/Angel-form-info';
 import AngelFormInvestment from '@/components/onboarding/angel/Angel-form-investment';
 import AngelFormIdentify from '@/components/onboarding/angel/Angel-form-identify';
-import StartupProfile from '@/components/startup/startup-profile';
-import StartupInfo from '@/components/startup/startup-info';
-import StartupFounder from '@/components/startup/startup-founder';
-import StartupIdentity from '@/components/startup/startup-identification';
+import StartupProfile from '@/components/onboarding/startup/startup-profile';
+import StartupInfo from '@/components/onboarding/startup/startup-info';
+import StartupFounder from '@/components/onboarding/startup/startup-founder';
+import StartupIdentity from '@/components/onboarding/startup/startup-identification';
 
 interface SideBarItem {
   title: string;
