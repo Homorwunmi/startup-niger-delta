@@ -11,7 +11,7 @@ import { Label } from '../../ui/label';
 import StartupInfo from './startup-info';
 
 export default function StartupProfile() {
-  const { setRange, setActiveTab } = useOnboardContext();
+  const { setRange, setActiveTab, setStartupData } = useOnboardContext();
 
   const handleNext = useCallback(() => {
     setRange(1);
@@ -36,8 +36,14 @@ export default function StartupProfile() {
           <Input
             type="text"
             id="companyName"
-            name="compnayName"
+            name="companyName"
             placeholder="Registered name"
+            onChange={(e) =>
+              setStartupData((item) => ({
+                ...item,
+                companyName: e.target.value,
+              }))
+            }
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -49,9 +55,15 @@ export default function StartupProfile() {
             Year of Incorporation
           </Label>
           <Input
-            type="date"
+            type="text"
             id="Industry"
             placeholder="Select Your Industry"
+            onChange={(e) =>
+              setStartupData((item) => ({
+                ...item,
+                incorporation: e.target.value,
+              }))
+            }
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -66,6 +78,12 @@ export default function StartupProfile() {
             type="text"
             id="BusinessDescription"
             placeholder="Your solution in one sentence"
+            onChange={(e) =>
+              setStartupData((item) => ({
+                ...item,
+                rcNumber: e.target.value,
+              }))
+            }
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -80,6 +98,12 @@ export default function StartupProfile() {
             type="text"
             id="industry"
             placeholder="Select your Industry"
+            onChange={(e) =>
+              setStartupData((item) => ({
+                ...item,
+                industry: e.target.value,
+              }))
+            }
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -93,6 +117,12 @@ export default function StartupProfile() {
           <Textarea
             id="startup-description"
             placeholder="Solution"
+            onChange={(e) =>
+              setStartupData((item) => ({
+                ...item,
+                description: e.target.value,
+              }))
+            }
             className="w-full h-40 mt-2 py-3 px-6 border-custom-green-2 border-2 rounded-md resize-none focus-visible:ring-0 focus-visible:border-custom-green-2"
           />
         </div>
@@ -107,6 +137,12 @@ export default function StartupProfile() {
             type="text"
             id="fundingInterest"
             placeholder="Investment Interest"
+            onChange={(e) =>
+              setStartupData((item) => ({
+                ...item,
+                fundingInterest: e.target.value,
+              }))
+            }
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>

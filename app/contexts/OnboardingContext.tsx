@@ -9,12 +9,14 @@ import React, { createContext, useContext, useState } from 'react';
 const OnboardContext = createContext<{
   range: number;
   startupData: StartupInitialData;
+  setStartupData: React.Dispatch<React.SetStateAction<StartupInitialData>>;
   setRange: React.Dispatch<React.SetStateAction<number>>;
   activeTab: ActiveTab;
   setActiveTab: React.Dispatch<React.SetStateAction<ActiveTab>>;
 }>({
   range: 0,
   startupData: startUpData,
+  setStartupData: () => {},
   setRange: () => {},
   activeTab: { title: '', Component: <></>, src: '' },
   setActiveTab: () => {},
