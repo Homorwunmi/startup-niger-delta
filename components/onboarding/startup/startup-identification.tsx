@@ -4,7 +4,7 @@
 
 import { RxUpload } from 'react-icons/rx';
 
-import { useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 
 import { Input } from '../../ui/input';
@@ -17,7 +17,24 @@ export default function StartupIdentity() {
   const [review, setReview] = useState<boolean>(() =>
     Boolean(sessionStorage.getItem('reviewState'))
   );
-  const { setRange, setActiveTab } = useOnboardContext();
+  const { setRange, setActiveTab, setStartupData } = useOnboardContext();
+
+  const handleFileChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { files } = e.target;
+      const formData = new FormData();
+
+      if (files && files[0]) {
+        formData.append('file', files[0]);
+
+        setStartupData((prev) => ({
+          ...prev,
+          certificate: formData,
+        }));
+      }
+    },
+    [setStartupData]
+  );
 
   const handleNext = useCallback(() => {
     sessionStorage.setItem('reviewState', 'true');
@@ -53,6 +70,7 @@ export default function StartupIdentity() {
                 id="cac-certificate"
                 name="cac-certificate"
                 className="hidden"
+                onChange={handleFileChange}
               />
               <Label
                 htmlFor="cac-certificate"

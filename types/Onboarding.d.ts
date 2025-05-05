@@ -43,6 +43,6 @@ export interface StartupInitialData {
   founderAddress: string;
   founderMobile: string;
   founderNo: string;
-  certificate: File;
+  certificate: FormData;
   logo: File;
 }

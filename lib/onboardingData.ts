@@ -14,8 +14,6 @@ export const startData = {
   founderAddress: '',
   founderMobile: '',
   founderNo: '',
-  certificate: new File([''], 'certificate.pdf', {
-    type: 'application/pdf',
-  }),
+  certificate: new FormData(),
   logo: new File([''], 'logo.png', { type: 'image/png' }),
 };
