@@ -35,7 +35,7 @@ export function OnboardingProvider({
   const [activeTab, setActiveTab] = useState<ActiveTab>({
     title: '',
     Component: <></>,
-    src: '',
+    src: '/angel/bgTrailer1.svg',
   });
   const [range, setRange] = useState<number>(0);
 
