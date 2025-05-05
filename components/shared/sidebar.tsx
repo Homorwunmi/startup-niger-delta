@@ -72,11 +72,14 @@ export default function Sidebar({ sidebarItems, value }: SidebarProps) {
           <ul className="flex items-center text-sm gap-3 text-custom-green-2 border-b-1 w-11/12 mx-auto py-4">
             <li>
               <RadioGroup defaultValue="option-one">
-                <Link href="/startup" className="flex items-center space-x-2">
+                <Link
+                  href="/onboarding/startup"
+                  className="flex items-center space-x-2"
+                >
                   <RadioGroupItem
                     value="startup"
                     id="startup"
-                    checked={pathname === '/startup'}
+                    checked={pathname === '/onboarding/startup'}
                   />
                   <Label htmlFor="startup">Startup</Label>
                 </Link>
@@ -85,13 +88,13 @@ export default function Sidebar({ sidebarItems, value }: SidebarProps) {
             <li>
               <RadioGroup defaultValue="option-one">
                 <Link
-                  href="/angel-investor"
+                  href="/onboarding/angel-investor"
                   className="flex items-center space-x-2"
                 >
                   <RadioGroupItem
                     value="angel-investor"
                     id="angel-investor"
-                    checked={pathname === '/angel-investor'}
+                    checked={pathname === '/onboarding/angel-investor'}
                   />
                   <Label htmlFor="angel-investor">Angel Investor</Label>
                 </Link>
@@ -100,13 +103,13 @@ export default function Sidebar({ sidebarItems, value }: SidebarProps) {
             <li>
               <RadioGroup defaultValue="option-one">
                 <Link
-                  href="/venture-capitalist"
+                  href="/onboarding/venture-capitalist"
                   className="flex items-center space-x-2"
                 >
                   <RadioGroupItem
                     value="venture-capitalist"
                     id="venture-capitalist"
-                    checked={pathname === '/venture-capitalist'}
+                    checked={pathname === '/onboarding/venture-capitalist'}
                   />
                   <Label htmlFor="venture-capitalist">Venture Capitalist</Label>
                 </Link>
@@ -115,13 +118,13 @@ export default function Sidebar({ sidebarItems, value }: SidebarProps) {
             <li className="w-2/5">
               <RadioGroup defaultValue="option-one">
                 <Link
-                  href="/accelerator"
+                  href="/onboarding/accelerator"
                   className="flex items-center space-x-2"
                 >
                   <RadioGroupItem
                     value="accelerator"
                     id="accelerator"
-                    checked={pathname === '/accelerator'}
+                    checked={pathname === '/onboarding/accelerator'}
                   />
                   <Label htmlFor="accelerator">
                     Accelerators, Innovation Hubs & Incubators Registration{' '}

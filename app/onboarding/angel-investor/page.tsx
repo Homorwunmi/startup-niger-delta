@@ -6,7 +6,7 @@ import Sidebar from '@/components/shared/sidebar';
 import { angelInvestorData } from '@/lib/data';
 import { useEffect } from 'react';
 import AngelForm from '@/components/onboarding/angel/Angel-form-profile';
-import { useOnboardContext } from '../contexts/OnboardingContext';
+import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 
 export default function Page() {
   const { setActiveTab } = useOnboardContext();
