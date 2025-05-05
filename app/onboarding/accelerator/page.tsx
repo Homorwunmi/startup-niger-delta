@@ -6,7 +6,7 @@ import Status from '@/components/shared/status';
 import Sidebar from '@/components/shared/sidebar';
 import OnboardingNavbar from '@/components/shared/onboarding-nav';
 import AcceleratorProfile from '@/components/onboarding/accelerator/profile';
-import { useOnboardContext } from '../contexts/OnboardingContext';
+import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 
 export default function Page() {
   const { setActiveTab } = useOnboardContext();

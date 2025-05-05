@@ -6,7 +6,7 @@ import Status from '@/components/shared/status';
 import Sidebar from '@/components/shared/sidebar';
 import { ventureCapitalistData } from '@/lib/data';
 import CapitalistProfile from '@/components/onboarding/vc/vc-profile';
-import { useOnboardContext } from '../contexts/OnboardingContext';
+import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 
 export default function Page() {
   const { setActiveTab } = useOnboardContext();
