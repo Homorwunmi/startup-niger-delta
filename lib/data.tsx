@@ -13,6 +13,8 @@ import CapitalistContact from '@/components/onboarding/vc/vc-contact';
 import CapitalistIdentification from '@/components/onboarding/vc/vc-identification';
 import AcceleratorProfile from '@/components/onboarding/accelerator/profile';
 import AcceleratorContact from '@/components/onboarding/accelerator/contact';
+import AcceleratorIncubator from '@/components/onboarding/accelerator/incubator';
+import AcceleratorIdentification from '@/components/onboarding/accelerator/identification';
 
 interface SideBarItem {
   title: string;
@@ -102,12 +104,12 @@ export const acceleratorData: SideBarItem[] = [
   },
   {
     title: 'Incubators Info',
-    Component: <CapitalistInvestment />,
+    Component: <AcceleratorIncubator />,
     src: '/angel/bgTrailer3.svg',
   },
   {
     title: 'Identification',
-    Component: <CapitalistIdentification />,
+    Component: <AcceleratorIdentification />,
     src: '/angel/bgTrailer4.svg',
   },
 ];

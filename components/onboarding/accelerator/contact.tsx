@@ -9,7 +9,7 @@ import { useCallback } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Label } from '../../ui/label';
 import AcceleratorProfile from './profile';
-import AcceleratorInvestment from './investment';
+import AcceleratorIncubator from './incubator';
 
 export default function AcceleratorContact() {
   const { setRange, setActiveTab } = useOnboardContext();
@@ -29,7 +29,7 @@ export default function AcceleratorContact() {
 
     setActiveTab({
       title: 'Investment Info',
-      Component: <AcceleratorInvestment />,
+      Component: <AcceleratorIncubator />,
       src: '/angel/bgTrailer3.svg',
     });
   }, [setRange, setActiveTab]);
