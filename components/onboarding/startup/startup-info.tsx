@@ -60,7 +60,7 @@ export default function StartupInfo() {
             Company Website
           </Label>
           <Input
-            type="date"
+            type="text"
             id="website"
             placeholder="www.businessdomain.com"
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"

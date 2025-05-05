@@ -17,9 +17,9 @@ export default function StartupProfile() {
     setRange(1);
 
     setActiveTab({
-      title: 'Company Profile',
+      title: 'Contact Info',
       Component: <StartupInfo />,
-      src: '/angel/bgTrailer1.svg',
+      src: '/angel/bgTrailer2.svg',
     });
   }, [setRange, setActiveTab]);
 

@@ -56,7 +56,7 @@ export default function StartupFounder() {
             Founder&apos;s Email
           </Label>
           <Input
-            type="date"
+            type="email"
             id="founder-email"
             placeholder="username@domain.com"
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
