@@ -101,7 +101,7 @@ export const acceleratorData: SideBarItem[] = [
     src: '/angel/bgTrailer2.svg',
   },
   {
-    title: 'Investment Info',
+    title: 'Incubators Info',
     Component: <CapitalistInvestment />,
     src: '/angel/bgTrailer3.svg',
   },

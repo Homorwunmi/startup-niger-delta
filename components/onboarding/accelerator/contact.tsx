@@ -9,6 +9,7 @@ import { useCallback } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Label } from '../../ui/label';
 import AcceleratorProfile from './profile';
+import AcceleratorInvestment from './investment';
 
 export default function AcceleratorContact() {
   const { setRange, setActiveTab } = useOnboardContext();
@@ -23,15 +24,15 @@ export default function AcceleratorContact() {
     });
   }, [setRange, setActiveTab]);
 
-  // const handleNext = useCallback(() => {
-  //   setRange(2);
+  const handleNext = useCallback(() => {
+    setRange(2);
 
-  //   setActiveTab({
-  //     title: 'Investment Info',
-  //     Component: <CapitalistInvestment />,
-  //     src: '/angel/bgTrailer3.svg',
-  //   });
-  // }, [setRange, setActiveTab]);
+    setActiveTab({
+      title: 'Investment Info',
+      Component: <AcceleratorInvestment />,
+      src: '/angel/bgTrailer3.svg',
+    });
+  }, [setRange, setActiveTab]);
 
   return (
     <form className="flex flex-col h-full">
@@ -106,7 +107,7 @@ export default function AcceleratorContact() {
             <Button
               type="button"
               className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
-              // onClick={handleNext}
+              onClick={handleNext}
             >
               Next
             </Button>
