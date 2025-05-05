@@ -3,9 +3,9 @@
 import { useEffect } from 'react';
 import { startUpData } from '@/lib/data';
 import OnboardingNavbar from '@/components/shared/onboarding-nav';
-import StartupProfile from '@/components/startup/startup-profile';
 import Sidebar from '@/components/shared/sidebar';
 import Status from '@/components/shared/status';
+import StartupProfile from '@/components/onboarding/startup/startup-profile';
 import { useOnboardContext } from '../contexts/OnboardingContext';
 
 export default function Page() {
