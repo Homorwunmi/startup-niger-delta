@@ -1,0 +1,21 @@
+export const startUpData = {
+  companyName: '',
+  incorporation: '',
+  rcNumber: '',
+  industry: '',
+  description: '',
+  fundingInterest: '',
+  companyEmail: '',
+  companyWebsite: '',
+  companyAddress: '',
+  companyPhone: '',
+  founderName: '',
+  founderEmail: '',
+  founderAddress: '',
+  founderMobile: '',
+  founderNo: '',
+  certificate: new File([''], 'certificate.pdf', {
+    type: 'application/pdf',
+  }),
+  logo: new File([''], 'logo.png', { type: 'image/png' }),
+};

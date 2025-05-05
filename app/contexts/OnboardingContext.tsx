@@ -2,26 +2,19 @@
 
 'use client';
 
-import React, {
-  createContext,
-  ReactElement,
-  useContext,
-  useState,
-} from 'react';
-
-type ActiveTab = {
-  title: string;
-  Component: ReactElement;
-  src: string;
-};
+import { startUpData } from '@/lib/data';
+import { ActiveTab, StartupInitialData } from '@/types/Onboarding';
+import React, { createContext, useContext, useState } from 'react';
 
 const OnboardContext = createContext<{
   range: number;
+  startupData: StartupInitialData;
   setRange: React.Dispatch<React.SetStateAction<number>>;
   activeTab: ActiveTab;
   setActiveTab: React.Dispatch<React.SetStateAction<ActiveTab>>;
 }>({
   range: 0,
+  startupData: startUpData,
   setRange: () => {},
   activeTab: { title: '', Component: <></>, src: '' },
   setActiveTab: () => {},
@@ -32,6 +25,8 @@ export function OnboardingProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const [startupData, setStartupData] =
+    useState<StartupInitialData>(startUpData);
   const [activeTab, setActiveTab] = useState<ActiveTab>({
     title: '',
     Component: <></>,
@@ -40,8 +35,15 @@ export function OnboardingProvider({
   const [range, setRange] = useState<number>(0);
 
   const contextValue = React.useMemo(
-    () => ({ range, setRange, activeTab, setActiveTab }),
-    [range, activeTab]
+    () => ({
+      range,
+      setRange,
+      activeTab,
+      setActiveTab,
+      startupData,
+      setStartupData,
+    }),
+    [range, activeTab, startupData]
   );
 
   return (
