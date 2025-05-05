@@ -1,84 +1,91 @@
 /* eslint-disable import/no-cycle */
 
-'use client';
-
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { useCallback } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
-import { Input } from '../ui/input';
-import { Textarea } from '../ui/textarea';
-import { Button } from '../ui/button';
-import { Label } from '../ui/label';
-import AngelFormInfo from './Angel-form-info';
+import { Label } from '../../ui/label';
+import AngelForm from './Angel-form-profile';
+import AngelFormInvestment from './Angel-form-investment';
 
-export default function AngelForm() {
+export default function AngelFormInfo() {
   const { setRange, setActiveTab } = useOnboardContext();
 
-  const handleNext = useCallback(() => {
-    setRange(1);
+  const handlePrev = useCallback(() => {
+    setRange(0);
 
     setActiveTab({
       title: 'Company Profile',
-      Component: <AngelFormInfo />,
+      Component: <AngelForm />,
+      src: '/angel/bgTrailer1.svg',
+    });
+  }, [setRange, setActiveTab]);
+
+  const handleNext = useCallback(() => {
+    setRange(2);
+
+    setActiveTab({
+      title: 'Company Profile',
+      Component: <AngelFormInvestment />,
       src: '/angel/bgTrailer1.svg',
     });
   }, [setRange, setActiveTab]);
 
   return (
-    <form className="w-full" style={{ height: '100%' }}>
+    <form className="flex flex-col h-full">
       <div className="grid grid-cols-2 gap-y-6 gap-x-10 justify-between py-6 px-4 h-full">
-        <div className="relative w-full">
+        <div className="relative">
           <Label
-            htmlFor="companyName"
+            htmlFor="companyEmail"
             className="text-base bg-white absolute -top-1 left-6 px-1"
           >
-            Company / Individual Name
+            Company Email
           </Label>
           <Input
             type="text"
-            id="companyName"
-            name="compnayName"
-            placeholder="Registered name"
+            id="companyEmail"
+            placeholder="Registered Email"
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
-        <div className="relative w-full">
+        <div className="relative">
           <Label
-            htmlFor="Industry"
+            htmlFor="companyPhone"
             className="text-base bg-white absolute -top-1 left-6 px-1"
           >
-            Industry
+            Company Phone Number
           </Label>
           <Input
-            type="text"
-            id="Industry"
-            placeholder="Select Your Industry"
+            id="companyPhone"
+            placeholder="+234"
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
-        <div className="relative w-full">
+        <div className="relative">
           <Label
             htmlFor="BusinessDescription"
             className="text-base bg-white absolute -top-1 left-6 px-1"
           >
-            Business Description
+            Company Address
           </Label>
           <Textarea
-            id="BusinessDescription"
-            placeholder="Your solution in one sentence"
+            id="companyAddress"
+            placeholder="Your company address"
             className="w-full h-40 mt-2 py-3 px-6 border-custom-green-2 border-2 rounded-md resize-none focus-visible:ring-0 focus-visible:border-custom-green-2"
           />
         </div>
-        <div className="relative w-full">
+        <div className="relative">
           <Label
-            htmlFor="fundingInterest"
+            htmlFor="companyWebsite"
             className="text-base bg-white absolute -top-1 left-6 px-1"
           >
-            Funding Interest
+            Company Website
           </Label>
           <Input
             type="text"
-            id="fundingInterest"
-            placeholder="Investment Interest"
+            id="companyWebsite"
+            placeholder="www.yourcompany.com"
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -90,6 +97,7 @@ export default function AngelForm() {
           <div className="flex gap-3">
             <Button
               type="button"
+              onClick={handlePrev}
               className="px-10 bg-gray-200 hover:bg-gray-200"
             >
               Back

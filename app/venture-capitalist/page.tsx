@@ -5,7 +5,7 @@ import Status from '@/components/shared/status';
 import Sidebar from '@/components/shared/sidebar';
 import { angelInvestorData } from '@/lib/data';
 import { useState } from 'react';
-import AngelForm from '@/components/angel/Angel-form-profile';
+import AngelForm from '@/components/onboarding/angel/Angel-form-profile';
 
 export default function Page() {
   const [activeTab, setActiveTab] = useState({

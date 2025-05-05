@@ -5,7 +5,7 @@ import Status from '@/components/shared/status';
 import Sidebar from '@/components/shared/sidebar';
 import { angelInvestorData } from '@/lib/data';
 import { useEffect } from 'react';
-import AngelForm from '@/components/angel/Angel-form-profile';
+import AngelForm from '@/components/onboarding/angel/Angel-form-profile';
 import { useOnboardContext } from '../contexts/OnboardingContext';
 
 export default function Page() {

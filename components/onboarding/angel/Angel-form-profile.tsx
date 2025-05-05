@@ -2,84 +2,85 @@
 
 'use client';
 
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { RadioGroupItem, RadioGroup } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
 import { useCallback } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
-import { Textarea } from '../ui/textarea';
-import AngelFormInvestment from './Angel-form-investment';
+import { Input } from '../../ui/input';
+import { Textarea } from '../../ui/textarea';
+import { Button } from '../../ui/button';
+import { Label } from '../../ui/label';
+import AngelFormInfo from './Angel-form-info';
 
-export default function AngelFormIdentify() {
+export default function AngelForm() {
   const { setRange, setActiveTab } = useOnboardContext();
 
-  const handlePrev = useCallback(() => {
-    setRange(2);
+  const handleNext = useCallback(() => {
+    setRange(1);
 
     setActiveTab({
       title: 'Company Profile',
-      Component: <AngelFormInvestment />,
+      Component: <AngelFormInfo />,
       src: '/angel/bgTrailer1.svg',
     });
   }, [setRange, setActiveTab]);
 
   return (
-    <form action="flex flex-col h-full" style={{ height: '100%' }}>
+    <form className="w-full" style={{ height: '100%' }}>
       <div className="grid grid-cols-2 gap-y-6 gap-x-10 justify-between py-6 px-4 h-full">
-        <div className="relative">
+        <div className="relative w-full">
           <Label
-            htmlFor="meansofIdentification"
+            htmlFor="companyName"
             className="text-base bg-white absolute -top-1 left-6 px-1"
           >
-            Means of Identification
+            Company / Individual Name
           </Label>
           <Input
             type="text"
-            id="meansofIdentification"
-            placeholder="Choose verification method"
+            id="companyName"
+            name="compnayName"
+            placeholder="Registered name"
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
-        <div className="relative">
+        <div className="relative w-full">
           <Label
-            htmlFor="Nationality"
+            htmlFor="Industry"
             className="text-base bg-white absolute -top-1 left-6 px-1"
           >
-            Nationality
+            Industry
           </Label>
           <Input
             type="text"
-            id="Nationality"
-            placeholder="Country"
+            id="Industry"
+            placeholder="Select Your Industry"
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
-        <div className="relative">
+        <div className="relative w-full">
           <Label
-            htmlFor="investmentProof"
+            htmlFor="BusinessDescription"
             className="text-base bg-white absolute -top-1 left-6 px-1"
           >
-            Investment Proof
+            Business Description
           </Label>
           <Textarea
-            id="investmentProof"
-            placeholder="Body"
+            id="BusinessDescription"
+            placeholder="Your solution in one sentence"
             className="w-full h-40 mt-2 py-3 px-6 border-custom-green-2 border-2 rounded-md resize-none focus-visible:ring-0 focus-visible:border-custom-green-2"
           />
         </div>
-        <div className="flex flex-col justify-center items-start">
-          <p className="w-5/6 text-sm mb-3">
-            By submitting this application, you agree to abide by the terms and
-            conditions of the program, including attendance, code of conduct,
-            and other program-specific requirements.
-          </p>
-          <RadioGroup defaultValue="option-one">
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="" id="option-one" />
-              <Label htmlFor="option-one">Yes, I agree</Label>
-            </div>
-          </RadioGroup>
+        <div className="relative w-full">
+          <Label
+            htmlFor="fundingInterest"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
+          >
+            Funding Interest
+          </Label>
+          <Input
+            type="text"
+            id="fundingInterest"
+            placeholder="Investment Interest"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
+          />
         </div>
 
         <div className="col-span-2 flex items-end justify-between w-full mt-auto">
@@ -89,7 +90,6 @@ export default function AngelFormIdentify() {
           <div className="flex gap-3">
             <Button
               type="button"
-              onClick={handlePrev}
               className="px-10 bg-gray-200 hover:bg-gray-200"
             >
               Back
@@ -97,7 +97,7 @@ export default function AngelFormIdentify() {
             <Button
               type="button"
               className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
-              // onClick={handleNext}
+              onClick={handleNext}
             >
               Next
             </Button>

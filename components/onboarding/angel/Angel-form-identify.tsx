@@ -1,28 +1,20 @@
 /* eslint-disable import/no-cycle */
 
-import { Button } from '@/components/ui/button';
+'use client';
+
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { RadioGroupItem, RadioGroup } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
 import { useCallback } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
-import { Label } from '../ui/label';
-import AngelForm from './Angel-form-profile';
+import { Textarea } from '../../ui/textarea';
 import AngelFormInvestment from './Angel-form-investment';
 
-export default function AngelFormInfo() {
+export default function AngelFormIdentify() {
   const { setRange, setActiveTab } = useOnboardContext();
 
   const handlePrev = useCallback(() => {
-    setRange(0);
-
-    setActiveTab({
-      title: 'Company Profile',
-      Component: <AngelForm />,
-      src: '/angel/bgTrailer1.svg',
-    });
-  }, [setRange, setActiveTab]);
-
-  const handleNext = useCallback(() => {
     setRange(2);
 
     setActiveTab({
@@ -33,61 +25,61 @@ export default function AngelFormInfo() {
   }, [setRange, setActiveTab]);
 
   return (
-    <form className="flex flex-col h-full">
+    <form action="flex flex-col h-full" style={{ height: '100%' }}>
       <div className="grid grid-cols-2 gap-y-6 gap-x-10 justify-between py-6 px-4 h-full">
         <div className="relative">
           <Label
-            htmlFor="companyEmail"
+            htmlFor="meansofIdentification"
             className="text-base bg-white absolute -top-1 left-6 px-1"
           >
-            Company Email
+            Means of Identification
           </Label>
           <Input
             type="text"
-            id="companyEmail"
-            placeholder="Registered Email"
+            id="meansofIdentification"
+            placeholder="Choose verification method"
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative">
           <Label
-            htmlFor="companyPhone"
+            htmlFor="Nationality"
             className="text-base bg-white absolute -top-1 left-6 px-1"
           >
-            Company Phone Number
+            Nationality
           </Label>
           <Input
-            id="companyPhone"
-            placeholder="+234"
+            type="text"
+            id="Nationality"
+            placeholder="Country"
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative">
           <Label
-            htmlFor="BusinessDescription"
+            htmlFor="investmentProof"
             className="text-base bg-white absolute -top-1 left-6 px-1"
           >
-            Company Address
+            Investment Proof
           </Label>
           <Textarea
-            id="companyAddress"
-            placeholder="Your company address"
+            id="investmentProof"
+            placeholder="Body"
             className="w-full h-40 mt-2 py-3 px-6 border-custom-green-2 border-2 rounded-md resize-none focus-visible:ring-0 focus-visible:border-custom-green-2"
           />
         </div>
-        <div className="relative">
-          <Label
-            htmlFor="companyWebsite"
-            className="text-base bg-white absolute -top-1 left-6 px-1"
-          >
-            Company Website
-          </Label>
-          <Input
-            type="text"
-            id="companyWebsite"
-            placeholder="www.yourcompany.com"
-            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
-          />
+        <div className="flex flex-col justify-center items-start">
+          <p className="w-5/6 text-sm mb-3">
+            By submitting this application, you agree to abide by the terms and
+            conditions of the program, including attendance, code of conduct,
+            and other program-specific requirements.
+          </p>
+          <RadioGroup defaultValue="option-one">
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="" id="option-one" />
+              <Label htmlFor="option-one">Yes, I agree</Label>
+            </div>
+          </RadioGroup>
         </div>
 
         <div className="col-span-2 flex items-end justify-between w-full mt-auto">
@@ -105,7 +97,7 @@ export default function AngelFormInfo() {
             <Button
               type="button"
               className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
-              onClick={handleNext}
+              // onClick={handleNext}
             >
               Next
             </Button>

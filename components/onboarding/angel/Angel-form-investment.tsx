@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useCallback } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
-import { Label } from '../ui/label';
+import { Label } from '../../ui/label';
 import AngelFormInfo from './Angel-form-info';
 import AngelFormIdentify from './Angel-form-identify';
 
