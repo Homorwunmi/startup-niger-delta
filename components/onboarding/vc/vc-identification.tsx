@@ -18,9 +18,9 @@ export default function CapitalistIdentification() {
     setRange(2);
 
     setActiveTab({
-      title: 'Company Profile',
+      title: 'Identification',
       Component: <CapitalistInvestment />,
-      src: '/angel/bgTrailer1.svg',
+      src: '/angel/bgTrailer4.svg',
     });
   }, [setRange, setActiveTab]);
 

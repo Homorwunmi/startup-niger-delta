@@ -16,9 +16,9 @@ export default function CapitalistContact() {
     setRange(0);
 
     setActiveTab({
-      title: 'Company Profile',
+      title: 'Contact Info',
       Component: <CapitalistProfile />,
-      src: '/angel/bgTrailer1.svg',
+      src: '/angel/bgTrailer2.svg',
     });
   }, [setRange, setActiveTab]);
 
@@ -26,9 +26,9 @@ export default function CapitalistContact() {
     setRange(2);
 
     setActiveTab({
-      title: 'Company Profile',
+      title: 'Investment Info',
       Component: <CapitalistInvestment />,
-      src: '/angel/bgTrailer1.svg',
+      src: '/angel/bgTrailer3.svg',
     });
   }, [setRange, setActiveTab]);
 
