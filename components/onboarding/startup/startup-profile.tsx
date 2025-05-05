@@ -11,7 +11,16 @@ import { Label } from '../../ui/label';
 import StartupInfo from './startup-info';
 
 export default function StartupProfile() {
-  const { setRange, setActiveTab, setStartupData } = useOnboardContext();
+  const { setRange, setActiveTab, setStartupData, startupData } =
+    useOnboardContext();
+
+  const isNext =
+    startupData.companyName &&
+    startupData.incorporation &&
+    startupData.rcNumber &&
+    startupData.industry &&
+    startupData.description &&
+    startupData.fundingInterest;
 
   const handleNext = useCallback(() => {
     setRange(1);
@@ -57,7 +66,7 @@ export default function StartupProfile() {
           <Input
             type="text"
             id="Industry"
-            placeholder="Select Your Industry"
+            placeholder="Enter year of incorporation"
             onChange={(e) =>
               setStartupData((item) => ({
                 ...item,
@@ -160,6 +169,7 @@ export default function StartupProfile() {
             </Button>
             <Button
               type="button"
+              disabled={!isNext}
               className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
               onClick={handleNext}
             >

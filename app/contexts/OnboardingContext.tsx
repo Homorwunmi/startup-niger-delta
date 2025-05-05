@@ -2,7 +2,7 @@
 
 'use client';
 
-import { startUpData } from '@/lib/data';
+import { startData } from '@/lib/onboardingData';
 import { ActiveTab, StartupInitialData } from '@/types/Onboarding';
 import React, { createContext, useContext, useState } from 'react';
 
@@ -15,7 +15,7 @@ const OnboardContext = createContext<{
   setActiveTab: React.Dispatch<React.SetStateAction<ActiveTab>>;
 }>({
   range: 0,
-  startupData: startUpData,
+  startupData: startData,
   setStartupData: () => {},
   setRange: () => {},
   activeTab: { title: '', Component: <></>, src: '' },
@@ -27,8 +27,7 @@ export function OnboardingProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [startupData, setStartupData] =
-    useState<StartupInitialData>(startUpData);
+  const [startupData, setStartupData] = useState<StartupInitialData>(startData);
   const [activeTab, setActiveTab] = useState<ActiveTab>({
     title: '',
     Component: <></>,

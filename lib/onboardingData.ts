@@ -1,4 +1,4 @@
-export const startUpData = {
+export const startData = {
   companyName: '',
   incorporation: '',
   rcNumber: '',
