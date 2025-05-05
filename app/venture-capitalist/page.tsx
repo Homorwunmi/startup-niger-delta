@@ -5,7 +5,7 @@ import OnboardingNavbar from '@/components/shared/onboarding-nav';
 import Status from '@/components/shared/status';
 import Sidebar from '@/components/shared/sidebar';
 import { ventureCapitalistData } from '@/lib/data';
-import AngelForm from '@/components/onboarding/angel/Angel-form-profile';
+import CapitalistProfile from '@/components/onboarding/vc/vc-profile';
 import { useOnboardContext } from '../contexts/OnboardingContext';
 
 export default function Page() {
@@ -15,7 +15,7 @@ export default function Page() {
     () =>
       setActiveTab({
         title: 'Company Profile',
-        Component: <AngelForm />,
+        Component: <CapitalistProfile />,
         src: '/angel/bgTrailer1.svg',
       }),
     [setActiveTab]

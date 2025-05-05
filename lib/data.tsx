@@ -7,6 +7,10 @@ import StartupProfile from '@/components/onboarding/startup/startup-profile';
 import StartupInfo from '@/components/onboarding/startup/startup-info';
 import StartupFounder from '@/components/onboarding/startup/startup-founder';
 import StartupIdentity from '@/components/onboarding/startup/startup-identification';
+import CapitalistInvestment from '@/components/onboarding/vc/vc-investment';
+import CapitalistProfile from '@/components/onboarding/vc/vc-profile';
+import CapitalistContact from '@/components/onboarding/vc/vc-contact';
+import CapitalistIdentification from '@/components/onboarding/vc/vc-identification';
 
 interface SideBarItem {
   title: string;
@@ -63,22 +67,22 @@ export const angelInvestorData: SideBarItem[] = [
 export const ventureCapitalistData: SideBarItem[] = [
   {
     title: 'Company Profile',
-    Component: <AngelForm />,
+    Component: <CapitalistProfile />,
     src: '/angel/bgTrailer1.svg',
   },
   {
     title: 'Contact Info',
-    Component: <AngelFormInfo />,
+    Component: <CapitalistContact />,
     src: '/angel/bgTrailer2.svg',
   },
   {
     title: 'Investment Info',
-    Component: <AngelFormInvestment />,
+    Component: <CapitalistInvestment />,
     src: '/angel/bgTrailer3.svg',
   },
   {
     title: 'Identification',
-    Component: <AngelFormIdentify />,
+    Component: <CapitalistIdentification />,
     src: '/angel/bgTrailer4.svg',
   },
 ];
