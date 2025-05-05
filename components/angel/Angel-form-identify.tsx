@@ -1,17 +1,36 @@
+/* eslint-disable import/no-cycle */
+
+'use client';
+
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { RadioGroupItem, RadioGroup } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
+import { useCallback } from 'react';
+import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Textarea } from '../ui/textarea';
+import AngelFormInvestment from './Angel-form-investment';
 
 export default function AngelFormIdentify() {
+  const { setRange, setActiveTab } = useOnboardContext();
+
+  const handlePrev = useCallback(() => {
+    setRange(2);
+
+    setActiveTab({
+      title: 'Company Profile',
+      Component: <AngelFormInvestment />,
+      src: '/angel/bgTrailer1.svg',
+    });
+  }, [setRange, setActiveTab]);
+
   return (
-    <form action="w-full">
-      <div className="grid grid-cols-2 gap-6 justify-between py-8">
+    <form action="flex flex-col h-full" style={{ height: '100%' }}>
+      <div className="grid grid-cols-2 gap-y-6 gap-x-10 justify-between py-6 px-4 h-full">
         <div className="relative">
           <Label
             htmlFor="meansofIdentification"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Means of Identification
           </Label>
@@ -19,13 +38,13 @@ export default function AngelFormIdentify() {
             type="text"
             id="meansofIdentification"
             placeholder="Choose verification method"
-            className="w-[300px] mt-2 py-5 px-4 border-[#0D726F] border-2 outline-none focus-visible:ring-0 focus-visible:border-custom-green-2"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative">
           <Label
             htmlFor="Nationality"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Nationality
           </Label>
@@ -33,20 +52,20 @@ export default function AngelFormIdentify() {
             type="text"
             id="Nationality"
             placeholder="Country"
-            className="w-[300px] mt-2 py-5 px-4 border-[#0D726F] border-2 h-10 focus-visible:ring-0 focus-visible:border-custom-green-2"
+            className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative">
           <Label
             htmlFor="investmentProof"
-            className="text-[#184341] text-base bg-white absolute -top-1 left-4"
+            className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Investment Proof
           </Label>
           <Textarea
             id="investmentProof"
             placeholder="Body"
-            className="w-[300px] h-[120px] mt-2 py-5 px-4 border-[#0D726F] border-2 focus-visible:ring-0 focus-visible:border-custom-green-2 resize-none"
+            className="w-full h-40 mt-2 py-3 px-6 border-custom-green-2 border-2 rounded-md resize-none focus-visible:ring-0 focus-visible:border-custom-green-2"
           />
         </div>
         <div className="flex flex-col justify-center items-start">
@@ -63,15 +82,23 @@ export default function AngelFormIdentify() {
           </RadioGroup>
         </div>
 
-        <div className="col-span-2 flex items-end justify-between w-full mt-4">
+        <div className="col-span-2 flex items-end justify-between w-full mt-auto">
           <p className="text-custom-orange">
             *You must fill in all field to be able to continue
           </p>
           <div className="flex gap-3">
-            <Button type="submit" className="px-10 bg-gray-200">
+            <Button
+              type="button"
+              onClick={handlePrev}
+              className="px-10 bg-gray-200 hover:bg-gray-200"
+            >
               Back
             </Button>
-            <Button type="submit" className="px-10 bg-custom-orange">
+            <Button
+              type="button"
+              className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
+              // onClick={handleNext}
+            >
               Next
             </Button>
           </div>

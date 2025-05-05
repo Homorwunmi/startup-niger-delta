@@ -1,3 +1,5 @@
+/* eslint-disable import/no-cycle */
+
 'use client';
 
 import { Input } from '@/components/ui/input';
@@ -7,8 +9,7 @@ import { useCallback } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Label } from '../ui/label';
 import AngelFormInfo from './Angel-form-info';
-
-// import AngelFormIdentify from './Angel-form-identify';
+import AngelFormIdentify from './Angel-form-identify';
 
 export default function AngelFormInvestment() {
   const { setRange, setActiveTab } = useOnboardContext();
@@ -28,7 +29,7 @@ export default function AngelFormInvestment() {
 
     setActiveTab({
       title: 'Investment Info',
-      Component: <AngelFormInfo />,
+      Component: <AngelFormIdentify />,
       src: '/angel/bgTrailer1.svg',
     });
   }, [setRange, setActiveTab]);
