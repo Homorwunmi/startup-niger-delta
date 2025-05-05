@@ -47,6 +47,7 @@ export default function StartupProfile() {
             id="companyName"
             name="companyName"
             placeholder="Registered name"
+            value={startupData.companyName}
             onChange={(e) =>
               setStartupData((item) => ({
                 ...item,
@@ -67,6 +68,7 @@ export default function StartupProfile() {
             type="text"
             id="Industry"
             placeholder="Enter year of incorporation"
+            value={startupData.incorporation}
             onChange={(e) =>
               setStartupData((item) => ({
                 ...item,
@@ -78,15 +80,16 @@ export default function StartupProfile() {
         </div>
         <div className="relative w-full">
           <Label
-            htmlFor="BusinessDescription"
+            htmlFor="rcNumber"
             className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             RC Number
           </Label>
           <Input
             type="text"
-            id="BusinessDescription"
+            id="rcNumber"
             placeholder="Your solution in one sentence"
+            value={startupData.rcNumber}
             onChange={(e) =>
               setStartupData((item) => ({
                 ...item,
@@ -107,6 +110,7 @@ export default function StartupProfile() {
             type="text"
             id="industry"
             placeholder="Select your Industry"
+            value={startupData.industry}
             onChange={(e) =>
               setStartupData((item) => ({
                 ...item,
@@ -126,6 +130,7 @@ export default function StartupProfile() {
           <Textarea
             id="startup-description"
             placeholder="Solution"
+            value={startupData.description}
             onChange={(e) =>
               setStartupData((item) => ({
                 ...item,
@@ -146,6 +151,7 @@ export default function StartupProfile() {
             type="text"
             id="fundingInterest"
             placeholder="Investment Interest"
+            value={startupData.fundingInterest}
             onChange={(e) =>
               setStartupData((item) => ({
                 ...item,

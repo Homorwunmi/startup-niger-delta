@@ -12,7 +12,13 @@ import StartupFounder from './startup-founder';
 import StartupProfile from './startup-profile';
 
 export default function StartupInfo() {
-  const { setRange, setActiveTab } = useOnboardContext();
+  const { setRange, setActiveTab, setStartupData, startupData } =
+    useOnboardContext();
+  const isNext =
+    startupData.companyEmail &&
+    startupData.companyWebsite &&
+    startupData.companyAddress &&
+    startupData.companyPhone;
 
   const handleNext = useCallback(() => {
     setRange(2);
@@ -49,6 +55,13 @@ export default function StartupInfo() {
             id="company-email"
             name="compnayName"
             placeholder="username@domain.com"
+            value={startupData.companyEmail}
+            onChange={(e) => {
+              setStartupData((item) => ({
+                ...item,
+                companyEmail: e.target.value,
+              }));
+            }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -63,6 +76,13 @@ export default function StartupInfo() {
             type="text"
             id="website"
             placeholder="www.businessdomain.com"
+            value={startupData.companyWebsite}
+            onChange={(e) => {
+              setStartupData((item) => ({
+                ...item,
+                companyWebsite: e.target.value,
+              }));
+            }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -77,6 +97,13 @@ export default function StartupInfo() {
             type="text"
             id="company-address"
             placeholder="Address information"
+            value={startupData.companyPhone}
+            onChange={(e) => {
+              setStartupData((item) => ({
+                ...item,
+                companyPhone: e.target.value,
+              }));
+            }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -91,6 +118,13 @@ export default function StartupInfo() {
             type="tel"
             id="industry"
             placeholder="+234"
+            value={startupData.industry}
+            onChange={(e) => {
+              setStartupData((item) => ({
+                ...item,
+                industry: e.target.value,
+              }));
+            }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -111,6 +145,7 @@ export default function StartupInfo() {
           <Button
             type="button"
             onClick={handleNext}
+            disabled={!isNext}
             className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
           >
             Next
