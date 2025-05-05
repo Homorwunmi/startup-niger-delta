@@ -8,7 +8,14 @@ import StartupInfo from './startup-info';
 import StartupIdentity from './startup-identification';
 
 export default function StartupFounder() {
-  const { setRange, setActiveTab } = useOnboardContext();
+  const { setRange, setActiveTab, startupData, setStartupData } =
+    useOnboardContext();
+  const isNext =
+    startupData.founderName &&
+    startupData.founderEmail &&
+    startupData.founderAddress &&
+    startupData.founderMobile &&
+    startupData.founderNo;
 
   const handleNext = useCallback(() => {
     setRange(3);
@@ -45,6 +52,13 @@ export default function StartupFounder() {
             id="founder-name"
             name="compnayName"
             placeholder="Full name"
+            value={startupData.founderName}
+            onChange={(e) => {
+              setStartupData((item) => ({
+                ...item,
+                founderName: e.target.value,
+              }));
+            }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -59,6 +73,13 @@ export default function StartupFounder() {
             type="email"
             id="founder-email"
             placeholder="username@domain.com"
+            value={startupData.founderEmail}
+            onChange={(e) => {
+              setStartupData((item) => ({
+                ...item,
+                founderEmail: e.target.value,
+              }));
+            }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -73,6 +94,13 @@ export default function StartupFounder() {
             type="text"
             id="founder-address"
             placeholder="Address information"
+            value={startupData.founderAddress}
+            onChange={(e) => {
+              setStartupData((item) => ({
+                ...item,
+                founderAddress: e.target.value,
+              }));
+            }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -87,6 +115,13 @@ export default function StartupFounder() {
             type="tel"
             id="founder-phone"
             placeholder="+234"
+            value={startupData.founderMobile}
+            onChange={(e) => {
+              setStartupData((item) => ({
+                ...item,
+                founderMobile: e.target.value,
+              }));
+            }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -99,8 +134,15 @@ export default function StartupFounder() {
           </Label>
           <Input
             type="text"
-            id="founder-phone"
+            id="founder-amount"
             placeholder="Choose number of founder"
+            value={startupData.founderNo}
+            onChange={(e) => {
+              setStartupData((item) => ({
+                ...item,
+                founderNo: e.target.value,
+              }));
+            }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -121,6 +163,7 @@ export default function StartupFounder() {
           <Button
             type="button"
             onClick={handleNext}
+            disabled={!isNext}
             className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
           >
             Next
