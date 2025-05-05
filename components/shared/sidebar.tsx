@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
-// import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
+
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { SidebarProps } from '@/types/Onboarding.d';
 import { usePathname } from 'next/navigation';
@@ -141,7 +142,7 @@ export default function Sidebar({ sidebarItems, value }: SidebarProps) {
         </section>
       )}
 
-      {/* <figure className="w-full absolute -bottom-0 left-0">
+      <figure className="w-full absolute -bottom-0 left-0">
         <Image
           src={activeTab.src}
           alt="Angel Background"
@@ -149,7 +150,7 @@ export default function Sidebar({ sidebarItems, value }: SidebarProps) {
           height={100}
           className="w-full object-cover"
         />
-      </figure> */}
+      </figure>
     </main>
   );
 }
