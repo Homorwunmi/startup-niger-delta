@@ -11,6 +11,8 @@ import CapitalistInvestment from '@/components/onboarding/vc/vc-investment';
 import CapitalistProfile from '@/components/onboarding/vc/vc-profile';
 import CapitalistContact from '@/components/onboarding/vc/vc-contact';
 import CapitalistIdentification from '@/components/onboarding/vc/vc-identification';
+import AcceleratorProfile from '@/components/onboarding/accelerator/profile';
+import AcceleratorContact from '@/components/onboarding/accelerator/contact';
 
 interface SideBarItem {
   title: string;
@@ -73,6 +75,29 @@ export const ventureCapitalistData: SideBarItem[] = [
   {
     title: 'Contact Info',
     Component: <CapitalistContact />,
+    src: '/angel/bgTrailer2.svg',
+  },
+  {
+    title: 'Investment Info',
+    Component: <CapitalistInvestment />,
+    src: '/angel/bgTrailer3.svg',
+  },
+  {
+    title: 'Identification',
+    Component: <CapitalistIdentification />,
+    src: '/angel/bgTrailer4.svg',
+  },
+];
+
+export const acceleratorData: SideBarItem[] = [
+  {
+    title: 'Company Profile',
+    Component: <AcceleratorProfile />,
+    src: '/angel/bgTrailer1.svg',
+  },
+  {
+    title: 'Contact Info',
+    Component: <AcceleratorContact />,
     src: '/angel/bgTrailer2.svg',
   },
   {

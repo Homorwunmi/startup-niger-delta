@@ -1,28 +1,33 @@
 'use client';
 
-import OnboardingNavbar from '@/components/shared/onboarding-nav';
+import { useEffect } from 'react';
+import { acceleratorData } from '@/lib/data';
 import Status from '@/components/shared/status';
 import Sidebar from '@/components/shared/sidebar';
-import { angelInvestorData } from '@/lib/data';
-import { useState } from 'react';
-import AngelForm from '@/components/onboarding/angel/Angel-form-profile';
+import OnboardingNavbar from '@/components/shared/onboarding-nav';
+import AcceleratorProfile from '@/components/onboarding/accelerator/profile';
+import { useOnboardContext } from '../contexts/OnboardingContext';
 
 export default function Page() {
-  const [activeTab, setActiveTab] = useState({
-    title: 'Company Profile',
-    Component: <AngelForm />,
-    src: '/angel/bgTrailer1.svg',
-  });
+  const { setActiveTab } = useOnboardContext();
+
+  useEffect(
+    () =>
+      setActiveTab({
+        title: 'Company Profile',
+        Component: <AcceleratorProfile />,
+        src: '/angel/bgTrailer1.svg',
+      }),
+    [setActiveTab]
+  );
 
   return (
     <section className="bg-[#C6D9B5] w-full relative overflow-hidden">
       <OnboardingNavbar />
       <Status />
       <Sidebar
-        sidebarItems={angelInvestorData}
+        sidebarItems={acceleratorData}
         value="Accelerators, Innovation Hubs & Incubators Registration"
-        setActiveTab={setActiveTab}
-        activeTab={activeTab}
       />
     </section>
   );
