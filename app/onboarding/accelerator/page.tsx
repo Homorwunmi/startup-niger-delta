@@ -22,13 +22,13 @@ export default function Page() {
   );
 
   return (
-    <section className="bg-[#C6D9B5] w-full relative overflow-hidden">
+    <main className="bg-[#C6D9B5] w-full relative overflow-hidden">
       <OnboardingNavbar />
       <Status />
       <Sidebar
         sidebarItems={acceleratorData}
         value="Accelerators, Innovation Hubs & Incubators Registration"
       />
-    </section>
+    </main>
   );
 }

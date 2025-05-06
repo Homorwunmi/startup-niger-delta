@@ -97,11 +97,11 @@ export default function StartupInfo() {
             type="text"
             id="company-address"
             placeholder="Address information"
-            value={startupData.companyPhone}
+            value={startupData.companyAddress}
             onChange={(e) => {
               setStartupData((item) => ({
                 ...item,
-                companyPhone: e.target.value,
+                companyAddress: e.target.value,
               }));
             }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
@@ -109,20 +109,20 @@ export default function StartupInfo() {
         </div>
         <div className="relative w-full">
           <Label
-            htmlFor="industry"
+            htmlFor="phone-number"
             className="text-base bg-white absolute -top-1 left-6 px-1"
           >
             Company Phone
           </Label>
           <Input
             type="tel"
-            id="industry"
+            id="phone-number"
             placeholder="+234"
-            value={startupData.industry}
+            value={startupData.companyPhone}
             onChange={(e) => {
               setStartupData((item) => ({
                 ...item,
-                industry: e.target.value,
+                companyPhone: e.target.value,
               }));
             }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"

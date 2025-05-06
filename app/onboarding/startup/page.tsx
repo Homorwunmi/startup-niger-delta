@@ -22,17 +22,12 @@ export default function Page() {
   );
 
   return (
-    <section className="bg-[#C6D9B5] h-screen w-full">
+    <section className="bg-[#C6D9B5] h-screen w-full flex flex-col items-stretch">
       <OnboardingNavbar />
 
       <Status />
 
-      <Sidebar
-        sidebarItems={startUpData}
-        value="Startup Registration"
-        // setActiveTab={setActiveTab}
-        // activeTab={activeTab}
-      />
+      <Sidebar sidebarItems={startUpData} value="Startup Registration" />
     </section>
   );
 }
