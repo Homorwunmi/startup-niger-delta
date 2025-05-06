@@ -22,7 +22,7 @@ export default function Page() {
   );
 
   return (
-    <section className="bg-[#C6D9B5] min-h-screen w-full relative">
+    <section className="bg-[#C6D9B5] h-screen w-full flex flex-col items-stretch">
       <OnboardingNavbar />
       <Status />
       <Sidebar

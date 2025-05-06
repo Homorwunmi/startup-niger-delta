@@ -20,7 +20,7 @@ export default function AngelFormInvestment() {
     setActiveTab({
       title: 'Contact Info',
       Component: <AngelFormInfo />,
-      src: '/angel/bgTrailer1.svg',
+      src: '/angel/bgTrailer3.svg',
     });
   }, [setRange, setActiveTab]);
 
@@ -30,7 +30,7 @@ export default function AngelFormInvestment() {
     setActiveTab({
       title: 'Investment Info',
       Component: <AngelFormIdentify />,
-      src: '/angel/bgTrailer1.svg',
+      src: '/angel/bgTrailer4.svg',
     });
   }, [setRange, setActiveTab]);
 
