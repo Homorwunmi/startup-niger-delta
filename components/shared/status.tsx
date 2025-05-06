@@ -42,14 +42,14 @@ function Status(): JSX.Element {
   const getStatusBarWidthFirst = useCallback(() => {
     if (range === 1) return 'w-1/2';
     if (range === 2) return 'w-full';
-    if (range === 3) return 'w-full';
+    if (range >= 3) return 'w-full';
 
     return '';
   }, [range]);
 
   const getStatusBarWidthSec = useCallback(() => {
     if (range === 2) return 'w-1/2';
-    if (range === 3) return 'w-full';
+    if (range >= 3) return 'w-full';
 
     return '';
   }, [range]);

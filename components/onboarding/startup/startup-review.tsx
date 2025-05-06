@@ -1,5 +1,7 @@
 'use client';
 
+import { useCallback } from 'react';
+import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Button } from '../../ui/button';
 import { Checkbox } from '../../ui/checkbox';
 import { Label } from '../../ui/label';
@@ -11,8 +13,21 @@ import {
   TableHeader,
   TableRow,
 } from '../../ui/table';
+import StartupIdentity from './startup-identification';
 
 export default function StartupReview() {
+  const { setRange, setActiveTab } = useOnboardContext();
+
+  const handlePrev = useCallback(() => {
+    setRange(3);
+
+    setActiveTab({
+      title: 'Founder/Co-founder Profile',
+      Component: <StartupIdentity />,
+      src: '/angel/bgTrailer1.svg',
+    });
+  }, [setRange, setActiveTab]);
+
   return (
     <section className="flex flex-col items-stretch pb-10">
       <div className="overflow-scroll h-96">
@@ -94,10 +109,17 @@ export default function StartupReview() {
             I agree to the terms and condition
           </Label>
         </p>
-        <Button className="px-10 bg-gray-200 hover:bg-gray-200 ml-auto">
+        <Button
+          type="button"
+          onClick={handlePrev}
+          className="px-10 bg-gray-200 hover:bg-gray-200 ml-auto"
+        >
           Back
         </Button>
-        <Button className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark">
+        <Button
+          type="button"
+          className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
+        >
           Submit
         </Button>
       </div>

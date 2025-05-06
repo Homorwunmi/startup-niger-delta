@@ -35,7 +35,7 @@ export default function Sidebar({ sidebarItems, value }: SidebarProps) {
     if (heightRange === 0) return 'h-1/4';
     if (heightRange === 1) return 'h-1/2';
     if (heightRange === 2) return 'h-4/5';
-    if (heightRange === 3) return 'h-full';
+    if (heightRange >= 3) return 'h-full';
     return '';
   }
 
