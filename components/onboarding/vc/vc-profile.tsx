@@ -19,7 +19,7 @@ export default function CapitalistProfile() {
     setActiveTab({
       title: 'Company Profile',
       Component: <CapitalistContact />,
-      src: '/angel/bgTrailer1.svg',
+      src: '/angel/bgTrailer2.svg',
     });
   }, [setRange, setActiveTab]);
 
