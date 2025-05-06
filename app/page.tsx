@@ -285,7 +285,7 @@ export default function Page() {
               {InvestmentList.map((item) => (
                 <li
                   key={item.title}
-                  className="flex flex-col items-start gap-4 2xl:gap-3 bg-custom-green-1 hover:bg-custom-orange transition-all duration-300 bg-opacity-50 px-5 pt-12 pb-5 2xl:pb-12 rounded-t-3xl lg:w-1/4 group lg:h-[200px] transition-all delay-100 duration-500 hover:h-[350px]"
+                  className="flex flex-col items-start gap-4 2xl:gap-3 bg-custom-green-1 hover:bg-custom-orange transition-all duration-300 bg-opacity-50 px-5 pt-12 pb-10 2xl:pb-12 rounded-t-3xl lg:w-1/4 group lg:h-[200px] transition-all delay-100 duration-500 hover:h-[360px]"
                 >
                   <figure className="w-16 h-16 2xl:w-20 2xl:h-20">
                     <Image
