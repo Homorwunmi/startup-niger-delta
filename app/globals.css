@@ -237,7 +237,7 @@ nav > div {
   .splide__track {
     width: 120%;
     margin-inline: auto !important;
-    transform: translateX(-5rem);
+    /* transform: translateX(-5rem); */
   }
 }
 
@@ -260,7 +260,7 @@ nav > div {
   }
 
   .splide__track {
-    width: 85% !important;
+    width: 95% !important;
     margin-inline: auto !important;
     padding-top: 40px;
     padding-bottom: 40px;

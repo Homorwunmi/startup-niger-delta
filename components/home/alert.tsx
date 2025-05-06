@@ -85,31 +85,30 @@ function SplideCenterMode() {
                   </div>
                 </div>
 
-                <Table className="w-full overflow-hidden">
-                  <TableHeader className="bg-light-custom-green-1 hover:bg-light-custom-green-1">
-                    <TableRow
-                      className="py-2 px-1 flex items-center justify-between gap-2"
-                      style={{ minWidth: 0, flexShrink: 1 }}
-                    >
-                      <TableHead className="px-0 h-fit font-bold">
-                        Geography
-                      </TableHead>
-                      <TableHead className="px-0 h-fit font-bold">
-                        Reference
-                      </TableHead>
-                      <TableHead className="px-0 h-fit text-center font-bold">
-                        Industry focus
-                      </TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    <TableRow className="flex items-center justify-between p-2">
-                      <TableCell className="px-0 h-fit">Africa</TableCell>
-                      <TableCell className="px-0 h-fit">Seed %</TableCell>
-                      <TableCell className="px-0 h-fit">Agrotech</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
+                <div className="w-full overflow-hidden flex items-center justify-center">
+                  <Table className="w-full">
+                    <TableHeader className="bg-light-custom-green-1 w-full hover:bg-light-custom-green-1">
+                      <TableRow className="py-2 px-1 flex items-center justify-between gap-2 w-full">
+                        <TableHead className="px-0 h-fit font-bold">
+                          Geography
+                        </TableHead>
+                        <TableHead className="px-0 h-fit font-bold">
+                          Reference
+                        </TableHead>
+                        <TableHead className="px-0 h-fit text-center font-bold">
+                          Industry focus
+                        </TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow className="flex items-center justify-between p-2">
+                        <TableCell className="px-0 h-fit">Africa</TableCell>
+                        <TableCell className="px-0 h-fit">Seed %</TableCell>
+                        <TableCell className="px-0 h-fit">Agrotech</TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </div>
 
                 <Button className="block mx-auto mt-4 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark">
                   Learn More
