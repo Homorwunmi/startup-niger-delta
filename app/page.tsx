@@ -118,8 +118,9 @@ export default function Page() {
 
         <header className="flex flex-col lg:flex-row items-stretch gap-3 lg:pl-20 lg:min-h-[80vh] 2xl:h-fit 2xl:mx-auto">
           <section className="flex flex-col items-center lg:items-stretch justify-center gap-4 p-5 lg:p-0 lg:w-[60%]">
-            <h1 className="text-3xl text-center font-bold text-custom-green leading-none lg:text-6xl lg:text-left 2xl:w-[60%] 2xl:text-5xl niger-heading">
-              Niger Delta Innovation Ecosystem
+            <h1 className="text-3xl text-center font-bold text-custom-green leading-none lg:text-6xl lg:text-left 2xl:text-5xl niger-heading">
+              <span>Niger Delta Innovation</span>
+              <span className="block">Ecosystem</span>
             </h1>
 
             <p className="text-gray-800 text-lg text-center font-semibold lg:text-4xl lg:text-left lg:w-[60%] 2xl:text-4xl">
