@@ -39,37 +39,36 @@ const items = [
   },
   {
     title: 'Investors',
-    url: '#',
+    url: '/dashboard/investors',
     icon: 'cil:clipboard',
   },
   {
     title: 'ScaleUp',
-    url: '#',
+    url: '/dashboard/scaleup',
     icon: 'Search',
   },
   {
     title: 'Programs',
-    url: '#',
+    url: '/dashboard/programs',
     icon: 'Settings',
   },
   {
     title: 'Calendar',
-    url: '#',
+    url: '/dashboard/calendar',
     icon: 'Settings',
   },
   {
     title: 'Notifications',
-    url: '#',
+    url: '/dashboard/notifications',
     icon: 'Settings',
   },
   {
     title: 'Documents',
-    url: '#',
+    url: '/dashboard/documents',
     icon: 'Settings',
   },
 ];
 
-// Helper function to render icons dynamically.
 function renderIcon(icon: string): JSX.Element {
   switch (icon) {
     case 'LucideLayoutDashboard':
