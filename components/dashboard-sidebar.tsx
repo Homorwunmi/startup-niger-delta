@@ -29,12 +29,12 @@ import { JSX } from 'react';
 const items = [
   {
     title: 'Dashboard',
-    url: '#',
+    url: '/dashboard',
     icon: 'LucideLayoutDashboard',
   },
   {
     title: 'Startups',
-    url: '#',
+    url: '/dashboard/startups',
     icon: 'ph:rocket-bold',
   },
   {
@@ -86,7 +86,8 @@ function renderIcon(icon: string): JSX.Element {
 }
 
 function getActiveTab(pathname: string, title: string): string {
-  if (pathname.includes(title.toLowerCase())) {
+  const curTab = pathname.split('/');
+  if (curTab[curTab.length - 1].includes(title.toLowerCase())) {
     return 'bg-custom-orange';
   }
 
