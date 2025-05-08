@@ -97,11 +97,18 @@ export function AppSidebar() {
   const pathname = usePathname();
 
   return (
-    <SidebarProvider className="w-1/6 overflow-hidden items-center bg-custom-green-2">
+    <SidebarProvider
+      className="w-1/6 overflow-hidden items-center bg-custom-green-2"
+      style={{
+        backgroundImage: `url("/home/ecosystem-bg.svg")`,
+        // backgroundBlendMode: 'screen',
+        backgroundBlendMode: 'soft-light',
+      }}
+    >
       <Sidebar className="w-1/6 px-2" style={{ background: 'none' }}>
         <SidebarContent>
           <SidebarGroup>
-            <SidebarGroupLabel className="mb-10 overflow-hidden w-full h-20">
+            <SidebarGroupLabel className="mb-10 overflow-hidden w-full h-20 border-b rounded-none">
               <Image
                 src="/images/Logo.svg"
                 alt="niger-delta-logo"
