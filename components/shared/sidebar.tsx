@@ -13,18 +13,17 @@ import { Button } from '../ui/button';
 import { Label } from '../ui/label';
 
 export default function Sidebar({ sidebarItems, value }: SidebarProps) {
-  const { range, setRange, activeTab, setActiveTab, startupData } =
-    useOnboardContext();
+  const { range, setRange, activeTab, setActiveTab } = useOnboardContext();
   const pathname = usePathname();
 
-  const isNext =
-    pathname === '/onboarding/startup' &&
-    startupData.companyName &&
-    startupData.incorporation &&
-    startupData.rcNumber &&
-    startupData.industry &&
-    startupData.description &&
-    startupData.fundingInterest;
+  // const isNext =
+  //   pathname === '/onboarding/startup' &&
+  //   startupData.companyName &&
+  //   startupData.incorporation &&
+  //   startupData.rcNumber &&
+  //   startupData.industry &&
+  //   startupData.description &&
+  //   startupData.fundingInterest;
 
   function handleChange(
     title: string,
@@ -32,7 +31,7 @@ export default function Sidebar({ sidebarItems, value }: SidebarProps) {
     src: string,
     number: number
   ) {
-    if (!isNext) return;
+    // if (!isNext) return;
 
     setActiveTab({
       title,
@@ -45,7 +44,7 @@ export default function Sidebar({ sidebarItems, value }: SidebarProps) {
 
   function getRangeHeight(heightRange: number): string {
     if (heightRange === 0) return 'h-1/4';
-    if (heightRange === 1 && isNext) return 'h-1/2';
+    if (heightRange === 1) return 'h-1/2';
     if (heightRange === 2) return 'h-4/5';
     if (heightRange >= 3) return 'h-full';
 

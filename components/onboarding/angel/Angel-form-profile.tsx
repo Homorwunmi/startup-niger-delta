@@ -17,7 +17,7 @@ export default function AngelForm() {
     setRange(1);
 
     setActiveTab({
-      title: 'Company Profile',
+      title: 'Contact Info',
       Component: <AngelFormInfo />,
       src: '/angel/bgTrailer2.svg',
     });
