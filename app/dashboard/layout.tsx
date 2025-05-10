@@ -23,8 +23,7 @@ export default function RootLayout({
       <body className={`${inter.variable} antialiased`}>
         <main className="flex items-stretch">
           <AppSidebar />
-
-          {children}
+          <section className="flex-1">{children}</section>
         </main>
       </body>
     </html>
