@@ -1,3 +1,6 @@
+'use client';
+
+import React from 'react';
 import { cn } from '@/lib/utils';
 import {
   Card,
@@ -98,7 +101,7 @@ const footerContent = [
 
 type CardProps = React.ComponentProps<typeof Card>;
 
-export function InvestorCard({ className, ...props }: CardProps) {
+export function InvestorCard({ className }: CardProps) {
   return (
     <section className="font-inter grid grid-cols-4 gap-5 w-full">
       {Startups.map((card, index) => (
@@ -145,8 +148,8 @@ export function InvestorCard({ className, ...props }: CardProps) {
                   France
                 </p>
                 <div className="grid grid-cols-2 gap-2">
-                  {footerContent.map((item, index) => (
-                    <div key={index} className="flex flex-col items-start">
+                  {footerContent.map((item) => (
+                    <div className="flex flex-col items-start">
                       <h3 className="text-[10px] text-black font-bold">
                         {item.title}:
                       </h3>
