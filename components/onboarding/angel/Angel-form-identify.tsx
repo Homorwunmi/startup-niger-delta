@@ -6,19 +6,26 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { RadioGroupItem, RadioGroup } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Textarea } from '../../ui/textarea';
 import AngelFormInvestment from './Angel-form-investment';
 
 export default function AngelFormIdentify() {
-  const { setRange, setActiveTab } = useOnboardContext();
+  const { setRange, setActiveTab, setIsNext } = useOnboardContext();
+
+  useEffect(() => {
+    setIsNext({
+      pathname: '/onboarding/angel-investor',
+      title: 'Identification',
+    });
+  }, [setIsNext]);
 
   const handlePrev = useCallback(() => {
     setRange(2);
 
     setActiveTab({
-      title: 'Company Profile',
+      title: 'Investment Info',
       Component: <AngelFormInvestment />,
       src: '/angel/bgTrailer3.svg',
     });

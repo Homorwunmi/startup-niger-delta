@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Input } from '../../ui/input';
 import { Textarea } from '../../ui/textarea';
@@ -11,7 +11,14 @@ import { Label } from '../../ui/label';
 import AngelFormInfo from './Angel-form-info';
 
 export default function AngelForm() {
-  const { setRange, setActiveTab } = useOnboardContext();
+  const { setRange, setActiveTab, setIsNext } = useOnboardContext();
+
+  useEffect(() => {
+    setIsNext({
+      pathname: '/onboarding/angel-investor',
+      title: 'Company Profile',
+    });
+  }, [setIsNext]);
 
   const handleNext = useCallback(() => {
     setRange(1);

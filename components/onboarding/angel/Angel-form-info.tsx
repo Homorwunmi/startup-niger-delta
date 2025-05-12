@@ -3,14 +3,21 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Label } from '../../ui/label';
 import AngelForm from './Angel-form-profile';
 import AngelFormInvestment from './Angel-form-investment';
 
 export default function AngelFormInfo() {
-  const { setRange, setActiveTab } = useOnboardContext();
+  const { setRange, setActiveTab, setIsNext } = useOnboardContext();
+
+  useEffect(() => {
+    setIsNext({
+      pathname: '/onboarding/angel-investor',
+      title: 'Contact Info',
+    });
+  }, [setIsNext]);
 
   const handlePrev = useCallback(() => {
     setRange(0);
@@ -26,7 +33,7 @@ export default function AngelFormInfo() {
     setRange(2);
 
     setActiveTab({
-      title: 'Company Profile',
+      title: 'Investment Info',
       Component: <AngelFormInvestment />,
       src: '/angel/bgTrailer3.svg',
     });
