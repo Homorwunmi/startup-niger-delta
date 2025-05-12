@@ -3,7 +3,7 @@
 'use client';
 
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Textarea } from '../../ui/textarea';
 import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
@@ -13,6 +13,13 @@ import StartupInfo from './startup-info';
 export default function StartupProfile() {
   const { setRange, setActiveTab, setStartupData, startupData, setIsNext } =
     useOnboardContext();
+
+  useEffect(() => {
+    setIsNext({
+      pathname: '/onboarding/startup',
+      title: 'Company Profile',
+    });
+  }, [setIsNext]);
 
   const isNext =
     startupData.companyName &&
