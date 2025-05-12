@@ -5,22 +5,29 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Label } from '../../ui/label';
 import AcceleratorProfile from './profile';
 import AcceleratorIncubator from './incubator';
 
 export default function AcceleratorContact() {
-  const { setRange, setActiveTab } = useOnboardContext();
+  const { setRange, setActiveTab, setIsNext } = useOnboardContext();
+
+  useEffect(() => {
+    setIsNext({
+      pathname: '/onboarding/accelerator',
+      title: 'Contact Info',
+    });
+  }, [setIsNext]);
 
   const handlePrev = useCallback(() => {
     setRange(0);
 
     setActiveTab({
-      title: 'Contact Info',
+      title: 'Company Profile',
       Component: <AcceleratorProfile />,
-      src: '/angel/bgTrailer2.svg',
+      src: '/angel/bgTrailer1.svg',
     });
   }, [setRange, setActiveTab]);
 
@@ -28,7 +35,7 @@ export default function AcceleratorContact() {
     setRange(2);
 
     setActiveTab({
-      title: 'Investment Info',
+      title: 'Incubators Info',
       Component: <AcceleratorIncubator />,
       src: '/angel/bgTrailer3.svg',
     });

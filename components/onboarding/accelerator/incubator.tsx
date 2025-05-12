@@ -4,14 +4,21 @@
 
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Label } from '../../ui/label';
 import AcceleratorContact from './contact';
 import AcceleratorIdentification from './identification';
 
 export default function AcceleratorIncubator() {
-  const { setRange, setActiveTab } = useOnboardContext();
+  const { setRange, setActiveTab, setIsNext } = useOnboardContext();
+
+  useEffect(() => {
+    setIsNext({
+      pathname: '/onboarding/accelerator',
+      title: 'Incubators Info',
+    });
+  }, [setIsNext]);
 
   const handlePrev = useCallback(() => {
     setRange(1);
@@ -19,7 +26,7 @@ export default function AcceleratorIncubator() {
     setActiveTab({
       title: 'Contact Info',
       Component: <AcceleratorContact />,
-      src: '/angel/bgTrailer1.svg',
+      src: '/angel/bgTrailer2.svg',
     });
   }, [setRange, setActiveTab]);
 
@@ -27,9 +34,9 @@ export default function AcceleratorIncubator() {
     setRange(3);
 
     setActiveTab({
-      title: 'Investment Info',
+      title: 'Identification',
       Component: <AcceleratorIdentification />,
-      src: '/angel/bgTrailer1.svg',
+      src: '/angel/bgTrailer4.svg',
     });
   }, [setRange, setActiveTab]);
 

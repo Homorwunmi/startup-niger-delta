@@ -6,21 +6,28 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { RadioGroupItem, RadioGroup } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Textarea } from '../../ui/textarea';
 import AcceleratorIncubator from './incubator';
 
 export default function AcceleratorIdentification() {
-  const { setRange, setActiveTab } = useOnboardContext();
+  const { setRange, setActiveTab, setIsNext } = useOnboardContext();
+
+  useEffect(() => {
+    setIsNext({
+      pathname: '/onboarding/accelerator',
+      title: 'Identification',
+    });
+  }, [setIsNext]);
 
   const handlePrev = useCallback(() => {
     setRange(2);
 
     setActiveTab({
-      title: 'Identification',
+      title: 'Incubators Info',
       Component: <AcceleratorIncubator />,
-      src: '/angel/bgTrailer4.svg',
+      src: '/angel/bgTrailer3.svg',
     });
   }, [setRange, setActiveTab]);
 

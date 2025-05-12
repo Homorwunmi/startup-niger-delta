@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Input } from '../../ui/input';
 import { Textarea } from '../../ui/textarea';
@@ -11,15 +11,22 @@ import { Label } from '../../ui/label';
 import AcceleratorContact from './contact';
 
 export default function AcceleratorProfile() {
-  const { setRange, setActiveTab } = useOnboardContext();
+  const { setRange, setActiveTab, setIsNext } = useOnboardContext();
+
+  useEffect(() => {
+    setIsNext({
+      pathname: '/onboarding/accelerator',
+      title: 'Company Profile',
+    });
+  }, [setIsNext]);
 
   const handleNext = useCallback(() => {
     setRange(1);
 
     setActiveTab({
-      title: 'Company Profile',
+      title: 'Contact Info',
       Component: <AcceleratorContact />,
-      src: '/angel/bgTrailer1.svg',
+      src: '/angel/bgTrailer2.svg',
     });
   }, [setRange, setActiveTab]);
 
