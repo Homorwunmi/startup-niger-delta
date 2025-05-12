@@ -3,22 +3,29 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Label } from '../../ui/label';
 import CapitalistProfile from './vc-profile';
 import CapitalistInvestment from './vc-investment';
 
 export default function CapitalistContact() {
-  const { setRange, setActiveTab } = useOnboardContext();
+  const { setRange, setActiveTab, setIsNext } = useOnboardContext();
+
+  useEffect(() => {
+    setIsNext({
+      pathname: '/onboarding/venture-capitalist',
+      title: 'Contact Info',
+    });
+  }, [setIsNext]);
 
   const handlePrev = useCallback(() => {
     setRange(0);
 
     setActiveTab({
-      title: 'Contact Info',
+      title: 'Company Profile',
       Component: <CapitalistProfile />,
-      src: '/angel/bgTrailer2.svg',
+      src: '/angel/bgTrailer1.svg',
     });
   }, [setRange, setActiveTab]);
 

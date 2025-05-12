@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Input } from '../../ui/input';
 import { Textarea } from '../../ui/textarea';
@@ -11,13 +11,20 @@ import { Label } from '../../ui/label';
 import CapitalistContact from './vc-contact';
 
 export default function CapitalistProfile() {
-  const { setRange, setActiveTab } = useOnboardContext();
+  const { setRange, setActiveTab, setIsNext } = useOnboardContext();
+
+  useEffect(() => {
+    setIsNext({
+      pathname: '/onboarding/venture-capitalist',
+      title: 'Company Profile',
+    });
+  }, [setIsNext]);
 
   const handleNext = useCallback(() => {
     setRange(1);
 
     setActiveTab({
-      title: 'Company Profile',
+      title: 'Contact Info',
       Component: <CapitalistContact />,
       src: '/angel/bgTrailer2.svg',
     });

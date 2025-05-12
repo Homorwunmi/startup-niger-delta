@@ -4,14 +4,21 @@
 
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Label } from '../../ui/label';
 import CapitalistContact from './vc-contact';
 import CapitalistIdentification from './vc-identification';
 
 export default function CapitalistInvestment() {
-  const { setRange, setActiveTab } = useOnboardContext();
+  const { setRange, setActiveTab, setIsNext } = useOnboardContext();
+
+  useEffect(() => {
+    setIsNext({
+      pathname: '/onboarding/venture-capitalist',
+      title: 'Investment Info',
+    });
+  }, [setIsNext]);
 
   const handlePrev = useCallback(() => {
     setRange(1);
@@ -19,7 +26,7 @@ export default function CapitalistInvestment() {
     setActiveTab({
       title: 'Contact Info',
       Component: <CapitalistContact />,
-      src: '/angel/bgTrailer1.svg',
+      src: '/angel/bgTrailer2.svg',
     });
   }, [setRange, setActiveTab]);
 
@@ -27,9 +34,9 @@ export default function CapitalistInvestment() {
     setRange(3);
 
     setActiveTab({
-      title: 'Investment Info',
+      title: 'Identification',
       Component: <CapitalistIdentification />,
-      src: '/angel/bgTrailer1.svg',
+      src: '/angel/bgTrailer4.svg',
     });
   }, [setRange, setActiveTab]);
 
