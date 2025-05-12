@@ -6,6 +6,11 @@ import { startData } from '@/lib/onboardingData';
 import { ActiveTab, StartupInitialData } from '@/types/Onboarding';
 import React, { createContext, useContext, useState } from 'react';
 
+interface IsNextType {
+  pathname: string;
+  title: string;
+}
+
 const OnboardContext = createContext<{
   range: number;
   startupData: StartupInitialData;
@@ -13,12 +18,16 @@ const OnboardContext = createContext<{
   setRange: React.Dispatch<React.SetStateAction<number>>;
   activeTab: ActiveTab;
   setActiveTab: React.Dispatch<React.SetStateAction<ActiveTab>>;
+  isNext: IsNextType;
+  setIsNext: React.Dispatch<React.SetStateAction<IsNextType>>;
 }>({
   range: 0,
   startupData: startData,
-  setStartupData: () => {},
-  setRange: () => {},
   activeTab: { title: '', Component: <></>, src: '' },
+  isNext: { pathname: '', title: '' },
+  setIsNext: () => {},
+  setRange: () => {},
+  setStartupData: () => {},
   setActiveTab: () => {},
 });
 
@@ -27,6 +36,10 @@ export function OnboardingProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const [isNext, setIsNext] = useState<IsNextType>({
+    pathname: '',
+    title: '',
+  });
   const [startupData, setStartupData] = useState<StartupInitialData>(startData);
   const [activeTab, setActiveTab] = useState<ActiveTab>({
     title: '',
@@ -40,11 +53,13 @@ export function OnboardingProvider({
       range,
       setRange,
       activeTab,
+      isNext,
+      setIsNext,
       setActiveTab,
       startupData,
       setStartupData,
     }),
-    [range, activeTab, startupData]
+    [range, activeTab, startupData, isNext]
   );
 
   return (
