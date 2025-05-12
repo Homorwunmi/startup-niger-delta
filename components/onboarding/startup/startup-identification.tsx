@@ -4,17 +4,24 @@
 
 import { RxUpload } from 'react-icons/rx';
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 
 import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import StartupFounder from './startup-founder';
-import StartupReview from './startup-review';
 
 export default function StartupIdentity() {
-  const { setRange, setActiveTab, setStartupData } = useOnboardContext();
+  const { setRange, setActiveTab, setStartupData, setIsNext } =
+    useOnboardContext();
+
+  useEffect(() => {
+    setIsNext({
+      pathname: '/onboarding/startup',
+      title: 'Identification',
+    });
+  }, [setIsNext]);
 
   const handleFileChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,16 +40,6 @@ export default function StartupIdentity() {
     [setStartupData]
   );
 
-  const handleNext = useCallback(() => {
-    setRange(4);
-
-    setActiveTab({
-      title: 'Founder/Co-founder Profile',
-      Component: <StartupReview />,
-      src: '/angel/bgTrailer1.svg',
-    });
-  }, [setRange, setActiveTab]);
-
   const handlePrev = useCallback(() => {
     setRange(2);
 
@@ -51,7 +48,12 @@ export default function StartupIdentity() {
       Component: <StartupFounder />,
       src: '/angel/bgTrailer1.svg',
     });
-  }, [setRange, setActiveTab]);
+
+    setIsNext({
+      pathname: '/onboarding/startup',
+      title: 'Founder/Co-founder Profile',
+    });
+  }, [setRange, setActiveTab, setIsNext]);
 
   return (
     <form className="flex flex-col h-full">
@@ -119,7 +121,6 @@ export default function StartupIdentity() {
           </Button>
           <Button
             type="button"
-            onClick={handleNext}
             className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
           >
             Next

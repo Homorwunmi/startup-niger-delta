@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
@@ -8,8 +8,16 @@ import StartupInfo from './startup-info';
 import StartupIdentity from './startup-identification';
 
 export default function StartupFounder() {
-  const { setRange, setActiveTab, startupData, setStartupData } =
+  const { setRange, setActiveTab, startupData, setStartupData, setIsNext } =
     useOnboardContext();
+
+  useEffect(() => {
+    setIsNext({
+      pathname: '/onboarding/startup',
+      title: 'Founder/Co-Founder Profile',
+    });
+  }, [setIsNext]);
+
   const isNext =
     startupData.founderName &&
     startupData.founderEmail &&
@@ -25,7 +33,12 @@ export default function StartupFounder() {
       Component: <StartupIdentity />,
       src: '/angel/bgTrailer1.svg',
     });
-  }, [setRange, setActiveTab]);
+
+    setIsNext({
+      pathname: '/onboarding/startup',
+      title: 'Identification',
+    });
+  }, [setRange, setActiveTab, setIsNext]);
 
   const handlePrev = useCallback(() => {
     setRange(1);
@@ -33,9 +46,14 @@ export default function StartupFounder() {
     setActiveTab({
       title: 'Contact Info ',
       Component: <StartupInfo />,
-      src: '/angel/bgTrailer1.svg',
+      src: '/angel/bgTrailer4.svg',
     });
-  }, [setRange, setActiveTab]);
+
+    setIsNext({
+      pathname: '/onboarding/startup',
+      title: 'Founder/Co-Founder Profile',
+    });
+  }, [setRange, setActiveTab, setIsNext]);
 
   return (
     <form className="flex flex-col h-full">

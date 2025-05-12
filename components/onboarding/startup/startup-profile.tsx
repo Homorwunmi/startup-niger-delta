@@ -11,7 +11,7 @@ import { Label } from '../../ui/label';
 import StartupInfo from './startup-info';
 
 export default function StartupProfile() {
-  const { setRange, setActiveTab, setStartupData, startupData } =
+  const { setRange, setActiveTab, setStartupData, startupData, setIsNext } =
     useOnboardContext();
 
   const isNext =
@@ -30,7 +30,12 @@ export default function StartupProfile() {
       Component: <StartupInfo />,
       src: '/angel/bgTrailer2.svg',
     });
-  }, [setRange, setActiveTab]);
+
+    setIsNext({
+      pathname: '/onboarding/startup',
+      title: 'Contact Info',
+    });
+  }, [setRange, setActiveTab, setIsNext]);
 
   return (
     <form className="w-full" style={{ height: '100%' }}>

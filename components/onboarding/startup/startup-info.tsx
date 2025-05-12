@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 
 import { Input } from '../../ui/input';
@@ -12,8 +12,16 @@ import StartupFounder from './startup-founder';
 import StartupProfile from './startup-profile';
 
 export default function StartupInfo() {
-  const { setRange, setActiveTab, setStartupData, startupData } =
+  const { setRange, setActiveTab, setStartupData, startupData, setIsNext } =
     useOnboardContext();
+
+  useEffect(() => {
+    setIsNext({
+      pathname: '/onboarding/startup',
+      title: 'Contact Info',
+    });
+  }, [setIsNext]);
+
   const isNext =
     startupData.companyEmail &&
     startupData.companyWebsite &&
@@ -24,11 +32,16 @@ export default function StartupInfo() {
     setRange(2);
 
     setActiveTab({
-      title: 'Company Profile',
+      title: 'Founder/Co-Founder Profile',
       Component: <StartupFounder />,
-      src: '/angel/bgTrailer1.svg',
+      src: '/angel/bgTrailer3.svg',
     });
-  }, [setRange, setActiveTab]);
+
+    setIsNext({
+      pathname: '/onboarding/startup',
+      title: 'Founder/Co-Founder Profile',
+    });
+  }, [setRange, setActiveTab, setIsNext]);
 
   const handlePrev = useCallback(() => {
     setRange(0);
@@ -38,7 +51,12 @@ export default function StartupInfo() {
       Component: <StartupProfile />,
       src: '/angel/bgTrailer1.svg',
     });
-  }, [setRange, setActiveTab]);
+
+    setIsNext({
+      pathname: '/onboarding/startup',
+      title: 'Company Profile',
+    });
+  }, [setRange, setActiveTab, setIsNext]);
 
   return (
     <form className="flex flex-col h-full">
