@@ -1,20 +1,16 @@
-'use client';
-
 import React from 'react';
 import type { Metadata } from 'next';
 import './globals.css';
 import { Inter } from 'next/font/google';
-import Navbar from '@/components/shared/navbar';
-import Footer from '@/components/shared/footer';
-import { usePathname } from 'next/navigation';
 import { OnboardingProvider } from './contexts/OnboardingContext';
+import ClientLayout from './client-layout';
 
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
 });
 
-const metadata: Metadata = {
+export const metadata: Metadata = {
   title: 'Startup Niger Delta',
   description: 'The next tech evolution...',
 };
@@ -24,22 +20,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
-  const showNavFooter = ['dashboard'].some((path) => pathname.includes(path));
-
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
         <OnboardingProvider>
-          {showNavFooter ? (
-            <>
-              <Navbar />
-              {children}
-              <Footer />
-            </>
-          ) : (
-            <main>{children}</main>
-          )}
+          <ClientLayout>{children}</ClientLayout>
         </OnboardingProvider>
       </body>
     </html>
