@@ -1,12 +1,8 @@
-'use client';
-
 import React from 'react';
 import './globals.css';
 import { Inter } from 'next/font/google';
-import Navbar from '@/components/shared/navbar';
-import Footer from '@/components/shared/footer';
-import { usePathname } from 'next/navigation';
 import { OnboardingProvider } from './contexts/OnboardingContext';
+import ClientLayout from './client-layout';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -18,21 +14,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
-
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
         <OnboardingProvider>
-          {pathname.includes('dashboard') || pathname.includes('onboarding') ? (
-            <main>{children}</main>
-          ) : (
-            <>
-              <Navbar />
-              {children}
-              <Footer />
-            </>
-          )}
+          <ClientLayout>{children}</ClientLayout>
         </OnboardingProvider>
       </body>
     </html>
