@@ -69,6 +69,18 @@ const data = [
   },
 ];
 
+function NewsTop({ title }: { title: string }) {
+  return (
+    <div className="flex flex-col gap-2">
+      <h2 className="text-2xl font-poppins uppercase font-medium">{title}</h2>
+      <div className="w-full relative">
+        <span className="block absolute -top-1 left-0 w-1/8 border-2 border-custom-orange" />
+        <span className="w-full border border-light-custom-green block bg-custom-orange" />
+      </div>
+    </div>
+  );
+}
+
 export default function Page() {
   return (
     <main>
@@ -83,17 +95,20 @@ export default function Page() {
       </header>
 
       <section className="flex items-stretch gap-4 px-20 py-4">
-        <div className="w-3/4">
-          <div>
-            <div>
-              <h2>Recent News</h2>
-            </div>
+        <div className="w-3/4 flex flex-col gap-8">
+          <div className="flex flex-col gap-4">
+            <NewsTop title="Recent News" />
 
-            <ul className="grid grid-cols-6 gap-4">
+            <ul className="grid grid-cols-6 gap-8">
               {data.map((dta, i) =>
                 i === 0 || i === 1 ? (
-                  <li key={dta.id} className="col-span-3">
-                    <h3>{dta.title}</h3>
+                  <li
+                    key={dta.id}
+                    className="col-span-3 flex flex-col gap-4 font-poppins"
+                  >
+                    <h3 className="text-custom-green text-2xl font-bold w-4/5">
+                      {dta.title}
+                    </h3>
                     <figure>
                       <Image
                         src={dta.imageUrl}
@@ -102,19 +117,18 @@ export default function Page() {
                         height={300}
                       />
                     </figure>
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between text-sm">
                       <p>{dta.author}</p>
                       <p className="flex items-center gap-2">
-                        <Clock9 />
+                        <Clock9 size={16} />
                         <span>{dta.date}</span>
                         <span>- 2 min read</span>
                       </p>
                     </div>
-                    <p>{dta.description}</p>
+                    <p className="text-lg">{dta.description}</p>
                   </li>
                 ) : (
-                  <li key={dta.id} className="col-span-2">
-                    <h3>{dta.title}</h3>
+                  <li key={dta.id} className="col-span-2 font-poppins">
                     <figure>
                       <Image
                         src={dta.imageUrl}
@@ -123,19 +137,49 @@ export default function Page() {
                         height={300}
                       />
                     </figure>
-                    <div className="flex items-center justify-between">
-                      <p>{dta.author}</p>
-                      <p className="flex items-center gap-2">
-                        <Clock9 />
-                        <span>{dta.date}</span>
-                        <span>- 2 min read</span>
-                      </p>
-                    </div>
-                    <p>{dta.description}</p>
+                    <h3 className="font-bold text-lg leading-tight text-custom-green">
+                      {dta.title}
+                    </h3>
+                    <p className="flex items-center gap-2 text-sm">
+                      <Clock9 size={16} />
+                      <span>{dta.date}</span>
+                      <span>- 2 min read</span>
+                    </p>
                   </li>
                 )
               )}
             </ul>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <NewsTop title="Investment" />
+
+            <div className="flex gap-4">
+              <article className="w-1/2 flex flex-col gap-2 font-poppins">
+                <h3 className="text-custom-green text-2xl font-bold w-4/5">
+                  {data[0].title}
+                </h3>
+                <figure>
+                  <Image
+                    src={data[0].imageUrl}
+                    alt="news"
+                    width={500}
+                    height={300}
+                  />
+                </figure>
+                <div className="flex items-center justify-between text-base">
+                  <p>{data[0].author}</p>
+                  <p className="flex items-center gap-2">
+                    <Clock9 size={16} />
+                    <span>{data[0].date}</span>
+                    <span>- 2 min read</span>
+                  </p>
+                </div>
+                <p className="text-xl">{data[0].description}</p>
+              </article>
+
+              <ul>Hi</ul>
+            </div>
           </div>
         </div>
 
