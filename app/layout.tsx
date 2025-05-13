@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import type { Metadata } from 'next';
 import './globals.css';
 import { Inter } from 'next/font/google';
 import Navbar from '@/components/shared/navbar';
@@ -32,6 +31,7 @@ export default function RootLayout({
       <body className={`${inter.variable} antialiased`}>
         <OnboardingProvider>
           {showNavFooter ? (
+          {pathname.includes('dashboard') || pathname.includes('onboarding') ? (
             <>
               <Navbar />
               {children}
