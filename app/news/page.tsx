@@ -253,6 +253,36 @@ export default function Page() {
 
         <div className="flex-1">
           <NewsTop title="Opinions" />
+
+          <ul className="grid grid-cols-2 gap-4 mt-4">
+            {data.map(
+              (dta, i) =>
+                i > 0 && (
+                  <li key={dta.id} className="flex flex-col gap-4 font-poppins">
+                    <h3 className="text-custom-green text-lg font-bold leading-tight">
+                      {dta.title}
+                    </h3>
+                    <figure>
+                      <Image
+                        src={dta.imageUrl}
+                        alt="news"
+                        width={500}
+                        height={300}
+                      />
+                    </figure>
+                    <div className="flex items-center justify-between text-xs">
+                      <p>{dta.author}</p>
+                      <p className="flex items-center gap-1">
+                        <Clock9 size={16} />
+                        <span>{dta.date}</span>
+                        <span>- 2 min read</span>
+                      </p>
+                    </div>
+                    <p className="text-sm">{dta.description}</p>
+                  </li>
+                )
+            )}
+          </ul>
         </div>
       </section>
     </main>
