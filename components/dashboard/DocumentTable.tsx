@@ -1,3 +1,6 @@
+import { FaFilePdf, FaFileExcel, FaFileWord } from 'react-icons/fa';
+import { BiSolidFilePng } from 'react-icons/bi';
+import { BsFiletypePptx, BsThreeDots } from 'react-icons/bs';
 import {
   Table,
   TableBody,
@@ -7,9 +10,6 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Checkbox } from '../ui/checkbox';
-import { FaFilePdf, FaFileExcel, FaFileWord } from 'react-icons/fa';
-import { BiSolidFilePng } from 'react-icons/bi';
-import { BsFiletypePptx, BsThreeDots } from 'react-icons/bs';
 
 const invoices = [
   {
@@ -51,9 +51,7 @@ const invoices = [
 ];
 
 export function DocumentTable() {
-  const isEven = (num: number): boolean => {
-    return num % 2 === 0;
-  };
+  const isEven = (num: number): boolean => num % 2 === 0;
 
   return (
     <Table>
@@ -63,7 +61,7 @@ export function DocumentTable() {
           <TableHead>Type</TableHead>
           <TableHead>Size</TableHead>
           <TableHead>Created Time</TableHead>
-          <TableHead></TableHead>
+          <TableHead />
         </TableRow>
       </TableHeader>
       <TableBody>

@@ -1,6 +1,4 @@
-import { RiSearchLine } from 'react-icons/ri';
-import { LuThumbsUp } from 'react-icons/lu';
-import { FiFilter } from 'react-icons/fi';
+import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 
 export default function page() {
   return (
@@ -10,22 +8,15 @@ export default function page() {
         <div className="flex items-center gap-4">
           <button
             type="button"
-            className="border-[#E7E6E6] bg-white border-[1.1px] rounded-md px-3 py-2 flex items-center gap-2"
+            className="border-[#0D726F] bg-white border-[1.1px] rounded-full flex items-center justify-center h-10 w-10"
           >
-            <RiSearchLine className="text-[#184341]" />
+            <SlArrowLeft className="text-[#184341]" />
           </button>
           <button
             type="button"
-            className="border-[#E7E6E6] bg-white border rounded-md px-3 py-2 flex items-center gap-2"
+            className="border-[#0D726F] bg-white border-[1.1px] rounded-full flex items-center py-3 px-3"
           >
-            <LuThumbsUp className="text-[#184341]" />
-          </button>
-          <button
-            type="button"
-            className="border-[#E7E6E6] bg-white border rounded-md px-3 py-1 flex items-center gap-2"
-          >
-            <FiFilter className="text-[#184341] " />
-            <h3 className="text-[#184341] text-base">Filter</h3>
+            <SlArrowRight className="text-[#184341]" />
           </button>
         </div>
       </div>

@@ -1,6 +1,8 @@
 import { RiSearchLine } from 'react-icons/ri';
 import { LuThumbsUp } from 'react-icons/lu';
 import { FiFilter } from 'react-icons/fi';
+import { BsCopy } from 'react-icons/bs';
+import { PiArrowCircleDownLeftLight } from 'react-icons/pi';
 import Image from 'next/image';
 
 export default function Page() {
@@ -56,23 +58,32 @@ export default function Page() {
       <div className="px-11 py-3 w-full">
         <div className="flex w-full items-center justify-between">
           <div className="bg-[#7BBBB2] rounded-sm h-[185px] shadow-md border w-[48%]">
-            <p>hey</p>
+            <div className="w-full h-full flex flex-col p-3">
+              <span className="flex items-start justify-end z-10">
+                <PiArrowCircleDownLeftLight
+                  size={15}
+                  className="text-white rotate-180"
+                />
+              </span>
+              <span className="h-full flex items-center justify-center">
+                <BsCopy className="text-white" />
+              </span>
+            </div>
           </div>
-          <div className="bg-white rounded-sm h-[185px] shadow-md border w-[48%]">
-            <p>hey</p>
+          <div className="bg-white rounded-sm h-[185px] shadow-md border w-[48%] p-3">
+            <span className="flex items-start justify-end z-10">
+              <PiArrowCircleDownLeftLight
+                size={15}
+                className="text-[#C7CED6] rotate-180"
+              />
+            </span>
           </div>
         </div>
 
         <div className="grid items-center justify-between mt-8 grid-cols-3 gap-4">
-          <div className="bg-white shadow-md rounded-sm border w-[335px] h-60">
-            <p>hey</p>
-          </div>
-          <div className="bg-white shadow-md rounded-sm border w-[335px] h-60">
-            <p>hey</p>
-          </div>
-          <div className="bg-white shadow-md rounded-sm border w-[335px] h-60">
-            <p>hey</p>
-          </div>
+          <div className="bg-white shadow-md rounded-sm border w-[335px] h-96" />
+          <div className="bg-white shadow-md rounded-sm border w-[335px] h-96" />
+          <div className="bg-white shadow-md rounded-sm border w-[335px] h-96" />
         </div>
       </div>
     </section>
