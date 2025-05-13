@@ -1,12 +1,6 @@
 'use client';
 
 import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from '@/components/ui/navigation-menu';
-import {
   Form,
   FormControl,
   FormField,
@@ -32,7 +26,6 @@ import Image from 'next/image';
 import { Subscription } from '@/types/User';
 import { subscriptionSchema } from '@/helpers/validation';
 
-import Logo from '@/public/images/Logo.svg';
 import headerImage from '@/public/images/header-image.svg';
 import headerBg from '@/public/images/header-bg.svg';
 import { Ecosystem, InvestmentList, Partners, resourcesList } from '@/lib/home';
@@ -44,7 +37,6 @@ import Testimonial from '@/components/home/testimonial';
 import FrequentlyAsked from '@/components/home/faq';
 import Alert from '@/components/home/alert';
 import Footer from '@/components/shared/footer';
-import { RxHamburgerMenu } from 'react-icons/rx';
 
 export default function Page() {
   const form = useForm<Subscription>({
@@ -57,65 +49,6 @@ export default function Page() {
   return (
     <>
       <main className="overflow-hidden">
-        <NavigationMenu className="py-4 px-5 lg:px-20 2xl:py-10 text-green-900 font-medium border-b-2 border-green-900 border-opacity-50 max-w-screen">
-          <NavigationMenuList className="w-full">
-            <figure className="mr-auto 2xl:w-64">
-              <Image
-                src={Logo}
-                alt="Niger Delta Logo"
-                className="w-full h-full"
-              />
-            </figure>
-
-            <NavigationMenuItem className="hidden lg:flex items-center gap-8 text-custom-green">
-              <NavigationMenuLink
-                href="/home"
-                className="hover:bg-transparent p-0 2xl:!text-2xl"
-              >
-                Home
-              </NavigationMenuLink>
-              <NavigationMenu className="hover:bg-transparent hover:p-0 p-0 2xl:!text-2xl">
-                Explores
-              </NavigationMenu>
-              <NavigationMenuLink
-                href="/funding"
-                className="hover:bg-transparent p-0 2xl:!text-2xl"
-              >
-                Funding
-              </NavigationMenuLink>
-              <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-2xl">
-                Reports
-              </NavigationMenuLink>
-              <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-2xl">
-                News
-              </NavigationMenuLink>
-              <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-2xl">
-                Events
-              </NavigationMenuLink>
-              <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-2xl">
-                FAQ
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem className="hidden lg:flex items-center gap-4 2xl:gap-10 ml-auto">
-              <NavigationMenuLink
-                href="/login"
-                className="underline hover:bg-transparent p-0 2xl:!text-2xl"
-              >
-                Login
-              </NavigationMenuLink>
-              <NavigationMenuLink
-                href="/sign-up"
-                className="bg-custom-orange hover:bg-gradient-to-b hover:from-custom-orange hover:via-custom-orange hover:to-custom-orange-dark text-white hover:text-white px-5 py-2 text-center 2xl:!text-2xl"
-              >
-                Get Started
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            <RxHamburgerMenu size={32} className="lg:hidden" />
-          </NavigationMenuList>
-        </NavigationMenu>
-
         <header className="flex flex-col lg:flex-row items-stretch gap-3 lg:pl-20 lg:min-h-[80vh] 2xl:h-fit 2xl:mx-auto">
           <section className="flex flex-col items-center lg:items-stretch justify-center gap-4 p-5 lg:p-0 lg:w-[60%]">
             <h1 className="text-3xl text-center font-bold text-custom-green leading-none lg:text-6xl lg:text-left 2xl:text-5xl niger-heading">

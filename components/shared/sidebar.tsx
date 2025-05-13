@@ -80,7 +80,7 @@ export default function Sidebar({ sidebarItems, value }: SidebarProps) {
               <li key={index}>
                 <Button
                   type="button"
-                  className={`bg-transparent hover:bg-transparent cursor-pointer shadow-none text-light-custom-green-1 font-bold pl-0 text-2xl ${range === index ? 'text-black' : ''}`}
+                  className={`bg-transparent hover:bg-transparent cursor-pointer shadow-none text-light-custom-green-1 font-bold pl-0 text-xl ${range === index ? 'text-black' : ''}`}
                   onClick={() =>
                     handleChange(item.title, item.Component, item.src, index)
                   }
