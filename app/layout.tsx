@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Inter } from 'next/font/google';
 import Navbar from '@/components/shared/navbar';
+import Footer from '@/components/shared/footer';
 import { OnboardingProvider } from './contexts/OnboardingContext';
 
 const inter = Inter({
@@ -27,6 +28,7 @@ export default function RootLayout({
           <>
             <Navbar />
             {children}
+            <Footer />
           </>
         </OnboardingProvider>
       </body>

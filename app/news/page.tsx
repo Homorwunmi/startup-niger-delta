@@ -84,17 +84,19 @@ function NewsTop({ title }: { title: string }) {
 export default function Page() {
   return (
     <main>
-      <header className="h-[30vh] bg-[url('/images/news-bg.svg')] no-repeat bg-cover bg-top lg:px-20 flex flex-col items-start justify-center gap-4">
-        <h1 className="text-5xl font-poppins font-semibold text-white flex flex-col justify-start gap-2">
-          <span>News & Blog</span>
-          <span className="w-1/3 h-1 bg-custom-orange" />
-        </h1>
-        <p className="text-2xl text-white">
-          Keep up to date with the latest news and updates.
-        </p>
+      <header className="h-[30vh] bg-[url('/images/news-bg.svg')] no-repeat bg-cover bg-top lg:px-20">
+        <div className="flex flex-col items-start justify-center gap-4 h-full 2xl:container 2xl:mx-auto">
+          <h1 className="text-5xl font-poppins font-semibold text-white flex flex-col justify-start gap-2">
+            <span>News & Blog</span>
+            <span className="w-1/3 h-1 bg-custom-orange" />
+          </h1>
+          <p className="text-2xl text-white">
+            Keep up to date with the latest news and updates.
+          </p>
+        </div>
       </header>
 
-      <section className="flex items-stretch gap-4 px-20 py-4">
+      <section className="flex items-stretch gap-4 px-20 py-4 2xl:container 2xl:mx-auto">
         <div className="w-3/4 flex flex-col gap-8">
           <div className="flex flex-col gap-4">
             <NewsTop title="Recent News" />
@@ -178,7 +180,35 @@ export default function Page() {
                 <p className="text-xl">{data[0].description}</p>
               </article>
 
-              <ul>Hi</ul>
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-2 flex-1">
+                {data.map((dta, i) =>
+                  i > 0 ? (
+                    <li
+                      key={dta.id}
+                      className="font-poppins flex flex-col gap-2 h-full"
+                    >
+                      <figure>
+                        <Image
+                          src={dta.imageUrl}
+                          alt="news"
+                          width={500}
+                          height={300}
+                        />
+                      </figure>
+                      <h3 className="font-bold text-base leading-tight text-custom-green">
+                        {dta.title}
+                      </h3>
+                      <p className="flex items-center gap-2 text-sm">
+                        <Clock9 size={16} />
+                        <span>{dta.date}</span>
+                        <span>- 2 min read</span>
+                      </p>
+                    </li>
+                  ) : (
+                    ''
+                  )
+                )}
+              </ul>
             </div>
           </div>
         </div>
