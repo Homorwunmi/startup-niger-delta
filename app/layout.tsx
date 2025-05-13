@@ -24,7 +24,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
         <OnboardingProvider>
-          {pathname !== '/' || !pathname.includes('news') ? (
+          {pathname.includes('dashboard') ||
+          pathname.includes('onboarding') ||
+          pathname.includes('sign-up') ||
+          pathname.includes('login') ? (
             <main>{children}</main>
           ) : (
             <>
