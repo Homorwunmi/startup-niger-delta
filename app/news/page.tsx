@@ -82,6 +82,10 @@ function NewsTop({ title }: { title: string }) {
   );
 }
 
+function NewSidebar() {
+  return <section>hello</section>;
+}
+
 export default function Page() {
   return (
     <main>
@@ -214,7 +218,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div>Hello</div>
+        <NewSidebar />
       </section>
 
       <section className="flex items-stretch gap-8 px-20 py-4 2xl:container 2xl:mx-auto">
