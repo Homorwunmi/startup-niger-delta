@@ -14,7 +14,7 @@ const inter = Inter({
   subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Startup Niger Delta',
   description: 'The next tech evolution...',
 };
@@ -25,12 +25,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
+  const showNavFooter = ['dashboard'].some((path) => pathname.includes(path));
 
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
         <OnboardingProvider>
-          {pathname.includes('dashboard') ? (
+          {showNavFooter ? (
             <>
               <Navbar />
               {children}
