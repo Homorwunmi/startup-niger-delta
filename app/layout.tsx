@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import './globals.css';
 import { Inter } from 'next/font/google';
+import Navbar from '@/components/shared/navbar';
 import { OnboardingProvider } from './contexts/OnboardingContext';
 
 const inter = Inter({
@@ -22,7 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
-        <OnboardingProvider>{children}</OnboardingProvider>
+        <OnboardingProvider>
+          <>
+            <Navbar />
+            {children}
+          </>
+        </OnboardingProvider>
       </body>
     </html>
   );
