@@ -9,7 +9,7 @@ const inter = Inter({
   subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Startup Niger Delta',
   description: 'The next tech evolution...',
 };
@@ -19,10 +19,30 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+<<<<<<< Updated upstream
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
         <OnboardingProvider>{children}</OnboardingProvider>
+=======
+  const pathname = usePathname();
+  const showNavFooter = ['dashboard'].some((path) => pathname.includes(path));
+
+  return (
+    <html lang="en">
+      <body className={`${inter.variable} antialiased`}>
+        <OnboardingProvider>
+          {showNavFooter ? (
+            <>
+              <Navbar />
+              {children}
+              <Footer />
+            </>
+          ) : (
+            <main>{children}</main>
+          )}
+        </OnboardingProvider>
+>>>>>>> Stashed changes
       </body>
     </html>
   );
