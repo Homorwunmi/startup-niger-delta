@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
         <OnboardingProvider>
-          {pathname.includes('dashboard') ? (
+          {pathname.includes('dashboard') || pathname.includes('onboarding') ? (
             <>
               <Navbar />
               {children}
