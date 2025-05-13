@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import { Clock9 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -283,6 +284,14 @@ export default function Page() {
                 )
             )}
           </ul>
+        </div>
+      </section>
+
+      <section className="2xl:container 2xl:mx-auto py-10 px-20">
+        <div className="w-5/6 bg-gray-100 flex items-center justify-end px-16 py-8">
+          <Button className="uppercase bg-custom-orange hover:bg-custom-orange rounded-full self-end font-poppins text-lg">
+            Place your ad
+          </Button>
         </div>
       </section>
     </main>
