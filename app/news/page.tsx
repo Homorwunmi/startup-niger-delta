@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Clock9 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -83,7 +84,77 @@ function NewsTop({ title }: { title: string }) {
 }
 
 function NewSidebar() {
-  return <section>hello</section>;
+  return (
+    <section className="flex-1 flex flex-col gap-4">
+      <Tabs
+        defaultValue="popular"
+        className="bg-gray-100 flex flex-col gap-4 py-4 w-full"
+      >
+        <TabsList className="bg-transparent text-center w-full">
+          <TabsTrigger
+            value="popular"
+            className="uppercase font-poppins font-light"
+          >
+            Popular
+          </TabsTrigger>
+          <TabsTrigger
+            value="most-viewed"
+            className="uppercase font-poppins font-light"
+          >
+            Most viewed
+          </TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="popular">
+          Make changes to your account here.
+        </TabsContent>
+        <TabsContent value="most-viewed">
+          Change your password here.
+        </TabsContent>
+      </Tabs>
+
+      <div className="h-96 bg-gray-100 flex flex-col justify-end gap-4 px-5 py-10">
+        <Button className="uppercase bg-custom-orange hover:bg-custom-orange rounded-full font-poppins text-lg">
+          Place your ad
+        </Button>
+      </div>
+
+      <div>
+        <NewsTop title="Social Pixel" />
+
+        <div className="flex items-center gap-2 mt-4">
+          <Image
+            src="/images/fb-px.svg"
+            alt="news"
+            width={500}
+            height={300}
+            className="w-1/4 inline-block"
+          />
+          <Image
+            src="/images/x-px.svg"
+            alt="news"
+            width={500}
+            height={300}
+            className="w-1/4 inline-block"
+          />
+          <Image
+            src="/images/youtube-px.svg"
+            alt="news"
+            width={500}
+            height={300}
+            className="w-1/4 inline-block"
+          />
+          <Image
+            src="/images/insta-px.svg"
+            alt="news"
+            width={500}
+            height={300}
+            className="w-1/4 inline-block"
+          />
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export default function Page() {
@@ -101,7 +172,7 @@ export default function Page() {
         </div>
       </header>
 
-      <section className="flex items-stretch gap-4 px-20 py-4 2xl:container 2xl:mx-auto">
+      <section className="flex items-stretch gap-10 px-20 py-4 2xl:container 2xl:mx-auto">
         <div className="w-3/4 flex flex-col gap-8">
           <div className="flex flex-col gap-4">
             <NewsTop title="Recent News" />
