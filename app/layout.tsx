@@ -37,7 +37,7 @@ export default function RootLayout({
               <Footer />
             </>
           ) : (
-            children
+            <main>{children}</main>
           )}
         </OnboardingProvider>
       </body>
