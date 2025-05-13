@@ -25,13 +25,13 @@ export default function RootLayout({
       <body className={`${inter.variable} antialiased`}>
         <OnboardingProvider>
           {pathname.includes('dashboard') || pathname.includes('onboarding') ? (
+            <main>{children}</main>
+          ) : (
             <>
               <Navbar />
               {children}
               <Footer />
             </>
-          ) : (
-            <main>{children}</main>
           )}
         </OnboardingProvider>
       </body>
