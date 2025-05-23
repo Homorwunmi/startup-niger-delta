@@ -37,7 +37,7 @@ export default function Navbar() {
             <Link href="/news">News</Link>
           </NavigationMenu>
           <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-2xl">
-            Events
+            <Link href="/events">Events</Link>
           </NavigationMenuLink>
           <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-2xl">
             FAQ
