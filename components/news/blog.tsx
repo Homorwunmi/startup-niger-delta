@@ -1,4 +1,5 @@
-// pages/index.tsx
+'use client';
+
 import Head from 'next/head';
 import Image from 'next/image';
 
@@ -7,7 +8,7 @@ export default function Blog() {
     {
       id: 1,
       title: 'How collaboration makes us better business person',
-      image: '/new/newOne.png', // Make sure this path is correct
+      image: '/new/newOne.png',
       author: 'Admin, NDS',
       date: 'Jan 6, 2024',
       readTime: '2 min Read',
@@ -18,13 +19,14 @@ export default function Blog() {
       id: 2,
       title: 'How collaboration makes us better business person',
       author: 'Admin, NDS',
-      image: '/new/newOne.png', // Make sure this path is correct
+      image: '/new/newOne.png',
       date: 'Jan 6, 2024',
       readTime: '2 min Read',
       excerpt:
         'Lorem ipsum dolor sit amet consectetur. Ont Condimentum adipiscing at iaculis m wayva adiscing convallis ut feugiat morbi. Indo...',
     },
   ];
+
   const moreBlogPosts = [
     {
       id: 1,
@@ -56,16 +58,16 @@ export default function Blog() {
         <meta name="description" content="NDS Blog posts" />
       </Head>
 
-      <main className="w-full mx-auto px-4  pt-6 max-w-7xl">
+      {/* Main Blog Posts */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {blogPosts.map((post) => (
             <article key={post.id} className="overflow-hidden">
-              <h2 className="text-[25px] font-bold text-[#153230] mb-3 hover:!text-custom-orange">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#153230] mb-3 hover:text-custom-orange">
                 {post.title}
               </h2>
 
-              {/* Improved Image Container */}
-              <div className="relative w-full h-[251px] mb-4 rounded-lg overflow-hidden">
+              <div className="relative w-full h-[220px] sm:h-[251px] mb-4 rounded-lg overflow-hidden">
                 <Image
                   src={post.image}
                   alt={post.title}
@@ -75,16 +77,15 @@ export default function Blog() {
                 />
               </div>
 
-              <div className="">
-                <div className="flex items-center text-sm mb-4 font-normal text-[#153230]">
+              <div>
+                <div className="flex flex-wrap gap-2 text-sm text-[#153230] mb-4">
                   <span>By {post.author}</span>
-                  <span className="mx-2">•</span>
+                  <span className="mx-1">•</span>
                   <span>{post.date}</span>
-                  <span className="mx-2">•</span>
+                  <span className="mx-1">•</span>
                   <span>{post.readTime}</span>
                 </div>
-
-                <p className=" mb-5  text-base font-normal text-[#153230] line-clamp-2">
+                <p className="text-base text-[#153230] line-clamp-2">
                   {post.excerpt}
                 </p>
               </div>
@@ -93,13 +94,12 @@ export default function Blog() {
         </div>
       </main>
 
-      {/*  */}
-      <main className="container mx-auto px-4 py-6 max-w-4xl">
-        <div className="gap-7 grid grid-cols-3">
+      {/* More Blog Posts */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {moreBlogPosts.map((post) => (
             <article key={post.id} className="rounded-lg">
-              {/* Image */}
-              <div className="relative w-full h-[163px] mb-4 rounded-lg overflow-hidden">
+              <div className="relative w-full h-[180px] sm:h-[163px] mb-4 rounded-lg overflow-hidden">
                 <Image
                   src={post.image}
                   alt={post.title}
@@ -109,23 +109,19 @@ export default function Blog() {
                 />
               </div>
 
-              {/* Title with tighter line height */}
-              <h2 className="text-[17px] font-semibold text-[#153230] hover:text-custom-orange leading-tight">
+              <h2 className="text-base sm:text-lg font-semibold text-[#153230] hover:text-custom-orange leading-tight">
                 {post.title}
               </h2>
 
-              {/* Metadata with slightly reduced line height */}
-              <div className="flex py-1 flex-wrap gap-x-4 gap-y-2 text-sm text-gray-600 leading-snug">
-                <div className="flex items-center">
-                  <span>{post.date}</span>
-                  <span className="mx-1">-</span>
-                  <span>{post.readTime}</span>
-                </div>
+              <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-600 mt-1">
+                <span>{post.date}</span>
+                <span>-</span>
+                <span>{post.readTime}</span>
               </div>
             </article>
           ))}
         </div>
-      </main>
+      </section>
     </>
   );
 }

@@ -48,7 +48,7 @@ export default function RightSidebar(): JSX.Element {
         </h3>
         <div className="border-b-4 border-[#FF7A00] w-10 mb-8" />
 
-        <div className="flex flex-wrap justify-center gap-6 mb-8">
+        <div className="flex  justify-center gap-6 mb-8">
           {socialIcons.map((icon, i) => (
             <div
               key={i}
