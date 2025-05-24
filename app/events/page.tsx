@@ -5,7 +5,7 @@ import Upcoming from '@/components/events/upcoming';
 
 export default function Event(){
     return (
-        <div>
+        <div className='font-poppins'>
             <EventHero />
             <Upcoming />
         </div>
