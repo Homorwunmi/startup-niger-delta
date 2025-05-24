@@ -6,7 +6,7 @@ import NewOtherNew from '@/components/news/other-new';
 
 export default function News() {
     return (
-        <div>
+        <div className='font-poppins'>
             <NewHero />
             <NewUpcoming />
             <NewOtherNew />
