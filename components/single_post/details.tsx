@@ -40,7 +40,7 @@ export default function Details() {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover"
           />
-          </div>
+        </div>
 
         {/* Body Text */}
         <div>
@@ -76,52 +76,59 @@ export default function Details() {
             pulvinar.
           </p>
 
-          <h2 className="text-2xl font-semibold mt-5 text-[#153230]">TWO COLUMNS TEXT</h2>
+          <h2 className="text-2xl font-semibold mt-5 text-[#153230]">
+            TWO COLUMNS TEXT
+          </h2>
           <p className="text-[15px] text-[#153230] font-poppins font-normal mt-5">
             Et integer vehicula amet enim vestibulum donec mauris. Nisi eget
             fames nam pharetra massa. Velit adipiscing nunc vitae iaculis
             maecenas volutpat. Adipiscing non odio sed sed massa et. Augue
-            placerat congue aliquam pulvinar sed amet sapien nunc urna. Magna
-            in ut ultrices lectus vitae sem dictum dignissim. Purus sit
-            vestibulum aenean facilisis. Etiam semper netus id porta lectus.
-            Mattis mattis pharetra lacus nam erat. Quis arcu tristique sociis
-            lectus. Tempus at ut placerat purus. Bibendum orci vel enim sit.
-            Elit velit mauris mattis pharetra sagittis nisi lacus volutpat
-            lorem. Eu pretium odio ac duis amet lectus semper. In sed risus
-            euismod eros quis. Lacinia sit eget non pretium egestas sed nunc
-            pretium posuere. Ultrices sit ut ullamcorper fringilla. Adipiscing
-            turpis viverra massa tellus enim a vitae egestas.
+            placerat congue aliquam pulvinar sed amet sapien nunc urna. Magna in
+            ut ultrices lectus vitae sem dictum dignissim. Purus sit vestibulum
+            aenean facilisis. Etiam semper netus id porta lectus. Mattis mattis
+            pharetra lacus nam erat. Quis arcu tristique sociis lectus. Tempus
+            at ut placerat purus. Bibendum orci vel enim sit. Elit velit mauris
+            mattis pharetra sagittis nisi lacus volutpat lorem. Eu pretium odio
+            ac duis amet lectus semper. In sed risus euismod eros quis. Lacinia
+            sit eget non pretium egestas sed nunc pretium posuere. Ultrices sit
+            ut ullamcorper fringilla. Adipiscing turpis viverra massa tellus
+            enim a vitae egestas.
           </p>
         </div>
         <div>
-      <h2 className="text-xl font-semibold text-[#153230] font-poppins mt-4 mb-3">
-        UNORDERED LIST
-      </h2>
+          <h2 className="text-xl font-semibold text-[#153230] font-poppins mt-4 mb-3">
+            UNORDERED LIST
+          </h2>
 
-      <p className="text-[15px] text-[#153230] font-poppins font-normal mb-4 leading-relaxed">
-        Lorem Ipsum mattis amet lacus suspendisse sagittis. A in aliquam euismod
-        velit. Libero venenatis dapibus nunc non turpis porttitor. Netus ultrices
-        cursus sit viverra fermentum quis. Tristique dolor velit vulputate id eu
-        adipiscing. Faucibus nisl sit pretium netus massa eros.
-      </p>
+          <p className="text-[15px] text-[#153230] font-poppins font-normal mb-4 leading-relaxed">
+            Lorem Ipsum mattis amet lacus suspendisse sagittis. A in aliquam
+            euismod velit. Libero venenatis dapibus nunc non turpis porttitor.
+            Netus ultrices cursus sit viverra fermentum quis. Tristique dolor
+            velit vulputate id eu adipiscing. Faucibus nisl sit pretium netus
+            massa eros.
+          </p>
 
-      <ul className="list-disc pl-5 text-[15px] text-[#153230] font-poppins font-normal leading-relaxed space-y-1">
-        <li>Mattis amet lacus suspendisse sagittis. A in aliquam euismod velit.</li>
-        <li>
-          Tristique dolor velit vulputate id eu adipiscing. Faucibus nisl sit pretium
-          netus massa eros.
-        </li>
-        <li>Netus ultrices cursus sit viverra fermentum quis.</li>
-        <li>
-          Etiam semper netus id porta lectus. Mattis mattis pharetra lacus nam erat.
-        </li>
-        <li>Erat egestas aliquam sed aliquet dis.</li>
-        <li>
-          Faucibus nisl sit pretium netus massa eros. Eget tempor mattis id viverra
-          sit velit duis aliquam.
-        </li>
-      </ul>
-    </div>
+          <ul className="list-disc pl-5 text-[15px] text-[#153230] font-poppins font-normal leading-relaxed space-y-1">
+            <li>
+              Mattis amet lacus suspendisse sagittis. A in aliquam euismod
+              velit.
+            </li>
+            <li>
+              Tristique dolor velit vulputate id eu adipiscing. Faucibus nisl
+              sit pretium netus massa eros.
+            </li>
+            <li>Netus ultrices cursus sit viverra fermentum quis.</li>
+            <li>
+              Etiam semper netus id porta lectus. Mattis mattis pharetra lacus
+              nam erat.
+            </li>
+            <li>Erat egestas aliquam sed aliquet dis.</li>
+            <li>
+              Faucibus nisl sit pretium netus massa eros. Eget tempor mattis id
+              viverra sit velit duis aliquam.
+            </li>
+          </ul>
+        </div>
       </div>
 
       {/* Sidebar */}
