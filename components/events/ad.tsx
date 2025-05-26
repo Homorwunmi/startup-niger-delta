@@ -9,11 +9,10 @@ interface SocialIcon {
 const socialIcons: SocialIcon[] = [
   { src: '/events/facebook.svg' },
   { src: '/events/twitter.svg' },
-  { src: '/events/youtube.svg' },
+  { src: '/events/youtube.svg' }, 
   { src: '/events/instagram.svg' },
 ];
-
-export default function RightSidebar(): JSX.Element {
+export default  function RightSidebar() { 
   return (
     <div className="w-full flex flex-col items-center mb-8 px-4 sm:px-0">
       {/* Search Box */}
@@ -119,3 +118,4 @@ export default function RightSidebar(): JSX.Element {
     </div>
   );
 }
+

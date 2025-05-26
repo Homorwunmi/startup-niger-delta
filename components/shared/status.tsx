@@ -2,7 +2,7 @@ import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { JSX, useCallback } from 'react';
 import { IoMdCheckmark } from 'react-icons/io';
 
-function Circle({ prop }: { prop: number }): JSX.Element {
+function Circle({ prop }: { prop: number }){
   const { range } = useOnboardContext();
 
   function bgColor(propNum: number): string {
@@ -25,7 +25,7 @@ function StatusBar({
   getStatusBarWidth,
 }: {
   getStatusBarWidth: () => void;
-}): JSX.Element {
+}){
   return (
     <div className="w-64 relative">
       <div className="border-2 border-light-custom-green-1 w-full absolute top-0 left-0" />
@@ -36,7 +36,7 @@ function StatusBar({
   );
 }
 
-function Status(): JSX.Element {
+function Status(){
   const { range } = useOnboardContext();
 
   const getStatusBarWidthFirst = useCallback(() => {

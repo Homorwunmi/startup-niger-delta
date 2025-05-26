@@ -49,7 +49,7 @@ const articles: Record<Tabs, Article[]> = {
   ],
 };
 
-export default function TabbedArticles(): JSX.Element {
+export default function TabbedArticles() {
   const [activeTab, setActiveTab] = useState<Tabs>('popular');
 
   return (
@@ -59,7 +59,8 @@ export default function TabbedArticles(): JSX.Element {
         {/* Tabs */}
         <div className="flex justify-between text-[#153230] border-b text-base font-normal border-gray-200 mb-4">
           {(['Popular', 'Most Viewed'] as const).map((tabLabel) => {
-            const tabKey: Tabs = tabLabel === 'Popular' ? 'popular' : 'mostViewed';
+            const tabKey: Tabs =
+              tabLabel === 'Popular' ? 'popular' : 'mostViewed';
             return (
               <button
                 key={tabLabel}

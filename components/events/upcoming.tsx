@@ -12,13 +12,17 @@ export default function Upcoming() {
         {/* Heading and Share Button */}
         <div className="flex sm:flex-row justify-between items-start sm:items-center mt-7 border-b pb-3 mb-6 relative gap-3">
           <div className="relative">
-            <h2 className="font-semibold text-xl sm:text-2xl uppercase">Upcoming</h2>
+            <h2 className="font-semibold text-xl sm:text-2xl uppercase">
+              Upcoming
+            </h2>
             <div className="absolute bottom-[-10px] left-0 w-20 sm:w-28 border-b-8 border-[#FFA500]" />
           </div>
 
           <div className="flex items-center gap-2">
             <Image src="/events/share.svg" alt="Share" width={20} height={20} />
-            <p className="text-sm sm:text-base font-medium text-[#153230]">Share</p>
+            <p className="text-sm sm:text-base font-medium text-[#153230]">
+              Share
+            </p>
           </div>
         </div>
 
@@ -47,9 +51,15 @@ export default function Upcoming() {
                 <div className="absolute left-0 bottom-0 h-8 border-l-8 border-[#FFA500]" />
               </div>
               <div className="flex flex-col ml-4">
-                <p className="text-[#153230] text-2xl sm:text-3xl font-medium mb-1">6</p>
-                <p className="text-sm font-medium text-[#153230]">January 2024</p>
-                <p className="text-sm font-medium text-[#153230]">12:00-14:00</p>
+                <p className="text-[#153230] text-2xl sm:text-3xl font-medium mb-1">
+                  6
+                </p>
+                <p className="text-sm font-medium text-[#153230]">
+                  January 2024
+                </p>
+                <p className="text-sm font-medium text-[#153230]">
+                  12:00-14:00
+                </p>
               </div>
             </div>
 
@@ -70,10 +80,12 @@ export default function Upcoming() {
           {/* Description */}
           <div className="w-full">
             <p className="text-[15px] font-medium text-[#153230] mb-5">
-              Join us for lunch with Elon Musk, Head of Investment and Compliance at NDS,
-              and Olu Davids, Director at Finance Procurement. This session covers a broad
-              overview of your responsibilities as a trustee and the opportunities of bespoke
-              investment solutions, designed to help you further your organization purpose.
+              Join us for lunch with Elon Musk, Head of Investment and
+              Compliance at NDS, and Olu Davids, Director at Finance
+              Procurement. This session covers a broad overview of your
+              responsibilities as a trustee and the opportunities of bespoke
+              investment solutions, designed to help you further your
+              organization purpose.
             </p>
             <p className="text-[15px] font-medium text-[#E64522] italic mb-2">
               To be a guest, a speaker or an exhibitor

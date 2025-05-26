@@ -14,7 +14,7 @@ const socialIcons: SocialIcon[] = [
   { src: '/events/instagram.svg' },
 ];
 
-export default function RightSidebar(): JSX.Element {
+export default function RightSidebar(){
   return (
     <div className="w-full flex flex-col items-center mt-8">
       <div className="w-full max-w-sm overflow-hidden rounded-l-2xl mb-20 border border-[#CFE3D4] flex">
@@ -77,7 +77,6 @@ export default function RightSidebar(): JSX.Element {
       </button>
 
       </div> */}
-
     </div>
   );
 }

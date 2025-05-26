@@ -14,8 +14,8 @@ function BlogCard({ post }: { post: BlogPost }) {
   return (
     <article className=" overflow-hidden ">
       <h3 className="text-base font-semibold text-[#153230] mb-3 leading-snug">
-          {post.title}
-        </h3>
+        {post.title}
+      </h3>
       <div className="relative h-44 w-full">
         <Image
           src={post.image}
@@ -27,8 +27,6 @@ function BlogCard({ post }: { post: BlogPost }) {
       </div>
 
       <div className="p-6">
-       
-
         <div className="flex items-center gap-6 mb-3 text-sm text-gray-500">
           <span className="flex items-center gap-1">
             📅 <span>{post.date}</span>
@@ -83,78 +81,85 @@ export default function OtherNews() {
   const politicsPosts: BlogPost[] = [
     {
       id: 1,
-      title: "How political collaboration shapes modern governance",
-      date: "Jan 6, 2024",
-      readTime: "3 min read",
-      excerpt: "Political discourse and bipartisan cooperation in modern times.",
-      image: "/new/balls.png",
-      imageAlt: "Political meeting with collaboration",
+      title: 'How political collaboration shapes modern governance',
+      date: 'Jan 6, 2024',
+      readTime: '3 min read',
+      excerpt:
+        'Political discourse and bipartisan cooperation in modern times.',
+      image: '/new/balls.png',
+      imageAlt: 'Political meeting with collaboration',
     },
     {
       id: 2,
-      title: "Understanding electoral systems and democracy",
-      date: "Jan 5, 2024",
-      readTime: "4 min read",
-      excerpt: "Exploring voting systems and how they influence democratic outcomes.",
-      image: "/new/groups.png",
-      imageAlt: "Democratic voting process",
+      title: 'Understanding electoral systems and democracy',
+      date: 'Jan 5, 2024',
+      readTime: '4 min read',
+      excerpt:
+        'Exploring voting systems and how they influence democratic outcomes.',
+      image: '/new/groups.png',
+      imageAlt: 'Democratic voting process',
     },
-     {
+    {
       id: 3,
-      title: "Understanding electoral systems and democracy",
-      date: "Jan 5, 2024",
-      readTime: "4 min read",
-      excerpt: "Exploring voting systems and how they influence democratic outcomes.",
-      image: "/new/plane.png",
-      imageAlt: "Democratic voting process",
+      title: 'Understanding electoral systems and democracy',
+      date: 'Jan 5, 2024',
+      readTime: '4 min read',
+      excerpt:
+        'Exploring voting systems and how they influence democratic outcomes.',
+      image: '/new/plane.png',
+      imageAlt: 'Democratic voting process',
     },
-     {
+    {
       id: 4,
-      title: "Understanding electoral systems and democracy",
-      date: "Jan 5, 2024",
-      readTime: "4 min read",
-      excerpt: "Exploring voting systems and how they influence democratic outcomes.",
-      image: "/new/vr.png",
-      imageAlt: "Democratic voting process",
+      title: 'Understanding electoral systems and democracy',
+      date: 'Jan 5, 2024',
+      readTime: '4 min read',
+      excerpt:
+        'Exploring voting systems and how they influence democratic outcomes.',
+      image: '/new/vr.png',
+      imageAlt: 'Democratic voting process',
     },
   ];
 
   const opinionPosts: BlogPost[] = [
     {
       id: 3,
-      title: "How collaboration makes us better business people",
-      date: "Jan 6, 2024",
-      readTime: "2 min read",
-      excerpt: "Collaboration fosters innovation and leadership in the workplace.",
-      image: "/new/table.png",
-      imageAlt: "Brain illustration with collaboration nodes",
+      title: 'How collaboration makes us better business people',
+      date: 'Jan 6, 2024',
+      readTime: '2 min read',
+      excerpt:
+        'Collaboration fosters innovation and leadership in the workplace.',
+      image: '/new/table.png',
+      imageAlt: 'Brain illustration with collaboration nodes',
     },
     {
       id: 4,
-      title: "The future of remote work and productivity",
-      date: "Jan 4, 2024",
-      readTime: "5 min read",
-      excerpt: "Trends in remote work and their impact on business outcomes.",
-      image: "/new/cicrle.png",
-      imageAlt: "Remote worker at desk",
+      title: 'The future of remote work and productivity',
+      date: 'Jan 4, 2024',
+      readTime: '5 min read',
+      excerpt: 'Trends in remote work and their impact on business outcomes.',
+      image: '/new/cicrle.png',
+      imageAlt: 'Remote worker at desk',
     },
-     {
+    {
       id: 3,
-      title: "Understanding electoral systems and democracy",
-      date: "Jan 5, 2024",
-      readTime: "4 min read",
-      excerpt: "Exploring voting systems and how they influence democratic outcomes.",
-      image: "/new/phone.png",
-      imageAlt: "Democratic voting process",
+      title: 'Understanding electoral systems and democracy',
+      date: 'Jan 5, 2024',
+      readTime: '4 min read',
+      excerpt:
+        'Exploring voting systems and how they influence democratic outcomes.',
+      image: '/new/phone.png',
+      imageAlt: 'Democratic voting process',
     },
-     {
+    {
       id: 4,
-      title: "Understanding electoral systems and democracy",
-      date: "Jan 5, 2024",
-      readTime: "4 min read",
-      excerpt: "Exploring voting systems and how they influence democratic outcomes.",
-      image: "/new/mat.png",
-      imageAlt: "Democratic voting process",
+      title: 'Understanding electoral systems and democracy',
+      date: 'Jan 5, 2024',
+      readTime: '4 min read',
+      excerpt:
+        'Exploring voting systems and how they influence democratic outcomes.',
+      image: '/new/mat.png',
+      imageAlt: 'Democratic voting process',
     },
   ];
 
