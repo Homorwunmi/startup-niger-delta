@@ -1,8 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-export PATH="/opt/homebrew/bin:$PATH"
-
 spinner() {
   local pid=$!
   local delay=0.1
