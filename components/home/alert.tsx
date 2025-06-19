@@ -23,7 +23,8 @@ function SplideCenterMode() {
     focus: 'center',
     perPage: 3,
     gap: '1rem',
-    padding: '1rem',
+    padding: '1.7rem',
+    margin: '1rem',
     arrows: true,
     pagination: true,
     // autoplay: true,
@@ -32,6 +33,14 @@ function SplideCenterMode() {
     breakpoints: {
       800: {
         perPage: 1,
+        width: '100%',
+      },
+      1200: {
+        perPage: 3,
+        width: '100%',
+      },
+      1400: {
+        perPage: 3,
         width: '100%',
       },
     },

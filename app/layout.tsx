@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import type { Metadata } from 'next';
 import './globals.css';
 import { Inter } from 'next/font/google';
 import Navbar from '@/components/shared/navbar';
@@ -13,11 +12,6 @@ const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
 });
-
-const metadata: Metadata = {
-  title: 'Startup Niger Delta',
-  description: 'The next tech evolution...',
-};
 
 export default function RootLayout({
   children,
@@ -31,14 +25,17 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
         <OnboardingProvider>
-          {showNavFooter ? (
+          {pathname.includes('dashboard') ||
+          pathname.includes('onboarding') ||
+          pathname.includes('sign-up') ||
+          pathname.includes('login') ? (
+            <main>{children}</main>
+          ) : (
             <>
               <Navbar />
               {children}
               <Footer />
             </>
-          ) : (
-            <main>{children}</main>
           )}
         </OnboardingProvider>
       </body>
