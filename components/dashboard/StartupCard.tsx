@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { cn } from '@/lib/utils';
 import {
   Card,
@@ -109,9 +108,9 @@ type CardProps = React.ComponentProps<typeof Card>;
 export function StartupCard({ className }: CardProps) {
   return (
     <section className="font-inter grid grid-cols-4 gap-5 w-full">
-      {Startups.map((card) => (
+      {Startups.map((card, index) => (
         <Card
-          key={card.title}
+          key={index}
           className={cn('w-[270px] border-none font-inter py-5', className)}
         >
           <CardHeader

@@ -7,7 +7,27 @@ import {
   sendPasswordResetEmail,
   GoogleAuthProvider,
   signInWithPopup,
+  UserCredential,
+  UserInfo,
 } from 'firebase/auth';
+
+interface ExtendedUserCredential extends UserCredential {
+  _tokenResponse?: {
+    idToken: string;
+    refreshToken: string;
+    expiresIn: string;
+  };
+}
+interface User extends UserInfo {
+  user?: {
+    uid: string;
+    email: string | null;
+    displayName: string | null;
+    photoURL: string | null;
+    emailVerified: boolean;
+    accessToken?: string;
+  };
+}
 
 import { auth } from '../config';
 
@@ -18,7 +38,9 @@ async function registerUser(email: string, password: string) {
       email,
       password
     );
-    return userCredential.user;
+    const data = userCredential as User & ExtendedUserCredential;
+    console.log(data);
+    return data;
   } catch (error) {
     throw error;
   }
@@ -43,7 +65,8 @@ async function loginUser(email: string, password: string) {
       email,
       password
     );
-    return userCredential.user;
+    const data = userCredential as User & ExtendedUserCredential;
+    return data;
   } catch (error) {
     throw error;
   }

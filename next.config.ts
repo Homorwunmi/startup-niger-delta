@@ -7,10 +7,7 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
-  transpilePackages: [
-    '@radix-ui/react-dialog',
-    '@radix-ui/react-accordion',
-  ],
+  transpilePackages: ['@radix-ui/react-dialog', '@radix-ui/react-accordion'],
   images: {
     domains: ['nigerdeltastartup.firebasestorage.app'],
   },
