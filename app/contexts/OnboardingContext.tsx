@@ -4,7 +4,7 @@
 
 import { startData } from '@/lib/onboardingData';
 import { ActiveTab, StartupInitialData } from '@/types/Onboarding';
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useMemo } from 'react';
 
 interface IsNextType {
   pathname: string;
@@ -48,7 +48,7 @@ export function OnboardingProvider({
   });
   const [range, setRange] = useState<number>(0);
 
-  const contextValue = React.useMemo(
+  const contextValue = useMemo(
     () => ({
       range,
       setRange,
