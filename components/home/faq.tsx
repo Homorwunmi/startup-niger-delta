@@ -18,7 +18,7 @@ import {
 
 export default function FrequentlyAsked(): React.JSX.Element {
   return (
-    <section className="text-white relative">
+    <section className="text-white relative" id="faq">
       <div
         className="bg-custom-green w-full h-96 absolute top-0 -z-10"
         style={{

@@ -132,7 +132,7 @@ function SplideCenterMode() {
 
 export default function Alert(): React.JSX.Element {
   return (
-    <section className="p-5 lg:p-20 bg-gray-200">
+    <section className="p-5 lg:p-20 bg-gray-200" id="funding">
       <div className="flex flex-col items-center gap-8 relative 2xl:container 2xl:mx-auto">
         <h2 className="text-xl lg:text-6xl font-medium font-poppins flex flex-col items-center gap-6">
           <span>Funding Alerts.</span>

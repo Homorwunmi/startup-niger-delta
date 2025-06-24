@@ -142,6 +142,10 @@ body {
   @apply font-inter;
 }
 
+html {
+  @apply scroll-smooth;
+}
+
 .custom-input:focus {
   box-shadow: none;
 }

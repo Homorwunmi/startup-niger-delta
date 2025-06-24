@@ -19,7 +19,7 @@ export default function Navbar() {
 
         <NavigationMenuItem className="hidden lg:flex items-center gap-8 text-custom-green">
           <NavigationMenuLink
-            href="/home"
+            href="/"
             className="hover:bg-transparent p-0 2xl:!text-2xl"
           >
             Home
@@ -39,7 +39,10 @@ export default function Navbar() {
           <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-2xl">
             <Link href="/events">Events</Link>
           </NavigationMenuLink>
-          <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-2xl">
+          <NavigationMenuLink
+            href="/#faq"
+            className="hover:bg-transparent p-0 2xl:!text-2xl"
+          >
             FAQ
           </NavigationMenuLink>
         </NavigationMenuItem>

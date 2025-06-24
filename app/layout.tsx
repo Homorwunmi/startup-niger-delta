@@ -5,8 +5,9 @@ import { Inter } from 'next/font/google';
 import Navbar from '@/components/shared/navbar';
 import Footer from '@/components/shared/footer';
 import { usePathname } from 'next/navigation';
-import { OnboardingProvider } from './contexts/OnboardingContext';
 import { Toaster } from '@/components/ui/sonner';
+import React from 'react';
+import { OnboardingProvider } from './contexts/OnboardingContext';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -19,10 +20,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  const showNavFooter = ['dashboard'].some((path) => pathname.includes(path));
+  // const showNavFooter = ['dashboard'].some((path) => pathname.includes(path));
 
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="icon"
+          href="/images/Logo.svg"
+          type="image/svg+xml"
+          sizes="400*400"
+        />
+      </head>
       <body className={`${inter.variable} antialiased`}>
         <Toaster position="top-right" richColors />
         <OnboardingProvider>
