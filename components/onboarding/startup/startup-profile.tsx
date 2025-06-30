@@ -2,22 +2,21 @@
 
 'use client';
 
+import { useCallback, useEffect, useState } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
-import { useCallback, useEffect } from 'react';
+import { startupCompanyProfileSchema } from '@/helpers/validation';
+import { StartupInitialType } from '@/types/Onboarding';
 import { Textarea } from '../../ui/textarea';
 import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import StartupInfo from './startup-info';
-import { startupCompanyProfileSchema } from '@/helpers/validation';
-import { useState } from 'react';
-import { StartupInitialType } from '@/types/Onboarding';
 
 export default function StartupProfile() {
   const {
     setRange,
     setActiveTab,
-    state,
+    // state,
     dispatch,
     setIsNext,
     setError,
@@ -68,11 +67,20 @@ export default function StartupProfile() {
       src: '/angel/bgTrailer2.svg',
     });
 
-    setIsNext({
+    return setIsNext({
       pathname: '/onboarding/startup',
       title: 'Contact Info',
     });
-  }, [setRange, setActiveTab, setIsNext]);
+  }, [
+    setRange,
+    setActiveTab,
+    setIsNext,
+    data.success,
+    data.error?.errors,
+    dispatch,
+    setError,
+    startupProfileData,
+  ]);
 
   return (
     <form className="w-full" style={{ height: '100%' }}>
