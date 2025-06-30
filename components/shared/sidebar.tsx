@@ -16,15 +16,15 @@ export default function Sidebar({ sidebarItems, value }: SidebarProps) {
   const { range, setRange, activeTab, setActiveTab, isNext } =
     useOnboardContext();
   const pathname = usePathname();
-
   function handleChange(
     title: string,
     Component: React.JSX.Element,
     src: string,
     number: number
   ) {
-    // if (!isNext) return;
-
+    if (!isNext) {
+      return;
+    }
     setActiveTab({
       title,
       Component,
@@ -106,6 +106,7 @@ export default function Sidebar({ sidebarItems, value }: SidebarProps) {
                       value="startup"
                       id="startup"
                       checked={pathname === '/onboarding/startup'}
+                      className="cursor-pointer"
                     />
                     <Label htmlFor="startup">Startup</Label>
                   </Link>
@@ -121,6 +122,7 @@ export default function Sidebar({ sidebarItems, value }: SidebarProps) {
                       value="angel-investor"
                       id="angel-investor"
                       checked={pathname === '/onboarding/angel-investor'}
+                      className="cursor-pointer"
                     />
                     <Label htmlFor="angel-investor">Angel Investor</Label>
                   </Link>
@@ -136,6 +138,7 @@ export default function Sidebar({ sidebarItems, value }: SidebarProps) {
                       value="venture-capitalist"
                       id="venture-capitalist"
                       checked={pathname === '/onboarding/venture-capitalist'}
+                      className="cursor-pointer"
                     />
                     <Label htmlFor="venture-capitalist">
                       Venture Capitalist
@@ -153,6 +156,7 @@ export default function Sidebar({ sidebarItems, value }: SidebarProps) {
                       value="accelerator"
                       id="accelerator"
                       checked={pathname === '/onboarding/accelerator'}
+                      className="cursor-pointer"
                     />
                     <Label htmlFor="accelerator">
                       Accelerators, Innovation Hubs & Incubators

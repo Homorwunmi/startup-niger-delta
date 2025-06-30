@@ -9,10 +9,31 @@ import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import StartupInfo from './startup-info';
+import { startupCompanyProfileSchema } from '@/helpers/validation';
+import { useState } from 'react';
+import { StartupInitialType } from '@/types/Onboarding';
 
 export default function StartupProfile() {
-  const { setRange, setActiveTab, setStartupData, startupData, setIsNext } =
-    useOnboardContext();
+  const {
+    setRange,
+    setActiveTab,
+    state,
+    dispatch,
+    setIsNext,
+    setError,
+    error,
+  } = useOnboardContext();
+
+  const [startupProfileData, setStartupProfileData] = useState<
+    Partial<StartupInitialType>
+  >({
+    companyName: '',
+    incorporation: '',
+    rcNumber: '',
+    industry: '',
+    description: '',
+    fundingInterest: '',
+  });
 
   useEffect(() => {
     setIsNext({
@@ -21,15 +42,24 @@ export default function StartupProfile() {
     });
   }, [setIsNext]);
 
-  const isNext =
-    startupData.companyName &&
-    startupData.incorporation &&
-    startupData.rcNumber &&
-    startupData.industry &&
-    startupData.description &&
-    startupData.fundingInterest;
+  const data = startupCompanyProfileSchema.safeParse({
+    companyName: startupProfileData.companyName,
+    incorporation: startupProfileData.incorporation,
+    rcNumber: startupProfileData.rcNumber,
+    industry: startupProfileData.industry,
+    description: startupProfileData.description,
+    fundingInterest: startupProfileData.fundingInterest,
+  });
 
   const handleNext = useCallback(() => {
+    if (!data.success)
+      return setError(data.error.errors.map((err) => err.message).join(', '));
+
+    dispatch({
+      type: 'UPDATE_COMPANY_PROFILE',
+      ...startupProfileData,
+    });
+
     setRange(1);
 
     setActiveTab({
@@ -59,13 +89,13 @@ export default function StartupProfile() {
             id="companyName"
             name="companyName"
             placeholder="Registered name"
-            value={startupData.companyName}
-            onChange={(e) =>
-              setStartupData((item) => ({
-                ...item,
+            value={startupProfileData.companyName}
+            onChange={(e) => {
+              setStartupProfileData((prev) => ({
+                ...prev,
                 companyName: e.target.value,
-              }))
-            }
+              }));
+            }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -80,10 +110,10 @@ export default function StartupProfile() {
             type="text"
             id="Industry"
             placeholder="Enter year of incorporation"
-            value={startupData.incorporation}
+            value={startupProfileData.incorporation}
             onChange={(e) =>
-              setStartupData((item) => ({
-                ...item,
+              setStartupProfileData((prev) => ({
+                ...prev,
                 incorporation: e.target.value,
               }))
             }
@@ -101,10 +131,10 @@ export default function StartupProfile() {
             type="text"
             id="rcNumber"
             placeholder="Your solution in one sentence"
-            value={startupData.rcNumber}
+            value={startupProfileData.rcNumber}
             onChange={(e) =>
-              setStartupData((item) => ({
-                ...item,
+              setStartupProfileData((prev) => ({
+                ...prev,
                 rcNumber: e.target.value,
               }))
             }
@@ -122,10 +152,10 @@ export default function StartupProfile() {
             type="text"
             id="industry"
             placeholder="Select your Industry"
-            value={startupData.industry}
+            value={startupProfileData.industry}
             onChange={(e) =>
-              setStartupData((item) => ({
-                ...item,
+              setStartupProfileData((prev) => ({
+                ...prev,
                 industry: e.target.value,
               }))
             }
@@ -142,10 +172,10 @@ export default function StartupProfile() {
           <Textarea
             id="startup-description"
             placeholder="Solution"
-            value={startupData.description}
+            value={startupProfileData.description}
             onChange={(e) =>
-              setStartupData((item) => ({
-                ...item,
+              setStartupProfileData((prev) => ({
+                ...prev,
                 description: e.target.value,
               }))
             }
@@ -163,32 +193,30 @@ export default function StartupProfile() {
             type="text"
             id="fundingInterest"
             placeholder="Investment Interest"
-            value={startupData.fundingInterest}
-            onChange={(e) =>
-              setStartupData((item) => ({
-                ...item,
+            value={startupProfileData.fundingInterest}
+            onChange={(e) => {
+              setStartupProfileData((prev) => ({
+                ...prev,
                 fundingInterest: e.target.value,
-              }))
-            }
+              }));
+              // setTouched((prev) => ({ ...prev, fundingInterest: true }));
+            }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
 
         <div className="col-span-2 flex items-end justify-between w-full mt-auto">
-          <p className="text-custom-orange">
-            *You must fill in all field to be able to continue
-          </p>
+          <p className="text-custom-orange">{error}</p>
           <div className="flex gap-3">
             <Button
               type="button"
-              className="px-10 bg-gray-200 hover:bg-gray-200"
+              className="px-10 bg-gray-200 hover:bg-gray-200 cursor-pointer"
             >
               Back
             </Button>
             <Button
               type="button"
-              disabled={!isNext}
-              className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
+              className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
               onClick={handleNext}
             >
               Next

@@ -1,4 +1,4 @@
-export const startData = {
+export const initialStartData = {
   companyName: '',
   incorporation: '',
   rcNumber: '',
@@ -14,6 +14,6 @@ export const startData = {
   founderAddress: '',
   founderMobile: '',
   founderNo: '',
-  certificate: new FormData(),
+  certificate: new File([''], 'certificate.png', { type: 'image/png' }),
   logo: new File([''], 'logo.png', { type: 'image/png' }),
 };

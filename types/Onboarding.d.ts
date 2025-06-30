@@ -27,7 +27,7 @@ export interface ActiveTab {
   src: string;
 }
 
-export interface StartupInitialData {
+export interface StartupInitialType {
   companyName: string;
   incorporation: string;
   rcNumber: string;
@@ -43,6 +43,6 @@ export interface StartupInitialData {
   founderAddress: string;
   founderMobile: string;
   founderNo: string;
-  certificate: FormData;
+  certificate: File;
   logo: File;
 }

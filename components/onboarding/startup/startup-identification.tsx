@@ -11,10 +11,20 @@ import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import StartupFounder from './startup-founder';
+import { startupIdentitySchema } from '@/helpers/validation';
 
 export default function StartupIdentity() {
-  const { setRange, setActiveTab, setStartupData, setIsNext } =
-    useOnboardContext();
+  const {
+    setRange,
+    setActiveTab,
+    dispatch,
+    state,
+    setIsNext,
+    setError,
+    error,
+  } = useOnboardContext();
+  const [logo, setLogo] = React.useState<string | null>(null);
+  const [fileName, setFileName] = React.useState<string | null>(null);
 
   useEffect(() => {
     setIsNext({
@@ -26,19 +36,40 @@ export default function StartupIdentity() {
   const handleFileChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { files } = e.target;
-      const formData = new FormData();
+      const file = files?.[0];
+      if (!file) return;
+      setFileName(file.name);
+      if (files && files.length > 0) {
+        dispatch({
+          type: 'UPDATE_STARTUP_PROOF',
+          certificate: file,
+        });
+      }
+      setError(null);
+    },
+    [dispatch]
+  );
 
-      if (files && files[0]) {
-        formData.append('file', files[0]);
-
-        setStartupData((prev) => ({
-          ...prev,
-          certificate: formData,
-        }));
+  const handleLogoChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { files } = e.target;
+      if (!files || files.length === 0) return;
+      const file = files[0];
+      setLogo(file.name);
+      if (files && files.length > 0) {
+        dispatch({
+          type: 'UPDATE_STARTUP_PROOF',
+          logo: file,
+        });
       }
     },
-    [setStartupData]
+    [dispatch]
   );
+
+  const data = startupIdentitySchema.safeParse({
+    certificate: state.certificate,
+    logo: state.logo,
+  });
 
   const handlePrev = useCallback(() => {
     setRange(2);
@@ -77,8 +108,15 @@ export default function StartupIdentity() {
               htmlFor="cac-certificate"
               className="flex items-center justify-center gap-4 py-10 px-5 border-custom-green-2 border-2 rounded-md cursor-pointer text-gray-300"
             >
-              <RxUpload size={28} />
-              <span className="text-lg">Upload CAC Certificate</span>
+              <RxUpload
+                size={28}
+                className={`${fileName && 'text-gray-800'}`}
+              />
+              <span
+                className={`text-lg ${fileName ? 'text-gray-800' : 'text-gray-300'}`}
+              >
+                {fileName || 'Upload CAC Certificate'}
+              </span>
             </Label>
           </div>
         </div>
@@ -95,33 +133,34 @@ export default function StartupIdentity() {
               id="company-logo"
               name="company-logo"
               className="hidden"
+              onChange={handleLogoChange}
             />
             <Label
               htmlFor="company-logo"
               className="flex items-center justify-center gap-2 p-10 border-custom-green-2 border-2 rounded-md cursor-pointer text-gray-300"
             >
-              <RxUpload size={28} />
-              <span className="text-lg">Upload Company Logo</span>
+              <RxUpload size={28} className={`${logo && 'text-gray-800'}`} />
+              <span className={`text-lg ${logo && 'text-gray-800'}`}>
+                {logo || 'Upload Company Logo'}
+              </span>
             </Label>
           </div>
         </div>
       </div>
 
       <div className="col-span-2 flex items-end justify-between w-full mt-auto pb-8 px-4">
-        <p className="text-custom-orange">
-          *You must fill in all field to be able to continue
-        </p>
+        <p className="text-custom-orange">{error}</p>
         <div className="flex gap-3">
           <Button
             type="button"
             onClick={handlePrev}
-            className="px-10 bg-gray-200 hover:bg-gray-200"
+            className="px-10 bg-gray-200 hover:bg-gray-200 cursor-pointer"
           >
             Back
           </Button>
           <Button
             type="button"
-            className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
+            className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
           >
             Next
           </Button>
