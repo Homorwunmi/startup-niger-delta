@@ -6,9 +6,6 @@ import { Inter } from 'next/font/google';
 import { usePathname } from 'next/navigation';
 import Navbar from '@/components/shared/navbar';
 import Footer from '@/components/shared/footer';
-import { usePathname } from 'next/navigation';
-import { Toaster } from '@/components/ui/sonner';
-import React from 'react';
 import { Toaster } from '@/components/ui/sonner';
 import { OnboardingProvider } from './contexts/OnboardingContext';
 
