@@ -1,10 +1,14 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 
-'use client';
-
-import { startData } from '@/lib/onboardingData';
-import { ActiveTab, StartupInitialData } from '@/types/Onboarding';
-import { createContext, useContext, useState, useMemo } from 'react';
+import { initialStartData } from '@/lib/onboardingData';
+import { ActiveTab, StartupInitialType } from '@/types/Onboarding';
+import {
+  createContext,
+  useContext,
+  useState,
+  useMemo,
+  useReducer,
+} from 'react';
 
 interface IsNextType {
   pathname: string;
@@ -13,34 +17,74 @@ interface IsNextType {
 
 const OnboardContext = createContext<{
   range: number;
-  startupData: StartupInitialData;
-  setStartupData: React.Dispatch<React.SetStateAction<StartupInitialData>>;
+  state: StartupInitialType;
+  dispatch: React.ActionDispatch<
+    [action: Partial<StartupInitialType> & { type: string }]
+  >;
   setRange: React.Dispatch<React.SetStateAction<number>>;
   activeTab: ActiveTab;
   setActiveTab: React.Dispatch<React.SetStateAction<ActiveTab>>;
   isNext: IsNextType;
   setIsNext: React.Dispatch<React.SetStateAction<IsNextType>>;
+  setError: React.Dispatch<React.SetStateAction<string | null>>;
+  error: string | null;
 }>({
   range: 0,
-  startupData: startData,
+  state: initialStartData,
   activeTab: { title: '', Component: <></>, src: '' },
   isNext: { pathname: '', title: '' },
   setIsNext: () => {},
   setRange: () => {},
-  setStartupData: () => {},
+  dispatch: () => {},
   setActiveTab: () => {},
+  setError: () => {},
+  error: null,
 });
+
+function reducer(
+  state: StartupInitialType,
+  action: Partial<StartupInitialType> & { type: string }
+): StartupInitialType {
+  console.log('Reducer action:', action, state);
+  switch (action.type) {
+    case 'UPDATE_COMPANY_PROFILE':
+      return {
+        ...state,
+        ...action,
+      };
+    case 'UPDATE_CONTACT_INFO':
+      return {
+        ...state,
+        ...action,
+      };
+    case 'UPDATE_STARTUP_IDENTITY':
+      return {
+        ...state,
+        ...action,
+      };
+    case 'UPDATE_STARTUP_PROOF':
+      return {
+        ...state,
+        ...action,
+      };
+    default:
+      break;
+  }
+
+  return state;
+}
 
 export function OnboardingProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [error, setError] = useState<string | null>(null);
   const [isNext, setIsNext] = useState<IsNextType>({
     pathname: '',
     title: '',
   });
-  const [startupData, setStartupData] = useState<StartupInitialData>(startData);
+  const [state, dispatch] = useReducer(reducer, initialStartData); // startup form data
   const [activeTab, setActiveTab] = useState<ActiveTab>({
     title: '',
     Component: <></>,
@@ -56,10 +100,12 @@ export function OnboardingProvider({
       isNext,
       setIsNext,
       setActiveTab,
-      startupData,
-      setStartupData,
+      state,
+      dispatch,
+      setError,
+      error,
     }),
-    [range, activeTab, startupData, isNext]
+    [range, activeTab, state, isNext, error]
   );
 
   return (

@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 
 import { Input } from '../../ui/input';
@@ -10,10 +10,19 @@ import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import StartupFounder from './startup-founder';
 import StartupProfile from './startup-profile';
+import { startupContactInfoSchema } from '@/helpers/validation';
 
 export default function StartupInfo() {
-  const { setRange, setActiveTab, setStartupData, startupData, setIsNext } =
-    useOnboardContext();
+  const {
+    setRange,
+    setActiveTab,
+    dispatch,
+    state,
+    setIsNext,
+    setError,
+    error,
+    isNext,
+  } = useOnboardContext();
 
   useEffect(() => {
     setIsNext({
@@ -22,15 +31,31 @@ export default function StartupInfo() {
     });
   }, [setIsNext]);
 
-  const isNext =
-    startupData.companyEmail &&
-    startupData.companyWebsite &&
-    startupData.companyAddress &&
-    startupData.companyPhone;
+  const [touched, setTouched] = useState({
+    companyEmail: false,
+    companyWebsite: false,
+    companyAddress: false,
+    companyPhone: false,
+  });
+
+  const data = startupContactInfoSchema.safeParse({
+    companyEmail: state.companyEmail,
+    companyWebsite: state.companyWebsite,
+    companyAddress: state.companyAddress,
+    companyPhone: state.companyPhone,
+  });
+
+  useEffect(() => {
+    if (!touched.companyPhone) return;
+    if (data.success) {
+      setError(null);
+    } else {
+      setError(data.error.errors.map((err) => err.message).join(', '));
+    }
+  }, [data, touched.companyEmail]);
 
   const handleNext = useCallback(() => {
     setRange(2);
-
     setActiveTab({
       title: 'Founder/Co-Founder Profile',
       Component: <StartupFounder />,
@@ -45,7 +70,7 @@ export default function StartupInfo() {
 
   const handlePrev = useCallback(() => {
     setRange(0);
-
+    setError(null);
     setActiveTab({
       title: 'Company Profile',
       Component: <StartupProfile />,
@@ -73,12 +98,12 @@ export default function StartupInfo() {
             id="company-email"
             name="compnayName"
             placeholder="username@domain.com"
-            value={startupData.companyEmail}
+            value={state.companyEmail}
             onChange={(e) => {
-              setStartupData((item) => ({
-                ...item,
+              dispatch({
+                type: 'UPDATE_CONTACT_INFO',
                 companyEmail: e.target.value,
-              }));
+              });
             }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
@@ -94,12 +119,12 @@ export default function StartupInfo() {
             type="text"
             id="website"
             placeholder="www.businessdomain.com"
-            value={startupData.companyWebsite}
+            value={state.companyWebsite}
             onChange={(e) => {
-              setStartupData((item) => ({
-                ...item,
+              dispatch({
+                type: 'UPDATE_CONTACT_INFO',
                 companyWebsite: e.target.value,
-              }));
+              });
             }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
@@ -115,12 +140,12 @@ export default function StartupInfo() {
             type="text"
             id="company-address"
             placeholder="Address information"
-            value={startupData.companyAddress}
+            value={state.companyAddress}
             onChange={(e) => {
-              setStartupData((item) => ({
-                ...item,
+              dispatch({
+                type: 'UPDATE_CONTACT_INFO',
                 companyAddress: e.target.value,
-              }));
+              });
             }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
@@ -136,12 +161,13 @@ export default function StartupInfo() {
             type="tel"
             id="phone-number"
             placeholder="+234"
-            value={startupData.companyPhone}
+            value={state.companyPhone}
             onChange={(e) => {
-              setStartupData((item) => ({
-                ...item,
+              dispatch({
+                type: 'UPDATE_CONTACT_INFO',
                 companyPhone: e.target.value,
-              }));
+              });
+              setTouched((prev) => ({ ...prev, companyPhone: true }));
             }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
@@ -149,22 +175,20 @@ export default function StartupInfo() {
       </div>
 
       <div className="col-span-2 flex items-end justify-between w-full mt-auto pb-6">
-        <p className="text-custom-orange">
-          *You must fill in all field to be able to continue
-        </p>
+        <p className="text-custom-orange">{error}</p>
         <div className="flex gap-3">
           <Button
             type="button"
             onClick={handlePrev}
-            className="px-10 bg-gray-200 hover:bg-gray-200"
+            className="px-10 bg-gray-200 hover:bg-gray-200 cursor-pointer"
           >
             Back
           </Button>
           <Button
             type="button"
             onClick={handleNext}
-            disabled={!isNext}
-            className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
+            disabled={error !== null || !isNext}
+            className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
           >
             Next
           </Button>

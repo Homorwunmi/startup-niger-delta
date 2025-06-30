@@ -1,15 +1,23 @@
 /* eslint-disable import/no-cycle */
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import StartupInfo from './startup-info';
 import StartupIdentity from './startup-identification';
+import { startupFounderInfoSchema } from '@/helpers/validation';
 
 export default function StartupFounder() {
-  const { setRange, setActiveTab, startupData, setStartupData, setIsNext } =
-    useOnboardContext();
+  const {
+    setRange,
+    setActiveTab,
+    state,
+    dispatch,
+    setIsNext,
+    setError,
+    error,
+  } = useOnboardContext();
 
   useEffect(() => {
     setIsNext({
@@ -18,12 +26,32 @@ export default function StartupFounder() {
     });
   }, [setIsNext]);
 
-  const isNext =
-    startupData.founderName &&
-    startupData.founderEmail &&
-    startupData.founderAddress &&
-    startupData.founderMobile &&
-    startupData.founderNo;
+  const [touched, setTouched] = useState({
+    founderName: false,
+    founderEmail: false,
+    founderAddress: false,
+    founderMobile: false,
+    founderNo: false,
+  });
+
+  const data = startupFounderInfoSchema.safeParse({
+    founderName: state.founderName,
+    founderEmail: state.founderEmail,
+    founderAddress: state.founderAddress,
+    founderMobile: state.founderMobile,
+    founderNo: state.founderNo,
+  });
+
+  const isNext = data.success;
+
+  useEffect(() => {
+    if (!touched.founderNo) return;
+    if (data.success) {
+      setError(null);
+    } else {
+      setError(data.error.errors.map((err) => err.message).join(', '));
+    }
+  }, [data, touched.founderNo, setError]);
 
   const handleNext = useCallback(() => {
     setRange(3);
@@ -70,12 +98,12 @@ export default function StartupFounder() {
             id="founder-name"
             name="compnayName"
             placeholder="Full name"
-            value={startupData.founderName}
+            value={state.founderName}
             onChange={(e) => {
-              setStartupData((item) => ({
-                ...item,
+              dispatch({
+                type: 'UPDATE_STARTUP_IDENTITY',
                 founderName: e.target.value,
-              }));
+              });
             }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
@@ -91,12 +119,12 @@ export default function StartupFounder() {
             type="email"
             id="founder-email"
             placeholder="username@domain.com"
-            value={startupData.founderEmail}
+            value={state.founderEmail}
             onChange={(e) => {
-              setStartupData((item) => ({
-                ...item,
+              dispatch({
+                type: 'UPDATE_STARTUP_IDENTITY',
                 founderEmail: e.target.value,
-              }));
+              });
             }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
@@ -112,12 +140,12 @@ export default function StartupFounder() {
             type="text"
             id="founder-address"
             placeholder="Address information"
-            value={startupData.founderAddress}
+            value={state.founderAddress}
             onChange={(e) => {
-              setStartupData((item) => ({
-                ...item,
+              dispatch({
+                type: 'UPDATE_STARTUP_IDENTITY',
                 founderAddress: e.target.value,
-              }));
+              });
             }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
@@ -133,12 +161,12 @@ export default function StartupFounder() {
             type="tel"
             id="founder-phone"
             placeholder="+234"
-            value={startupData.founderMobile}
+            value={state.founderMobile}
             onChange={(e) => {
-              setStartupData((item) => ({
-                ...item,
+              dispatch({
+                type: 'UPDATE_STARTUP_IDENTITY',
                 founderMobile: e.target.value,
-              }));
+              });
             }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
@@ -154,12 +182,13 @@ export default function StartupFounder() {
             type="text"
             id="founder-amount"
             placeholder="Choose number of founder"
-            value={startupData.founderNo}
+            value={state.founderNo}
             onChange={(e) => {
-              setStartupData((item) => ({
-                ...item,
+              dispatch({
+                type: 'UPDATE_STARTUP_IDENTITY',
                 founderNo: e.target.value,
-              }));
+              });
+              setTouched((prev) => ({ ...prev, founderNo: true }));
             }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
@@ -167,14 +196,12 @@ export default function StartupFounder() {
       </div>
 
       <div className="col-span-2 flex items-end justify-between w-full mt-auto pb-8 px-4">
-        <p className="text-custom-orange">
-          *You must fill in all field to be able to continue
-        </p>
+        <p className="text-custom-orange">{error}</p>
         <div className="flex gap-3">
           <Button
             type="button"
             onClick={handlePrev}
-            className="px-10 bg-gray-200 hover:bg-gray-200"
+            className="px-10 bg-gray-200 hover:bg-gray-200 cursor-pointer"
           >
             Back
           </Button>
@@ -182,7 +209,7 @@ export default function StartupFounder() {
             type="button"
             onClick={handleNext}
             disabled={!isNext}
-            className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
+            className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
           >
             Next
           </Button>

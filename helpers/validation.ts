@@ -30,3 +30,48 @@ export const loginSchema: ZodType<loginAuth> = z.object({
     .min(6, 'Password must be at least 6 characters long')
     .max(20, 'Password must not exceed 20 characters'),
 });
+
+export const startupCompanyProfileSchema = z.object({
+  companyName: z.string().min(3, 'Company name is required'),
+  incorporation: z
+    .string()
+    .min(4, 'Year of incorporation is required')
+    .max(4, 'Year of incorporation cannot be in the future')
+    .refine((value) => {
+      const currentYear = new Date().getFullYear();
+      const year = parseInt(value, 10);
+      return year >= 1900 && year <= currentYear;
+    }, 'Year of incorporation must not be greater than the current year'),
+  rcNumber: z.string().min(8, 'RC Number is required'),
+  industry: z.string().min(5, 'Industry is required'),
+  description: z.string().min(8, 'Description is required'),
+  fundingInterest: z.string().min(4, 'Funding interest is required'),
+});
+
+export const startupContactInfoSchema = z.object({
+  companyEmail: z.string().email('Invalid email address'),
+  companyWebsite: z.string().url('Invalid URL'),
+  companyAddress: z.string().min(5, 'Company address is required'),
+  companyPhone: z
+    .string()
+    .min(10, 'Company phone number must be at least 10 digits')
+    .max(14, 'Company phone number must not exceed 14 digits'),
+});
+
+export const startupFounderInfoSchema = z.object({
+  founderName: z.string().min(3, 'Founder name is required'),
+  founderEmail: z.string().email('Invalid email address'),
+  founderAddress: z.string().min(5, 'Founder address is required'),
+  founderMobile: z
+    .string()
+    .min(10, 'Founder mobile number must be at least 10 digits')
+    .max(14, 'Founder mobile number must not exceed 14 digits'),
+  founderNo: z.string().min(1, 'Number of founders is required'),
+});
+
+export const startupIdentitySchema = z.object({
+  certificate: z
+    .instanceof(File)
+    .refine((file) => file.size > 0, 'Certificate is required'),
+  logo: z.instanceof(File).refine((file) => file.size > 0, 'Logo is required'),
+});
