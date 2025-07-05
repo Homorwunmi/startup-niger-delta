@@ -63,13 +63,15 @@ export default function Footer() {
               <Image src={Arrow} alt="arrow-icon" />
               <span>Event</span>
             </li>
-            <li className="flex items-center gap-3">
-              <Image src={Arrow} alt="arrow-icon" />
-              <span>Funding</span>
+            <li>
+              <Link href="/#funding" className="flex items-center gap-3">
+                <Image src={Arrow} alt="arrow-icon" />
+                <span>Funding</span>
+              </Link>
             </li>
             <li className="flex items-center gap-3">
               <Image src={Arrow} alt="arrow-icon" />
-              <span>Funding Blog</span>
+              <span>Latest Blog</span>
             </li>
           </ul>
         </section>

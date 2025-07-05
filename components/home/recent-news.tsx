@@ -16,6 +16,7 @@ import Slider from 'react-slick';
 
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import Link from 'next/link';
 
 function MobileCarousel() {
   const settings = {
@@ -151,12 +152,13 @@ export default function RecentNews(): React.JSX.Element {
             ))}
         </div>
 
-        <Button
+        <Link
+          href="/news"
           className="self-center bg-custom-orange hover:bg-gradient-to-b hover:from-custom-orange hover:via-custom-orange hover:to-custom-orange-dark
-         px-8 py-6 font-poppins font-semibold -mt-20 lg:mt-5 text-xl 2xl:text-2xl"
+         px-8 py-3 font-poppins font-semibold text-white rounded-lg -mt-20 lg:mt-5 text-xl 2xl:text-2xl"
         >
           Load more...
-        </Button>
+        </Link>
       </div>
     </section>
   );
