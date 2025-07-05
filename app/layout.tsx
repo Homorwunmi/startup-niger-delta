@@ -39,7 +39,8 @@ export default function RootLayout({
           {pathname.includes('dashboard') ||
           pathname.includes('onboarding') ||
           pathname.includes('sign-up') ||
-          pathname.includes('login') ? (
+          pathname.includes('login') ||
+          pathname.includes('forgot-password') ? (
             <main>{children}</main>
           ) : (
             <>
