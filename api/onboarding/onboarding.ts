@@ -47,6 +47,8 @@ export const uploadIdentification = async (cacFile: File, logoFile: File) => {
     getDownloadURL(logoRef),
   ]);
 
+  console.log(cacUrl, logoUrl);
+
   return { cacUrl, logoUrl };
 };
 
