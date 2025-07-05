@@ -48,9 +48,11 @@ export const uploadIdentification = async (cacFile: File, logoFile: File) => {
       getDownloadURL(logoRef),
     ]);
 
-    console.log(cacUrl, logoUrl);
+    if (!cacUrl || !logoUrl) {
+      return Promise.reject(Error('Failed to get download URLs for uploaded files'));
+    }
 
-    return { cacUrl, logoUrl };
+    return { message: 'File upload is successful', registrationFile: cacUrl, logoFile: logoUrl };
   } catch (error) {
     return Promise.reject(new Error(`Error uploading files: ${error instanceof Error ? error.message : 'Unknown error'}`));
   }
