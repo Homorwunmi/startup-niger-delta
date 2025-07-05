@@ -272,6 +272,7 @@ export default function Page() {
 
       {/* resources */}
       <section
+        id="resources"
         className="px-5 py-10 lg:p-20 bg-custom-green"
         style={{
           backgroundImage: `url("/home/ecosystem-bg.svg")`,
@@ -302,7 +303,7 @@ export default function Page() {
             {resourcesList.map((resource) => (
               <li
                 key={resource.title}
-                className="flex items-center gap-4 text-white lg:text-custom-green lg:bg-gray-100 py-2 px-3 rounded-lg relative group"
+                className="flex items-center gap-4 text-white lg:text-custom-green lg:bg-gray-100 py-2 px-3 rounded-lg relative"
               >
                 <figure className="w-14 h-14 2xl:w-20 2xl:h-20">
                   <Image
@@ -319,13 +320,15 @@ export default function Page() {
                   <p>{resource.desc}</p>
                 </div>
 
-                <div className="hidden w-6 h-6 2xl:w-10 2xl:h-10 2xl:text-xl rounded-full bg-custom-green text-white lg:flex items-center justify-center ml-auto">
-                  ?
-                </div>
+                <div className="group ml-auto hover:cursor-pointer">
+                  <div className="hidden w-6 h-6 2xl:w-10 2xl:h-10 2xl:text-xl rounded-full bg-custom-green text-white lg:flex items-center justify-center ml-auto">
+                    ?
+                  </div>
 
-                <p className="absolute -top-28 right-0 py-2 px-4 rounded-lg text-xl w-[35rem] bg-gray-100 hidden group-hover:block">
-                  {resource.tip}
-                </p>
+                  <p className="absolute -top-24 right-0 py-2 px-4 rounded-lg text-base w-[35rem] bg-gray-100 hidden group-hover:block">
+                    {resource.tip}
+                  </p>
+                </div>
               </li>
             ))}
           </ul>

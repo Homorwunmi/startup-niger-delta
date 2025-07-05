@@ -27,7 +27,10 @@ export default function Navbar() {
           <NavigationMenu className="hover:bg-transparent p-0 2xl:!text-2xl">
             <Link href="/#funding">Funding</Link>
           </NavigationMenu>
-          <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-2xl">
+          <NavigationMenuLink
+            href="/#resources"
+            className="hover:bg-transparent p-0 2xl:!text-2xl"
+          >
             Resources
           </NavigationMenuLink>
           <NavigationMenu className="hover:bg-transparent p-0 2xl:!text-2xl">
