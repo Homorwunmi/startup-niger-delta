@@ -24,20 +24,23 @@ export default function Navbar() {
           >
             Home
           </NavigationMenuLink>
-          <NavigationMenu className="hover:bg-transparent hover:p-0 p-0 2xl:!text-2xl">
-            Explores
-          </NavigationMenu>
           <NavigationMenu className="hover:bg-transparent p-0 2xl:!text-2xl">
-            <Link href="#funding">Funding</Link>
+            <Link href="/#funding">Funding</Link>
           </NavigationMenu>
           <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-2xl">
-            Reports
+            Resources
           </NavigationMenuLink>
           <NavigationMenu className="hover:bg-transparent p-0 2xl:!text-2xl">
-            <Link href="/news">News</Link>
+            <Link href="/">DNA</Link>
           </NavigationMenu>
           <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-2xl">
-            <Link href="/events">Events</Link>
+            <Link href="/news">News</Link>
+          </NavigationMenuLink>
+          <NavigationMenuLink
+            href="/events"
+            className="hover:bg-transparent p-0 2xl:!text-2xl"
+          >
+            Events
           </NavigationMenuLink>
           <NavigationMenuLink
             href="/#faq"

@@ -89,7 +89,10 @@ function MultipleItems() {
 // Events component
 export default function Events(): React.JSX.Element {
   return (
-    <section className="px-5 py-10 lg:p-20 bg-light-custom-green/70">
+    <section
+      id="events"
+      className="px-5 py-10 lg:p-20 bg-light-custom-green/70"
+    >
       <div className="flex flex-col items-stretch gap-10 2xl:container 2xl:mx-auto">
         <div className="flex flex-col items-center gap-6">
           <h2 className="text-4xl lg:text-6xl 2xl:text-7xl text-center text-custom-green font-medium font-poppins flex flex-col items-center gap-6">
