@@ -1,20 +1,17 @@
-import { db, auth, storage } from '../config.js';
 import {
   addDoc,
-  doc,
-  setDoc,
   collection,
   DocumentData,
   DocumentReference,
   getDocs,
   limit,
-  orderBy,
   query,
   QuerySnapshot,
   startAfter,
-  WithFieldValue,
 } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { db, auth, storage } from '../config';
+
 
 export const onboardingRegistration = async (
   regType: string,
@@ -40,13 +37,15 @@ export const uploadIdentification = async (cacFile: File, logoFile: File) => {
     `founder-identification/${auth.currentUser.uid}/logo.png`
   );
 
-  await uploadBytes(cacRef, cacFile);
-  console.log('CAC file uploaded successfully');
-  const cacUrl = await getDownloadURL(cacRef);
+  await Promise.all([
+    uploadBytes(cacRef, cacFile),
+    uploadBytes(logoRef, logoFile),
+  ]);
 
-  await uploadBytes(logoRef, logoFile);
-  console.log('Logo file uploaded successfully');
-  const logoUrl = await getDownloadURL(logoRef);
+  const [cacUrl, logoUrl] = await Promise.all([
+    getDownloadURL(cacRef),
+    getDownloadURL(logoRef),
+  ]);
 
   return { cacUrl, logoUrl };
 };
