@@ -17,6 +17,30 @@ import {
   TableRow,
 } from '../ui/table';
 
+const fundingTypes = {
+  type: [
+    'Angel Investors',
+    'Venture Capitalists (VCs)',
+    'Corporate Venture Capital (CVC)',
+    'Seed Investors',
+    'Accelerators',
+    'Incubators',
+  ],
+  category: [
+    'Fintech',
+    'E-commerce',
+    'Biotech',
+    'AgriTech',
+    'Health Tech',
+    'EdTech',
+    'Artificial Intelligence (AI)',
+    'Gaming',
+    'Robotics',
+    'Others',
+  ],
+  year: ['2020', '2021', '2022', '2023', '2024', '2025'],
+};
+
 function SplideCenterMode() {
   const splideOptions = {
     type: 'loop',
@@ -139,10 +163,46 @@ export default function Alert(): React.JSX.Element {
           <span className="w-1/3 h-1 bg-light-custom-green" />
         </h2>
 
-        <div className="flex items-center justify-between w-5/6 px-5 text-xs lg:text-base lg:w-1/2 lg:px-24 py-4 font-semibold bg-white shadow-md">
-          <h3 className="uppercase underline underline-offset-4">Type</h3>
-          <h3 className="uppercase underline underline-offset-4">Category</h3>
-          <h3 className="uppercase underline underline-offset-4">Year</h3>
+        <div className="flex items-center justify-between font-semibold bg-white shadow-md relative text-xs lg:text-base w-5/6 lg:w-1/2">
+          <div className="group w-full hover:bg-custom-green-3 flex items-center justify-center px-5 py-3">
+            <h3 className="uppercase underline underline-offset-4">Type</h3>
+            <ul className="hidden absolute top-12 group-hover:block z-20">
+              {fundingTypes.type.map((type, index) => (
+                <li
+                  key={index}
+                  className="px-2 py-3 bg-custom-green-3 cursor-pointer text-center border border-white"
+                >
+                  {type}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="group w-full hover:bg-custom-green-3 flex items-center justify-center px-5 py-3">
+            <h3 className="uppercase underline underline-offset-4">Category</h3>
+            <ul className="hidden absolute top-12 group-hover:block z-20">
+              {fundingTypes.category.map((type, index) => (
+                <li
+                  key={index}
+                  className="px-2 py-3 bg-custom-green-3 cursor-pointer text-center border border-white"
+                >
+                  {type}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="group w-full hover:bg-custom-green-3 flex items-center justify-center px-5 py-3">
+            <h3 className="uppercase underline underline-offset-4">Year</h3>
+            <ul className="hidden absolute top-12 w-52 group-hover:block z-20">
+              {fundingTypes.year.map((type, index) => (
+                <li
+                  key={index}
+                  className="px-2 py-3 bg-custom-green-3 cursor-pointer text-center border border-white"
+                >
+                  {type}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         <SplideCenterMode />
