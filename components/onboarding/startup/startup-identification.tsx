@@ -5,13 +5,13 @@
 import { RxUpload } from 'react-icons/rx';
 
 import React, { useCallback, useEffect } from 'react';
+import { startupIdentitySchema } from '@/helpers/validation';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 
 import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import StartupFounder from './startup-founder';
-import { startupIdentitySchema } from '@/helpers/validation';
 
 export default function StartupIdentity() {
   const {
@@ -47,7 +47,7 @@ export default function StartupIdentity() {
       }
       setError(null);
     },
-    [dispatch]
+    [dispatch, setError]
   );
 
   const handleLogoChange = useCallback(

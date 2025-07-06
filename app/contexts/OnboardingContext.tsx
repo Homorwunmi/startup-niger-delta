@@ -2,7 +2,7 @@
 
 import { initialStartData } from '@/lib/onboardingData';
 import { ActiveTab, StartupInitialType } from '@/types/Onboarding';
-import {
+import React, {
   createContext,
   useContext,
   useState,

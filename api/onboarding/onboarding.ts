@@ -10,20 +10,36 @@ import {
   startAfter,
 } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { UpdatedStartupType } from '@/types/Onboarding';
 import { db, auth, storage } from '../config';
 
 
-export const onboardingRegistration = async (
-  regType: string,
-  data: Record<string, any>
-) => {
+// export const onboardingRegistration = async (
+//   regType: string,
+//   data: Record<string, any>
+// ) => {
+//   if (!auth.currentUser) throw new Error('user not found');
+//   // data.user_id = auth.currentUser.uid;
+
+//   const docRef = await addDoc(collection(db, 'startup'), data);
+
+//   return docRef;
+// };
+
+export async function onboardingRegistrationStartup(data: UpdatedStartupType) {
   if (!auth.currentUser) throw new Error('user not found');
-  // data.user_id = auth.currentUser.uid;
 
-  const docRef = await addDoc(collection(db, `${regType}`), data);
+  const startupData = {
+    ...data,
+    user_id: auth.currentUser.uid,
+  };
 
-  return docRef;
-};
+  return addDoc(collection(db, 'startup'), startupData)
+    .then((docRef) => docRef)
+    .catch((error) => {
+      throw new Error(`Error adding document: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    });
+}
 
 export const uploadIdentification = async (cacFile: File, logoFile: File) => {
   try {

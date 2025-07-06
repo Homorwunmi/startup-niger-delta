@@ -46,3 +46,8 @@ export interface StartupInitialType {
   certificate: File;
   logo: File;
 }
+
+export interface UpdatedStartupType extends Omit<StartupInitialType, 'certificate' | 'logo'> {
+  certificate: string;
+  logo: string;
+}

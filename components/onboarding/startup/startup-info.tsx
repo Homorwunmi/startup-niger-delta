@@ -3,6 +3,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
+import { startupContactInfoSchema } from '@/helpers/validation';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 
 import { Input } from '../../ui/input';
@@ -10,7 +11,6 @@ import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import StartupFounder from './startup-founder';
 import StartupProfile from './startup-profile';
-import { startupContactInfoSchema } from '@/helpers/validation';
 
 export default function StartupInfo() {
   const {
@@ -52,7 +52,7 @@ export default function StartupInfo() {
     } else {
       setError(data.error.errors.map((err) => err.message).join(', '));
     }
-  }, [data, touched.companyEmail]);
+  }, [data, touched.companyEmail, setError, touched.companyPhone]);
 
   const handleNext = useCallback(() => {
     setRange(2);
@@ -81,7 +81,7 @@ export default function StartupInfo() {
       pathname: '/onboarding/startup',
       title: 'Company Profile',
     });
-  }, [setRange, setActiveTab, setIsNext]);
+  }, [setRange, setActiveTab, setIsNext, setError]);
 
   return (
     <form className="flex flex-col h-full">

@@ -10,6 +10,8 @@ import {
   UserCredential,
   UserInfo,
 } from 'firebase/auth';
+import { auth } from '../config';
+
 
 interface ExtendedUserCredential extends UserCredential {
   _tokenResponse?: {
@@ -28,8 +30,6 @@ interface User extends UserInfo {
     accessToken?: string;
   };
 }
-
-import { auth } from '../config';
 
 async function registerUser(email: string, password: string) {
   try {
