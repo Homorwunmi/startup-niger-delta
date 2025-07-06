@@ -18,7 +18,7 @@ export const onboardingRegistration = async (
   data: Record<string, any>
 ) => {
   if (!auth.currentUser) throw new Error('user not found');
-  data.user_id = auth.currentUser.uid;
+  // data.user_id = auth.currentUser.uid;
 
   const docRef = await addDoc(collection(db, `${regType}`), data);
 

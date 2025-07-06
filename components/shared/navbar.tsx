@@ -7,7 +7,6 @@ import {
 import Image from 'next/image';
 import Logo from '@/public/images/Logo.svg';
 import { RxHamburgerMenu } from 'react-icons/rx';
-import Link from 'next/link';
 
 export default function Navbar() {
   return (
@@ -24,20 +23,29 @@ export default function Navbar() {
           >
             Home
           </NavigationMenuLink>
-          <NavigationMenu className="hover:bg-transparent p-0 2xl:!text-2xl">
-            <Link href="/#funding">Funding</Link>
-          </NavigationMenu>
+          <NavigationMenuLink
+            href="/#funding"
+            className="hover:bg-transparent p-0 2xl:!text-2xl"
+          >
+            Funding
+          </NavigationMenuLink>
           <NavigationMenuLink
             href="/#resources"
             className="hover:bg-transparent p-0 2xl:!text-2xl"
           >
             Resources
           </NavigationMenuLink>
-          <NavigationMenu className="hover:bg-transparent p-0 2xl:!text-2xl">
-            <Link href="/">DNA</Link>
-          </NavigationMenu>
-          <NavigationMenuLink className="hover:bg-transparent p-0 2xl:!text-2xl">
-            <Link href="/news">News</Link>
+          <NavigationMenuLink
+            href="/"
+            className="hover:bg-transparent p-0 2xl:!text-2xl"
+          >
+            DNA
+          </NavigationMenuLink>
+          <NavigationMenuLink
+            href="/news"
+            className="hover:bg-transparent p-0 2xl:!text-2xl"
+          >
+            News
           </NavigationMenuLink>
           <NavigationMenuLink
             href="/events"
