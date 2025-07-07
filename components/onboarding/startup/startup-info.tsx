@@ -187,7 +187,7 @@ export default function StartupInfo() {
           <Button
             type="button"
             onClick={handleNext}
-            disabled={error !== null || !isNext}
+            disabled={error !== null || !data.success}
             className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
           >
             Next

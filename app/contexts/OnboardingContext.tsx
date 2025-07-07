@@ -1,7 +1,12 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 
-import { initialStartData } from '@/lib/onboardingData';
-import { ActiveTab, StartupInitialType } from '@/types/Onboarding';
+import { initialStartData, initialAngelData } from '@/lib/onboardingData';
+import {
+  ActiveTab,
+  StartupInitialType,
+  AngelInitialType,
+  initialTypes,
+} from '@/types/Onboarding';
 import {
   createContext,
   useContext,
@@ -15,9 +20,13 @@ interface IsNextType {
   title: string;
 }
 
+interface IsPrevType {
+  range: number;
+}
+
 const OnboardContext = createContext<{
   range: number;
-  state: StartupInitialType;
+  state: initialTypes['startup'];
   dispatch: React.ActionDispatch<
     [action: Partial<StartupInitialType> & { type: string }]
   >;
@@ -28,6 +37,8 @@ const OnboardContext = createContext<{
   setIsNext: React.Dispatch<React.SetStateAction<IsNextType>>;
   setError: React.Dispatch<React.SetStateAction<string | null>>;
   error: string | null;
+  isPrev: IsPrevType;
+  setIsPrev: React.Dispatch<React.SetStateAction<IsPrevType>>;
 }>({
   range: 0,
   state: initialStartData,
@@ -39,13 +50,48 @@ const OnboardContext = createContext<{
   setActiveTab: () => {},
   setError: () => {},
   error: null,
+  isPrev: { range: 0 },
+  setIsPrev: () => {},
 });
 
-function reducer(
+function startupReducer(
   state: StartupInitialType,
   action: Partial<StartupInitialType> & { type: string }
 ): StartupInitialType {
-  console.log('Reducer action:', action, state);
+  console.log(state);
+  switch (action.type) {
+    case 'UPDATE_COMPANY_PROFILE':
+      return {
+        ...state,
+        ...action,
+      };
+    case 'UPDATE_CONTACT_INFO':
+      return {
+        ...state,
+        ...action,
+      };
+    case 'UPDATE_STARTUP_IDENTITY':
+      return {
+        ...state,
+        ...action,
+      };
+    case 'UPDATE_STARTUP_PROOF':
+      return {
+        ...state,
+        ...action,
+      };
+    default:
+      break;
+  }
+
+  return state;
+}
+
+function angelReducer(
+  state: StartupInitialType,
+  action: Partial<StartupInitialType> & { type: string }
+): StartupInitialType {
+  console.log(state);
   switch (action.type) {
     case 'UPDATE_COMPANY_PROFILE':
       return {
@@ -84,7 +130,11 @@ export function OnboardingProvider({
     pathname: '',
     title: '',
   });
-  const [state, dispatch] = useReducer(reducer, initialStartData); // startup form data
+
+  const [isPrev, setIsPrev] = useState<IsPrevType>({
+    range: 0,
+  });
+  const [state, dispatch] = useReducer(startupReducer, initialStartData); // startup form data
   const [activeTab, setActiveTab] = useState<ActiveTab>({
     title: '',
     Component: <></>,
@@ -104,6 +154,8 @@ export function OnboardingProvider({
       dispatch,
       setError,
       error,
+      isPrev: { range: isPrev.range },
+      setIsPrev,
     }),
     [range, activeTab, state, isNext, error]
   );

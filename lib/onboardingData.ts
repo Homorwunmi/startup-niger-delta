@@ -17,3 +17,57 @@ export const initialStartData = {
   certificate: new File([''], 'certificate.png', { type: 'image/png' }),
   logo: new File([''], 'logo.png', { type: 'image/png' }),
 };
+
+export const initialAngelData = {
+  companyName: '',
+  industry: '',
+  description: '',
+  fundingInterest: '',
+  companyEmail: '',
+  companyWebsite: '',
+  companyAddress: '',
+  companyPhone: '',
+  angelName: '',
+  investmentExperience: '',
+  investmentProof: '',
+  investmentSize: '',
+  identification: '',
+  nationality: '',
+  message: '',
+};
+
+export const initialVentureCapitalist = {
+  companyName: '',
+  industry: '',
+  description: '',
+  fundingInterest: '',
+  companyEmail: '',
+  companyWebsite: '',
+  companyAddress: '',
+  companyPhone: '',
+  generalPartner: '',
+  investmentExperience: '',
+  investmentProof: '',
+  investmentSize: '',
+  identification: '',
+  nationality: '',
+  message: '',
+};
+
+export const initialAcceleratorData = {
+  companyName: '',
+  industry: '',
+  description: '',
+  fundingInterest: '',
+  companyEmail: '',
+  companyWebsite: '',
+  companyAddress: '',
+  companyPhone: '',
+  principalPromoter: '',
+  investmentExperience: '',
+  investmentProof: '',
+  investmentSize: '',
+  identification: '',
+  nationality: '',
+  message: '',
+};

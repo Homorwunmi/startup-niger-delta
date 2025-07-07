@@ -12,7 +12,6 @@ import {
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db, auth, storage } from '../config';
 
-
 export const onboardingRegistration = async (
   regType: string,
   data: Record<string, any>
