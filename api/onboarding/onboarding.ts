@@ -48,12 +48,22 @@ export const uploadIdentification = async (cacFile: File, logoFile: File) => {
     ]);
 
     if (!cacUrl || !logoUrl) {
-      return Promise.reject(Error('Failed to get download URLs for uploaded files'));
+      return Promise.reject(
+        Error('Failed to get download URLs for uploaded files')
+      );
     }
 
-    return { message: 'File upload is successful', registrationFile: cacUrl, logoFile: logoUrl };
+    return {
+      message: 'File upload is successful',
+      registrationFile: cacUrl,
+      logoFile: logoUrl,
+    };
   } catch (error) {
-    return Promise.reject(new Error(`Error uploading files: ${error instanceof Error ? error.message : 'Unknown error'}`));
+    return Promise.reject(
+      new Error(
+        `Error uploading files: ${error instanceof Error ? error.message : 'Unknown error'}`
+      )
+    );
   }
 };
 
