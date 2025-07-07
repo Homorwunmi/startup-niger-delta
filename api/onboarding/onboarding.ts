@@ -12,7 +12,6 @@ import {
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db, auth, storage } from '../config';
 
-
 export const onboardingRegistration = async (
   regType: string,
   data: Record<string, any>
@@ -26,28 +25,46 @@ export const onboardingRegistration = async (
 };
 
 export const uploadIdentification = async (cacFile: File, logoFile: File) => {
-  if (!auth.currentUser) throw new Error('user not found');
+  try {
+    if (!auth.currentUser) throw new Error('user not found');
 
-  const cacRef = ref(
-    storage,
-    `founder-identification/${auth.currentUser.uid}/CAC.png`
-  );
-  const logoRef = ref(
-    storage,
-    `founder-identification/${auth.currentUser.uid}/logo.png`
-  );
+    const cacRef = ref(
+      storage,
+      `founder-identification/${auth.currentUser.uid}/CAC.png`
+    );
+    const logoRef = ref(
+      storage,
+      `founder-identification/${auth.currentUser.uid}/logo.png`
+    );
 
-  await Promise.all([
-    uploadBytes(cacRef, cacFile),
-    uploadBytes(logoRef, logoFile),
-  ]);
+    await Promise.all([
+      uploadBytes(cacRef, cacFile),
+      uploadBytes(logoRef, logoFile),
+    ]);
 
-  const [cacUrl, logoUrl] = await Promise.all([
-    getDownloadURL(cacRef),
-    getDownloadURL(logoRef),
-  ]);
+    const [cacUrl, logoUrl] = await Promise.all([
+      getDownloadURL(cacRef),
+      getDownloadURL(logoRef),
+    ]);
 
-  return { cacUrl, logoUrl };
+    if (!cacUrl || !logoUrl) {
+      return Promise.reject(
+        Error('Failed to get download URLs for uploaded files')
+      );
+    }
+
+    return {
+      message: 'File upload is successful',
+      registrationFile: cacUrl,
+      logoFile: logoUrl,
+    };
+  } catch (error) {
+    return Promise.reject(
+      new Error(
+        `Error uploading files: ${error instanceof Error ? error.message : 'Unknown error'}`
+      )
+    );
+  }
 };
 
 export const getAllFoundersOrInvestors = async (

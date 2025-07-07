@@ -46,3 +46,60 @@ export interface StartupInitialType {
   certificate: File;
   logo: File;
 }
+
+export interface AngelInitialType {
+  companyName: string;
+  industry: string;
+  description: string;
+  fundingInterest: string;
+  companyEmail: string;
+  companyWebsite: string;
+  companyAddress: string;
+  companyPhone: string;
+  angelName: string;
+  investmentExperience: string;
+  investmentProof: File | null;
+  investmentSize: string;
+  identification: File | null;
+  nationality: string;
+  message: string;
+}
+
+export interface VentureCapitalistInitialType {
+  companyName: string;
+  industry: string;
+  description: string;
+  fundingInterest: string;
+  companyEmail: string;
+  companyWebsite: string;
+  companyAddress: string;
+  companyPhone: string;
+  generalPartner: string;
+  investmentExperience: string;
+  investmentProof: File | null;
+  investmentSize: string;
+  identification: File | null;
+  nationality: string;
+  message: string;
+}
+
+export interface AcceleratorInitialType {
+  companyName: string;
+  industry: string;
+  description: string;
+  fundingInterest: string;
+  companyEmail: string;
+  companyWebsite: string;
+  companyAddress: string;
+  companyPhone: string;
+  investmentExperience: string;
+  investmentProof: File | null;
+  investmentSize: string;
+  identification: File | null;
+  nationality: string;
+  message: string;
+}
+
+export interface initialTypes {
+  startup: StartupInitialType;
+}

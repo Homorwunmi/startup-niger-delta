@@ -11,7 +11,7 @@ import { Label } from '../../ui/label';
 import AngelFormInfo from './Angel-form-info';
 
 export default function AngelForm() {
-  const { setRange, setActiveTab, setIsNext } = useOnboardContext();
+  const { setRange, setActiveTab, setIsNext, isPrev } = useOnboardContext();
 
   useEffect(() => {
     setIsNext({
@@ -98,6 +98,7 @@ export default function AngelForm() {
             <Button
               type="button"
               className="px-10 bg-gray-200 hover:bg-gray-200"
+              disabled={isPrev.range === 0}
             >
               Back
             </Button>

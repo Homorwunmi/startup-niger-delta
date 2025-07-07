@@ -16,11 +16,11 @@ export default function StartupProfile() {
   const {
     setRange,
     setActiveTab,
-    // state,
     dispatch,
     setIsNext,
     setError,
     error,
+    isPrev: { range: isPrevRange },
   } = useOnboardContext();
 
   const [startupProfileData, setStartupProfileData] = useState<
@@ -219,6 +219,7 @@ export default function StartupProfile() {
             <Button
               type="button"
               className="px-10 bg-gray-200 hover:bg-gray-200 cursor-pointer"
+              disabled={isPrevRange === 0}
             >
               Back
             </Button>
@@ -226,6 +227,7 @@ export default function StartupProfile() {
               type="button"
               className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
               onClick={handleNext}
+              disabled={error !== null || !data.success}
             >
               Next
             </Button>

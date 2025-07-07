@@ -31,7 +31,7 @@ export function LoginForm({
         toast.success('Login successful!');
         setAuthToken(response?.user.accessToken || '');
         if (getAuthToken()) {
-          router.push('/dashboard');
+          router.push('/onboarding/startup');
         }
         setEmail('');
         setPassword('');

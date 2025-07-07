@@ -11,7 +11,9 @@ import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import StartupFounder from './startup-founder';
+import StartupReview from './startup-review';
 import { startupIdentitySchema } from '@/helpers/validation';
+import { uploadIdentification } from '@/api/onboarding/onboarding';
 
 export default function StartupIdentity() {
   const {
@@ -85,6 +87,40 @@ export default function StartupIdentity() {
       title: 'Founder/Co-founder Profile',
     });
   }, [setRange, setActiveTab, setIsNext]);
+
+  const handleNext = useCallback(async () => {
+    if (!data.success) {
+      return setError(data.error.errors.map((err) => err.message).join(', '));
+    }
+    if (!state.certificate || !state.logo) {
+      return setError('Please upload both CAC certificate and company logo.');
+    }
+
+    try {
+      const response = await uploadIdentification(
+        state.certificate,
+        state.logo
+      );
+      console.log(response.message);
+    } catch (error) {
+      return setError(
+        error instanceof Error ? error.message : 'Failed to upload files'
+      );
+    }
+
+    setRange(3);
+
+    setActiveTab({
+      title: '',
+      Component: <StartupReview />,
+      src: '/angel/bgTrailer1.svg',
+    });
+
+    return setIsNext({
+      pathname: '/onboarding/startup',
+      title: '',
+    });
+  }, [data, dispatch, setRange, setActiveTab, setIsNext, state, setError]);
 
   return (
     <form className="flex flex-col h-full">
@@ -161,6 +197,8 @@ export default function StartupIdentity() {
           <Button
             type="button"
             className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
+            onClick={handleNext}
+            disabled={error !== null || !data.success}
           >
             Next
           </Button>

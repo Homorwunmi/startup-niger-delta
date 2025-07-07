@@ -16,9 +16,21 @@ import {
   TableRow,
 } from '../../ui/table';
 import StartupIdentity from './startup-identification';
+import { onboardingRegistration } from '@/api/onboarding/onboarding';
 
 export default function StartupReview() {
-  const { setRange, setActiveTab } = useOnboardContext();
+  const { setRange, setActiveTab, state } = useOnboardContext();
+
+  const handleSubmit = async () => {
+    // Handle form submission logic here
+    console.log('Form submitted with data:', state);
+    try {
+      const response = await onboardingRegistration('STARTUP', state);
+      console.log(response);
+    } catch (error) {
+      console.error('Error during registration:', error);
+    }
+  };
 
   const handlePrev = useCallback(() => {
     setRange(3);
@@ -31,7 +43,7 @@ export default function StartupReview() {
   }, [setRange, setActiveTab]);
 
   return (
-    <section className="flex flex-col items-stretch pb-10">
+    <section className="flex flex-col items-stretch pb-10 max-w-3xl mx-auto px-4">
       <div className="overflow-scroll h-96">
         <Table className="table-container">
           <TableHeader>
@@ -48,23 +60,23 @@ export default function StartupReview() {
           <TableBody className="text-black">
             <TableRow className="bg-gray-100 hover:bg-gray-100">
               <TableCell>Company Name</TableCell>
-              <TableCell>Input text format</TableCell>
+              <TableCell>{state.companyName}</TableCell>
             </TableRow>
             <TableRow className="hover:bg-transparent">
               <TableCell>Year of Incorporation</TableCell>
-              <TableCell>Input year options</TableCell>
+              <TableCell>{state.incorporation}</TableCell>
             </TableRow>
             <TableRow className="bg-gray-100 hover:bg-gray-100">
               <TableCell>RC Number</TableCell>
-              <TableCell>Input number format</TableCell>
+              <TableCell>{state.rcNumber}</TableCell>
             </TableRow>
             <TableRow className="hover:bg-transparent">
               <TableCell>Industry</TableCell>
-              <TableCell>Input text format</TableCell>
+              <TableCell>{state.industry}</TableCell>
             </TableRow>
             <TableRow className="bg-gray-100 hover:bg-gray-100">
               <TableCell>Startup Description</TableCell>
-              <TableCell>Input text format</TableCell>
+              <TableCell className="h-auto">{state.description}</TableCell>
             </TableRow>
           </TableBody>
 
@@ -74,31 +86,83 @@ export default function StartupReview() {
                 colSpan={2}
                 className="w-full bg-gray-400 text-xl font-semibold font-poppins px-5"
               >
-                Company Profile
+                Company Contact Info
               </TableHead>
             </TableRow>
           </TableHeader>
 
           <TableBody className="text-black">
             <TableRow className="bg-gray-100 hover:bg-gray-100">
-              <TableCell>Company Name</TableCell>
-              <TableCell>Input text format</TableCell>
+              <TableCell>Company Email</TableCell>
+              <TableCell>{state.companyEmail}</TableCell>
             </TableRow>
             <TableRow className="hover:bg-transparent">
-              <TableCell>Year of Incorporation</TableCell>
-              <TableCell>Input year options</TableCell>
+              <TableCell>Company Website</TableCell>
+              <TableCell>{state.companyWebsite}</TableCell>
             </TableRow>
             <TableRow className="bg-gray-100 hover:bg-gray-100">
-              <TableCell>RC Number</TableCell>
-              <TableCell>Input number format</TableCell>
+              <TableCell>Company Address</TableCell>
+              <TableCell>{state.companyAddress}</TableCell>
             </TableRow>
             <TableRow className="hover:bg-transparent">
-              <TableCell>Industry</TableCell>
-              <TableCell>Input text format</TableCell>
+              <TableCell>Company Phone</TableCell>
+              <TableCell>{state.companyPhone}</TableCell>
+            </TableRow>
+          </TableBody>
+
+          <TableHeader>
+            <TableRow>
+              <TableHead
+                colSpan={2}
+                className="w-full bg-gray-400 text-xl font-semibold font-poppins px-5"
+              >
+                Founder / Co-founder Profile
+              </TableHead>
+            </TableRow>
+          </TableHeader>
+
+          <TableBody className="text-black">
+            <TableRow className="bg-gray-100 hover:bg-gray-100">
+              <TableCell>Founder Name</TableCell>
+              <TableCell>{state.founderName}</TableCell>
+            </TableRow>
+            <TableRow className="hover:bg-transparent">
+              <TableCell>Founder Email</TableCell>
+              <TableCell>{state.founderEmail}</TableCell>
             </TableRow>
             <TableRow className="bg-gray-100 hover:bg-gray-100">
-              <TableCell>Startup Description</TableCell>
-              <TableCell>Input text format</TableCell>
+              <TableCell>Founder Address</TableCell>
+              <TableCell>{state.founderAddress}</TableCell>
+            </TableRow>
+            <TableRow className="hover:bg-transparent">
+              <TableCell>Founder Phone</TableCell>
+              <TableCell>{state.founderMobile}</TableCell>
+            </TableRow>
+            <TableRow className="hover:bg-transparent">
+              <TableCell>No of Founder</TableCell>
+              <TableCell>{state.founderNo}</TableCell>
+            </TableRow>
+          </TableBody>
+
+          <TableHeader>
+            <TableRow>
+              <TableHead
+                colSpan={2}
+                className="w-full bg-gray-400 text-xl font-semibold font-poppins px-5"
+              >
+                Founder's Identification
+              </TableHead>
+            </TableRow>
+          </TableHeader>
+
+          <TableBody className="text-black">
+            <TableRow className="bg-gray-100 hover:bg-gray-100">
+              <TableCell>CAC certificate</TableCell>
+              <TableCell>{state.certificate.name}</TableCell>
+            </TableRow>
+            <TableRow className="hover:bg-transparent">
+              <TableCell>Company Logo</TableCell>
+              <TableCell>{state.logo.name}</TableCell>
             </TableRow>
           </TableBody>
         </Table>
@@ -120,7 +184,8 @@ export default function StartupReview() {
         </Button>
         <Button
           type="button"
-          className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
+          className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
+          onClick={handleSubmit}
         >
           Submit
         </Button>
