@@ -51,3 +51,60 @@ export interface UpdatedStartupType extends Omit<StartupInitialType, 'certificat
   certificate: string;
   logo: string;
 }
+
+
+export interface UpdatedVCType {
+  companyName: string;
+  incorporation: string;
+  rcNumber: string;
+  industry: string;
+  description: string;
+  investmentFocus: string;
+  fundSize: string;
+  minInvestment: string;
+  maxInvestment: string;
+  // Contact info
+  email: string;
+  phone: string;
+  address: string;
+  website?: string;
+  // Files
+  registrationFile?: string;
+  logoFile?: string;
+}
+
+export interface UpdatedAngelType {
+  fullName: string;
+  profession: string;
+  experience: string;
+  industry: string;
+  investmentRange: string;
+  minInvestment: string;
+  maxInvestment: string;
+  // Contact info
+  email: string;
+  phone: string;
+  address: string;
+  linkedin?: string;
+  // Files
+  registrationFile?: string;
+  logoFile?: string;
+}
+
+export interface UpdatedAcceleratorType {
+  organizationName: string;
+  establishedYear: string;
+  programDuration: string;
+  industryFocus: string;
+  description: string;
+  applicationDeadline: string;
+  batchSize: string;
+  // Contact info
+  email: string;
+  phone: string;
+  address: string;
+  website?: string;
+  // Files
+  registrationFile?: string;
+  logoFile?: string;
+}
