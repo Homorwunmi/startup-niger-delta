@@ -109,7 +109,11 @@ export async function onboardingRegistrationVC(data: UpdatedVCType) {
   };
 
   return addDoc(collection(db, 'vc'), vcData)
-    .then((docRef) => docRef)
+    .then((docRef) => ({
+      success: true,
+      documentId: docRef.id,
+      message: 'Startup registration completed successfully'
+    }))
     .catch((error) => {
       throw new Error(
         `Error adding document: ${error instanceof Error ? error.message : 'Unknown error'}`
@@ -126,7 +130,11 @@ export async function onboardingRegistrationAngel(data: UpdatedAngelType) {
   };
 
   return addDoc(collection(db, 'angel'), angelData)
-    .then((docRef) => docRef)
+    .then((docRef) => ({
+      success: true,
+      documentId: docRef.id,
+      message: 'Startup registration completed successfully'
+    }))
     .catch((error) => {
       throw new Error(
         `Error adding document: ${error instanceof Error ? error.message : 'Unknown error'}`
@@ -145,7 +153,11 @@ export async function onboardingRegistrationAccelerator(
   };
 
   return addDoc(collection(db, 'accelerator'), acceleratorData)
-    .then((docRef) => docRef)
+    .then((docRef) => ({
+      success: true,
+      documentId: docRef.id,
+      message: 'Startup registration completed successfully'
+    }))
     .catch((error) => {
       throw new Error(
         `Error adding document: ${error instanceof Error ? error.message : 'Unknown error'}`
