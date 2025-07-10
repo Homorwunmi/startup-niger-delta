@@ -5,7 +5,6 @@
 import { RxUpload } from 'react-icons/rx';
 
 import React, { useCallback, useEffect } from 'react';
-import { startupIdentitySchema } from '@/helpers/validation';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 
 import { Input } from '../../ui/input';
@@ -20,8 +19,8 @@ export default function StartupIdentity() {
   const {
     setRange,
     setActiveTab,
-    dispatch,
-    state,
+    startupDispatch,
+    startupState,
     setIsNext,
     setError,
     error,
@@ -43,14 +42,14 @@ export default function StartupIdentity() {
       if (!file) return;
       setFileName(file.name);
       if (files && files.length > 0) {
-        dispatch({
+        startupDispatch({
           type: 'UPDATE_STARTUP_PROOF',
           certificate: file,
         });
       }
       setError(null);
     },
-    [dispatch, setError]
+    [startupDispatch, setError]
   );
 
   const handleLogoChange = useCallback(
@@ -60,18 +59,19 @@ export default function StartupIdentity() {
       const file = files[0];
       setLogo(file.name);
       if (files && files.length > 0) {
-        dispatch({
+        startupDispatch({
           type: 'UPDATE_STARTUP_PROOF',
           logo: file,
         });
+        setError(null);
       }
     },
-    [dispatch]
+    [startupDispatch]
   );
 
   const data = startupIdentitySchema.safeParse({
-    certificate: state.certificate,
-    logo: state.logo,
+    certificate: startupState.certificate,
+    logo: startupState.logo,
   });
 
   const handlePrev = useCallback(() => {
@@ -93,14 +93,14 @@ export default function StartupIdentity() {
     if (!data.success) {
       return setError(data.error.errors.map((err) => err.message).join(', '));
     }
-    if (!state.certificate || !state.logo) {
+    if (!startupState.certificate || !startupState.logo) {
       return setError('Please upload both CAC certificate and company logo.');
     }
 
     try {
       const response = await uploadIdentification(
-        state.certificate,
-        state.logo
+        startupState.certificate,
+        startupState.logo
       );
       console.log(response.message);
     } catch (error) {
@@ -121,7 +121,15 @@ export default function StartupIdentity() {
       pathname: '/onboarding/startup',
       title: '',
     });
-  }, [data, dispatch, setRange, setActiveTab, setIsNext, state, setError]);
+  }, [
+    data,
+    startupDispatch,
+    setRange,
+    setActiveTab,
+    setIsNext,
+    startupState,
+    setError,
+  ]);
 
   return (
     <form className="flex flex-col h-full">
@@ -199,7 +207,7 @@ export default function StartupIdentity() {
             type="button"
             className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
             onClick={handleNext}
-            disabled={error !== null || !data.success}
+            disabled={error !== null}
           >
             Next
           </Button>

@@ -7,13 +7,14 @@ import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import StartupInfo from './startup-info';
 import StartupIdentity from './startup-identification';
+import { StartupInitialType } from '@/types/Onboarding';
 
 export default function StartupFounder() {
   const {
     setRange,
     setActiveTab,
-    state,
-    dispatch,
+    // startupState,
+    startupDispatch,
     setIsNext,
     setError,
     error,
@@ -26,6 +27,16 @@ export default function StartupFounder() {
     });
   }, [setIsNext]);
 
+  const [startupFounderData, setStartupFounderData] = useState<
+    Partial<StartupInitialType>
+  >({
+    founderName: '',
+    founderEmail: '',
+    founderAddress: '',
+    founderMobile: '',
+    founderNo: '',
+  });
+
   const [touched, setTouched] = useState({
     founderName: false,
     founderEmail: false,
@@ -35,11 +46,11 @@ export default function StartupFounder() {
   });
 
   const data = startupFounderInfoSchema.safeParse({
-    founderName: state.founderName,
-    founderEmail: state.founderEmail,
-    founderAddress: state.founderAddress,
-    founderMobile: state.founderMobile,
-    founderNo: state.founderNo,
+    founderName: startupFounderData.founderName,
+    founderEmail: startupFounderData.founderEmail,
+    founderAddress: startupFounderData.founderAddress,
+    founderMobile: startupFounderData.founderMobile,
+    founderNo: startupFounderData.founderNo,
   });
 
   const isNext = data.success;
@@ -60,6 +71,11 @@ export default function StartupFounder() {
       title: 'Company Profile',
       Component: <StartupIdentity />,
       src: '/angel/bgTrailer1.svg',
+    });
+
+    startupDispatch({
+      type: 'UPDATE_STARTUP_IDENTITY',
+      ...startupFounderData,
     });
 
     setIsNext({
@@ -98,10 +114,9 @@ export default function StartupFounder() {
             id="founder-name"
             name="compnayName"
             placeholder="Full name"
-            value={state.founderName}
+            value={startupFounderData.founderName}
             onChange={(e) => {
-              dispatch({
-                type: 'UPDATE_STARTUP_IDENTITY',
+              setStartupFounderData({
                 founderName: e.target.value,
               });
             }}
@@ -119,10 +134,10 @@ export default function StartupFounder() {
             type="email"
             id="founder-email"
             placeholder="username@domain.com"
-            value={state.founderEmail}
+            value={startupFounderData.founderEmail}
             onChange={(e) => {
-              dispatch({
-                type: 'UPDATE_STARTUP_IDENTITY',
+              setStartupFounderData({
+                ...startupFounderData,
                 founderEmail: e.target.value,
               });
             }}
@@ -140,10 +155,10 @@ export default function StartupFounder() {
             type="text"
             id="founder-address"
             placeholder="Address information"
-            value={state.founderAddress}
+            value={startupFounderData.founderAddress}
             onChange={(e) => {
-              dispatch({
-                type: 'UPDATE_STARTUP_IDENTITY',
+              setStartupFounderData({
+                ...startupFounderData,
                 founderAddress: e.target.value,
               });
             }}
@@ -161,10 +176,10 @@ export default function StartupFounder() {
             type="tel"
             id="founder-phone"
             placeholder="+234"
-            value={state.founderMobile}
+            value={startupFounderData.founderMobile}
             onChange={(e) => {
-              dispatch({
-                type: 'UPDATE_STARTUP_IDENTITY',
+              setStartupFounderData({
+                ...startupFounderData,
                 founderMobile: e.target.value,
               });
             }}
@@ -182,10 +197,10 @@ export default function StartupFounder() {
             type="text"
             id="founder-amount"
             placeholder="Choose number of founder"
-            value={state.founderNo}
+            value={startupFounderData.founderNo}
             onChange={(e) => {
-              dispatch({
-                type: 'UPDATE_STARTUP_IDENTITY',
+              setStartupFounderData({
+                ...startupFounderData,
                 founderNo: e.target.value,
               });
               setTouched((prev) => ({ ...prev, founderNo: true }));

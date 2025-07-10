@@ -10,20 +10,14 @@ import {
   startAfter,
 } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-<<<<<<< HEAD
 import {
+  StartupInitialType,
   UpdatedAcceleratorType,
   UpdatedAngelType,
   UpdatedStartupType,
   UpdatedVCType,
 } from '@/types/Onboarding';
 import { db, auth, storage } from '../config';
-
-export async function onboardingRegistrationStartup(data: UpdatedStartupType) {
-=======
-import { StartupInitialType, UpdatedAcceleratorType, UpdatedAngelType, UpdatedStartupType, UpdatedVCType } from '@/types/Onboarding';
-import { db, auth, storage } from '../config';
-
 
 export async function uploadIdentification(cacFile: File, logoFile: File) {
   try {
@@ -49,17 +43,27 @@ export async function uploadIdentification(cacFile: File, logoFile: File) {
     ]);
 
     if (!cacUrl || !logoUrl) {
-      return Promise.reject(Error('Failed to get download URLs for uploaded files'));
+      return Promise.reject(
+        Error('Failed to get download URLs for uploaded files')
+      );
     }
 
-    return { message: 'File upload is successful', registrationFile: cacUrl, logoFile: logoUrl };
+    return {
+      message: 'File upload is successful',
+      registrationFile: cacUrl,
+      logoFile: logoUrl,
+    };
   } catch (error) {
-    return Promise.reject(new Error(`Error uploading files: ${error instanceof Error ? error.message : 'Unknown error'}`));
+    return Promise.reject(
+      new Error(
+        `Error uploading files: ${error instanceof Error ? error.message : 'Unknown error'}`
+      )
+    );
   }
-};
+}
 
 export async function onboardingRegistrationStartup(data: StartupInitialType) {
->>>>>>> aac82ff6d12fa9267d5b8a69be379422cae240ba
+  console.log('onboardingRegistrationStartup', data);
   if (!auth.currentUser) throw new Error('user not found');
 
   let startupData: StartupInitialType | UpdatedStartupType = {
@@ -79,7 +83,7 @@ export async function onboardingRegistrationStartup(data: StartupInitialType) {
       certificate: res.registrationFile,
       logo: res.logoFile,
       userId: auth.currentUser.uid,
-    }
+    };
   }
 
   return addDoc(collection(db, 'startup'), startupData)
@@ -144,52 +148,6 @@ export async function onboardingRegistrationAccelerator(
     });
 }
 
-<<<<<<< HEAD
-export const uploadIdentification = async (cacFile: File, logoFile: File) => {
-  try {
-    if (!auth.currentUser) throw new Error('user not found');
-
-    const cacRef = ref(
-      storage,
-      `founder-identification/${auth.currentUser.uid}/CAC.png`
-    );
-    const logoRef = ref(
-      storage,
-      `founder-identification/${auth.currentUser.uid}/logo.png`
-    );
-
-    await Promise.all([
-      uploadBytes(cacRef, cacFile),
-      uploadBytes(logoRef, logoFile),
-    ]);
-
-    const [cacUrl, logoUrl] = await Promise.all([
-      getDownloadURL(cacRef),
-      getDownloadURL(logoRef),
-    ]);
-
-    if (!cacUrl || !logoUrl) {
-      return Promise.reject(
-        Error('Failed to get download URLs for uploaded files')
-      );
-    }
-
-    return {
-      message: 'File upload is successful',
-      registrationFile: cacUrl,
-      logoFile: logoUrl,
-    };
-  } catch (error) {
-    return Promise.reject(
-      new Error(
-        `Error uploading files: ${error instanceof Error ? error.message : 'Unknown error'}`
-      )
-    );
-  }
-};
-
-=======
->>>>>>> aac82ff6d12fa9267d5b8a69be379422cae240ba
 export const getAllFoundersOrInvestors = async (
   regType: string,
   next: DocumentReference<DocumentData> | undefined

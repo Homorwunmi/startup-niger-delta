@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 
+import { startUpData } from '@/lib/data';
 import { initialStartData, initialAngelData } from '@/lib/onboardingData';
 import {
   ActiveTab,
   StartupInitialType,
   AngelInitialType,
-  initialTypes,
 } from '@/types/Onboarding';
 import {
   createContext,
@@ -26,8 +26,12 @@ interface IsPrevType {
 
 const OnboardContext = createContext<{
   range: number;
-  state: initialTypes['startup'];
-  dispatch: React.ActionDispatch<
+  startupState: StartupInitialType;
+  angelState: AngelInitialType;
+  angelDispatch: React.ActionDispatch<
+    [action: Partial<AngelInitialType> & { type: string }]
+  >;
+  startupDispatch: React.ActionDispatch<
     [action: Partial<StartupInitialType> & { type: string }]
   >;
   setRange: React.Dispatch<React.SetStateAction<number>>;
@@ -41,12 +45,14 @@ const OnboardContext = createContext<{
   setIsPrev: React.Dispatch<React.SetStateAction<IsPrevType>>;
 }>({
   range: 0,
-  state: initialStartData,
+  startupState: initialStartData,
+  angelState: initialAngelData,
   activeTab: { title: '', Component: <></>, src: '' },
   isNext: { pathname: '', title: '' },
   setIsNext: () => {},
   setRange: () => {},
-  dispatch: () => {},
+  startupDispatch: () => {},
+  angelDispatch: () => {},
   setActiveTab: () => {},
   setError: () => {},
   error: null,
@@ -88,9 +94,9 @@ function startupReducer(
 }
 
 function angelReducer(
-  state: StartupInitialType,
-  action: Partial<StartupInitialType> & { type: string }
-): StartupInitialType {
+  state: AngelInitialType,
+  action: Partial<AngelInitialType> & { type: string }
+): AngelInitialType {
   console.log(state);
   switch (action.type) {
     case 'UPDATE_COMPANY_PROFILE':
@@ -103,18 +109,17 @@ function angelReducer(
         ...state,
         ...action,
       };
-    case 'UPDATE_STARTUP_IDENTITY':
+    case 'UPDATE_ANGEL_IDENTITY':
       return {
         ...state,
         ...action,
       };
-    case 'UPDATE_STARTUP_PROOF':
+    case 'UPDATE_ANGEL_PROOF':
       return {
         ...state,
         ...action,
       };
     default:
-      break;
   }
 
   return state;
@@ -134,7 +139,14 @@ export function OnboardingProvider({
   const [isPrev, setIsPrev] = useState<IsPrevType>({
     range: 0,
   });
-  const [state, dispatch] = useReducer(startupReducer, initialStartData); // startup form data
+  const [startupState, startupDispatch] = useReducer(
+    startupReducer,
+    initialStartData
+  ); // startup form data
+  const [angelState, angelDispatch] = useReducer(
+    angelReducer,
+    initialAngelData
+  ); // angel form data
   const [activeTab, setActiveTab] = useState<ActiveTab>({
     title: '',
     Component: <></>,
@@ -150,14 +162,17 @@ export function OnboardingProvider({
       isNext,
       setIsNext,
       setActiveTab,
-      state,
-      dispatch,
+      angelReducer,
+      startupDispatch: startupDispatch,
+      angelDispatch: angelDispatch,
       setError,
       error,
       isPrev: { range: isPrev.range },
       setIsPrev,
+      startupState: startupState,
+      angelState: angelState,
     }),
-    [range, activeTab, state, isNext, error]
+    [range, activeTab, isNext, error]
   );
 
   return (

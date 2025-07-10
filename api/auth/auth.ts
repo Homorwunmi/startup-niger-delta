@@ -12,7 +12,6 @@ import {
 } from 'firebase/auth';
 import { auth } from '../config';
 
-
 interface ExtendedUserCredential extends UserCredential {
   _tokenResponse?: {
     idToken: string;

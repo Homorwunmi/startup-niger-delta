@@ -11,12 +11,14 @@ import {
   sendVerificationEmail,
 } from '@/api/auth/auth';
 import { signupSchema } from '@/helpers/validation';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 export function SignupForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<'form'>) {
+  const router = useRouter();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -51,6 +53,27 @@ export function SignupForm({
     } catch (error) {
       setIsLoading(false);
       console.error('Registration failed:', error);
+    }
+  };
+
+  const handleSignInWithGoogle = async () => {
+    try {
+      setIsLoading(true);
+      const data = await signInWithGoogle();
+      if (data) {
+        setIsLoading(false);
+        localStorage.setItem('user', JSON.stringify(data));
+        toast.success(
+          'Google sign-in successful! Please check your email to verify your account.'
+        );
+        router.push('/onboarding/startup'); // Redirect to dashboard or desired page
+      }
+    } catch (error) {
+      setIsLoading(false);
+      console.error('Google sign-in failed:', error);
+      toast.error(
+        error instanceof Error ? error.message : 'Google sign-in failed'
+      );
     }
   };
 
@@ -126,7 +149,7 @@ export function SignupForm({
         <Button
           variant="outline"
           className="w-full custom-round cursor-pointer"
-          onClick={signInWithGoogle}
+          onClick={handleSignInWithGoogle}
         >
           <FcGoogle />
           Continue with Google

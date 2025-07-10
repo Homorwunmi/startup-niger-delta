@@ -58,48 +58,72 @@ export interface AngelInitialType {
   companyPhone: string;
   angelName: string;
   investmentExperience: string;
-  investmentProof: File | null;
+  investmentProof: string;
   investmentSize: string;
-  identification: File | null;
+  identification: string;
   nationality: string;
   message: string;
 }
 
-export interface VentureCapitalistInitialType {
+export interface UpdatedStartupType
+  extends Omit<StartupInitialType, 'certificate' | 'logo'> {
+  certificate: string;
+  logo: string;
+  userId: string;
+}
+
+export interface UpdatedVCType {
   companyName: string;
+  incorporation: string;
+  rcNumber: string;
   industry: string;
   description: string;
-  fundingInterest: string;
-  companyEmail: string;
-  companyWebsite: string;
-  companyAddress: string;
-  companyPhone: string;
-  generalPartner: string;
-  investmentExperience: string;
-  investmentProof: File | null;
-  investmentSize: string;
-  identification: File | null;
-  nationality: string;
-  message: string;
+  investmentFocus: string;
+  fundSize: string;
+  minInvestment: string;
+  maxInvestment: string;
+  // Contact info
+  email: string;
+  phone: string;
+  address: string;
+  website?: string;
+  // Files
+  registrationFile?: string;
+  logoFile?: string;
 }
 
-export interface AcceleratorInitialType {
-  companyName: string;
+export interface UpdatedAngelType {
+  fullName: string;
+  profession: string;
+  experience: string;
   industry: string;
-  description: string;
-  fundingInterest: string;
-  companyEmail: string;
-  companyWebsite: string;
-  companyAddress: string;
-  companyPhone: string;
-  investmentExperience: string;
-  investmentProof: File | null;
-  investmentSize: string;
-  identification: File | null;
-  nationality: string;
-  message: string;
+  investmentRange: string;
+  minInvestment: string;
+  maxInvestment: string;
+  // Contact info
+  email: string;
+  phone: string;
+  address: string;
+  linkedin?: string;
+  // Files
+  registrationFile?: string;
+  logoFile?: string;
 }
 
-export interface initialTypes {
-  startup: StartupInitialType;
+export interface UpdatedAcceleratorType {
+  organizationName: string;
+  establishedYear: string;
+  programDuration: string;
+  industryFocus: string;
+  description: string;
+  applicationDeadline: string;
+  batchSize: string;
+  // Contact info
+  email: string;
+  phone: string;
+  address: string;
+  website?: string;
+  // Files
+  registrationFile?: string;
+  logoFile?: string;
 }

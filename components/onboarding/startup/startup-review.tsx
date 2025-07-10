@@ -16,16 +16,16 @@ import {
   TableRow,
 } from '../../ui/table';
 import StartupIdentity from './startup-identification';
-import { onboardingRegistration } from '@/api/onboarding/onboarding';
+import { onboardingRegistrationStartup } from '@/api/onboarding/onboarding';
 
 export default function StartupReview() {
-  const { setRange, setActiveTab, state } = useOnboardContext();
+  const { setRange, setActiveTab, startupState } = useOnboardContext();
 
   const handleSubmit = async () => {
     // Handle form submission logic here
-    console.log('Form submitted with data:', state);
+    console.log('Form submitted with data:', startupState);
     try {
-      const response = await onboardingRegistration('STARTUP', state);
+      const response = await onboardingRegistrationStartup(startupState);
       console.log(response);
     } catch (error) {
       console.error('Error during registration:', error);
@@ -60,23 +60,25 @@ export default function StartupReview() {
           <TableBody className="text-black">
             <TableRow className="bg-gray-100 hover:bg-gray-100">
               <TableCell>Company Name</TableCell>
-              <TableCell>{state.companyName}</TableCell>
+              <TableCell>{startupState.companyName}</TableCell>
             </TableRow>
             <TableRow className="hover:bg-transparent">
               <TableCell>Year of Incorporation</TableCell>
-              <TableCell>{state.incorporation}</TableCell>
+              <TableCell>{startupState.incorporation}</TableCell>
             </TableRow>
             <TableRow className="bg-gray-100 hover:bg-gray-100">
               <TableCell>RC Number</TableCell>
-              <TableCell>{state.rcNumber}</TableCell>
+              <TableCell>{startupState.rcNumber}</TableCell>
             </TableRow>
             <TableRow className="hover:bg-transparent">
               <TableCell>Industry</TableCell>
-              <TableCell>{state.industry}</TableCell>
+              <TableCell>{startupState.industry}</TableCell>
             </TableRow>
             <TableRow className="bg-gray-100 hover:bg-gray-100">
               <TableCell>Startup Description</TableCell>
-              <TableCell className="h-auto">{state.description}</TableCell>
+              <TableCell className="h-auto">
+                {startupState.description}
+              </TableCell>
             </TableRow>
           </TableBody>
 
@@ -94,19 +96,19 @@ export default function StartupReview() {
           <TableBody className="text-black">
             <TableRow className="bg-gray-100 hover:bg-gray-100">
               <TableCell>Company Email</TableCell>
-              <TableCell>{state.companyEmail}</TableCell>
+              <TableCell>{startupState.companyEmail}</TableCell>
             </TableRow>
             <TableRow className="hover:bg-transparent">
               <TableCell>Company Website</TableCell>
-              <TableCell>{state.companyWebsite}</TableCell>
+              <TableCell>{startupState.companyWebsite}</TableCell>
             </TableRow>
             <TableRow className="bg-gray-100 hover:bg-gray-100">
               <TableCell>Company Address</TableCell>
-              <TableCell>{state.companyAddress}</TableCell>
+              <TableCell>{startupState.companyAddress}</TableCell>
             </TableRow>
             <TableRow className="hover:bg-transparent">
               <TableCell>Company Phone</TableCell>
-              <TableCell>{state.companyPhone}</TableCell>
+              <TableCell>{startupState.companyPhone}</TableCell>
             </TableRow>
           </TableBody>
 
@@ -124,23 +126,23 @@ export default function StartupReview() {
           <TableBody className="text-black">
             <TableRow className="bg-gray-100 hover:bg-gray-100">
               <TableCell>Founder Name</TableCell>
-              <TableCell>{state.founderName}</TableCell>
+              <TableCell>{startupState.founderName}</TableCell>
             </TableRow>
             <TableRow className="hover:bg-transparent">
               <TableCell>Founder Email</TableCell>
-              <TableCell>{state.founderEmail}</TableCell>
+              <TableCell>{startupState.founderEmail}</TableCell>
             </TableRow>
             <TableRow className="bg-gray-100 hover:bg-gray-100">
               <TableCell>Founder Address</TableCell>
-              <TableCell>{state.founderAddress}</TableCell>
+              <TableCell>{startupState.founderAddress}</TableCell>
             </TableRow>
             <TableRow className="hover:bg-transparent">
               <TableCell>Founder Phone</TableCell>
-              <TableCell>{state.founderMobile}</TableCell>
+              <TableCell>{startupState.founderMobile}</TableCell>
             </TableRow>
             <TableRow className="hover:bg-transparent">
               <TableCell>No of Founder</TableCell>
-              <TableCell>{state.founderNo}</TableCell>
+              <TableCell>{startupState.founderNo}</TableCell>
             </TableRow>
           </TableBody>
 
@@ -158,11 +160,11 @@ export default function StartupReview() {
           <TableBody className="text-black">
             <TableRow className="bg-gray-100 hover:bg-gray-100">
               <TableCell>CAC certificate</TableCell>
-              <TableCell>{state.certificate.name}</TableCell>
+              <TableCell>{startupState.certificate.name}</TableCell>
             </TableRow>
             <TableRow className="hover:bg-transparent">
               <TableCell>Company Logo</TableCell>
-              <TableCell>{state.logo.name}</TableCell>
+              <TableCell>{startupState.logo.name}</TableCell>
             </TableRow>
           </TableBody>
         </Table>
