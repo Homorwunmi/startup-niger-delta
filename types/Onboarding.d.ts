@@ -50,6 +50,7 @@ export interface StartupInitialType {
 export interface UpdatedStartupType extends Omit<StartupInitialType, 'certificate' | 'logo'> {
   certificate: string;
   logo: string;
+  userId: string;
 }
 
 
