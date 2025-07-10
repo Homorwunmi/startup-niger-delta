@@ -10,6 +10,7 @@ import {
   startAfter,
 } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+<<<<<<< HEAD
 import {
   UpdatedAcceleratorType,
   UpdatedAngelType,
@@ -19,12 +20,67 @@ import {
 import { db, auth, storage } from '../config';
 
 export async function onboardingRegistrationStartup(data: UpdatedStartupType) {
+=======
+import { StartupInitialType, UpdatedAcceleratorType, UpdatedAngelType, UpdatedStartupType, UpdatedVCType } from '@/types/Onboarding';
+import { db, auth, storage } from '../config';
+
+
+export async function uploadIdentification(cacFile: File, logoFile: File) {
+  try {
+    if (!auth.currentUser) throw new Error('user not found');
+
+    const cacRef = ref(
+      storage,
+      `founder-identification/${auth.currentUser.uid}/CAC.png`
+    );
+    const logoRef = ref(
+      storage,
+      `founder-identification/${auth.currentUser.uid}/logo.png`
+    );
+
+    await Promise.all([
+      uploadBytes(cacRef, cacFile),
+      uploadBytes(logoRef, logoFile),
+    ]);
+
+    const [cacUrl, logoUrl] = await Promise.all([
+      getDownloadURL(cacRef),
+      getDownloadURL(logoRef),
+    ]);
+
+    if (!cacUrl || !logoUrl) {
+      return Promise.reject(Error('Failed to get download URLs for uploaded files'));
+    }
+
+    return { message: 'File upload is successful', registrationFile: cacUrl, logoFile: logoUrl };
+  } catch (error) {
+    return Promise.reject(new Error(`Error uploading files: ${error instanceof Error ? error.message : 'Unknown error'}`));
+  }
+};
+
+export async function onboardingRegistrationStartup(data: StartupInitialType) {
+>>>>>>> aac82ff6d12fa9267d5b8a69be379422cae240ba
   if (!auth.currentUser) throw new Error('user not found');
 
-  const startupData = {
+  let startupData: StartupInitialType | UpdatedStartupType = {
     ...data,
-    user_id: auth.currentUser.uid,
+    userId: auth.currentUser.uid,
   };
+
+  // upload the certificate and logo files to Firebase Storage
+  if (data.certificate && data.logo) {
+    const res = await uploadIdentification(data.certificate, data.logo);
+
+    // startupData.certificate = res.registrationFile;
+    // startupData.logo = res.logoFile;
+
+    startupData = {
+      ...startupData,
+      certificate: res.registrationFile,
+      logo: res.logoFile,
+      userId: auth.currentUser.uid,
+    }
+  }
 
   return addDoc(collection(db, 'startup'), startupData)
     .then((docRef) => docRef)
@@ -88,6 +144,7 @@ export async function onboardingRegistrationAccelerator(
     });
 }
 
+<<<<<<< HEAD
 export const uploadIdentification = async (cacFile: File, logoFile: File) => {
   try {
     if (!auth.currentUser) throw new Error('user not found');
@@ -131,6 +188,8 @@ export const uploadIdentification = async (cacFile: File, logoFile: File) => {
   }
 };
 
+=======
+>>>>>>> aac82ff6d12fa9267d5b8a69be379422cae240ba
 export const getAllFoundersOrInvestors = async (
   regType: string,
   next: DocumentReference<DocumentData> | undefined
