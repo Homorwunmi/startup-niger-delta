@@ -5,6 +5,7 @@
 import { RxUpload } from 'react-icons/rx';
 
 import React, { useCallback, useEffect } from 'react';
+import { startupIdentitySchema } from '@/helpers/validation';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 
 import { Input } from '../../ui/input';
@@ -49,7 +50,7 @@ export default function StartupIdentity() {
       }
       setError(null);
     },
-    [dispatch]
+    [dispatch, setError]
   );
 
   const handleLogoChange = useCallback(

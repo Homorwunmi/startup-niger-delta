@@ -1,12 +1,12 @@
 /* eslint-disable import/no-cycle */
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { useCallback, useEffect, useState } from 'react';
+import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { startupFounderInfoSchema } from '@/helpers/validation';
 import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import StartupInfo from './startup-info';
 import StartupIdentity from './startup-identification';
-import { startupFounderInfoSchema } from '@/helpers/validation';
 
 export default function StartupFounder() {
   const {
