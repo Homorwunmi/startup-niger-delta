@@ -4,6 +4,7 @@
 
 import { useCallback } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { onboardingRegistrationStartup } from '@/api/onboarding/onboarding';
 import { Button } from '../../ui/button';
 import { Checkbox } from '../../ui/checkbox';
 import { Label } from '../../ui/label';
@@ -16,7 +17,6 @@ import {
   TableRow,
 } from '../../ui/table';
 import StartupIdentity from './startup-identification';
-import { onboardingRegistrationStartup } from '@/api/onboarding/onboarding';
 
 export default function StartupReview() {
   const { setRange, setActiveTab, startupState } = useOnboardContext();
@@ -152,7 +152,7 @@ export default function StartupReview() {
                 colSpan={2}
                 className="w-full bg-gray-400 text-xl font-semibold font-poppins px-5"
               >
-                Founder's Identification
+                Founder&apos;s Identification
               </TableHead>
             </TableRow>
           </TableHeader>

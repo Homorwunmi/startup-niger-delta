@@ -2,12 +2,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { startupFounderInfoSchema } from '@/helpers/validation';
+import { StartupInitialType } from '@/types/Onboarding';
 import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import StartupInfo from './startup-info';
 import StartupIdentity from './startup-identification';
-import { StartupInitialType } from '@/types/Onboarding';
 
 export default function StartupFounder() {
   const {
@@ -82,7 +82,7 @@ export default function StartupFounder() {
       pathname: '/onboarding/startup',
       title: 'Identification',
     });
-  }, [setRange, setActiveTab, setIsNext]);
+  }, [setRange, setActiveTab, setIsNext, startupDispatch, startupFounderData]);
 
   const handlePrev = useCallback(() => {
     setRange(1);

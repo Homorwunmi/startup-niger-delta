@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 
-import { startUpData } from '@/lib/data';
+// import { startUpData } from '@/lib/data';
 import { initialStartData, initialAngelData } from '@/lib/onboardingData';
 import {
   ActiveTab,
   StartupInitialType,
   AngelInitialType,
 } from '@/types/Onboarding';
-import {
+import React, {
   createContext,
   useContext,
   useState,
@@ -64,7 +64,6 @@ function startupReducer(
   state: StartupInitialType,
   action: Partial<StartupInitialType> & { type: string }
 ): StartupInitialType {
-  console.log(state);
   switch (action.type) {
     case 'UPDATE_COMPANY_PROFILE':
       return {
@@ -97,7 +96,6 @@ function angelReducer(
   state: AngelInitialType,
   action: Partial<AngelInitialType> & { type: string }
 ): AngelInitialType {
-  console.log(state);
   switch (action.type) {
     case 'UPDATE_COMPANY_PROFILE':
       return {
@@ -163,16 +161,26 @@ export function OnboardingProvider({
       setIsNext,
       setActiveTab,
       angelReducer,
-      startupDispatch: startupDispatch,
-      angelDispatch: angelDispatch,
+      startupDispatch,
+      angelDispatch,
       setError,
       error,
       isPrev: { range: isPrev.range },
       setIsPrev,
-      startupState: startupState,
-      angelState: angelState,
+      startupState,
+      angelState,
     }),
-    [range, activeTab, isNext, error]
+    [
+      range,
+      activeTab,
+      isNext,
+      error,
+      angelState,
+      startupState,
+      isPrev.range,
+      startupDispatch,
+      angelDispatch,
+    ]
   );
 
   return (

@@ -42,7 +42,7 @@ export const startupCompanyProfileSchema = z.object({
       const year = parseInt(value, 10);
       return year >= 1900 && year <= currentYear;
     }, 'Year of incorporation must not be greater than the current year'),
-  rcNumber: z.string().min(8, 'RC Number is required'),
+  rcNumber: z.string().min(7, 'RC Number is required'),
   industry: z.string().min(5, 'Industry is required'),
   description: z.string().min(8, 'Description is required'),
   fundingInterest: z.string().min(4, 'Funding interest is required'),

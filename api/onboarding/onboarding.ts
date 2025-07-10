@@ -64,6 +64,7 @@ export async function uploadIdentification(cacFile: File, logoFile: File) {
 
 export async function onboardingRegistrationStartup(data: StartupInitialType) {
   console.log('onboardingRegistrationStartup', data);
+
   if (!auth.currentUser) throw new Error('user not found');
 
   let startupData: StartupInitialType | UpdatedStartupType = {

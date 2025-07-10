@@ -6,14 +6,13 @@ import { RxUpload } from 'react-icons/rx';
 
 import React, { useCallback, useEffect } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
-
+import { startupIdentitySchema } from '@/helpers/validation';
+import { uploadIdentification } from '@/api/onboarding/onboarding';
 import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import StartupFounder from './startup-founder';
 import StartupReview from './startup-review';
-import { startupIdentitySchema } from '@/helpers/validation';
-import { uploadIdentification } from '@/api/onboarding/onboarding';
 
 export default function StartupIdentity() {
   const {
@@ -23,7 +22,7 @@ export default function StartupIdentity() {
     startupState,
     setIsNext,
     setError,
-    error,
+    error: errorMessage,
   } = useOnboardContext();
   const [logo, setLogo] = React.useState<string | null>(null);
   const [fileName, setFileName] = React.useState<string | null>(null);
@@ -66,7 +65,7 @@ export default function StartupIdentity() {
         setError(null);
       }
     },
-    [startupDispatch]
+    [startupDispatch, setError]
   );
 
   const data = startupIdentitySchema.safeParse({
@@ -123,7 +122,7 @@ export default function StartupIdentity() {
     });
   }, [
     data,
-    startupDispatch,
+    // startupDispatch,
     setRange,
     setActiveTab,
     setIsNext,
@@ -194,7 +193,7 @@ export default function StartupIdentity() {
       </div>
 
       <div className="col-span-2 flex items-end justify-between w-full mt-auto pb-8 px-4">
-        <p className="text-custom-orange">{error}</p>
+        <p className="text-custom-orange">{errorMessage}</p>
         <div className="flex gap-3">
           <Button
             type="button"
@@ -207,7 +206,7 @@ export default function StartupIdentity() {
             type="button"
             className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
             onClick={handleNext}
-            disabled={error !== null}
+            disabled={errorMessage !== null}
           >
             Next
           </Button>

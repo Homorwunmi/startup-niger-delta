@@ -18,11 +18,11 @@ export default function StartupInfo() {
     setRange,
     setActiveTab,
     startupDispatch,
-    startupState,
+    // startupState,
     setIsNext,
     setError,
     error,
-    isNext,
+    // isNext,
   } = useOnboardContext();
 
   useEffect(() => {
@@ -47,10 +47,10 @@ export default function StartupInfo() {
   });
 
   const data = startupContactInfoSchema.safeParse({
-    companyEmail: startupState.companyEmail,
-    companyWebsite: startupState.companyWebsite,
-    companyAddress: startupState.companyAddress,
-    companyPhone: startupState.companyPhone,
+    companyEmail: startupInfo.companyEmail,
+    companyWebsite: startupInfo.companyWebsite,
+    companyAddress: startupInfo.companyAddress,
+    companyPhone: startupInfo.companyPhone,
   });
 
   useEffect(() => {
@@ -79,7 +79,7 @@ export default function StartupInfo() {
       pathname: '/onboarding/startup',
       title: 'Founder/Co-Founder Profile',
     });
-  }, [setRange, setActiveTab, setIsNext]);
+  }, [setRange, setActiveTab, setIsNext, startupDispatch, startupInfo]);
 
   const handlePrev = useCallback(() => {
     setRange(0);

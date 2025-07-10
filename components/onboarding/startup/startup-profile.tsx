@@ -17,7 +17,7 @@ export default function StartupProfile() {
     setRange,
     setActiveTab,
     startupDispatch,
-    startupState,
+    // startupState,
     setIsNext,
     setError,
     error,
@@ -43,15 +43,16 @@ export default function StartupProfile() {
   }, [setIsNext]);
 
   const data = startupCompanyProfileSchema.safeParse({
-    companyName: startupState.companyName,
-    incorporation: startupState.incorporation,
-    rcNumber: startupState.rcNumber,
-    industry: startupState.industry,
-    description: startupState.description,
-    fundingInterest: startupState.fundingInterest,
+    companyName: startupProfileData.companyName,
+    incorporation: startupProfileData.incorporation,
+    rcNumber: startupProfileData.rcNumber,
+    industry: startupProfileData.industry,
+    description: startupProfileData.description,
+    fundingInterest: startupProfileData.fundingInterest,
   });
 
   const handleNext = useCallback(() => {
+    // console.log(data.success, data.error?.errors);
     if (!data.success)
       return setError(data.error.errors.map((err) => err.message).join(', '));
 
@@ -228,7 +229,7 @@ export default function StartupProfile() {
               type="button"
               className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
               onClick={handleNext}
-              disabled={error !== null || !data.success}
+              // disabled={error !== null || !data.success}
             >
               Next
             </Button>
