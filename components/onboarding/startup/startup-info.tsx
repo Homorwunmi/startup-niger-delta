@@ -3,6 +3,8 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
+import { StartupInitialType } from '@/types/Onboarding';
+import { startupContactInfoSchema } from '@/helpers/validation';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 
 import { Input } from '../../ui/input';
@@ -10,14 +12,13 @@ import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import StartupFounder from './startup-founder';
 import StartupProfile from './startup-profile';
-import { startupContactInfoSchema } from '@/helpers/validation';
 
 export default function StartupInfo() {
   const {
     setRange,
     setActiveTab,
-    dispatch,
-    state,
+    startupDispatch,
+    startupState,
     setIsNext,
     setError,
     error,
@@ -31,6 +32,13 @@ export default function StartupInfo() {
     });
   }, [setIsNext]);
 
+  const [startupInfo, setStartupInfo] = useState<Partial<StartupInitialType>>({
+    companyEmail: '',
+    companyWebsite: '',
+    companyAddress: '',
+    companyPhone: '',
+  });
+
   const [touched, setTouched] = useState({
     companyEmail: false,
     companyWebsite: false,
@@ -39,10 +47,10 @@ export default function StartupInfo() {
   });
 
   const data = startupContactInfoSchema.safeParse({
-    companyEmail: state.companyEmail,
-    companyWebsite: state.companyWebsite,
-    companyAddress: state.companyAddress,
-    companyPhone: state.companyPhone,
+    companyEmail: startupState.companyEmail,
+    companyWebsite: startupState.companyWebsite,
+    companyAddress: startupState.companyAddress,
+    companyPhone: startupState.companyPhone,
   });
 
   useEffect(() => {
@@ -52,7 +60,7 @@ export default function StartupInfo() {
     } else {
       setError(data.error.errors.map((err) => err.message).join(', '));
     }
-  }, [data, touched.companyEmail]);
+  }, [data, touched.companyEmail, setError, touched.companyPhone]);
 
   const handleNext = useCallback(() => {
     setRange(2);
@@ -60,6 +68,11 @@ export default function StartupInfo() {
       title: 'Founder/Co-Founder Profile',
       Component: <StartupFounder />,
       src: '/angel/bgTrailer3.svg',
+    });
+
+    startupDispatch({
+      type: 'UPDATE_CONTACT_INFO',
+      ...startupInfo,
     });
 
     setIsNext({
@@ -81,7 +94,7 @@ export default function StartupInfo() {
       pathname: '/onboarding/startup',
       title: 'Company Profile',
     });
-  }, [setRange, setActiveTab, setIsNext]);
+  }, [setRange, setActiveTab, setIsNext, setError]);
 
   return (
     <form className="flex flex-col h-full">
@@ -98,10 +111,10 @@ export default function StartupInfo() {
             id="company-email"
             name="compnayName"
             placeholder="username@domain.com"
-            value={state.companyEmail}
+            value={startupInfo.companyEmail}
             onChange={(e) => {
-              dispatch({
-                type: 'UPDATE_CONTACT_INFO',
+              setStartupInfo({
+                ...startupInfo,
                 companyEmail: e.target.value,
               });
             }}
@@ -119,10 +132,10 @@ export default function StartupInfo() {
             type="text"
             id="website"
             placeholder="www.businessdomain.com"
-            value={state.companyWebsite}
+            value={startupInfo.companyWebsite}
             onChange={(e) => {
-              dispatch({
-                type: 'UPDATE_CONTACT_INFO',
+              setStartupInfo({
+                ...startupInfo,
                 companyWebsite: e.target.value,
               });
             }}
@@ -140,10 +153,10 @@ export default function StartupInfo() {
             type="text"
             id="company-address"
             placeholder="Address information"
-            value={state.companyAddress}
+            value={startupInfo.companyAddress}
             onChange={(e) => {
-              dispatch({
-                type: 'UPDATE_CONTACT_INFO',
+              setStartupInfo({
+                ...startupInfo,
                 companyAddress: e.target.value,
               });
             }}
@@ -161,10 +174,10 @@ export default function StartupInfo() {
             type="tel"
             id="phone-number"
             placeholder="+234"
-            value={state.companyPhone}
+            value={startupInfo.companyPhone}
             onChange={(e) => {
-              dispatch({
-                type: 'UPDATE_CONTACT_INFO',
+              setStartupInfo({
+                ...startupInfo,
                 companyPhone: e.target.value,
               });
               setTouched((prev) => ({ ...prev, companyPhone: true }));

@@ -10,21 +10,16 @@ import {
   startAfter,
 } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import {
+  StartupInitialType,
+  UpdatedAcceleratorType,
+  UpdatedAngelType,
+  UpdatedStartupType,
+  UpdatedVCType,
+} from '@/types/Onboarding';
 import { db, auth, storage } from '../config';
 
-export const onboardingRegistration = async (
-  regType: string,
-  data: Record<string, any>
-) => {
-  if (!auth.currentUser) throw new Error('user not found');
-  data.user_id = auth.currentUser.uid;
-
-  const docRef = await addDoc(collection(db, `${regType}`), data);
-
-  return docRef;
-};
-
-export const uploadIdentification = async (cacFile: File, logoFile: File) => {
+export async function uploadIdentification(cacFile: File, logoFile: File) {
   try {
     if (!auth.currentUser) throw new Error('user not found');
 
@@ -65,7 +60,93 @@ export const uploadIdentification = async (cacFile: File, logoFile: File) => {
       )
     );
   }
-};
+}
+
+export async function onboardingRegistrationStartup(data: StartupInitialType) {
+  console.log('onboardingRegistrationStartup', data);
+  if (!auth.currentUser) throw new Error('user not found');
+
+  let startupData: StartupInitialType | UpdatedStartupType = {
+    ...data,
+    userId: auth.currentUser.uid,
+  };
+
+  // upload the certificate and logo files to Firebase Storage
+  if (data.certificate && data.logo) {
+    const res = await uploadIdentification(data.certificate, data.logo);
+
+    // startupData.certificate = res.registrationFile;
+    // startupData.logo = res.logoFile;
+
+    startupData = {
+      ...startupData,
+      certificate: res.registrationFile,
+      logo: res.logoFile,
+      userId: auth.currentUser.uid,
+    };
+  }
+
+  return addDoc(collection(db, 'startup'), startupData)
+    .then((docRef) => docRef)
+    .catch((error) => {
+      throw new Error(
+        `Error adding document: ${error instanceof Error ? error.message : 'Unknown error'}`
+      );
+    });
+}
+
+export async function onboardingRegistrationVC(data: UpdatedVCType) {
+  if (!auth.currentUser) throw new Error('user not found');
+
+  const vcData = {
+    ...data,
+    user_id: auth.currentUser.uid,
+  };
+
+  return addDoc(collection(db, 'vc'), vcData)
+    .then((docRef) => docRef)
+    .catch((error) => {
+      throw new Error(
+        `Error adding document: ${error instanceof Error ? error.message : 'Unknown error'}`
+      );
+    });
+}
+
+export async function onboardingRegistrationAngel(data: UpdatedAngelType) {
+  if (!auth.currentUser) throw new Error('user not found');
+
+  const angelData = {
+    ...data,
+    user_id: auth.currentUser.uid,
+  };
+
+  return addDoc(collection(db, 'angel'), angelData)
+    .then((docRef) => docRef)
+    .catch((error) => {
+      throw new Error(
+        `Error adding document: ${error instanceof Error ? error.message : 'Unknown error'}`
+      );
+    });
+}
+
+export async function onboardingRegistrationAccelerator(
+  data: UpdatedAcceleratorType
+) {
+  if (!auth.currentUser) throw new Error('user not found');
+
+  const acceleratorData = {
+    ...data,
+    user_id: auth.currentUser.uid,
+  };
+
+  return addDoc(collection(db, 'accelerator'), acceleratorData)
+    .then((docRef) => docRef)
+    .catch((error) => {
+      throw new Error(
+        `Error adding document: ${error instanceof Error ? error.message : 'Unknown error'}`
+      );
+    });
+}
 
 export const getAllFoundersOrInvestors = async (
   regType: string,

@@ -16,7 +16,8 @@ export default function StartupProfile() {
   const {
     setRange,
     setActiveTab,
-    dispatch,
+    startupDispatch,
+    startupState,
     setIsNext,
     setError,
     error,
@@ -42,19 +43,19 @@ export default function StartupProfile() {
   }, [setIsNext]);
 
   const data = startupCompanyProfileSchema.safeParse({
-    companyName: startupProfileData.companyName,
-    incorporation: startupProfileData.incorporation,
-    rcNumber: startupProfileData.rcNumber,
-    industry: startupProfileData.industry,
-    description: startupProfileData.description,
-    fundingInterest: startupProfileData.fundingInterest,
+    companyName: startupState.companyName,
+    incorporation: startupState.incorporation,
+    rcNumber: startupState.rcNumber,
+    industry: startupState.industry,
+    description: startupState.description,
+    fundingInterest: startupState.fundingInterest,
   });
 
   const handleNext = useCallback(() => {
     if (!data.success)
       return setError(data.error.errors.map((err) => err.message).join(', '));
 
-    dispatch({
+    startupDispatch({
       type: 'UPDATE_COMPANY_PROFILE',
       ...startupProfileData,
     });
@@ -77,7 +78,7 @@ export default function StartupProfile() {
     setIsNext,
     data.success,
     data.error?.errors,
-    dispatch,
+    startupDispatch,
     setError,
     startupProfileData,
   ]);
