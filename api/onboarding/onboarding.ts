@@ -88,7 +88,11 @@ export async function onboardingRegistrationStartup(data: StartupInitialType) {
   }
 
   return addDoc(collection(db, 'startup'), startupData)
-    .then((docRef) => docRef)
+    .then((docRef) => ({
+      success: true,
+      documentId: docRef.id,
+      message: 'Startup registration completed successfully'
+    }))
     .catch((error) => {
       throw new Error(
         `Error adding document: ${error instanceof Error ? error.message : 'Unknown error'}`
