@@ -16,32 +16,33 @@ import {
   TableHeader,
   TableRow,
 } from '../../ui/table';
-import StartupIdentity from './startup-identification';
-import { onboardingRegistrationStartup } from '@/api/onboarding/onboarding';
+import AcceleratorIdentification from './identification';
+import { onboardingRegistrationAccelerator } from '@/api/onboarding/onboarding';
 import { useRouter } from 'next/navigation';
 
-export default function StartupReview() {
+export default function AcceleratorReview() {
   const router = useRouter();
-  const { setRange, setActiveTab, startupState } = useOnboardContext();
+  const { setRange, setActiveTab, acceleratorState } = useOnboardContext();
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async () => {
     try {
       setIsLoading(true);
-      const response = await onboardingRegistrationStartup(startupState);
+      const response =
+        await onboardingRegistrationAccelerator(acceleratorState);
       if (!response.success) {
         setIsLoading(false);
         throw new Error(response.message || 'Registration failed');
       }
       toast.success(response.message, {
         onAutoClose: () => {
-          setIsLoading(false);
+          setIsLoading;
           router.push('/dashboard');
         },
-      }),
-        console.log(response);
+      });
     } catch (error) {
+      setIsLoading(false);
       console.error('Error during registration:', error);
     }
   };
@@ -50,8 +51,8 @@ export default function StartupReview() {
     setRange(3);
 
     setActiveTab({
-      title: 'Founder/Co-founder Profile',
-      Component: <StartupIdentity />,
+      title: 'Identification',
+      Component: <AcceleratorIdentification />,
       src: '/angel/bgTrailer1.svg',
     });
   }, [setRange, setActiveTab]);
@@ -74,25 +75,19 @@ export default function StartupReview() {
           <TableBody className="text-black">
             <TableRow className="bg-gray-100 hover:bg-gray-100">
               <TableCell>Company Name</TableCell>
-              <TableCell>{startupState.companyName}</TableCell>
-            </TableRow>
-            <TableRow className="hover:bg-transparent">
-              <TableCell>Year of Incorporation</TableCell>
-              <TableCell>{startupState.incorporation}</TableCell>
+              <TableCell>{acceleratorState.companyName}</TableCell>
             </TableRow>
             <TableRow className="bg-gray-100 hover:bg-gray-100">
-              <TableCell>RC Number</TableCell>
-              <TableCell>{startupState.rcNumber}</TableCell>
-            </TableRow>
-            <TableRow className="hover:bg-transparent">
               <TableCell>Industry</TableCell>
-              <TableCell>{startupState.industry}</TableCell>
+              <TableCell>{acceleratorState.industry}</TableCell>
+            </TableRow>
+            <TableRow className="hover:bg-transparent">
+              <TableCell> Business Description</TableCell>
+              <TableCell>{acceleratorState.description}</TableCell>
             </TableRow>
             <TableRow className="bg-gray-100 hover:bg-gray-100">
-              <TableCell>Startup Description</TableCell>
-              <TableCell className="h-auto">
-                {startupState.description}
-              </TableCell>
+              <TableCell>Funding Interest</TableCell>
+              <TableCell>{acceleratorState.fundingInterest}</TableCell>
             </TableRow>
           </TableBody>
 
@@ -110,19 +105,19 @@ export default function StartupReview() {
           <TableBody className="text-black">
             <TableRow className="bg-gray-100 hover:bg-gray-100">
               <TableCell>Company Email</TableCell>
-              <TableCell>{startupState.companyEmail}</TableCell>
+              <TableCell>{acceleratorState.companyEmail}</TableCell>
             </TableRow>
             <TableRow className="hover:bg-transparent">
-              <TableCell>Company Website</TableCell>
-              <TableCell>{startupState.companyWebsite}</TableCell>
+              <TableCell>Company Phone Number</TableCell>
+              <TableCell>{acceleratorState.companyPhone}</TableCell>
             </TableRow>
             <TableRow className="bg-gray-100 hover:bg-gray-100">
               <TableCell>Company Address</TableCell>
-              <TableCell>{startupState.companyAddress}</TableCell>
+              <TableCell>{acceleratorState.companyAddress}</TableCell>
             </TableRow>
             <TableRow className="hover:bg-transparent">
-              <TableCell>Company Phone</TableCell>
-              <TableCell>{startupState.companyPhone}</TableCell>
+              <TableCell>Company Website</TableCell>
+              <TableCell>{acceleratorState.companyWebsite}</TableCell>
             </TableRow>
           </TableBody>
 
@@ -132,31 +127,27 @@ export default function StartupReview() {
                 colSpan={2}
                 className="w-full bg-gray-400 text-xl font-semibold font-poppins px-5"
               >
-                Founder / Co-founder Profile
+                Investment Info
               </TableHead>
             </TableRow>
           </TableHeader>
 
           <TableBody className="text-black">
             <TableRow className="bg-gray-100 hover:bg-gray-100">
-              <TableCell>Founder Name</TableCell>
-              <TableCell>{startupState.founderName}</TableCell>
+              <TableCell>Principal Promoter</TableCell>
+              <TableCell>{acceleratorState.principalPromoter}</TableCell>
             </TableRow>
             <TableRow className="hover:bg-transparent">
-              <TableCell>Founder Email</TableCell>
-              <TableCell>{startupState.founderEmail}</TableCell>
+              <TableCell>Investment Experience</TableCell>
+              <TableCell>{acceleratorState.investmentExperience}</TableCell>
             </TableRow>
             <TableRow className="bg-gray-100 hover:bg-gray-100">
-              <TableCell>Founder Address</TableCell>
-              <TableCell>{startupState.founderAddress}</TableCell>
+              <TableCell>Investment Proof</TableCell>
+              <TableCell>{acceleratorState.investmentProof}</TableCell>
             </TableRow>
             <TableRow className="hover:bg-transparent">
-              <TableCell>Founder Phone</TableCell>
-              <TableCell>{startupState.founderMobile}</TableCell>
-            </TableRow>
-            <TableRow className="hover:bg-transparent">
-              <TableCell>No of Founder</TableCell>
-              <TableCell>{startupState.founderNo}</TableCell>
+              <TableCell>Investment Size</TableCell>
+              <TableCell>{acceleratorState.investmentSize}</TableCell>
             </TableRow>
           </TableBody>
 
@@ -166,27 +157,23 @@ export default function StartupReview() {
                 colSpan={2}
                 className="w-full bg-gray-400 text-xl font-semibold font-poppins px-5"
               >
-                Founder's Identification
+                Identification
               </TableHead>
             </TableRow>
           </TableHeader>
 
           <TableBody className="text-black">
             <TableRow className="bg-gray-100 hover:bg-gray-100">
-              <TableCell>CAC certificate</TableCell>
-              <TableCell>
-                {startupState.certificate instanceof File
-                  ? startupState.certificate?.name
-                  : startupState.certificate || 'No file selected'}
-              </TableCell>
+              <TableCell>Means of identification</TableCell>
+              <TableCell>{acceleratorState.identification}</TableCell>
             </TableRow>
             <TableRow className="hover:bg-transparent">
-              <TableCell>Company Logo</TableCell>
-              <TableCell>
-                {startupState.logo instanceof File
-                  ? startupState.logo.name
-                  : startupState.logo}
-              </TableCell>
+              <TableCell>Nationality</TableCell>
+              <TableCell>{acceleratorState.nationality}</TableCell>
+            </TableRow>
+            <TableRow className="hover:bg-transparent">
+              <TableCell>Message</TableCell>
+              <TableCell>{acceleratorState.message}</TableCell>
             </TableRow>
           </TableBody>
         </Table>
@@ -216,7 +203,7 @@ export default function StartupReview() {
           type="button"
           className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
           onClick={handleSubmit}
-          disabled={agreedToTerms === false || isLoading}
+          disabled={!agreedToTerms}
         >
           {isLoading ? 'Submitting...' : 'Submit'}
         </Button>

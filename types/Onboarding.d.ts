@@ -43,8 +43,8 @@ export interface StartupInitialType {
   founderAddress: string;
   founderMobile: string;
   founderNo: string;
-  certificate: File;
-  logo: File;
+  certificate: File | string;
+  logo: File | string;
 }
 
 export interface AngelInitialType {
@@ -57,6 +57,41 @@ export interface AngelInitialType {
   companyAddress: string;
   companyPhone: string;
   angelName: string;
+  investmentExperience: string;
+  investmentProof: string;
+  investmentSize: string;
+  identification: string;
+  nationality: string;
+  message: string;
+}
+
+export interface VentureCapitalistInitialType {
+  companyName: string;
+  industry: string;
+  description: string;
+  fundingInterest: string;
+  companyEmail: string;
+  companyWebsite: string;
+  companyAddress: string;
+  companyPhone: string;
+  generalPartner: string;
+  investmentExperience: string;
+  investmentProof: string;
+  investmentSize: string;
+  identification: string;
+  nationality: string;
+  message: string;
+}
+export interface AcceleratorInitialType {
+  companyName: string;
+  industry: string;
+  description: string;
+  fundingInterest: string;
+  companyEmail: string;
+  companyWebsite: string;
+  companyAddress: string;
+  companyPhone: string;
+  principalPromoter: string;
   investmentExperience: string;
   investmentProof: string;
   investmentSize: string;

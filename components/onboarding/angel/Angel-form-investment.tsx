@@ -3,6 +3,7 @@
 'use client';
 
 import { Input } from '@/components/ui/input';
+import { useMemo, useState } from 'react';
 // import { Textarea } from "@/components/ui/textarea";
 import { Button } from '@/components/ui/button';
 import { useCallback, useEffect } from 'react';
@@ -10,16 +11,57 @@ import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Label } from '../../ui/label';
 import AngelFormInfo from './Angel-form-info';
 import AngelFormIdentify from './Angel-form-identify';
+import { AngelInitialType } from '@/types/Onboarding';
+import { angelInvestmentInfoSchema } from '@/helpers/validation';
 
 export default function AngelFormInvestment() {
-  const { setRange, setActiveTab, setIsNext } = useOnboardContext();
+  const {
+    setRange,
+    setActiveTab,
+    setIsNext,
+    setError,
+    error: errorMessage,
+    angelDispatch,
+    angelState,
+  } = useOnboardContext();
+  const [angelInvestmentInfo, setAngelInvestmentInfo] = useState<
+    Partial<AngelInitialType>
+  >({
+    angelName: '',
+    investmentExperience: '',
+    investmentProof: '',
+    investmentSize: '',
+  });
 
   useEffect(() => {
-    setIsNext({
-      pathname: '/onboarding/angel-investor',
-      title: 'Investment Info',
+    if (angelState) {
+      setAngelInvestmentInfo({
+        angelName: angelState.angelName || '',
+        investmentExperience: angelState.investmentExperience || '',
+        investmentProof: angelState.investmentProof || '',
+        investmentSize: angelState.investmentSize || '',
+      });
+      setError(null);
+    }
+  }, [angelState]);
+
+  const data = useMemo(() => {
+    return angelInvestmentInfoSchema.safeParse({
+      angelName: angelInvestmentInfo.angelName,
+      investmentExperience: angelInvestmentInfo.investmentExperience,
+      investmentProof: angelInvestmentInfo.investmentProof,
+      investmentSize: angelInvestmentInfo.investmentSize,
     });
-  }, [setIsNext]);
+  }, [angelInvestmentInfo]);
+
+  useEffect(() => {
+    setError(null);
+    if (!data.success) {
+      setError(data.error.errors.map((err) => err.message).join(', '));
+    } else {
+      setError(null);
+    }
+  }, [data, setError]);
 
   const handlePrev = useCallback(() => {
     setRange(1);
@@ -32,6 +74,15 @@ export default function AngelFormInvestment() {
   }, [setRange, setActiveTab]);
 
   const handleNext = useCallback(() => {
+    if (!data.success) {
+      return setError(data.error.errors.map((err) => err.message).join(', '));
+    }
+
+    angelDispatch({
+      type: 'UPDATE_ANGEL_IDENTITY',
+      ...angelInvestmentInfo,
+    });
+
     setRange(3);
 
     setActiveTab({
@@ -39,7 +90,12 @@ export default function AngelFormInvestment() {
       Component: <AngelFormIdentify />,
       src: '/angel/bgTrailer4.svg',
     });
-  }, [setRange, setActiveTab]);
+
+    return setIsNext({
+      pathname: '/onboarding/angel-investor',
+      title: 'Identification',
+    });
+  }, [setRange, setActiveTab, angelInvestmentInfo, setIsNext, setError]);
 
   return (
     <form className="flex flex-col h-full">
@@ -56,6 +112,13 @@ export default function AngelFormInvestment() {
             id="angel"
             name="angel"
             placeholder="Full Name"
+            value={angelInvestmentInfo.angelName}
+            onChange={(e) => {
+              setAngelInvestmentInfo((prev) => ({
+                ...prev,
+                angelName: e.target.value,
+              }));
+            }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -70,6 +133,13 @@ export default function AngelFormInvestment() {
             type="date"
             id="investment-experience"
             placeholder="Choose investment experience"
+            value={angelInvestmentInfo.investmentExperience}
+            onChange={(e) => {
+              setAngelInvestmentInfo((prev) => ({
+                ...prev,
+                investmentExperience: e.target.value,
+              }));
+            }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -84,6 +154,13 @@ export default function AngelFormInvestment() {
             type="text"
             id="investment-proof"
             placeholder="E.g https://docs.googl.../1aByz123"
+            value={angelInvestmentInfo.investmentProof}
+            onChange={(e) => {
+              setAngelInvestmentInfo((prev) => ({
+                ...prev,
+                investmentProof: e.target.value,
+              }));
+            }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -98,27 +175,33 @@ export default function AngelFormInvestment() {
             type="tel"
             id="investment-size"
             placeholder="Choose investment size"
+            value={angelInvestmentInfo.investmentSize}
+            onChange={(e) => {
+              setAngelInvestmentInfo((prev) => ({
+                ...prev,
+                investmentSize: e.target.value,
+              }));
+            }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
       </div>
 
       <div className="col-span-2 flex items-end justify-between w-full mt-auto pb-6">
-        <p className="text-custom-orange">
-          *You must fill in all field to be able to continue
-        </p>
+        <p className="text-custom-orange">{errorMessage}</p>
         <div className="flex gap-3">
           <Button
             type="button"
             onClick={handlePrev}
-            className="px-10 bg-gray-200 hover:bg-gray-200"
+            className="px-10 bg-gray-200 hover:bg-gray-200 cursor-pointer"
           >
             Back
           </Button>
           <Button
             type="button"
             onClick={handleNext}
-            className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
+            className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
+            disabled={!data.success || errorMessage !== null}
           >
             Next
           </Button>

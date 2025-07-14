@@ -1,3 +1,4 @@
+import Investment from '@/components/news/investment';
 import { Company, Subscription } from '@/types/User';
 import { signupAuth, loginAuth } from '@/types/auth';
 import { z, ZodType } from 'zod';
@@ -74,4 +75,94 @@ export const startupIdentitySchema = z.object({
     .instanceof(File)
     .refine((file) => file.size > 0, 'Certificate is required'),
   logo: z.instanceof(File).refine((file) => file.size > 0, 'Logo is required'),
+});
+
+export const angelProfileSchema = z.object({
+  companyName: z.string().min(3, 'Company name is required'),
+  industry: z.string().min(3, 'Industry is required'),
+  description: z.string().min(10, 'Description is required'),
+  fundingInterest: z.string().min(4, 'Funding interest is required'),
+});
+
+export const angelContactInfoSchema = z.object({
+  companyEmail: z.string().email('Invalid email address'),
+  companyWebsite: z.string().url('Invalid URL'),
+  companyAddress: z.string().min(5, 'Company address is required'),
+  companyPhone: z
+    .string()
+    .min(10, 'Company phone number must be at least 10 digits')
+    .max(14, 'Company phone number must not exceed 14 digits'),
+});
+
+export const angelInvestmentInfoSchema = z.object({
+  angelName: z.string(),
+  investmentExperience: z.string().date('Invalid date'),
+  investmentProof: z.string().url('Invalid URL'),
+  investmentSize: z.string(),
+});
+
+export const angelInvestmentIdentificationSchema = z.object({
+  identification: z.string().min(1, 'Identification is required'),
+  nationality: z.string().min(1, 'Nationality is required'),
+  message: z.string().min(1, 'message is required'),
+});
+
+export const ventureCapitalistProfileSchema = z.object({
+  companyName: z.string().min(3, 'Company name is required'),
+  industry: z.string().min(3, 'Industry is required'),
+  description: z.string().min(10, 'Description is required'),
+  fundingInterest: z.string().min(4, 'Funding interest is required'),
+});
+
+export const ventureCapitalistContactInfoSchema = z.object({
+  companyEmail: z.string().email('Invalid email address'),
+  companyWebsite: z.string().url('Invalid URL'),
+  companyAddress: z.string().min(5, 'Company address is required'),
+  companyPhone: z
+    .string()
+    .min(10, 'Company phone number must be at least 10 digits')
+    .max(14, 'Company phone number must not exceed 14 digits'),
+});
+
+export const ventureCapitalistInvestmentInfoSchema = z.object({
+  generalPartner: z.string().min(3, 'General partner is required'),
+  investmentExperience: z.string().min(1, 'Investment experience is required'),
+  investmentProof: z.string().url('Invalid URL'),
+  investmentSize: z.string(),
+});
+
+export const ventureCapitalistInvestmentIdentificationSchema = z.object({
+  identification: z.string().min(1, 'Identification is required'),
+  nationality: z.string().min(1, 'Nationality is required'),
+  message: z.string().min(1, 'Message is required'),
+});
+
+export const acceleratorProfileSchema = z.object({
+  companyName: z.string().min(3, 'Company name is required'),
+  industry: z.string().min(3, 'Industry is required'),
+  description: z.string().min(10, 'Description is required'),
+  fundingInterest: z.string().min(4, 'Funding interest is required'),
+});
+
+export const acceleratorContactInfoSchema = z.object({
+  companyEmail: z.string().email('Invalid email address'),
+  companyWebsite: z.string().url('Invalid URL'),
+  companyAddress: z.string().min(5, 'Company address is required'),
+  companyPhone: z
+    .string()
+    .min(10, 'Company phone number must be at least 10 digits')
+    .max(14, 'Company phone number must not exceed 14 digits'),
+});
+
+export const acceleratorIncubatorSchema = z.object({
+  principalPromoter: z.string().min(3, 'Principal promoter is required'),
+  investmentExperience: z.string().min(1, 'Investment experience is required'),
+  investmentProof: z.string().url('Invalid URL'),
+  investmentSize: z.string(),
+});
+
+export const acceleratorInvestmentIdentificationSchema = z.object({
+  identification: z.string().min(1, 'Identification is required'),
+  nationality: z.string().min(1, 'Nationality is required'),
+  message: z.string().min(1, 'Message is required'),
 });

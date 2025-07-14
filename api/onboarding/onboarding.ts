@@ -11,13 +11,17 @@ import {
 } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import {
+  AcceleratorInitialType,
+  AngelInitialType,
   StartupInitialType,
   UpdatedAcceleratorType,
   UpdatedAngelType,
   UpdatedStartupType,
   UpdatedVCType,
+  VentureCapitalistInitialType,
 } from '@/types/Onboarding';
 import { db, auth, storage } from '../config';
+import { Certificate } from 'crypto';
 
 export async function uploadIdentification(cacFile: File, logoFile: File) {
   try {
@@ -64,15 +68,15 @@ export async function uploadIdentification(cacFile: File, logoFile: File) {
 
 export async function onboardingRegistrationStartup(data: StartupInitialType) {
   console.log('onboardingRegistrationStartup', data);
+
   if (!auth.currentUser) throw new Error('user not found');
 
   let startupData: StartupInitialType | UpdatedStartupType = {
     ...data,
     userId: auth.currentUser.uid,
   };
-
   // upload the certificate and logo files to Firebase Storage
-  if (data.certificate && data.logo) {
+  if (data.certificate instanceof File && data.logo instanceof File) {
     const res = await uploadIdentification(data.certificate, data.logo);
 
     // startupData.certificate = res.registrationFile;
@@ -87,7 +91,11 @@ export async function onboardingRegistrationStartup(data: StartupInitialType) {
   }
 
   return addDoc(collection(db, 'startup'), startupData)
-    .then((docRef) => docRef)
+    .then((docRef) => ({
+      success: true,
+      documentId: docRef.id,
+      message: 'Startup registration completed successfully',
+    }))
     .catch((error) => {
       throw new Error(
         `Error adding document: ${error instanceof Error ? error.message : 'Unknown error'}`
@@ -95,7 +103,9 @@ export async function onboardingRegistrationStartup(data: StartupInitialType) {
     });
 }
 
-export async function onboardingRegistrationVC(data: UpdatedVCType) {
+export async function onboardingRegistrationVC(
+  data: VentureCapitalistInitialType
+) {
   if (!auth.currentUser) throw new Error('user not found');
 
   const vcData = {
@@ -104,7 +114,11 @@ export async function onboardingRegistrationVC(data: UpdatedVCType) {
   };
 
   return addDoc(collection(db, 'vc'), vcData)
-    .then((docRef) => docRef)
+    .then((docRef) => ({
+      success: true,
+      documentId: docRef.id,
+      message: 'VC registration completed successfully',
+    }))
     .catch((error) => {
       throw new Error(
         `Error adding document: ${error instanceof Error ? error.message : 'Unknown error'}`
@@ -112,7 +126,7 @@ export async function onboardingRegistrationVC(data: UpdatedVCType) {
     });
 }
 
-export async function onboardingRegistrationAngel(data: UpdatedAngelType) {
+export async function onboardingRegistrationAngel(data: AngelInitialType) {
   if (!auth.currentUser) throw new Error('user not found');
 
   const angelData = {
@@ -121,7 +135,11 @@ export async function onboardingRegistrationAngel(data: UpdatedAngelType) {
   };
 
   return addDoc(collection(db, 'angel'), angelData)
-    .then((docRef) => docRef)
+    .then((docRef) => ({
+      success: true,
+      documentId: docRef.id,
+      message: 'Angel registration completed successfully',
+    }))
     .catch((error) => {
       throw new Error(
         `Error adding document: ${error instanceof Error ? error.message : 'Unknown error'}`
@@ -130,7 +148,7 @@ export async function onboardingRegistrationAngel(data: UpdatedAngelType) {
 }
 
 export async function onboardingRegistrationAccelerator(
-  data: UpdatedAcceleratorType
+  data: AcceleratorInitialType
 ) {
   if (!auth.currentUser) throw new Error('user not found');
 
@@ -140,7 +158,11 @@ export async function onboardingRegistrationAccelerator(
   };
 
   return addDoc(collection(db, 'accelerator'), acceleratorData)
-    .then((docRef) => docRef)
+    .then((docRef) => ({
+      success: true,
+      documentId: docRef.id,
+      message: 'Accelerator registration completed successfully',
+    }))
     .catch((error) => {
       throw new Error(
         `Error adding document: ${error instanceof Error ? error.message : 'Unknown error'}`

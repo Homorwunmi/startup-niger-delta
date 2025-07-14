@@ -2,16 +2,27 @@
 
 'use client';
 
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { angelProfileSchema } from '@/helpers/validation';
 import { Input } from '../../ui/input';
 import { Textarea } from '../../ui/textarea';
 import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import AngelFormInfo from './Angel-form-info';
+import { AngelInitialType } from '@/types/Onboarding';
 
 export default function AngelForm() {
-  const { setRange, setActiveTab, setIsNext, isPrev } = useOnboardContext();
+  const {
+    setRange,
+    setActiveTab,
+    setIsNext,
+    isPrev,
+    angelDispatch,
+    angelState,
+    error: errorMessage,
+    setError,
+  } = useOnboardContext();
 
   useEffect(() => {
     setIsNext({
@@ -20,7 +31,54 @@ export default function AngelForm() {
     });
   }, [setIsNext]);
 
+  const [angelProfileData, setAngelProfileData] = useState<
+    Partial<AngelInitialType>
+  >({
+    companyName: '',
+    industry: '',
+    description: '',
+    fundingInterest: '',
+  });
+
+  useEffect(() => {
+    if (angelState) {
+      setAngelProfileData({
+        companyName: angelState.companyName || '',
+        industry: angelState.industry || '',
+        description: angelState.description || '',
+        fundingInterest: angelState.fundingInterest || '',
+      });
+      setError(null);
+    }
+  }, [angelState]);
+
+  const data = useMemo(() => {
+    return angelProfileSchema.safeParse({
+      companyName: angelProfileData.companyName,
+      industry: angelProfileData.industry,
+      description: angelProfileData.description,
+      fundingInterest: angelProfileData.fundingInterest,
+    });
+  }, [angelProfileData]);
+
+  useEffect(() => {
+    setError(null);
+    if (!data.success) {
+      setError(data.error.errors.map((err) => err.message).join(', '));
+    } else {
+      setError(null);
+    }
+  }, [data, setError]);
+
   const handleNext = useCallback(() => {
+    if (!data.success)
+      return setError(data.error.errors.map((err) => err.message).join(', '));
+
+    angelDispatch({
+      type: 'UPDATE_COMPANY_PROFILE',
+      ...angelProfileData,
+    });
+
     setRange(1);
 
     setActiveTab({
@@ -28,7 +86,16 @@ export default function AngelForm() {
       Component: <AngelFormInfo />,
       src: '/angel/bgTrailer2.svg',
     });
-  }, [setRange, setActiveTab]);
+
+    console.log(angelState);
+
+    setError(null);
+
+    return setIsNext({
+      pathname: '/onboarding/angel-investor',
+      title: 'Contact Info',
+    });
+  }, [setRange, setActiveTab, setIsNext, angelDispatch, angelProfileData]);
 
   return (
     <form className="w-full" style={{ height: '100%' }}>
@@ -45,6 +112,13 @@ export default function AngelForm() {
             id="companyName"
             name="compnayName"
             placeholder="Registered name"
+            onChange={(e) => {
+              setAngelProfileData((prev) => ({
+                ...prev,
+                companyName: e.target.value,
+              }));
+            }}
+            value={angelProfileData.companyName}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -59,6 +133,13 @@ export default function AngelForm() {
             type="text"
             id="Industry"
             placeholder="Select Your Industry"
+            onChange={(e) => {
+              setAngelProfileData((prev) => ({
+                ...prev,
+                industry: e.target.value,
+              }));
+            }}
+            value={angelProfileData.industry}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -72,6 +153,13 @@ export default function AngelForm() {
           <Textarea
             id="BusinessDescription"
             placeholder="Your solution in one sentence"
+            onChange={(e) => {
+              setAngelProfileData((prev) => ({
+                ...prev,
+                description: e.target.value,
+              }));
+            }}
+            value={angelProfileData.description}
             className="w-full h-40 mt-2 py-3 px-6 border-custom-green-2 border-2 rounded-md resize-none focus-visible:ring-0 focus-visible:border-custom-green-2"
           />
         </div>
@@ -86,14 +174,19 @@ export default function AngelForm() {
             type="text"
             id="fundingInterest"
             placeholder="Investment Interest"
+            onChange={(e) => {
+              setAngelProfileData((prev) => ({
+                ...prev,
+                fundingInterest: e.target.value,
+              }));
+            }}
+            value={angelProfileData.fundingInterest}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
 
         <div className="col-span-2 flex items-end justify-between w-full mt-auto">
-          <p className="text-custom-orange">
-            *You must fill in all field to be able to continue
-          </p>
+          <p className="text-custom-orange">{errorMessage}</p>
           <div className="flex gap-3">
             <Button
               type="button"
@@ -104,8 +197,9 @@ export default function AngelForm() {
             </Button>
             <Button
               type="button"
-              className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
+              className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
               onClick={handleNext}
+              disabled={errorMessage != null || !data.success}
             >
               Next
             </Button>

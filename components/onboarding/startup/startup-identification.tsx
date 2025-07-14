@@ -6,14 +6,16 @@ import { RxUpload } from 'react-icons/rx';
 
 import React, { useCallback, useEffect } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
-
+import { startupIdentitySchema } from '@/helpers/validation';
+import { uploadIdentification } from '@/api/onboarding/onboarding';
 import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import StartupFounder from './startup-founder';
 import StartupReview from './startup-review';
-import { startupIdentitySchema } from '@/helpers/validation';
-import { uploadIdentification } from '@/api/onboarding/onboarding';
+import { toast } from 'sonner';
+import { StartupInitialType } from '@/types/Onboarding';
+import { renderFileInfo } from '@/helpers/utils';
 
 export default function StartupIdentity() {
   const {
@@ -23,33 +25,28 @@ export default function StartupIdentity() {
     startupState,
     setIsNext,
     setError,
-    error,
+    error: errorMessage,
   } = useOnboardContext();
-  const [logo, setLogo] = React.useState<string | null>(null);
-  const [fileName, setFileName] = React.useState<string | null>(null);
-
-  useEffect(() => {
-    setIsNext({
-      pathname: '/onboarding/startup',
-      title: 'Identification',
-    });
-  }, [setIsNext]);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [startupID, setStartupID] = React.useState<Partial<StartupInitialType>>(
+    {
+      certificate: '',
+      logo: '',
+    }
+  );
 
   const handleFileChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const { files } = e.target;
       const file = files?.[0];
       if (!file) return;
-      setFileName(file.name);
-      if (files && files.length > 0) {
-        startupDispatch({
-          type: 'UPDATE_STARTUP_PROOF',
-          certificate: file,
-        });
-      }
+      setStartupID((prev) => ({
+        ...prev,
+        certificate: file,
+      }));
       setError(null);
     },
-    [startupDispatch, setError]
+    [setError]
   );
 
   const handleLogoChange = useCallback(
@@ -57,21 +54,19 @@ export default function StartupIdentity() {
       const { files } = e.target;
       if (!files || files.length === 0) return;
       const file = files[0];
-      setLogo(file.name);
-      if (files && files.length > 0) {
-        startupDispatch({
-          type: 'UPDATE_STARTUP_PROOF',
-          logo: file,
-        });
-        setError(null);
-      }
+      setStartupID((prev) => ({
+        ...prev,
+        logo: file,
+      }));
+
+      setError(null);
     },
-    [startupDispatch]
+    [startupDispatch, setError]
   );
 
   const data = startupIdentitySchema.safeParse({
-    certificate: startupState.certificate,
-    logo: startupState.logo,
+    certificate: startupID.certificate,
+    logo: startupID.logo,
   });
 
   const handlePrev = useCallback(() => {
@@ -90,18 +85,38 @@ export default function StartupIdentity() {
   }, [setRange, setActiveTab, setIsNext]);
 
   const handleNext = useCallback(async () => {
-    if (!data.success) {
-      return setError(data.error.errors.map((err) => err.message).join(', '));
+    // Validate that both files are File objects
+    if (!(startupID.certificate instanceof File)) {
+      setError('Please select a valid certificate file');
+      return;
     }
-    if (!startupState.certificate || !startupState.logo) {
-      return setError('Please upload both CAC certificate and company logo.');
+
+    if (!(startupID.logo instanceof File)) {
+      setError('Please select a valid logo file');
+      return;
+    }
+    setIsLoading(true);
+
+    if (!data.success) {
+      setIsLoading(false);
+      return setError(data.error.errors.map((err) => err.message).join(', '));
     }
 
     try {
       const response = await uploadIdentification(
-        startupState.certificate,
-        startupState.logo
+        startupID.certificate,
+        startupID.logo
       );
+      if (response.message) {
+        console.log(response);
+        startupDispatch({
+          type: 'UPDATE_STARTUP_PROOF',
+          certificate: startupID.certificate,
+          logo: startupID.logo,
+        });
+        setIsLoading(false);
+        toast.success(response.message);
+      }
       console.log(response.message);
     } catch (error) {
       return setError(
@@ -121,15 +136,7 @@ export default function StartupIdentity() {
       pathname: '/onboarding/startup',
       title: '',
     });
-  }, [
-    data,
-    startupDispatch,
-    setRange,
-    setActiveTab,
-    setIsNext,
-    startupState,
-    setError,
-  ]);
+  }, [data, setRange, setActiveTab, setIsNext, startupState, setError]);
 
   return (
     <form className="flex flex-col h-full">
@@ -155,12 +162,13 @@ export default function StartupIdentity() {
             >
               <RxUpload
                 size={28}
-                className={`${fileName && 'text-gray-800'}`}
+                className={`${startupID.certificate && 'text-gray-800'}`}
               />
               <span
-                className={`text-lg ${fileName ? 'text-gray-800' : 'text-gray-300'}`}
+                className={`text-lg ${startupID.certificate ? 'text-gray-800' : 'text-gray-300'}`}
               >
-                {fileName || 'Upload CAC Certificate'}
+                {renderFileInfo(startupID.certificate) ||
+                  'Upload CAC Certificate'}
               </span>
             </Label>
           </div>
@@ -184,9 +192,12 @@ export default function StartupIdentity() {
               htmlFor="company-logo"
               className="flex items-center justify-center gap-2 p-10 border-custom-green-2 border-2 rounded-md cursor-pointer text-gray-300"
             >
-              <RxUpload size={28} className={`${logo && 'text-gray-800'}`} />
-              <span className={`text-lg ${logo && 'text-gray-800'}`}>
-                {logo || 'Upload Company Logo'}
+              <RxUpload
+                size={28}
+                className={`${startupID.logo && 'text-gray-800'}`}
+              />
+              <span className={`text-lg ${startupID.logo && 'text-gray-800'}`}>
+                {renderFileInfo(startupID.logo) || 'Upload Company Logo'}
               </span>
             </Label>
           </div>
@@ -194,7 +205,7 @@ export default function StartupIdentity() {
       </div>
 
       <div className="col-span-2 flex items-end justify-between w-full mt-auto pb-8 px-4">
-        <p className="text-custom-orange">{error}</p>
+        <p className="text-custom-orange">{errorMessage}</p>
         <div className="flex gap-3">
           <Button
             type="button"
@@ -207,9 +218,9 @@ export default function StartupIdentity() {
             type="button"
             className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
             onClick={handleNext}
-            disabled={error !== null}
+            disabled={errorMessage !== null}
           >
-            Next
+            {isLoading ? 'Uploading...' : 'Next'}
           </Button>
         </div>
       </div>

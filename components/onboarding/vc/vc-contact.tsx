@@ -3,21 +3,62 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState, useMemo } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Label } from '../../ui/label';
 import CapitalistProfile from './vc-profile';
 import CapitalistInvestment from './vc-investment';
+import { ventureCapitalistContactInfoSchema } from '@/helpers/validation';
+import { VentureCapitalistInitialType } from '@/types/Onboarding';
 
 export default function CapitalistContact() {
-  const { setRange, setActiveTab, setIsNext } = useOnboardContext();
+  const {
+    setRange,
+    setActiveTab,
+    setIsNext,
+    setError,
+    error: errorMessage,
+    capitalistDispatch,
+    capitalistState,
+  } = useOnboardContext();
+  const [capitalistContactInfo, setCapitalistContactInfo] = useState<
+    Partial<VentureCapitalistInitialType>
+  >({
+    companyEmail: '',
+    companyPhone: '',
+    companyAddress: '',
+    companyWebsite: '',
+  });
 
   useEffect(() => {
-    setIsNext({
-      pathname: '/onboarding/venture-capitalist',
-      title: 'Contact Info',
+    if (capitalistState) {
+      setCapitalistContactInfo({
+        companyEmail: capitalistState.companyEmail || '',
+        companyPhone: capitalistState.companyPhone || '',
+        companyAddress: capitalistState.companyAddress || '',
+        companyWebsite: capitalistState.companyWebsite || '',
+      });
+      setError(null); // Clear error when state is set
+    }
+  }, [capitalistState]);
+
+  const data = useMemo(() => {
+    return ventureCapitalistContactInfoSchema.safeParse({
+      companyEmail: capitalistContactInfo.companyEmail,
+      companyPhone: capitalistContactInfo.companyPhone,
+      companyAddress: capitalistContactInfo.companyAddress,
+      companyWebsite: capitalistContactInfo.companyWebsite,
     });
-  }, [setIsNext]);
+  }, [capitalistContactInfo]);
+
+  useEffect(() => {
+    setError(null);
+    if (!data.success) {
+      setError(data.error.errors.map((err) => err.message).join(', '));
+    } else {
+      setError(null);
+    }
+  }, [data, setError]);
 
   const handlePrev = useCallback(() => {
     setRange(0);
@@ -30,6 +71,17 @@ export default function CapitalistContact() {
   }, [setRange, setActiveTab]);
 
   const handleNext = useCallback(() => {
+    if (!data.success) {
+      return setError(data.error.errors.map((err) => err.message).join(', '));
+    } else {
+      setError(null);
+    }
+
+    capitalistDispatch({
+      type: 'UPDATE_CONTACT_INFO',
+      ...capitalistContactInfo,
+    });
+
     setRange(2);
 
     setActiveTab({
@@ -37,7 +89,20 @@ export default function CapitalistContact() {
       Component: <CapitalistInvestment />,
       src: '/angel/bgTrailer3.svg',
     });
-  }, [setRange, setActiveTab]);
+
+    return setIsNext({
+      pathname: '/onboarding/venture-capitalist',
+      title: 'Investment Info',
+    });
+  }, [
+    setRange,
+    setActiveTab,
+    setIsNext,
+    capitalistDispatch,
+    capitalistContactInfo,
+    data,
+    setError,
+  ]);
 
   return (
     <form className="flex flex-col h-full">
@@ -53,6 +118,13 @@ export default function CapitalistContact() {
             type="text"
             id="companyEmail"
             placeholder="Registered Email"
+            value={capitalistContactInfo.companyEmail}
+            onChange={(e) =>
+              setCapitalistContactInfo({
+                ...capitalistContactInfo,
+                companyEmail: e.target.value,
+              })
+            }
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -66,6 +138,13 @@ export default function CapitalistContact() {
           <Input
             id="companyPhone"
             placeholder="+234"
+            value={capitalistContactInfo.companyPhone}
+            onChange={(e) =>
+              setCapitalistContactInfo({
+                ...capitalistContactInfo,
+                companyPhone: e.target.value,
+              })
+            }
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -79,6 +158,13 @@ export default function CapitalistContact() {
           <Textarea
             id="companyAddress"
             placeholder="Your company address"
+            value={capitalistContactInfo.companyAddress}
+            onChange={(e) =>
+              setCapitalistContactInfo({
+                ...capitalistContactInfo,
+                companyAddress: e.target.value,
+              })
+            }
             className="w-full h-40 mt-2 py-3 px-6 border-custom-green-2 border-2 rounded-md resize-none focus-visible:ring-0 focus-visible:border-custom-green-2"
           />
         </div>
@@ -93,26 +179,32 @@ export default function CapitalistContact() {
             type="text"
             id="companyWebsite"
             placeholder="www.yourcompany.com"
+            value={capitalistContactInfo.companyWebsite}
+            onChange={(e) =>
+              setCapitalistContactInfo({
+                ...capitalistContactInfo,
+                companyWebsite: e.target.value,
+              })
+            }
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
 
         <div className="col-span-2 flex items-end justify-between w-full mt-auto">
-          <p className="text-custom-orange">
-            *You must fill in all field to be able to continue
-          </p>
+          <p className="text-custom-orange">{errorMessage}</p>
           <div className="flex gap-3">
             <Button
               type="button"
               onClick={handlePrev}
-              className="px-10 bg-gray-200 hover:bg-gray-200"
+              className="px-10 bg-gray-200 hover:bg-gray-200 cusor-pointer"
             >
               Back
             </Button>
             <Button
               type="button"
-              className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
+              className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
               onClick={handleNext}
+              disabled={!data.success || errorMessage !== null}
             >
               Next
             </Button>
