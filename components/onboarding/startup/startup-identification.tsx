@@ -17,6 +17,7 @@ import { toast } from 'sonner';
 import { StartupInitialType } from '@/types/Onboarding';
 import { renderFileInfo } from '@/helpers/utils';
 
+
 export default function StartupIdentity() {
   const {
     setRange,
@@ -137,6 +138,7 @@ export default function StartupIdentity() {
       title: '',
     });
   }, [data, setRange, setActiveTab, setIsNext, startupState, setError]);
+
 
   return (
     <form className="flex flex-col h-full">

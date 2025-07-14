@@ -94,7 +94,7 @@ export async function onboardingRegistrationStartup(data: StartupInitialType) {
     .then((docRef) => ({
       success: true,
       documentId: docRef.id,
-      message: 'Startup registration completed successfully',
+      message: 'Startup registration completed successfully'
     }))
     .catch((error) => {
       throw new Error(

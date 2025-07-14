@@ -4,6 +4,7 @@
 
 import { useCallback, useState } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { onboardingRegistrationStartup } from '@/api/onboarding/onboarding';
 import { Button } from '../../ui/button';
 import { Checkbox } from '../../ui/checkbox';
 import { Label } from '../../ui/label';
@@ -19,6 +20,7 @@ import {
 import StartupIdentity from './startup-identification';
 import { onboardingRegistrationStartup } from '@/api/onboarding/onboarding';
 import { useRouter } from 'next/navigation';
+
 
 export default function StartupReview() {
   const router = useRouter();
@@ -166,7 +168,7 @@ export default function StartupReview() {
                 colSpan={2}
                 className="w-full bg-gray-400 text-xl font-semibold font-poppins px-5"
               >
-                Founder's Identification
+                Founder&apos;s Identification
               </TableHead>
             </TableRow>
           </TableHeader>

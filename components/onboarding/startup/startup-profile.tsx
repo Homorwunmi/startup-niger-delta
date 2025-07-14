@@ -17,6 +17,7 @@ export default function StartupProfile() {
     setRange,
     setActiveTab,
     startupDispatch,
+
     setIsNext,
     setError,
     error: errorMessage,
@@ -79,7 +80,6 @@ export default function StartupProfile() {
     if (!data.success) {
       setError(data.error.errors.map((err) => err.message).join(', '));
     }
-
     startupDispatch({
       type: 'UPDATE_COMPANY_PROFILE',
       ...startupProfileData,
@@ -252,8 +252,7 @@ export default function StartupProfile() {
               type="button"
               className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
               onClick={handleNext}
-              disabled={!data.success || errorMessage !== null}
-            >
+              disabled={!data.success || errorMessage !== null}>
               Next
             </Button>
           </div>

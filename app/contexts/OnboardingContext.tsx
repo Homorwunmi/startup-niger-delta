@@ -13,7 +13,7 @@ import {
   VentureCapitalistInitialType,
   AcceleratorInitialType,
 } from '@/types/Onboarding';
-import {
+import React, {
   createContext,
   useContext,
   useState,
