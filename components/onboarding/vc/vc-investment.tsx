@@ -4,14 +4,24 @@
 
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Label } from '../../ui/label';
 import CapitalistContact from './vc-contact';
 import CapitalistIdentification from './vc-identification';
+import { VentureCapitalistInitialType } from '@/types/Onboarding';
+import { ventureCapitalistInvestmentInfoSchema } from '@/helpers/validation';
 
 export default function CapitalistInvestment() {
-  const { setRange, setActiveTab, setIsNext } = useOnboardContext();
+  const {
+    setRange,
+    setActiveTab,
+    setIsNext,
+    setError,
+    error: errorMessage,
+    capitalistDispatch,
+    capitalistState,
+  } = useOnboardContext();
 
   useEffect(() => {
     setIsNext({
@@ -19,6 +29,45 @@ export default function CapitalistInvestment() {
       title: 'Investment Info',
     });
   }, [setIsNext]);
+
+  const [capitalistInvestmentInfo, setCapitalistInvestmentInfo] = useState<
+    Partial<VentureCapitalistInitialType>
+  >({
+    generalPartner: '',
+    investmentExperience: '',
+    investmentProof: '',
+    investmentSize: '',
+  });
+
+  useEffect(() => {
+    if (capitalistState) {
+      setCapitalistInvestmentInfo({
+        generalPartner: capitalistState.generalPartner || '',
+        investmentExperience: capitalistState.investmentExperience || '',
+        investmentProof: capitalistState.investmentProof || '',
+        investmentSize: capitalistState.investmentSize || '',
+      });
+      setError(null);
+    }
+  }, [capitalistState]);
+
+  const data = useMemo(() => {
+    return ventureCapitalistInvestmentInfoSchema.safeParse({
+      generalPartner: capitalistInvestmentInfo.generalPartner,
+      investmentExperience: capitalistInvestmentInfo.investmentExperience,
+      investmentProof: capitalistInvestmentInfo.investmentProof,
+      investmentSize: capitalistInvestmentInfo.investmentSize,
+    });
+  }, [capitalistInvestmentInfo]);
+
+  useEffect(() => {
+    setError(null);
+    if (!data.success) {
+      setError(data.error.errors.map((err) => err.message).join(', '));
+    } else {
+      setError(null);
+    }
+  }, [data, setError]);
 
   const handlePrev = useCallback(() => {
     setRange(1);
@@ -31,6 +80,17 @@ export default function CapitalistInvestment() {
   }, [setRange, setActiveTab]);
 
   const handleNext = useCallback(() => {
+    if (!data.success) {
+      return setError(data.error.errors.map((err) => err.message).join(', '));
+    } else {
+      setError(null);
+    }
+
+    capitalistDispatch({
+      type: 'UPDATE_VC_IDENTITY',
+      ...capitalistInvestmentInfo,
+    });
+
     setRange(3);
 
     setActiveTab({
@@ -38,7 +98,15 @@ export default function CapitalistInvestment() {
       Component: <CapitalistIdentification />,
       src: '/angel/bgTrailer4.svg',
     });
-  }, [setRange, setActiveTab]);
+  }, [
+    setRange,
+    setActiveTab,
+    setIsNext,
+    capitalistDispatch,
+    capitalistInvestmentInfo,
+    data,
+    setError,
+  ]);
 
   return (
     <form className="flex flex-col h-full">
@@ -55,6 +123,13 @@ export default function CapitalistInvestment() {
             id="partner"
             name="partner"
             placeholder="Full Name"
+            value={capitalistInvestmentInfo.generalPartner}
+            onChange={(e) =>
+              setCapitalistInvestmentInfo((prev) => ({
+                ...prev,
+                generalPartner: e.target.value,
+              }))
+            }
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -69,6 +144,13 @@ export default function CapitalistInvestment() {
             type="text"
             id="investment-experience"
             placeholder="Choose investment experience"
+            value={capitalistInvestmentInfo.investmentExperience}
+            onChange={(e) =>
+              setCapitalistInvestmentInfo((prev) => ({
+                ...prev,
+                investmentExperience: e.target.value,
+              }))
+            }
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -83,6 +165,13 @@ export default function CapitalistInvestment() {
             type="text"
             id="investment-proof"
             placeholder="E.g https://docs.googl.../1aByz123"
+            value={capitalistInvestmentInfo.investmentProof}
+            onChange={(e) =>
+              setCapitalistInvestmentInfo((prev) => ({
+                ...prev,
+                investmentProof: e.target.value,
+              }))
+            }
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -97,27 +186,33 @@ export default function CapitalistInvestment() {
             type="tel"
             id="investment-size"
             placeholder="Choose investment size"
+            value={capitalistInvestmentInfo.investmentSize}
+            onChange={(e) =>
+              setCapitalistInvestmentInfo((prev) => ({
+                ...prev,
+                investmentSize: e.target.value,
+              }))
+            }
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
       </div>
 
       <div className="col-span-2 flex items-end justify-between w-full mt-auto pb-6">
-        <p className="text-custom-orange">
-          *You must fill in all field to be able to continue
-        </p>
+        <p className="text-custom-orange">{errorMessage}</p>
         <div className="flex gap-3">
           <Button
             type="button"
             onClick={handlePrev}
-            className="px-10 bg-gray-200 hover:bg-gray-200"
+            className="px-10 bg-gray-200 hover:bg-gray-200 cursor-pointer"
           >
             Back
           </Button>
           <Button
             type="button"
             onClick={handleNext}
-            className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
+            className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
+            disabled={!data.success || errorMessage !== null}
           >
             Next
           </Button>

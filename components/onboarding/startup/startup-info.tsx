@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useMemo } from 'react';
 import { StartupInitialType } from '@/types/Onboarding';
 import { startupContactInfoSchema } from '@/helpers/validation';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
@@ -18,19 +18,23 @@ export default function StartupInfo() {
     setRange,
     setActiveTab,
     startupDispatch,
-    // startupState,
     setIsNext,
     setError,
-    error,
-    // isNext,
+    startupState,
+    error: errorMessage,
   } = useOnboardContext();
 
   useEffect(() => {
-    setIsNext({
-      pathname: '/onboarding/startup',
-      title: 'Contact Info',
-    });
-  }, [setIsNext]);
+    if (startupState) {
+      setStartupInfo({
+        companyEmail: startupState.companyEmail || '',
+        companyWebsite: startupState.companyWebsite || '',
+        companyAddress: startupState.companyAddress || '',
+        companyPhone: startupState.companyPhone || '',
+      });
+      setError(null);
+    }
+  }, [startupState]);
 
   const [startupInfo, setStartupInfo] = useState<Partial<StartupInitialType>>({
     companyEmail: '',
@@ -39,30 +43,28 @@ export default function StartupInfo() {
     companyPhone: '',
   });
 
-  const [touched, setTouched] = useState({
-    companyEmail: false,
-    companyWebsite: false,
-    companyAddress: false,
-    companyPhone: false,
-  });
-
-  const data = startupContactInfoSchema.safeParse({
-    companyEmail: startupInfo.companyEmail,
-    companyWebsite: startupInfo.companyWebsite,
-    companyAddress: startupInfo.companyAddress,
-    companyPhone: startupInfo.companyPhone,
-  });
+  const data = useMemo(() => {
+    return startupContactInfoSchema.safeParse({
+      companyEmail: startupInfo.companyEmail,
+      companyWebsite: startupInfo.companyWebsite,
+      companyAddress: startupInfo.companyAddress,
+      companyPhone: startupInfo.companyPhone,
+    });
+  }, [startupInfo]);
 
   useEffect(() => {
-    if (!touched.companyPhone) return;
-    if (data.success) {
-      setError(null);
-    } else {
+    setError(null);
+    if (!data.success) {
       setError(data.error.errors.map((err) => err.message).join(', '));
+    } else {
+      setError(null);
     }
-  }, [data, touched.companyEmail, setError, touched.companyPhone]);
+  }, [data, setError]);
 
   const handleNext = useCallback(() => {
+    if (!data.success) {
+      setError(data.error.errors.map((err) => err.message).join(', '));
+    }
     setRange(2);
     setActiveTab({
       title: 'Founder/Co-Founder Profile',
@@ -180,7 +182,6 @@ export default function StartupInfo() {
                 ...startupInfo,
                 companyPhone: e.target.value,
               });
-              setTouched((prev) => ({ ...prev, companyPhone: true }));
             }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
@@ -188,7 +189,7 @@ export default function StartupInfo() {
       </div>
 
       <div className="col-span-2 flex items-end justify-between w-full mt-auto pb-6">
-        <p className="text-custom-orange">{error}</p>
+        <p className="text-custom-orange">{errorMessage}</p>
         <div className="flex gap-3">
           <Button
             type="button"
@@ -200,7 +201,7 @@ export default function StartupInfo() {
           <Button
             type="button"
             onClick={handleNext}
-            disabled={error !== null || !data.success}
+            disabled={!data.success || errorMessage !== null}
             className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
           >
             Next

@@ -11,13 +11,17 @@ import {
 } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import {
+  AcceleratorInitialType,
+  AngelInitialType,
   StartupInitialType,
   UpdatedAcceleratorType,
   UpdatedAngelType,
   UpdatedStartupType,
   UpdatedVCType,
+  VentureCapitalistInitialType,
 } from '@/types/Onboarding';
 import { db, auth, storage } from '../config';
+import { Certificate } from 'crypto';
 
 export async function uploadIdentification(cacFile: File, logoFile: File) {
   try {
@@ -71,9 +75,8 @@ export async function onboardingRegistrationStartup(data: StartupInitialType) {
     ...data,
     userId: auth.currentUser.uid,
   };
-
   // upload the certificate and logo files to Firebase Storage
-  if (data.certificate && data.logo) {
+  if (data.certificate instanceof File && data.logo instanceof File) {
     const res = await uploadIdentification(data.certificate, data.logo);
 
     // startupData.certificate = res.registrationFile;
@@ -100,7 +103,9 @@ export async function onboardingRegistrationStartup(data: StartupInitialType) {
     });
 }
 
-export async function onboardingRegistrationVC(data: UpdatedVCType) {
+export async function onboardingRegistrationVC(
+  data: VentureCapitalistInitialType
+) {
   if (!auth.currentUser) throw new Error('user not found');
 
   const vcData = {
@@ -112,7 +117,7 @@ export async function onboardingRegistrationVC(data: UpdatedVCType) {
     .then((docRef) => ({
       success: true,
       documentId: docRef.id,
-      message: 'Startup registration completed successfully'
+      message: 'VC registration completed successfully',
     }))
     .catch((error) => {
       throw new Error(
@@ -121,7 +126,7 @@ export async function onboardingRegistrationVC(data: UpdatedVCType) {
     });
 }
 
-export async function onboardingRegistrationAngel(data: UpdatedAngelType) {
+export async function onboardingRegistrationAngel(data: AngelInitialType) {
   if (!auth.currentUser) throw new Error('user not found');
 
   const angelData = {
@@ -133,7 +138,7 @@ export async function onboardingRegistrationAngel(data: UpdatedAngelType) {
     .then((docRef) => ({
       success: true,
       documentId: docRef.id,
-      message: 'Startup registration completed successfully'
+      message: 'Angel registration completed successfully',
     }))
     .catch((error) => {
       throw new Error(
@@ -143,7 +148,7 @@ export async function onboardingRegistrationAngel(data: UpdatedAngelType) {
 }
 
 export async function onboardingRegistrationAccelerator(
-  data: UpdatedAcceleratorType
+  data: AcceleratorInitialType
 ) {
   if (!auth.currentUser) throw new Error('user not found');
 
@@ -156,7 +161,7 @@ export async function onboardingRegistrationAccelerator(
     .then((docRef) => ({
       success: true,
       documentId: docRef.id,
-      message: 'Startup registration completed successfully'
+      message: 'Accelerator registration completed successfully',
     }))
     .catch((error) => {
       throw new Error(

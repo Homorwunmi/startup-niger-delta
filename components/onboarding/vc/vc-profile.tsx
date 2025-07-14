@@ -2,33 +2,99 @@
 
 'use client';
 
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState, useMemo } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Input } from '../../ui/input';
 import { Textarea } from '../../ui/textarea';
 import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import CapitalistContact from './vc-contact';
+import { VentureCapitalistInitialType } from '@/types/Onboarding';
+import { ventureCapitalistProfileSchema } from '@/helpers/validation';
 
 export default function CapitalistProfile() {
-  const { setRange, setActiveTab, setIsNext } = useOnboardContext();
+  const {
+    setRange,
+    setActiveTab,
+    setIsNext,
+    setError,
+    error: errorMessage,
+    capitalistDispatch,
+    capitalistState,
+  } = useOnboardContext();
+
+  const [ventureCapitalistProfileData, setVentureCapitalistProfileData] =
+    useState<Partial<VentureCapitalistInitialType>>({
+      companyName: '',
+      industry: '',
+      description: '',
+      fundingInterest: '',
+    });
 
   useEffect(() => {
-    setIsNext({
-      pathname: '/onboarding/venture-capitalist',
-      title: 'Company Profile',
+    if (capitalistState) {
+      setVentureCapitalistProfileData({
+        companyName: capitalistState.companyName || '',
+        industry: capitalistState.industry || '',
+        description: capitalistState.description || '',
+        fundingInterest: capitalistState.fundingInterest || '',
+      });
+      setError(null);
+    }
+  }, [capitalistState]);
+
+  const data = useMemo(() => {
+    return ventureCapitalistProfileSchema.safeParse({
+      companyName: ventureCapitalistProfileData.companyName,
+      industry: ventureCapitalistProfileData.industry,
+      description: ventureCapitalistProfileData.description,
+      fundingInterest: ventureCapitalistProfileData.fundingInterest,
     });
-  }, [setIsNext]);
+  }, [ventureCapitalistProfileData]);
+
+  useEffect(() => {
+    setError(null);
+    if (!data.success) {
+      setError(data.error.errors.map((err) => err.message).join(', '));
+    } else {
+      setError(null);
+    }
+  }, [data, setError]);
 
   const handleNext = useCallback(() => {
-    setRange(1);
+    if (!data.success) {
+      setError(data.error.message);
+      return;
+    }
+    console.log(
+      'Venture Capitalist Profile Data:',
+      ventureCapitalistProfileData
+    );
 
+    capitalistDispatch({
+      type: 'UPDATE_COMPANY_PROFILE',
+      ...ventureCapitalistProfileData,
+    });
+
+    setRange(1);
     setActiveTab({
       title: 'Contact Info',
       Component: <CapitalistContact />,
       src: '/angel/bgTrailer2.svg',
     });
-  }, [setRange, setActiveTab]);
+    return setIsNext({
+      pathname: '/onboarding/venture-capitalist',
+      title: 'Contact Info',
+    });
+  }, [
+    setRange,
+    setActiveTab,
+    setIsNext,
+    capitalistDispatch,
+    ventureCapitalistProfileData,
+    data,
+    setError,
+  ]);
 
   return (
     <form className="w-full" style={{ height: '100%' }}>
@@ -45,6 +111,13 @@ export default function CapitalistProfile() {
             id="companyName"
             name="compnayName"
             placeholder="Registered name"
+            value={ventureCapitalistProfileData.companyName}
+            onChange={(e) =>
+              setVentureCapitalistProfileData((prev) => ({
+                ...prev,
+                companyName: e.target.value,
+              }))
+            }
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -59,6 +132,13 @@ export default function CapitalistProfile() {
             type="text"
             id="Industry"
             placeholder="Select Your Industry"
+            value={ventureCapitalistProfileData.industry}
+            onChange={(e) =>
+              setVentureCapitalistProfileData((prev) => ({
+                ...prev,
+                industry: e.target.value,
+              }))
+            }
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -72,6 +152,13 @@ export default function CapitalistProfile() {
           <Textarea
             id="BusinessDescription"
             placeholder="Your solution in one sentence"
+            value={ventureCapitalistProfileData.description}
+            onChange={(e) =>
+              setVentureCapitalistProfileData((prev) => ({
+                ...prev,
+                description: e.target.value,
+              }))
+            }
             className="w-full h-40 mt-2 py-3 px-6 border-custom-green-2 border-2 rounded-md resize-none focus-visible:ring-0 focus-visible:border-custom-green-2"
           />
         </div>
@@ -86,25 +173,32 @@ export default function CapitalistProfile() {
             type="text"
             id="fundingInterest"
             placeholder="Investment Interest"
+            value={ventureCapitalistProfileData.fundingInterest}
+            onChange={(e) =>
+              setVentureCapitalistProfileData((prev) => ({
+                ...prev,
+                fundingInterest: e.target.value,
+              }))
+            }
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
 
         <div className="col-span-2 flex items-end justify-between w-full mt-auto">
-          <p className="text-custom-orange">
-            *You must fill in all field to be able to continue
-          </p>
+          <p className="text-custom-orange">{errorMessage}</p>
           <div className="flex gap-3">
             <Button
               type="button"
-              className="px-10 bg-gray-200 hover:bg-gray-200"
+              className="px-10 bg-gray-200 hover:bg-gray-200 cursor-pointer"
+              disabled={true}
             >
               Back
             </Button>
             <Button
               type="button"
-              className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
+              className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
               onClick={handleNext}
+              disabled={!data.success || errorMessage !== null}
             >
               Next
             </Button>

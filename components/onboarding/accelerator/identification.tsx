@@ -4,15 +4,26 @@
 
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { RadioGroupItem, RadioGroup } from '@/components/ui/radio-group';
+import { Checkbox } from '../../ui/checkbox';
 import { Label } from '@/components/ui/label';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState, useMemo } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Textarea } from '../../ui/textarea';
 import AcceleratorIncubator from './incubator';
+import AcceleratorReview from './review';
+import { acceleratorInvestmentIdentificationSchema } from '@/helpers/validation';
+import { AcceleratorInitialType } from '@/types/Onboarding';
 
 export default function AcceleratorIdentification() {
-  const { setRange, setActiveTab, setIsNext } = useOnboardContext();
+  const {
+    setRange,
+    setActiveTab,
+    setIsNext,
+    acceleratorDispatch,
+    acceleratorState,
+    setError,
+    error: errorMessage,
+  } = useOnboardContext();
 
   useEffect(() => {
     setIsNext({
@@ -20,6 +31,34 @@ export default function AcceleratorIdentification() {
       title: 'Identification',
     });
   }, [setIsNext]);
+
+  const [agreed, setAgreed] = useState(false);
+
+  const [acceleratorIdentificationData, setAcceleratorIdentificationData] =
+    useState<Partial<AcceleratorInitialType>>({
+      identification: '',
+      nationality: '',
+      message: '',
+    });
+
+  useEffect(() => {
+    if (acceleratorState) {
+      setAcceleratorIdentificationData({
+        identification: acceleratorState.identification || '',
+        nationality: acceleratorState.nationality || '',
+        message: acceleratorState.message || '',
+      });
+      setError(null); // Clear error when state is set
+    }
+  }, [acceleratorState]);
+
+  const data = useMemo(() => {
+    return acceleratorInvestmentIdentificationSchema.safeParse({
+      identification: acceleratorIdentificationData.identification,
+      nationality: acceleratorIdentificationData.nationality,
+      message: acceleratorIdentificationData.message,
+    });
+  }, [acceleratorIdentificationData]);
 
   const handlePrev = useCallback(() => {
     setRange(2);
@@ -30,6 +69,28 @@ export default function AcceleratorIdentification() {
       src: '/angel/bgTrailer3.svg',
     });
   }, [setRange, setActiveTab]);
+
+  const handleNext = useCallback(() => {
+    if (!data.success)
+      return setError(data.error.errors.map((err) => err.message).join(', '));
+
+    acceleratorDispatch({
+      type: 'UPDATE_ACCELERATOR_PROOF',
+      ...acceleratorIdentificationData,
+    });
+    setActiveTab({
+      title: '',
+      Component: <AcceleratorReview />,
+      src: '/angel/bgTrailer4.svg',
+    });
+  }, [
+    setRange,
+    setActiveTab,
+    acceleratorDispatch,
+    acceleratorIdentificationData,
+    data,
+    setError,
+  ]);
 
   return (
     <form action="flex flex-col h-full" style={{ height: '100%' }}>
@@ -45,6 +106,13 @@ export default function AcceleratorIdentification() {
             type="text"
             id="meansofIdentification"
             placeholder="Choose verification method"
+            value={acceleratorIdentificationData.identification}
+            onChange={(e) =>
+              setAcceleratorIdentificationData((prev) => ({
+                ...prev,
+                identification: e.target.value,
+              }))
+            }
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -59,19 +127,33 @@ export default function AcceleratorIdentification() {
             type="text"
             id="Nationality"
             placeholder="Country"
+            value={acceleratorIdentificationData.nationality}
+            onChange={(e) =>
+              setAcceleratorIdentificationData((prev) => ({
+                ...prev,
+                nationality: e.target.value,
+              }))
+            }
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
         <div className="relative">
           <Label
-            htmlFor="investmentProof"
+            htmlFor="message"
             className="text-base bg-white absolute -top-1 left-6 px-1"
           >
-            Investment Proof
+            Message
           </Label>
           <Textarea
-            id="investmentProof"
+            id="message"
             placeholder="Body"
+            value={acceleratorIdentificationData.message}
+            onChange={(e) =>
+              setAcceleratorIdentificationData((prev) => ({
+                ...prev,
+                message: e.target.value,
+              }))
+            }
             className="w-full h-40 mt-2 py-3 px-6 border-custom-green-2 border-2 rounded-md resize-none focus-visible:ring-0 focus-visible:border-custom-green-2"
           />
         </div>
@@ -81,30 +163,35 @@ export default function AcceleratorIdentification() {
             conditions of the program, including attendance, code of conduct,
             and other program-specific requirements.
           </p>
-          <RadioGroup defaultValue="option-one">
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="" id="option-one" />
-              <Label htmlFor="option-one">Yes, I agree</Label>
-            </div>
-          </RadioGroup>
+          <div className="flex items-center space-x-2">
+            <Checkbox
+              id="terms"
+              value="I agree to the terms and condition"
+              checked={agreed}
+              onCheckedChange={(checked) => setAgreed(!!checked)}
+              className="cursor-pointer"
+            />
+            <Label htmlFor="terms" className="">
+              I agree to the terms and condition
+            </Label>
+          </div>
         </div>
 
         <div className="col-span-2 flex items-end justify-between w-full mt-auto">
-          <p className="text-custom-orange">
-            *You must fill in all field to be able to continue
-          </p>
+          <p className="text-custom-orange">{errorMessage}</p>
           <div className="flex gap-3">
             <Button
               type="button"
               onClick={handlePrev}
-              className="px-10 bg-gray-200 hover:bg-gray-200"
+              className="px-10 bg-gray-200 hover:bg-gray-200 cursor-pointer"
             >
               Back
             </Button>
             <Button
               type="button"
-              className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
-              // onClick={handleNext}
+              className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
+              onClick={handleNext}
+              disabled={!data.success || !agreed}
             >
               Next
             </Button>

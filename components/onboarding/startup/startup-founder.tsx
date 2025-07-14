@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { startupFounderInfoSchema } from '@/helpers/validation';
 import { StartupInitialType } from '@/types/Onboarding';
@@ -13,19 +13,12 @@ export default function StartupFounder() {
   const {
     setRange,
     setActiveTab,
-    // startupState,
     startupDispatch,
     setIsNext,
     setError,
-    error,
+    startupState,
+    error: errorMessage,
   } = useOnboardContext();
-
-  useEffect(() => {
-    setIsNext({
-      pathname: '/onboarding/startup',
-      title: 'Founder/Co-Founder Profile',
-    });
-  }, [setIsNext]);
 
   const [startupFounderData, setStartupFounderData] = useState<
     Partial<StartupInitialType>
@@ -37,36 +30,40 @@ export default function StartupFounder() {
     founderNo: '',
   });
 
-  const [touched, setTouched] = useState({
-    founderName: false,
-    founderEmail: false,
-    founderAddress: false,
-    founderMobile: false,
-    founderNo: false,
-  });
+  useEffect(() => {
+    if (startupState) {
+      setStartupFounderData({
+        founderName: startupState.founderName || '',
+        founderEmail: startupState.founderEmail || '',
+        founderAddress: startupState.founderAddress || '',
+        founderMobile: startupState.founderMobile || '',
+        founderNo: startupState.founderNo || '',
+      });
+      setError(null);
+    }
+  }, [startupState]);
 
-  const data = startupFounderInfoSchema.safeParse({
-    founderName: startupFounderData.founderName,
-    founderEmail: startupFounderData.founderEmail,
-    founderAddress: startupFounderData.founderAddress,
-    founderMobile: startupFounderData.founderMobile,
-    founderNo: startupFounderData.founderNo,
-  });
-
-  const isNext = data.success;
+  const data = useMemo(() => {
+    return startupFounderInfoSchema.safeParse({
+      founderName: startupFounderData.founderName,
+      founderEmail: startupFounderData.founderEmail,
+      founderAddress: startupFounderData.founderAddress,
+      founderMobile: startupFounderData.founderMobile,
+      founderNo: startupFounderData.founderNo,
+    });
+  }, [startupFounderData]);
 
   useEffect(() => {
-    if (!touched.founderNo) return;
-    if (data.success) {
-      setError(null);
-    } else {
+    setError(null);
+    if (!data.success) {
       setError(data.error.errors.map((err) => err.message).join(', '));
+    } else {
+      setError(null);
     }
-  }, [data, touched.founderNo, setError]);
+  }, [data, setError]);
 
   const handleNext = useCallback(() => {
     setRange(3);
-
     setActiveTab({
       title: 'Company Profile',
       Component: <StartupIdentity />,
@@ -203,7 +200,6 @@ export default function StartupFounder() {
                 ...startupFounderData,
                 founderNo: e.target.value,
               });
-              setTouched((prev) => ({ ...prev, founderNo: true }));
             }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
@@ -211,7 +207,7 @@ export default function StartupFounder() {
       </div>
 
       <div className="col-span-2 flex items-end justify-between w-full mt-auto pb-8 px-4">
-        <p className="text-custom-orange">{error}</p>
+        <p className="text-custom-orange">{errorMessage ? errorMessage : ''}</p>
         <div className="flex gap-3">
           <Button
             type="button"
@@ -223,7 +219,7 @@ export default function StartupFounder() {
           <Button
             type="button"
             onClick={handleNext}
-            disabled={!isNext}
+            disabled={errorMessage !== null || !data.success}
             className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
           >
             Next

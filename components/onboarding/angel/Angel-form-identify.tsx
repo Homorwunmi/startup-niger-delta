@@ -4,22 +4,61 @@
 
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { RadioGroupItem, RadioGroup } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { useCallback, useEffect } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { Textarea } from '../../ui/textarea';
 import AngelFormInvestment from './Angel-form-investment';
+import { useState, useMemo } from 'react';
+import { AngelInitialType } from '@/types/Onboarding';
+import { angelInvestmentIdentificationSchema } from '@/helpers/validation';
+import { Checkbox } from '../../ui/checkbox';
+import AngelReview from './angel-review';
 
 export default function AngelFormIdentify() {
-  const { setRange, setActiveTab, setIsNext } = useOnboardContext();
+  const {
+    setRange,
+    setActiveTab,
+    setIsNext,
+    setError,
+    error: errorMessage,
+    angelDispatch,
+    angelState,
+  } = useOnboardContext();
+  const [angelIdentification, setAngelIdentification] = useState<
+    Partial<AngelInitialType>
+  >({
+    identification: '',
+    nationality: '',
+    message: '',
+  });
+
+  const [agreed, setAgreed] = useState(false);
 
   useEffect(() => {
-    setIsNext({
-      pathname: '/onboarding/angel-investor',
-      title: 'Identification',
+    if (angelState) {
+      setAngelIdentification({
+        identification: angelState.identification || '',
+        nationality: angelState.nationality || '',
+        message: angelState.message || '',
+      });
+      setError(null);
+    }
+  }, [angelState]);
+
+  const data = useMemo(() => {
+    return angelInvestmentIdentificationSchema.safeParse({
+      identification: angelIdentification.identification,
+      nationality: angelIdentification.nationality,
+      message: angelIdentification.message,
     });
-  }, [setIsNext]);
+  }, [angelIdentification]);
+
+  if (!data.success) {
+    setError(data.error.errors.map((err) => err.message).join(', '));
+  } else {
+    setError(null);
+  }
 
   const handlePrev = useCallback(() => {
     setRange(2);
@@ -30,6 +69,35 @@ export default function AngelFormIdentify() {
       src: '/angel/bgTrailer3.svg',
     });
   }, [setRange, setActiveTab]);
+
+  const handleNext = useCallback(() => {
+    if (!data.success) {
+      return setError(data.error.errors.map((err) => err.message).join(', '));
+    }
+
+    angelDispatch({
+      type: 'UPDATE_ANGEL_PROOF',
+      ...angelIdentification,
+    });
+
+    setActiveTab({
+      title: '',
+      Component: <AngelReview />,
+      src: '/angel/bgTrailer5.svg',
+    });
+
+    return setIsNext({
+      pathname: '/onboarding/angel-investor',
+      title: '',
+    });
+  }, [
+    setRange,
+    setActiveTab,
+    angelDispatch,
+    angelIdentification,
+    setIsNext,
+    setError,
+  ]);
 
   return (
     <form action="flex flex-col h-full" style={{ height: '100%' }}>
@@ -45,6 +113,13 @@ export default function AngelFormIdentify() {
             type="text"
             id="meansofIdentification"
             placeholder="Choose verification method"
+            value={angelIdentification.identification}
+            onChange={(e) => {
+              setAngelIdentification((prev) => ({
+                ...prev,
+                identification: e.target.value,
+              }));
+            }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -59,6 +134,13 @@ export default function AngelFormIdentify() {
             type="text"
             id="Nationality"
             placeholder="Country"
+            value={angelIdentification.nationality}
+            onChange={(e) => {
+              setAngelIdentification((prev) => ({
+                ...prev,
+                nationality: e.target.value,
+              }));
+            }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
@@ -67,11 +149,18 @@ export default function AngelFormIdentify() {
             htmlFor="investmentProof"
             className="text-base bg-white absolute -top-1 left-6 px-1"
           >
-            Investment Proof
+            Message
           </Label>
           <Textarea
             id="investmentProof"
             placeholder="Body"
+            value={angelIdentification.message}
+            onChange={(e) => {
+              setAngelIdentification((prev) => ({
+                ...prev,
+                message: e.target.value,
+              }));
+            }}
             className="w-full h-40 mt-2 py-3 px-6 border-custom-green-2 border-2 rounded-md resize-none focus-visible:ring-0 focus-visible:border-custom-green-2"
           />
         </div>
@@ -81,30 +170,35 @@ export default function AngelFormIdentify() {
             conditions of the program, including attendance, code of conduct,
             and other program-specific requirements.
           </p>
-          <RadioGroup defaultValue="option-one">
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="" id="option-one" />
-              <Label htmlFor="option-one">Yes, I agree</Label>
-            </div>
-          </RadioGroup>
+          <div className="flex items-center space-x-2">
+            <Checkbox
+              id="terms"
+              value="I agree to the terms and condition"
+              checked={agreed}
+              onCheckedChange={(checked) => setAgreed(!!checked)}
+              className="cursor-pointer"
+            />
+            <Label htmlFor="terms" className="">
+              I agree to the terms and condition
+            </Label>
+          </div>
         </div>
 
         <div className="col-span-2 flex items-end justify-between w-full mt-auto">
-          <p className="text-custom-orange">
-            *You must fill in all field to be able to continue
-          </p>
+          <p className="text-custom-orange">{errorMessage}</p>
           <div className="flex gap-3">
             <Button
               type="button"
               onClick={handlePrev}
-              className="px-10 bg-gray-200 hover:bg-gray-200"
+              className="px-10 bg-gray-200 hover:bg-gray-200 cursor-pointer"
             >
               Back
             </Button>
             <Button
               type="button"
-              className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark"
-              // onClick={handleNext}
+              className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
+              onClick={handleNext}
+              disabled={!data.success || !agreed}
             >
               Next
             </Button>

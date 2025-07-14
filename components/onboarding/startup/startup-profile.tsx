@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useMemo } from 'react';
 import { useOnboardContext } from '@/app/contexts/OnboardingContext';
 import { startupCompanyProfileSchema } from '@/helpers/validation';
 import { StartupInitialType } from '@/types/Onboarding';
@@ -17,10 +17,11 @@ export default function StartupProfile() {
     setRange,
     setActiveTab,
     startupDispatch,
-    // startupState,
+
     setIsNext,
     setError,
-    error,
+    error: errorMessage,
+    startupState,
     isPrev: { range: isPrevRange },
   } = useOnboardContext();
 
@@ -42,20 +43,43 @@ export default function StartupProfile() {
     });
   }, [setIsNext]);
 
-  const data = startupCompanyProfileSchema.safeParse({
-    companyName: startupProfileData.companyName,
-    incorporation: startupProfileData.incorporation,
-    rcNumber: startupProfileData.rcNumber,
-    industry: startupProfileData.industry,
-    description: startupProfileData.description,
-    fundingInterest: startupProfileData.fundingInterest,
-  });
+  useEffect(() => {
+    if (startupState) {
+      setStartupProfileData({
+        companyName: startupState.companyName || '',
+        incorporation: startupState.incorporation || '',
+        rcNumber: startupState.rcNumber || '',
+        industry: startupState.industry || '',
+        description: startupState.description || '',
+        fundingInterest: startupState.fundingInterest || '',
+      });
+      setError(null);
+    }
+  }, [startupState]);
+
+  const data = useMemo(() => {
+    return startupCompanyProfileSchema.safeParse({
+      companyName: startupProfileData.companyName,
+      incorporation: startupProfileData.incorporation,
+      rcNumber: startupProfileData.rcNumber,
+      industry: startupProfileData.industry,
+      description: startupProfileData.description,
+      fundingInterest: startupProfileData.fundingInterest,
+    });
+  }, [startupProfileData]);
+
+  useEffect(() => {
+    if (!data.success) {
+      setError(data.error.errors.map((err) => err.message).join(', '));
+    } else {
+      setError(null);
+    }
+  }, [data, setError]);
 
   const handleNext = useCallback(() => {
-    // console.log(data.success, data.error?.errors);
-    if (!data.success)
-      return setError(data.error.errors.map((err) => err.message).join(', '));
-
+    if (!data.success) {
+      setError(data.error.errors.map((err) => err.message).join(', '));
+    }
     startupDispatch({
       type: 'UPDATE_COMPANY_PROFILE',
       ...startupProfileData,
@@ -78,7 +102,7 @@ export default function StartupProfile() {
     setActiveTab,
     setIsNext,
     data.success,
-    data.error?.errors,
+    // data.error?.errors,
     startupDispatch,
     setError,
     startupProfileData,
@@ -101,10 +125,10 @@ export default function StartupProfile() {
             placeholder="Registered name"
             value={startupProfileData.companyName}
             onChange={(e) => {
-              setStartupProfileData((prev) => ({
-                ...prev,
+              setStartupProfileData({
+                ...startupProfileData,
                 companyName: e.target.value,
-              }));
+              });
             }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md outline-none focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
@@ -209,14 +233,13 @@ export default function StartupProfile() {
                 ...prev,
                 fundingInterest: e.target.value,
               }));
-              // setTouched((prev) => ({ ...prev, fundingInterest: true }));
             }}
             className="mt-2 p-6 border-custom-green-2 border-2 rounded-md h-10 focus-visible:ring-0 focus-visible:border-custom-green-2 w-full"
           />
         </div>
 
         <div className="col-span-2 flex items-end justify-between w-full mt-auto">
-          <p className="text-custom-orange">{error}</p>
+          <p className="text-custom-orange">{errorMessage}</p>
           <div className="flex gap-3">
             <Button
               type="button"
@@ -229,8 +252,7 @@ export default function StartupProfile() {
               type="button"
               className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
               onClick={handleNext}
-              // disabled={error !== null || !data.success}
-            >
+              disabled={!data.success || errorMessage !== null}>
               Next
             </Button>
           </div>

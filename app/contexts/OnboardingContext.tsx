@@ -1,11 +1,17 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 
-// import { startUpData } from '@/lib/data';
-import { initialStartData, initialAngelData } from '@/lib/onboardingData';
+import {
+  initialStartData,
+  initialAngelData,
+  initialVentureCapitalist,
+  initialAcceleratorData,
+} from '@/lib/onboardingData';
 import {
   ActiveTab,
   StartupInitialType,
   AngelInitialType,
+  VentureCapitalistInitialType,
+  AcceleratorInitialType,
 } from '@/types/Onboarding';
 import React, {
   createContext,
@@ -28,11 +34,19 @@ const OnboardContext = createContext<{
   range: number;
   startupState: StartupInitialType;
   angelState: AngelInitialType;
+  capitalistState: VentureCapitalistInitialType;
+  acceleratorState: AcceleratorInitialType;
   angelDispatch: React.ActionDispatch<
     [action: Partial<AngelInitialType> & { type: string }]
   >;
   startupDispatch: React.ActionDispatch<
     [action: Partial<StartupInitialType> & { type: string }]
+  >;
+  capitalistDispatch: React.ActionDispatch<
+    [action: Partial<VentureCapitalistInitialType> & { type: string }]
+  >;
+  acceleratorDispatch: React.ActionDispatch<
+    [action: Partial<AcceleratorInitialType> & { type: string }]
   >;
   setRange: React.Dispatch<React.SetStateAction<number>>;
   activeTab: ActiveTab;
@@ -47,11 +61,15 @@ const OnboardContext = createContext<{
   range: 0,
   startupState: initialStartData,
   angelState: initialAngelData,
+  capitalistState: initialVentureCapitalist,
+  acceleratorState: initialAcceleratorData,
   activeTab: { title: '', Component: <></>, src: '' },
   isNext: { pathname: '', title: '' },
   setIsNext: () => {},
   setRange: () => {},
   startupDispatch: () => {},
+  capitalistDispatch: () => {},
+  acceleratorDispatch: () => {},
   angelDispatch: () => {},
   setActiveTab: () => {},
   setError: () => {},
@@ -66,29 +84,44 @@ function startupReducer(
 ): StartupInitialType {
   switch (action.type) {
     case 'UPDATE_COMPANY_PROFILE':
-      return {
+      const { type: companyData, ...actionData } = action;
+      const newState = {
         ...state,
-        ...action,
+        ...actionData,
       };
+      console.log(newState);
+      return newState;
     case 'UPDATE_CONTACT_INFO':
-      return {
+      console.log(state);
+
+      const { type: contactData, ...contactActionData } = action;
+      const contactState = {
         ...state,
-        ...action,
+        ...contactActionData,
       };
+      console.log(contactState);
+      return contactState;
     case 'UPDATE_STARTUP_IDENTITY':
-      return {
+      console.log(state);
+      const { type: identityData, ...identityActionData } = action;
+      const identityState = {
         ...state,
-        ...action,
+        ...identityActionData,
       };
+      console.log(identityState);
+      return identityState;
     case 'UPDATE_STARTUP_PROOF':
-      return {
+      console.log(state);
+      const { type: proofType, ...proofActionData } = action;
+      const proofState = {
         ...state,
-        ...action,
+        ...proofActionData,
       };
+      console.log(proofState);
+      return proofState;
     default:
       break;
   }
-
   return state;
 }
 
@@ -98,25 +131,127 @@ function angelReducer(
 ): AngelInitialType {
   switch (action.type) {
     case 'UPDATE_COMPANY_PROFILE':
-      return {
+      const { type: companyData, ...actionData } = action;
+      const newState = {
         ...state,
-        ...action,
+        ...actionData,
       };
+      console.log(newState);
+      return newState;
     case 'UPDATE_CONTACT_INFO':
-      return {
+      const { type: contactData, ...contactActionData } = action;
+      const contactState = {
         ...state,
-        ...action,
+        ...contactActionData,
       };
+      console.log(contactState);
+      return contactState;
     case 'UPDATE_ANGEL_IDENTITY':
-      return {
+      const { type: identityData, ...identityActionData } = action;
+      const identityState = {
         ...state,
-        ...action,
+        ...identityActionData,
       };
+      console.log(identityState);
+      return identityState;
     case 'UPDATE_ANGEL_PROOF':
-      return {
+      const { type: proofData, ...proofActionData } = action;
+      const proofState = {
         ...state,
-        ...action,
+        ...proofActionData,
       };
+      console.log(proofState);
+      return proofState;
+    default:
+  }
+
+  return state;
+}
+
+function capitalistReducer(
+  state: VentureCapitalistInitialType,
+  action: Partial<VentureCapitalistInitialType> & { type: string }
+): VentureCapitalistInitialType {
+  console.log('VC Reducer called with action:', action.type);
+  switch (action.type) {
+    case 'UPDATE_COMPANY_PROFILE':
+      console.log('Updating company profile');
+      const { type: companyData, ...actionData } = action;
+      const newState = {
+        ...state,
+        ...actionData,
+      };
+      console.log(newState);
+      return newState;
+    case 'UPDATE_CONTACT_INFO':
+      console.log('Updating contact info');
+      const { type: contactData, ...contactActionData } = action;
+      const contactState = {
+        ...state,
+        ...contactActionData,
+      };
+      console.log(contactState);
+      return contactState;
+    case 'UPDATE_VC_IDENTITY':
+      console.log('Updating VC identity');
+      const { type: identityData, ...identityActionData } = action;
+      const identityState = {
+        ...state,
+        ...identityActionData,
+      };
+      console.log(identityState);
+      return identityState;
+    case 'UPDATE_VC_PROOF':
+      console.log('Updating VC proof');
+      const { type: proofData, ...proofActionData } = action;
+      const proofState = {
+        ...state,
+        ...proofActionData,
+      };
+      console.log(proofState);
+      return proofState;
+    default:
+      return state;
+  }
+}
+
+function acceleratorReducer(
+  state: AcceleratorInitialType,
+  action: Partial<AcceleratorInitialType> & { type: string }
+): AcceleratorInitialType {
+  switch (action.type) {
+    case 'UPDATE_COMPANY_PROFILE':
+      const { type: companyData, ...actionData } = action;
+      const newState = {
+        ...state,
+        ...actionData,
+      };
+      console.log(newState);
+      return newState;
+    case 'UPDATE_CONTACT_INFO':
+      const { type: contactData, ...contactActionData } = action;
+      const contactState = {
+        ...state,
+        ...contactActionData,
+      };
+      console.log(contactState);
+      return contactState;
+    case 'UPDATE_ACCELERATOR_IDENTITY':
+      const { type: identityData, ...identityActionData } = action;
+      const identityState = {
+        ...state,
+        ...identityActionData,
+      };
+      console.log(identityState);
+      return identityState;
+    case 'UPDATE_ACCELERATOR_PROOF':
+      const { type: proofData, ...proofActionData } = action;
+      const proofState = {
+        ...state,
+        ...proofActionData,
+      };
+      console.log(proofState);
+      return proofState;
     default:
   }
 
@@ -140,11 +275,19 @@ export function OnboardingProvider({
   const [startupState, startupDispatch] = useReducer(
     startupReducer,
     initialStartData
-  ); // startup form data
+  );
   const [angelState, angelDispatch] = useReducer(
     angelReducer,
     initialAngelData
-  ); // angel form data
+  );
+  const [capitalistState, capitalistDispatch] = useReducer(
+    capitalistReducer,
+    initialVentureCapitalist
+  );
+  const [acceleratorState, acceleratorDispatch] = useReducer(
+    acceleratorReducer,
+    initialAcceleratorData
+  );
   const [activeTab, setActiveTab] = useState<ActiveTab>({
     title: '',
     Component: <></>,
@@ -169,17 +312,21 @@ export function OnboardingProvider({
       setIsPrev,
       startupState,
       angelState,
+      capitalistState,
+      capitalistDispatch,
+      acceleratorState,
+      acceleratorDispatch,
     }),
     [
       range,
       activeTab,
       isNext,
       error,
-      angelState,
+      isPrev,
       startupState,
-      isPrev.range,
-      startupDispatch,
-      angelDispatch,
+      angelState,
+      capitalistState,
+      acceleratorState,
     ]
   );
 
