@@ -19,7 +19,6 @@ import {
 import AngelFormIdentify from './Angel-form-identify';
 import { onboardingRegistrationAngel } from '@/api/onboarding/onboarding';
 import { useRouter } from 'next/navigation';
-import { set } from 'zod';
 
 export default function AngelReview() {
   const router = useRouter();

@@ -18,9 +18,7 @@ import {
   TableRow,
 } from '../../ui/table';
 import StartupIdentity from './startup-identification';
-import { onboardingRegistrationStartup } from '@/api/onboarding/onboarding';
 import { useRouter } from 'next/navigation';
-
 
 export default function StartupReview() {
   const router = useRouter();

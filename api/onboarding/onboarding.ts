@@ -14,14 +14,11 @@ import {
   AcceleratorInitialType,
   AngelInitialType,
   StartupInitialType,
-  UpdatedAcceleratorType,
-  UpdatedAngelType,
   UpdatedStartupType,
-  UpdatedVCType,
   VentureCapitalistInitialType,
 } from '@/types/Onboarding';
 import { db, auth, storage } from '../config';
-import { Certificate } from 'crypto';
+// import { Certificate } from 'crypto';
 
 export async function uploadIdentification(cacFile: File, logoFile: File) {
   try {
