@@ -1,7 +1,7 @@
 // import sharp from 'sharp'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
-// import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer'
 import path from 'path'
@@ -52,13 +52,13 @@ export default buildConfig({
   // sharp,
   plugins: [
     payloadCloudPlugin(),
-    // vercelBlobStorage({
-    //   enabled: true,
-    //   clientUploads: true,
-    //   collections: {
-    //     media: true,
-    //   },
-    //   token: process.env.BLOB_READ_WRITE_TOKEN,
-    // }),
+    vercelBlobStorage({
+      enabled: true,
+      clientUploads: true,
+      collections: {
+        media: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
   ],
 })
