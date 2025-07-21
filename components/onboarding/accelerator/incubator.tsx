@@ -2,15 +2,15 @@
 
 'use client';
 
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { Input } from 'components/ui/input';
+import { Button } from 'components/ui/button';
 import { useCallback, useEffect, useState, useMemo } from 'react';
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
+import { acceleratorIncubatorSchema } from 'helpers/validation';
+import { AcceleratorInitialType } from 'types/Onboarding';
 import { Label } from '../../ui/label';
 import AcceleratorContact from './contact';
 import AcceleratorIdentification from './identification';
-import { acceleratorIncubatorSchema } from '@/helpers/validation';
-import { AcceleratorInitialType } from '@/types/Onboarding';
 
 export default function AcceleratorIncubator() {
   const {
@@ -49,16 +49,18 @@ export default function AcceleratorIncubator() {
       });
       setError(null);
     }
-  }, [acceleratorState]);
+  }, [acceleratorState, setError]);
 
-  const data = useMemo(() => {
-    return acceleratorIncubatorSchema.safeParse({
-      principalPromoter: acceleratorIncubatorData.principalPromoter,
-      investmentExperience: acceleratorIncubatorData.investmentExperience,
-      investmentProof: acceleratorIncubatorData.investmentProof,
-      investmentSize: acceleratorIncubatorData.investmentSize,
-    });
-  }, [acceleratorIncubatorData]);
+  const data = useMemo(
+    () =>
+      acceleratorIncubatorSchema.safeParse({
+        principalPromoter: acceleratorIncubatorData.principalPromoter,
+        investmentExperience: acceleratorIncubatorData.investmentExperience,
+        investmentProof: acceleratorIncubatorData.investmentProof,
+        investmentSize: acceleratorIncubatorData.investmentSize,
+      }),
+    [acceleratorIncubatorData]
+  );
 
   const handlePrev = useCallback(() => {
     setRange(1);
@@ -89,7 +91,6 @@ export default function AcceleratorIncubator() {
   }, [
     setRange,
     setActiveTab,
-    setIsNext,
     acceleratorDispatch,
     acceleratorIncubatorData,
     data,

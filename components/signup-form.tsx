@@ -1,16 +1,16 @@
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { cn } from 'lib/utils';
+import { Button } from 'components/ui/button';
+import { Input } from 'components/ui/input';
+import { Label } from 'components/ui/label';
 import Link from 'next/link';
 import { FcGoogle } from 'react-icons/fc';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   registerUser,
   signInWithGoogle,
   sendVerificationEmail,
 } from '@/api/auth/auth';
-import { signupSchema } from '@/helpers/validation';
+import { signupSchema } from 'helpers/validation';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 

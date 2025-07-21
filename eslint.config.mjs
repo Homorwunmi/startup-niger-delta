@@ -26,9 +26,13 @@ const eslintConfig = [
       'react/no-array-index-key': 'off',
       'react/jsx-no-constructed-context-values': 'warn',
       'react/require-default-props': 'off',
+      // '@typescript-eslint/no-unused-vars': [
+      //   'error',
+      //   { argsIgnorePattern: '^_' },
+      // ],
       '@typescript-eslint/no-unused-vars': [
         'error',
-        { argsIgnorePattern: '^_' },
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
       ],
       'import/extensions': [
         'error',

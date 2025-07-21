@@ -1,15 +1,15 @@
 /* eslint-disable import/no-cycle */
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { Button } from 'components/ui/button';
+import { Input } from 'components/ui/input';
+import { Textarea } from 'components/ui/textarea';
+import { ventureCapitalistContactInfoSchema } from 'helpers/validation';
+import { VentureCapitalistInitialType } from 'types/Onboarding';
 import { useCallback, useEffect, useState, useMemo } from 'react';
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
 import { Label } from '../../ui/label';
 import CapitalistProfile from './vc-profile';
 import CapitalistInvestment from './vc-investment';
-import { ventureCapitalistContactInfoSchema } from '@/helpers/validation';
-import { VentureCapitalistInitialType } from '@/types/Onboarding';
 
 export default function CapitalistContact() {
   const {
@@ -40,16 +40,18 @@ export default function CapitalistContact() {
       });
       setError(null); // Clear error when state is set
     }
-  }, [capitalistState]);
+  }, [capitalistState, setError]);
 
-  const data = useMemo(() => {
-    return ventureCapitalistContactInfoSchema.safeParse({
-      companyEmail: capitalistContactInfo.companyEmail,
-      companyPhone: capitalistContactInfo.companyPhone,
-      companyAddress: capitalistContactInfo.companyAddress,
-      companyWebsite: capitalistContactInfo.companyWebsite,
-    });
-  }, [capitalistContactInfo]);
+  const data = useMemo(
+    () =>
+      ventureCapitalistContactInfoSchema.safeParse({
+        companyEmail: capitalistContactInfo.companyEmail,
+        companyPhone: capitalistContactInfo.companyPhone,
+        companyAddress: capitalistContactInfo.companyAddress,
+        companyWebsite: capitalistContactInfo.companyWebsite,
+      }),
+    [capitalistContactInfo]
+  );
 
   useEffect(() => {
     setError(null);
@@ -72,7 +74,7 @@ export default function CapitalistContact() {
 
   const handleNext = useCallback(() => {
     if (!data.success) {
-      return setError(data.error.errors.map((err) => err.message).join(', '));
+      setError(data.error.errors.map((err) => err.message).join(', '));
     } else {
       setError(null);
     }

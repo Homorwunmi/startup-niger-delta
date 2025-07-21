@@ -3,11 +3,13 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
+import { toast } from 'sonner';
+import { onboardingRegistrationVC } from '@/api/onboarding/onboarding';
+import { useRouter } from 'next/navigation';
 import { Button } from '../../ui/button';
 import { Checkbox } from '../../ui/checkbox';
 import { Label } from '../../ui/label';
-import { toast } from 'sonner';
 import {
   Table,
   TableBody,
@@ -17,8 +19,6 @@ import {
   TableRow,
 } from '../../ui/table';
 import CapitalistIdentification from './vc-identification';
-import { onboardingRegistrationVC } from '@/api/onboarding/onboarding';
-import { useRouter } from 'next/navigation';
 
 export default function CapitalistReview() {
   const router = useRouter();
@@ -36,13 +36,15 @@ export default function CapitalistReview() {
       }
       toast.success(response.message, {
         onAutoClose: () => {
-          setIsLoading;
+          setIsLoading(false);
           router.push('/dashboard');
         },
       });
     } catch (error) {
       setIsLoading(false);
-      console.error('Error during registration:', error);
+      toast.error(
+        error instanceof Error ? error.message : 'An unexpected error occurred'
+      );
     }
   };
 

@@ -2,16 +2,16 @@
 
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import { Button } from 'components/ui/button';
+import { Input } from 'components/ui/input';
+import { Textarea } from 'components/ui/textarea';
 import { useCallback, useEffect, useState, useMemo } from 'react';
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
+import { AcceleratorInitialType } from 'types/Onboarding';
+import { acceleratorContactInfoSchema } from 'helpers/validation';
 import { Label } from '../../ui/label';
 import AcceleratorProfile from './profile';
 import AcceleratorIncubator from './incubator';
-import { AcceleratorInitialType } from '@/types/Onboarding';
-import { acceleratorContactInfoSchema } from '@/helpers/validation';
 
 export default function AcceleratorContact() {
   const {
@@ -42,16 +42,18 @@ export default function AcceleratorContact() {
       });
       setError(null);
     }
-  }, [acceleratorState]);
+  }, [acceleratorState, setError]);
 
-  const data = useMemo(() => {
-    return acceleratorContactInfoSchema.safeParse({
-      companyEmail: acceleratorContactInfo.companyEmail,
-      companyPhone: acceleratorContactInfo.companyPhone,
-      companyAddress: acceleratorContactInfo.companyAddress,
-      companyWebsite: acceleratorContactInfo.companyWebsite,
-    });
-  }, [acceleratorContactInfo]);
+  const data = useMemo(
+    () =>
+      acceleratorContactInfoSchema.safeParse({
+        companyEmail: acceleratorContactInfo.companyEmail,
+        companyPhone: acceleratorContactInfo.companyPhone,
+        companyAddress: acceleratorContactInfo.companyAddress,
+        companyWebsite: acceleratorContactInfo.companyWebsite,
+      }),
+    [acceleratorContactInfo]
+  );
 
   const handlePrev = useCallback(() => {
     setRange(0);
@@ -65,8 +67,8 @@ export default function AcceleratorContact() {
 
   const handleNext = useCallback(() => {
     if (!data.success) {
-      console.log(data.error.errors);
-      console.log(acceleratorContactInfo);
+      // console.log(data.error.errors);
+      // console.log(acceleratorContactInfo);
       setError(data.error.errors.map((err) => err.message).join(', '));
     }
 

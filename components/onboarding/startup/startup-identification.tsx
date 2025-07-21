@@ -4,26 +4,24 @@
 
 import { RxUpload } from 'react-icons/rx';
 
-import React, { useCallback, useEffect } from 'react';
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
-import { startupIdentitySchema } from '@/helpers/validation';
+import React, { useCallback } from 'react';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
+import { startupIdentitySchema } from 'helpers/validation';
+import { toast } from 'sonner';
+import { StartupInitialType } from 'types/Onboarding';
+import { renderFileInfo } from 'helpers/utils';
 import { uploadIdentification } from '@/api/onboarding/onboarding';
 import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import StartupFounder from './startup-founder';
 import StartupReview from './startup-review';
-import { toast } from 'sonner';
-import { StartupInitialType } from '@/types/Onboarding';
-import { renderFileInfo } from '@/helpers/utils';
-
 
 export default function StartupIdentity() {
   const {
     setRange,
     setActiveTab,
     startupDispatch,
-    startupState,
     setIsNext,
     setError,
     error: errorMessage,
@@ -62,7 +60,7 @@ export default function StartupIdentity() {
 
       setError(null);
     },
-    [startupDispatch, setError]
+    [setError]
   );
 
   const data = startupIdentitySchema.safeParse({
@@ -100,7 +98,7 @@ export default function StartupIdentity() {
 
     if (!data.success) {
       setIsLoading(false);
-      return setError(data.error.errors.map((err) => err.message).join(', '));
+      setError(data.error.errors.map((err) => err.message).join(', '));
     }
 
     try {
@@ -109,7 +107,6 @@ export default function StartupIdentity() {
         startupID.logo
       );
       if (response.message) {
-        console.log(response);
         startupDispatch({
           type: 'UPDATE_STARTUP_PROOF',
           certificate: startupID.certificate,
@@ -118,9 +115,8 @@ export default function StartupIdentity() {
         setIsLoading(false);
         toast.success(response.message);
       }
-      console.log(response.message);
     } catch (error) {
-      return setError(
+      setError(
         error instanceof Error ? error.message : 'Failed to upload files'
       );
     }
@@ -133,12 +129,20 @@ export default function StartupIdentity() {
       src: '/angel/bgTrailer1.svg',
     });
 
-    return setIsNext({
+    setIsNext({
       pathname: '/onboarding/startup',
       title: '',
     });
-  }, [data, setRange, setActiveTab, setIsNext, startupState, setError]);
-
+  }, [
+    data,
+    setRange,
+    setActiveTab,
+    setIsNext,
+    setError,
+    startupID,
+    startupDispatch,
+    setIsLoading,
+  ]);
 
   return (
     <form className="flex flex-col h-full">

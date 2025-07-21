@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Logo from '@/public/images/Logo.svg';
+import Logo from 'public/images/Logo.svg';
 
 export default function OnboardingNavbar() {
   return (

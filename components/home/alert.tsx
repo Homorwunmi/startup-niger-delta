@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import AlertLogo from '@/public/images/alert-logo.svg';
-import Range from '@/public/images/range.svg';
+import AlertLogo from 'public/images/alert-logo.svg';
+import Range from 'public/images/range.svg';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/splide.min.css';
 import Image from 'next/image';

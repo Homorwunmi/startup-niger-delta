@@ -7,8 +7,8 @@ import Image from 'next/image';
 import React, { useEffect } from 'react';
 import Slider from 'react-slick';
 
-import TestimonialImage from '@/public/images/testimonial.svg';
-import QuoteImage from '@/public/images/quotation.svg';
+import TestimonialImage from 'public/images/testimonial.svg';
+import QuoteImage from 'public/images/quotation.svg';
 import { IoMdStar } from 'react-icons/io';
 
 function SimpleSlider() {

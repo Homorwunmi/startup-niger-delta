@@ -1,14 +1,14 @@
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { cn } from 'lib/utils';
+import { Button } from 'components/ui/button';
+import { Input } from 'components/ui/input';
+import { Label } from 'components/ui/label';
 import Link from 'next/link';
-import { loginSchema } from '@/helpers/validation';
+import { loginSchema } from 'helpers/validation';
 import { FcGoogle } from 'react-icons/fc';
 import { toast } from 'sonner';
 import { loginUser } from '@/api/auth/auth';
-import { useState } from 'react';
-import { setAuthToken, getAuthToken } from '@/utils/auth-utils';
+import React, { useState } from 'react';
+import { setAuthToken, getAuthToken } from 'utils/auth-utils';
 import { useRouter } from 'next/navigation';
 
 export function LoginForm({

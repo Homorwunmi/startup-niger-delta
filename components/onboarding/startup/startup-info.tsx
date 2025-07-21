@@ -3,9 +3,9 @@
 'use client';
 
 import { useCallback, useEffect, useState, useMemo } from 'react';
-import { StartupInitialType } from '@/types/Onboarding';
-import { startupContactInfoSchema } from '@/helpers/validation';
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { StartupInitialType } from 'types/Onboarding';
+import { startupContactInfoSchema } from 'helpers/validation';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
 
 import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
@@ -24,6 +24,13 @@ export default function StartupInfo() {
     error: errorMessage,
   } = useOnboardContext();
 
+  const [startupInfo, setStartupInfo] = useState<Partial<StartupInitialType>>({
+    companyEmail: '',
+    companyWebsite: '',
+    companyAddress: '',
+    companyPhone: '',
+  });
+
   useEffect(() => {
     if (startupState) {
       setStartupInfo({
@@ -34,23 +41,18 @@ export default function StartupInfo() {
       });
       setError(null);
     }
-  }, [startupState]);
+  }, [startupState, setError]);
 
-  const [startupInfo, setStartupInfo] = useState<Partial<StartupInitialType>>({
-    companyEmail: '',
-    companyWebsite: '',
-    companyAddress: '',
-    companyPhone: '',
-  });
-
-  const data = useMemo(() => {
-    return startupContactInfoSchema.safeParse({
-      companyEmail: startupInfo.companyEmail,
-      companyWebsite: startupInfo.companyWebsite,
-      companyAddress: startupInfo.companyAddress,
-      companyPhone: startupInfo.companyPhone,
-    });
-  }, [startupInfo]);
+  const data = useMemo(
+    () =>
+      startupContactInfoSchema.safeParse({
+        companyEmail: startupInfo.companyEmail,
+        companyWebsite: startupInfo.companyWebsite,
+        companyAddress: startupInfo.companyAddress,
+        companyPhone: startupInfo.companyPhone,
+      }),
+    [startupInfo]
+  );
 
   useEffect(() => {
     setError(null);
@@ -81,7 +83,15 @@ export default function StartupInfo() {
       pathname: '/onboarding/startup',
       title: 'Founder/Co-Founder Profile',
     });
-  }, [setRange, setActiveTab, setIsNext, startupDispatch, startupInfo]);
+  }, [
+    setRange,
+    setActiveTab,
+    setIsNext,
+    startupDispatch,
+    startupInfo,
+    data,
+    setError,
+  ]);
 
   const handlePrev = useCallback(() => {
     setRange(0);

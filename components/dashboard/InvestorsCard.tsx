@@ -1,14 +1,9 @@
 'use client';
 
 import React from 'react';
-import { cn } from '@/lib/utils';
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
+import { cn } from 'lib/utils';
+import { Card, CardContent, CardFooter, CardHeader } from 'components/ui/card';
+import { Checkbox } from 'components/ui/checkbox';
 import { AiFillQuestionCircle } from 'react-icons/ai';
 import Image from 'next/image';
 

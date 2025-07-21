@@ -3,14 +3,14 @@
 'use client';
 
 import { useCallback, useEffect, useState, useMemo } from 'react';
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
+import { AcceleratorInitialType } from 'types/Onboarding';
+import { acceleratorProfileSchema } from 'helpers/validation';
 import { Input } from '../../ui/input';
 import { Textarea } from '../../ui/textarea';
 import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import AcceleratorContact from './contact';
-import { AcceleratorInitialType } from '@/types/Onboarding';
-import { acceleratorProfileSchema } from '@/helpers/validation';
 
 export default function AcceleratorProfile() {
   const {
@@ -30,6 +30,15 @@ export default function AcceleratorProfile() {
     });
   }, [setIsNext]);
 
+  const [acceleratorProfileData, setAcceleratorProfileData] = useState<
+    Partial<AcceleratorInitialType>
+  >({
+    companyName: '',
+    industry: '',
+    description: '',
+    fundingInterest: '',
+  });
+
   useEffect(() => {
     if (acceleratorState) {
       setAcceleratorProfileData({
@@ -40,25 +49,18 @@ export default function AcceleratorProfile() {
       });
       setError(null);
     }
-  }, [acceleratorState]);
+  }, [acceleratorState, setError]);
 
-  const [acceleratorProfileData, setAcceleratorProfileData] = useState<
-    Partial<AcceleratorInitialType>
-  >({
-    companyName: '',
-    industry: '',
-    description: '',
-    fundingInterest: '',
-  });
-
-  const data = useMemo(() => {
-    return acceleratorProfileSchema.safeParse({
-      companyName: acceleratorProfileData.companyName,
-      industry: acceleratorProfileData.industry,
-      description: acceleratorProfileData.description,
-      fundingInterest: acceleratorProfileData.fundingInterest,
-    });
-  }, [acceleratorProfileData]);
+  const data = useMemo(
+    () =>
+      acceleratorProfileSchema.safeParse({
+        companyName: acceleratorProfileData.companyName,
+        industry: acceleratorProfileData.industry,
+        description: acceleratorProfileData.description,
+        fundingInterest: acceleratorProfileData.fundingInterest,
+      }),
+    [acceleratorProfileData]
+  );
 
   const handleNext = useCallback(() => {
     if (!data.success) {

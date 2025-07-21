@@ -1,16 +1,15 @@
 /* eslint-disable import/no-cycle */
 
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { useCallback, useEffect } from 'react';
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { useCallback, useEffect, useState, useMemo } from 'react';
+import { Button } from 'components/ui/button';
+import { Input } from 'components/ui/input';
+import { Textarea } from 'components/ui/textarea';
+import { angelContactInfoSchema } from 'helpers/validation';
+import { AngelInitialType } from 'types/Onboarding';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
 import { Label } from '../../ui/label';
 import AngelForm from './Angel-form-profile';
 import AngelFormInvestment from './Angel-form-investment';
-import { angelContactInfoSchema } from '@/helpers/validation';
-import { useState, useMemo } from 'react';
-import { AngelInitialType } from '@/types/Onboarding';
 
 export default function AngelFormInfo() {
   const {
@@ -40,16 +39,18 @@ export default function AngelFormInfo() {
       });
       setError(null);
     }
-  }, [angelState]);
+  }, [angelState, setError]);
 
-  const data = useMemo(() => {
-    return angelContactInfoSchema.safeParse({
-      companyEmail: angelInfo.companyEmail,
-      companyPhone: angelInfo.companyPhone,
-      companyAddress: angelInfo.companyAddress,
-      companyWebsite: angelInfo.companyWebsite,
-    });
-  }, [angelInfo]);
+  const data = useMemo(
+    () =>
+      angelContactInfoSchema.safeParse({
+        companyEmail: angelInfo.companyEmail,
+        companyPhone: angelInfo.companyPhone,
+        companyAddress: angelInfo.companyAddress,
+        companyWebsite: angelInfo.companyWebsite,
+      }),
+    [angelInfo]
+  );
 
   useEffect(() => {
     setError(null);

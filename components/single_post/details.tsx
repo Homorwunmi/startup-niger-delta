@@ -1,5 +1,5 @@
-import Ad from '../news/ad';
 import Image from 'next/image';
+import Ad from '../news/ad';
 
 export default function Details() {
   return (

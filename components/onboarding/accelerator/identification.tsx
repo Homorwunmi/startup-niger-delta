@@ -2,17 +2,17 @@
 
 'use client';
 
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '../../ui/checkbox';
-import { Label } from '@/components/ui/label';
+import { Input } from 'components/ui/input';
+import { Button } from 'components/ui/button';
+import { Checkbox } from 'components/ui/checkbox';
+import { acceleratorInvestmentIdentificationSchema } from 'helpers/validation';
+import { AcceleratorInitialType } from 'types/Onboarding';
+import { Label } from 'components/ui/label';
 import { useCallback, useEffect, useState, useMemo } from 'react';
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
 import { Textarea } from '../../ui/textarea';
 import AcceleratorIncubator from './incubator';
 import AcceleratorReview from './review';
-import { acceleratorInvestmentIdentificationSchema } from '@/helpers/validation';
-import { AcceleratorInitialType } from '@/types/Onboarding';
 
 export default function AcceleratorIdentification() {
   const {
@@ -50,15 +50,17 @@ export default function AcceleratorIdentification() {
       });
       setError(null); // Clear error when state is set
     }
-  }, [acceleratorState]);
+  }, [acceleratorState, setError]);
 
-  const data = useMemo(() => {
-    return acceleratorInvestmentIdentificationSchema.safeParse({
-      identification: acceleratorIdentificationData.identification,
-      nationality: acceleratorIdentificationData.nationality,
-      message: acceleratorIdentificationData.message,
-    });
-  }, [acceleratorIdentificationData]);
+  const data = useMemo(
+    () =>
+      acceleratorInvestmentIdentificationSchema.safeParse({
+        identification: acceleratorIdentificationData.identification,
+        nationality: acceleratorIdentificationData.nationality,
+        message: acceleratorIdentificationData.message,
+      }),
+    [acceleratorIdentificationData]
+  );
 
   const handlePrev = useCallback(() => {
     setRange(2);
@@ -72,7 +74,7 @@ export default function AcceleratorIdentification() {
 
   const handleNext = useCallback(() => {
     if (!data.success)
-      return setError(data.error.errors.map((err) => err.message).join(', '));
+      setError(data.error.errors.map((err) => err.message).join(', '));
 
     acceleratorDispatch({
       type: 'UPDATE_ACCELERATOR_PROOF',
@@ -84,7 +86,6 @@ export default function AcceleratorIdentification() {
       src: '/angel/bgTrailer4.svg',
     });
   }, [
-    setRange,
     setActiveTab,
     acceleratorDispatch,
     acceleratorIdentificationData,

@@ -4,8 +4,8 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
-import { SidebarProps } from '@/types/Onboarding.d';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
+import { SidebarProps } from 'types/Onboarding.d';
 import { usePathname } from 'next/navigation';
 
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group';

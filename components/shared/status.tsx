@@ -1,5 +1,5 @@
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
-import { JSX, useCallback } from 'react';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
+import { useCallback } from 'react';
 import { IoMdCheckmark } from 'react-icons/io';
 
 function Circle({ prop }: { prop: number }) {

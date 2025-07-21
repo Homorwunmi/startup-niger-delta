@@ -3,9 +3,9 @@
 'use client';
 
 import { useCallback, useEffect, useState, useMemo } from 'react';
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
-import { startupCompanyProfileSchema } from '@/helpers/validation';
-import { StartupInitialType } from '@/types/Onboarding';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
+import { startupCompanyProfileSchema } from 'helpers/validation';
+import { StartupInitialType } from 'types/Onboarding';
 import { Textarea } from '../../ui/textarea';
 import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
@@ -55,18 +55,20 @@ export default function StartupProfile() {
       });
       setError(null);
     }
-  }, [startupState]);
+  }, [startupState, setError]);
 
-  const data = useMemo(() => {
-    return startupCompanyProfileSchema.safeParse({
-      companyName: startupProfileData.companyName,
-      incorporation: startupProfileData.incorporation,
-      rcNumber: startupProfileData.rcNumber,
-      industry: startupProfileData.industry,
-      description: startupProfileData.description,
-      fundingInterest: startupProfileData.fundingInterest,
-    });
-  }, [startupProfileData]);
+  const data = useMemo(
+    () =>
+      startupCompanyProfileSchema.safeParse({
+        companyName: startupProfileData.companyName,
+        incorporation: startupProfileData.incorporation,
+        rcNumber: startupProfileData.rcNumber,
+        industry: startupProfileData.industry,
+        description: startupProfileData.description,
+        fundingInterest: startupProfileData.fundingInterest,
+      }),
+    [startupProfileData]
+  );
 
   useEffect(() => {
     if (!data.success) {
@@ -101,8 +103,7 @@ export default function StartupProfile() {
     setRange,
     setActiveTab,
     setIsNext,
-    data.success,
-    // data.error?.errors,
+    data,
     startupDispatch,
     setError,
     startupProfileData,
@@ -252,7 +253,8 @@ export default function StartupProfile() {
               type="button"
               className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
               onClick={handleNext}
-              disabled={!data.success || errorMessage !== null}>
+              disabled={!data.success || errorMessage !== null}
+            >
               Next
             </Button>
           </div>

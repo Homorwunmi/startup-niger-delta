@@ -3,8 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import FooterLogo from '@/public/images/footer-logo.svg';
-import Arrow from '@/public/images/arrow.svg';
+import FooterLogo from 'public/images/footer-logo.svg';
+import Arrow from 'public/images/arrow.svg';
 
 import { Button } from '../ui/button';
 

@@ -90,7 +90,10 @@ export default function Upcoming() {
             <p className="text-[15px] font-medium text-[#E64522] italic mb-2">
               To be a guest, a speaker or an exhibitor
             </p>
-            <button className="text-sm sm:text-base font-medium text-white bg-[#FF7D05] rounded-sm py-2 px-5 sm:px-6 mb-8">
+            <button
+              type="button"
+              className="text-sm sm:text-base font-medium text-white bg-[#FF7D05] rounded-sm py-2 px-5 sm:px-6 mb-8"
+            >
               Register
             </button>
           </div>
@@ -100,7 +103,10 @@ export default function Upcoming() {
 
           {/* Place Your Ad Section */}
           <div className="my-7 p-4 sm:p-5 w-full bg-[#F6F6F6] rounded-sm h-auto flex justify-end items-center">
-            <button className="w-full sm:w-[50%] md:w-[30%] text-sm sm:text-base font-medium text-white bg-[#FF7D05] rounded-3xl py-2 px-6">
+            <button
+              type="button"
+              className="w-full sm:w-[50%] md:w-[30%] text-sm sm:text-base font-medium text-white bg-[#FF7D05] rounded-3xl py-2 px-6"
+            >
               Place your AD
             </button>
           </div>

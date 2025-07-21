@@ -1,15 +1,11 @@
 'use client';
 
-import { cn } from '@/lib/utils';
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
+import { cn } from 'lib/utils';
+import { Card, CardContent, CardFooter, CardHeader } from 'components/ui/card';
+import { Checkbox } from 'components/ui/checkbox';
 import { AiFillQuestionCircle } from 'react-icons/ai';
 import Image from 'next/image';
+import React from 'react';
 
 const Startups = [
   {
@@ -151,8 +147,8 @@ export function StartupCard({ className }: CardProps) {
                   Return and second life management solution for distributors
                 </p>
                 <div className="grid grid-cols-2 gap-2">
-                  {footerContent.map((item, index) => (
-                    <div key={index} className="flex flex-col items-start">
+                  {footerContent.map((item, i) => (
+                    <div key={i} className="flex flex-col items-start">
                       <h3 className="text-[10px] text-black font-bold">
                         {item.title}:
                       </h3>

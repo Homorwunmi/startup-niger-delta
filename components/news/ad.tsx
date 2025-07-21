@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Article from '@/components/news/article';
+import Article from 'components/news/article';
 
 interface SocialIcon {
   src: string;
@@ -23,7 +23,11 @@ export default function RightSidebar() {
           placeholder="Search events here..."
           className="flex-1 px-4 py-2 text-sm text-[#153230] focus:outline-none"
         />
-        <button className="bg-[#FF7A00] px-4 flex items-center justify-center">
+        <button
+          type="button"
+          className="bg-[#FF7A00] px-4 flex items-center justify-center"
+          aria-label="Search"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -55,7 +59,7 @@ export default function RightSidebar() {
           {socialIcons.map((icon, i) => (
             <div
               key={i}
-              className="flex flex-col items-center  w-20 h-20 justify-center relative"
+              className="flex flex-col items-center w-20 h-20 justify-center relative"
             >
               <Image
                 src={icon.src}

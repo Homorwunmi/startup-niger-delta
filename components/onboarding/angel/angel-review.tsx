@@ -3,11 +3,10 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
-import { Button } from '../../ui/button';
-import { Checkbox } from '../../ui/checkbox';
-import { Label } from '../../ui/label';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { onboardingRegistrationAngel } from '@/api/onboarding/onboarding';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
 import {
   Table,
   TableBody,
@@ -17,8 +16,9 @@ import {
   TableRow,
 } from '../../ui/table';
 import AngelFormIdentify from './Angel-form-identify';
-import { onboardingRegistrationAngel } from '@/api/onboarding/onboarding';
-import { useRouter } from 'next/navigation';
+import { Button } from '../../ui/button';
+import { Checkbox } from '../../ui/checkbox';
+import { Label } from '../../ui/label';
 
 export default function AngelReview() {
   const router = useRouter();
@@ -26,7 +26,7 @@ export default function AngelReview() {
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async () => {
+  async function handleSubmit() {
     try {
       setIsLoading(true);
       const response = await onboardingRegistrationAngel(angelState);
@@ -34,17 +34,20 @@ export default function AngelReview() {
         setIsLoading(false);
         throw new Error(response.message || 'Registration failed');
       }
+
       toast.success(response.message, {
         onAutoClose: () => {
-          setIsLoading;
+          setIsLoading(false);
           router.push('/dashboard');
         },
       });
     } catch (error) {
       setIsLoading(false);
-      console.error('Error during registration:', error);
+      toast.error(
+        error instanceof Error ? error.message : 'An unexpected error occurred'
+      );
     }
-  };
+  }
 
   const handlePrev = useCallback(() => {
     setRange(3);
@@ -201,7 +204,7 @@ export default function AngelReview() {
         <Button
           type="button"
           className="px-10 bg-gradient-to-b from-custom-orange via-custom-orange to-custom-orange-dark cursor-pointer"
-          onClick={handleSubmit}
+          onClick={() => handleSubmit()}
           disabled={!agreedToTerms}
         >
           {isLoading ? 'Submitting...' : 'Submit'}

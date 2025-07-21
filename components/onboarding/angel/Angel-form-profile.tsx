@@ -3,14 +3,14 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
-import { angelProfileSchema } from '@/helpers/validation';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
+import { angelProfileSchema } from 'helpers/validation';
+import { AngelInitialType } from 'types/Onboarding';
 import { Input } from '../../ui/input';
 import { Textarea } from '../../ui/textarea';
 import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import AngelFormInfo from './Angel-form-info';
-import { AngelInitialType } from '@/types/Onboarding';
 
 export default function AngelForm() {
   const {
@@ -50,16 +50,18 @@ export default function AngelForm() {
       });
       setError(null);
     }
-  }, [angelState]);
+  }, [angelState, setError]);
 
-  const data = useMemo(() => {
-    return angelProfileSchema.safeParse({
-      companyName: angelProfileData.companyName,
-      industry: angelProfileData.industry,
-      description: angelProfileData.description,
-      fundingInterest: angelProfileData.fundingInterest,
-    });
-  }, [angelProfileData]);
+  const data = useMemo(
+    () =>
+      angelProfileSchema.safeParse({
+        companyName: angelProfileData.companyName,
+        industry: angelProfileData.industry,
+        description: angelProfileData.description,
+        fundingInterest: angelProfileData.fundingInterest,
+      }),
+    [angelProfileData]
+  );
 
   useEffect(() => {
     setError(null);
@@ -87,15 +89,21 @@ export default function AngelForm() {
       src: '/angel/bgTrailer2.svg',
     });
 
-    console.log(angelState);
-
     setError(null);
 
     return setIsNext({
       pathname: '/onboarding/angel-investor',
       title: 'Contact Info',
     });
-  }, [setRange, setActiveTab, setIsNext, angelDispatch, angelProfileData]);
+  }, [
+    setRange,
+    setActiveTab,
+    setIsNext,
+    angelDispatch,
+    angelProfileData,
+    data,
+    setError,
+  ]);
 
   return (
     <form className="w-full" style={{ height: '100%' }}>

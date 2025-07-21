@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
-import QuestionMark from '@/public/images/question-mark.svg';
-import FaqMain from '@/public/images/faq-main.svg';
-import Mail from '@/public/images/mail.svg';
+import QuestionMark from 'public/images/question-mark.svg';
+import FaqMain from 'public/images/faq-main.svg';
+import Mail from 'public/images/mail.svg';
 
 import Image from 'next/image';
-import { faqs } from '@/lib/home';
+import { faqs } from 'lib/home';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { RiAtLine } from 'react-icons/ri';
 import {

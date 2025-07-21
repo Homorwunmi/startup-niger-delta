@@ -3,14 +3,14 @@
 'use client';
 
 import { useCallback, useEffect, useState, useMemo } from 'react';
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
+import { VentureCapitalistInitialType } from 'types/Onboarding';
+import { ventureCapitalistProfileSchema } from 'helpers/validation';
 import { Input } from '../../ui/input';
 import { Textarea } from '../../ui/textarea';
 import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
 import CapitalistContact from './vc-contact';
-import { VentureCapitalistInitialType } from '@/types/Onboarding';
-import { ventureCapitalistProfileSchema } from '@/helpers/validation';
 
 export default function CapitalistProfile() {
   const {
@@ -41,16 +41,18 @@ export default function CapitalistProfile() {
       });
       setError(null);
     }
-  }, [capitalistState]);
+  }, [capitalistState, setError]);
 
-  const data = useMemo(() => {
-    return ventureCapitalistProfileSchema.safeParse({
-      companyName: ventureCapitalistProfileData.companyName,
-      industry: ventureCapitalistProfileData.industry,
-      description: ventureCapitalistProfileData.description,
-      fundingInterest: ventureCapitalistProfileData.fundingInterest,
-    });
-  }, [ventureCapitalistProfileData]);
+  const data = useMemo(
+    () =>
+      ventureCapitalistProfileSchema.safeParse({
+        companyName: ventureCapitalistProfileData.companyName,
+        industry: ventureCapitalistProfileData.industry,
+        description: ventureCapitalistProfileData.description,
+        fundingInterest: ventureCapitalistProfileData.fundingInterest,
+      }),
+    [ventureCapitalistProfileData]
+  );
 
   useEffect(() => {
     setError(null);
@@ -66,10 +68,6 @@ export default function CapitalistProfile() {
       setError(data.error.message);
       return;
     }
-    console.log(
-      'Venture Capitalist Profile Data:',
-      ventureCapitalistProfileData
-    );
 
     capitalistDispatch({
       type: 'UPDATE_COMPANY_PROFILE',
@@ -82,7 +80,8 @@ export default function CapitalistProfile() {
       Component: <CapitalistContact />,
       src: '/angel/bgTrailer2.svg',
     });
-    return setIsNext({
+
+    setIsNext({
       pathname: '/onboarding/venture-capitalist',
       title: 'Contact Info',
     });
@@ -190,7 +189,6 @@ export default function CapitalistProfile() {
             <Button
               type="button"
               className="px-10 bg-gray-200 hover:bg-gray-200 cursor-pointer"
-              disabled={true}
             >
               Back
             </Button>

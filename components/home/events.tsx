@@ -6,9 +6,9 @@ import 'slick-carousel/slick/slick-theme.css';
 import React from 'react';
 import Slider from 'react-slick';
 
-import NewsImage1 from '@/public/images/news-image-1.svg';
-import NewsImage2 from '@/public/images/news-image-2.svg';
-import NewsImage3 from '@/public/images/news-image-3.svg';
+import NewsImage1 from 'public/images/news-image-1.svg';
+import NewsImage2 from 'public/images/news-image-2.svg';
+import NewsImage3 from 'public/images/news-image-3.svg';
 import Image from 'next/image';
 import { Button } from '../ui/button';
 

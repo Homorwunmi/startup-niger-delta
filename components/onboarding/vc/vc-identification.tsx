@@ -2,16 +2,16 @@
 
 'use client';
 
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '../../ui/checkbox';
-import { Label } from '@/components/ui/label';
 import { useCallback, useEffect, useState, useMemo } from 'react';
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { Input } from 'components/ui/input';
+import { Button } from 'components/ui/button';
+import { Label } from 'components/ui/label';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
+import { VentureCapitalistInitialType } from 'types/Onboarding';
+import { ventureCapitalistInvestmentIdentificationSchema } from 'helpers/validation';
+import { Checkbox } from '../../ui/checkbox';
 import { Textarea } from '../../ui/textarea';
 import CapitalistInvestment from './vc-investment';
-import { VentureCapitalistInitialType } from '@/types/Onboarding';
-import { ventureCapitalistInvestmentIdentificationSchema } from '@/helpers/validation';
 import CapitalistReview from './vc-review';
 
 export default function CapitalistIdentification() {
@@ -44,15 +44,17 @@ export default function CapitalistIdentification() {
       });
       setError(null);
     }
-  }, [capitalistState]);
+  }, [capitalistState, setError]);
 
-  const data = useMemo(() => {
-    return ventureCapitalistInvestmentIdentificationSchema.safeParse({
-      identification: capitalistIdentification.identification,
-      nationality: capitalistIdentification.nationality,
-      message: capitalistIdentification.message,
-    });
-  }, [capitalistIdentification]);
+  const data = useMemo(
+    () =>
+      ventureCapitalistInvestmentIdentificationSchema.safeParse({
+        identification: capitalistIdentification.identification,
+        nationality: capitalistIdentification.nationality,
+        message: capitalistIdentification.message,
+      }),
+    [capitalistIdentification]
+  );
 
   useEffect(() => {
     setError(null);
@@ -75,7 +77,6 @@ export default function CapitalistIdentification() {
 
   const handleNext = useCallback(() => {
     if (!data.success) {
-      console.log(data.error.errors);
       setError(data.error.errors.map((err) => err.message).join(', '));
       return;
     }
@@ -93,7 +94,7 @@ export default function CapitalistIdentification() {
       src: '/angel/bgTrailer3.svg',
     });
 
-    return setIsNext({
+    setIsNext({
       pathname: '/onboarding/venture-capitalist',
       title: '',
     });

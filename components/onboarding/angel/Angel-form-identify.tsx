@@ -2,16 +2,15 @@
 
 'use client';
 
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { useCallback, useEffect } from 'react';
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { AngelInitialType } from 'types/Onboarding';
+import { angelInvestmentIdentificationSchema } from 'helpers/validation';
+import { useCallback, useEffect, useState, useMemo } from 'react';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
+import { Input } from 'components/ui/input';
+import { Button } from 'components/ui/button';
+import { Label } from 'components/ui/label';
 import { Textarea } from '../../ui/textarea';
 import AngelFormInvestment from './Angel-form-investment';
-import { useState, useMemo } from 'react';
-import { AngelInitialType } from '@/types/Onboarding';
-import { angelInvestmentIdentificationSchema } from '@/helpers/validation';
 import { Checkbox } from '../../ui/checkbox';
 import AngelReview from './angel-review';
 
@@ -44,15 +43,17 @@ export default function AngelFormIdentify() {
       });
       setError(null);
     }
-  }, [angelState]);
+  }, [angelState, setError]);
 
-  const data = useMemo(() => {
-    return angelInvestmentIdentificationSchema.safeParse({
-      identification: angelIdentification.identification,
-      nationality: angelIdentification.nationality,
-      message: angelIdentification.message,
-    });
-  }, [angelIdentification]);
+  const data = useMemo(
+    () =>
+      angelInvestmentIdentificationSchema.safeParse({
+        identification: angelIdentification.identification,
+        nationality: angelIdentification.nationality,
+        message: angelIdentification.message,
+      }),
+    [angelIdentification]
+  );
 
   if (!data.success) {
     setError(data.error.errors.map((err) => err.message).join(', '));
@@ -91,12 +92,12 @@ export default function AngelFormIdentify() {
       title: '',
     });
   }, [
-    setRange,
     setActiveTab,
     angelDispatch,
     angelIdentification,
     setIsNext,
     setError,
+    data,
   ]);
 
   return (

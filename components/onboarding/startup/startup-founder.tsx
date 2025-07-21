@@ -1,8 +1,8 @@
 /* eslint-disable import/no-cycle */
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
-import { startupFounderInfoSchema } from '@/helpers/validation';
-import { StartupInitialType } from '@/types/Onboarding';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
+import { startupFounderInfoSchema } from 'helpers/validation';
+import { StartupInitialType } from 'types/Onboarding';
 import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
 import { Label } from '../../ui/label';
@@ -41,17 +41,19 @@ export default function StartupFounder() {
       });
       setError(null);
     }
-  }, [startupState]);
+  }, [startupState, setError]);
 
-  const data = useMemo(() => {
-    return startupFounderInfoSchema.safeParse({
-      founderName: startupFounderData.founderName,
-      founderEmail: startupFounderData.founderEmail,
-      founderAddress: startupFounderData.founderAddress,
-      founderMobile: startupFounderData.founderMobile,
-      founderNo: startupFounderData.founderNo,
-    });
-  }, [startupFounderData]);
+  const data = useMemo(
+    () =>
+      startupFounderInfoSchema.safeParse({
+        founderName: startupFounderData.founderName,
+        founderEmail: startupFounderData.founderEmail,
+        founderAddress: startupFounderData.founderAddress,
+        founderMobile: startupFounderData.founderMobile,
+        founderNo: startupFounderData.founderNo,
+      }),
+    [startupFounderData]
+  );
 
   useEffect(() => {
     setError(null);
@@ -207,7 +209,7 @@ export default function StartupFounder() {
       </div>
 
       <div className="col-span-2 flex items-end justify-between w-full mt-auto pb-8 px-4">
-        <p className="text-custom-orange">{errorMessage ? errorMessage : ''}</p>
+        <p className="text-custom-orange">{errorMessage || ''}</p>
         <div className="flex gap-3">
           <Button
             type="button"

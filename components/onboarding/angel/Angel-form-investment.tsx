@@ -2,17 +2,16 @@
 
 'use client';
 
-import { Input } from '@/components/ui/input';
-import { useMemo, useState } from 'react';
-// import { Textarea } from "@/components/ui/textarea";
-import { Button } from '@/components/ui/button';
-import { useCallback, useEffect } from 'react';
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { Input } from 'components/ui/input';
+import { useMemo, useState, useCallback, useEffect } from 'react';
+import { AngelInitialType } from 'types/Onboarding';
+import { angelInvestmentInfoSchema } from 'helpers/validation';
+// import { Textarea } from "components/ui/textarea";
+import { Button } from 'components/ui/button';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
 import { Label } from '../../ui/label';
 import AngelFormInfo from './Angel-form-info';
 import AngelFormIdentify from './Angel-form-identify';
-import { AngelInitialType } from '@/types/Onboarding';
-import { angelInvestmentInfoSchema } from '@/helpers/validation';
 
 export default function AngelFormInvestment() {
   const {
@@ -43,16 +42,18 @@ export default function AngelFormInvestment() {
       });
       setError(null);
     }
-  }, [angelState]);
+  }, [angelState, setError]);
 
-  const data = useMemo(() => {
-    return angelInvestmentInfoSchema.safeParse({
-      angelName: angelInvestmentInfo.angelName,
-      investmentExperience: angelInvestmentInfo.investmentExperience,
-      investmentProof: angelInvestmentInfo.investmentProof,
-      investmentSize: angelInvestmentInfo.investmentSize,
-    });
-  }, [angelInvestmentInfo]);
+  const data = useMemo(
+    () =>
+      angelInvestmentInfoSchema.safeParse({
+        angelName: angelInvestmentInfo.angelName,
+        investmentExperience: angelInvestmentInfo.investmentExperience,
+        investmentProof: angelInvestmentInfo.investmentProof,
+        investmentSize: angelInvestmentInfo.investmentSize,
+      }),
+    [angelInvestmentInfo]
+  );
 
   useEffect(() => {
     setError(null);
@@ -95,7 +96,15 @@ export default function AngelFormInvestment() {
       pathname: '/onboarding/angel-investor',
       title: 'Identification',
     });
-  }, [setRange, setActiveTab, angelInvestmentInfo, setIsNext, setError]);
+  }, [
+    setRange,
+    setActiveTab,
+    angelInvestmentInfo,
+    setIsNext,
+    setError,
+    angelDispatch,
+    data,
+  ]);
 
   return (
     <form className="flex flex-col h-full">

@@ -2,15 +2,15 @@
 
 'use client';
 
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { VentureCapitalistInitialType } from 'types/Onboarding';
+import { ventureCapitalistInvestmentInfoSchema } from 'helpers/validation';
+import { Input } from 'components/ui/input';
+import { Button } from 'components/ui/button';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
 import { Label } from '../../ui/label';
 import CapitalistContact from './vc-contact';
 import CapitalistIdentification from './vc-identification';
-import { VentureCapitalistInitialType } from '@/types/Onboarding';
-import { ventureCapitalistInvestmentInfoSchema } from '@/helpers/validation';
 
 export default function CapitalistInvestment() {
   const {
@@ -49,16 +49,18 @@ export default function CapitalistInvestment() {
       });
       setError(null);
     }
-  }, [capitalistState]);
+  }, [capitalistState, setError]);
 
-  const data = useMemo(() => {
-    return ventureCapitalistInvestmentInfoSchema.safeParse({
-      generalPartner: capitalistInvestmentInfo.generalPartner,
-      investmentExperience: capitalistInvestmentInfo.investmentExperience,
-      investmentProof: capitalistInvestmentInfo.investmentProof,
-      investmentSize: capitalistInvestmentInfo.investmentSize,
-    });
-  }, [capitalistInvestmentInfo]);
+  const data = useMemo(
+    () =>
+      ventureCapitalistInvestmentInfoSchema.safeParse({
+        generalPartner: capitalistInvestmentInfo.generalPartner,
+        investmentExperience: capitalistInvestmentInfo.investmentExperience,
+        investmentProof: capitalistInvestmentInfo.investmentProof,
+        investmentSize: capitalistInvestmentInfo.investmentSize,
+      }),
+    [capitalistInvestmentInfo]
+  );
 
   useEffect(() => {
     setError(null);
@@ -81,7 +83,7 @@ export default function CapitalistInvestment() {
 
   const handleNext = useCallback(() => {
     if (!data.success) {
-      return setError(data.error.errors.map((err) => err.message).join(', '));
+      setError(data.error.errors.map((err) => err.message).join(', '));
     } else {
       setError(null);
     }
@@ -101,7 +103,6 @@ export default function CapitalistInvestment() {
   }, [
     setRange,
     setActiveTab,
-    setIsNext,
     capitalistDispatch,
     capitalistInvestmentInfo,
     data,

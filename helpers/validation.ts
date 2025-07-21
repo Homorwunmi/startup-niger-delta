@@ -1,6 +1,6 @@
-import Investment from '@/components/news/investment';
-import { Company, Subscription } from '@/types/User';
-import { signupAuth, loginAuth } from '@/types/auth';
+// import Investment from 'components/news/investment';
+import { Company, Subscription } from 'types/User';
+import { signupAuth, loginAuth } from 'types/auth';
 import { z, ZodType } from 'zod';
 
 export const subscriptionSchema: ZodType<Subscription> = z.object({

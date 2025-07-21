@@ -3,12 +3,13 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import { useOnboardContext } from '@/app/contexts/OnboardingContext';
+import { useOnboardContext } from '@/(frontend)/contexts/OnboardingContext';
 import { onboardingRegistrationStartup } from '@/api/onboarding/onboarding';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 import { Button } from '../../ui/button';
 import { Checkbox } from '../../ui/checkbox';
 import { Label } from '../../ui/label';
-import { toast } from 'sonner';
 import {
   Table,
   TableBody,
@@ -18,7 +19,6 @@ import {
   TableRow,
 } from '../../ui/table';
 import StartupIdentity from './startup-identification';
-import { useRouter } from 'next/navigation';
 
 export default function StartupReview() {
   const router = useRouter();
@@ -39,10 +39,11 @@ export default function StartupReview() {
           setIsLoading(false);
           router.push('/dashboard');
         },
-      }),
-        console.log(response);
+      });
     } catch (error) {
-      console.error('Error during registration:', error);
+      toast.error(
+        error instanceof Error ? error.message : 'An unexpected error occurred'
+      );
     }
   };
 
