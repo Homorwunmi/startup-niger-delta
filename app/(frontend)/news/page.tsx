@@ -1,5 +1,6 @@
 import { Button } from 'components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from 'components/ui/tabs';
+import { cn } from 'lib/utils';
 import { Clock9 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -71,6 +72,49 @@ const data = [
   },
 ];
 
+const mostViewedPosts = [
+  {
+    id: 4,
+    category: 'Technology',
+    title: 'Economic development in oil-rich regions',
+    imageUrl: '/images/recent-4.svg',
+  },
+  {
+    id: 5,
+    category: 'Investment',
+    title: 'Sustainable business practices in Nigeria',
+    description: 'How companies are adapting to environmental challenges...',
+    imageUrl: '/images/recent-5.svg',
+  },
+  {
+    id: 6,
+    category: 'Politics',
+    title: 'Youth entrepreneurship opportunities',
+    imageUrl: '/images/recent-1.svg',
+  },
+];
+
+const popularPosts = [
+  {
+    id: 1,
+    category: 'Technology',
+    title: 'How collaboration makes us better business person',
+    imageUrl: '/images/recent-1.svg',
+  },
+  {
+    id: 2,
+    category: 'Investment',
+    title: 'Investment strategies for emerging markets',
+    imageUrl: '/images/recent-2.svg',
+  },
+  {
+    id: 3,
+    category: 'Politics',
+    title: 'Political reforms in the Niger Delta',
+    imageUrl: '/images/recent-3.svg',
+  },
+];
+
 function NewsTop({ title }: { title: string }) {
   return (
     <div className="flex flex-col gap-2">
@@ -106,10 +150,76 @@ function NewSidebar() {
         </TabsList>
 
         <TabsContent value="popular">
-          Make changes to your account here.
+          <div className="flex flex-col items-stretch gap-4 px-4">
+            {popularPosts.map((post) => (
+              <article
+                key={post.id}
+                className="flex items-stretch gap-3 pb-4 border-b border-gray-200 last:border-b-0"
+              >
+                <Image
+                  src={post.imageUrl}
+                  alt={post.title}
+                  width={80}
+                  height={60}
+                  className="w-24 h-24 object-cover rounded"
+                />
+                <div className="flex-1">
+                  <p
+                    className={cn(
+                      'uppercase w-32 text-center px-2 py-1 text-white font-medium text-xs text-custom-green leading-tight mb-2',
+                      post.category === 'Technology' &&
+                        'bg-custom-green text-white',
+                      post.category === 'Investment' &&
+                        'bg-custom-orange text-white',
+                      post.category === 'Politics' &&
+                        'bg-custom-green text-white'
+                    )}
+                  >
+                    {post.category}
+                  </p>
+                  <p className="text-base text-gray-600 line-clamp-2">
+                    {post.title}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
         </TabsContent>
         <TabsContent value="most-viewed">
-          Change your password here.
+          <div className="flex flex-col items-stretch gap-4 px-4">
+            {mostViewedPosts.map((post) => (
+              <article
+                key={post.id}
+                className="flex items-stretch gap-3 pb-4 border-b border-gray-200 last:border-b-0"
+              >
+                <Image
+                  src={post.imageUrl}
+                  alt={post.title}
+                  width={80}
+                  height={60}
+                  className="w-24 h-24 object-cover rounded"
+                />
+                <div className="flex-1">
+                  <p
+                    className={cn(
+                      'uppercase w-32 text-center px-2 py-1 text-white font-medium text-xs text-custom-green leading-tight mb-2',
+                      post.category === 'Technology' &&
+                        'bg-custom-green text-white',
+                      post.category === 'Investment' &&
+                        'bg-custom-orange text-white',
+                      post.category === 'Politics' &&
+                        'bg-custom-green text-white'
+                    )}
+                  >
+                    {post.category}
+                  </p>
+                  <p className="text-base text-gray-600 line-clamp-2">
+                    {post.title}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
         </TabsContent>
       </Tabs>
 
@@ -173,7 +283,7 @@ export default function Page() {
       </header>
 
       <section className="flex items-stretch gap-10 px-20 py-4 2xl:container 2xl:mx-auto">
-        <div className="w-3/4 flex flex-col gap-8">
+        <div className="w-2/3 flex flex-col gap-8">
           <div className="flex flex-col gap-4">
             <NewsTop title="Recent News" />
 
