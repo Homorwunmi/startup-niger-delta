@@ -21,7 +21,7 @@ export default buildConfig({
   email: nodemailerAdapter(),
   cors: [
     'http://localhost:3000',
-    'https://localhost:3001',
+    'http://localhost:3001',
     'https://startupnigerdelta.com',
     'https://www.startupnigerdelta.com',
   ],
@@ -30,10 +30,10 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
-    livePreview: {
-      url: 'http://localhost:3000',
-      // collections: ['homepage', 'blog', 'about', 'contact', 'mainServicePage', 'service'],
-    },
+    // livePreview: {
+    //   url: 'http://localhost:3000',
+    //   // collections: ['homepage', 'blog', 'about', 'contact', 'mainServicePage', 'service'],
+    // },
   },
   collections: [
     Users,
