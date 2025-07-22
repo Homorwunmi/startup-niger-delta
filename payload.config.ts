@@ -10,6 +10,7 @@ import { fileURLToPath } from 'url'
 
 import { News } from 'collections/News'
 import { Category } from 'collections/Category'
+import { events } from 'collections/Events'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 
@@ -39,6 +40,7 @@ export default buildConfig({
     Users,
     Media,
     News,
+    events,
     Category
   ],
   editor: lexicalEditor(),

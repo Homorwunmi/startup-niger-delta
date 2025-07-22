@@ -8,12 +8,9 @@ import {
 } from 'components/ui/navigation-menu';
 import Image from 'next/image';
 import Logo from 'public/images/Logo.svg';
-import { useState } from 'react';
 import { RxHamburgerMenu } from 'react-icons/rx';
 
 export default function Navbar() {
-  const [show, setShow] = useState(false);
-
   return (
     <NavigationMenu className="py-4 px-5 lg:px-20 2xl:py-10 text-green-900 font-medium border-b-2 border-green-900 border-opacity-50 max-w-screen">
       <NavigationMenuList className="w-full">
@@ -34,27 +31,22 @@ export default function Navbar() {
           >
             Funding
           </NavigationMenuLink>
-          <div
-            className="group relative"
-            onMouseEnter={() => setShow(true)}
-            onMouseLeave={() => setShow(false)}
-          >
+          <div className="group relative">
             <NavigationMenuLink className="cursor-pointer hover:bg-transparent p-0 2xl:!text-2xl flex-row">
               Resources <span>&darr;</span>
             </NavigationMenuLink>
-            {show && (
-              <NavigationMenuList className="hidden absolute top-2 left-0 text-sm lg:group-hover:flex flex-col items-start gap-1 bg-light-custom-green w-32">
-                <NavigationMenuItem className="border-b border-b-gray-100 py-1 px-2 w-full">
-                  Startups
-                </NavigationMenuItem>
-                <NavigationMenuItem className="border-b border-b-gray-100 py-1 px-2 w-full">
-                  Investors
-                </NavigationMenuItem>
-                <NavigationMenuItem className="border-b border-b-gray-100 border-b-2 py-1 px-2 w-full">
-                  Market
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            )}
+
+            <NavigationMenuList className="hidden absolute top-2 left-0 text-sm lg:group-hover:flex flex-col items-start gap-1 bg-light-custom-green w-32">
+              <NavigationMenuItem className="border-b border-b-gray-100 py-1 px-2 w-full">
+                Startups
+              </NavigationMenuItem>
+              <NavigationMenuItem className="border-b border-b-gray-100 py-1 px-2 w-full">
+                Investors
+              </NavigationMenuItem>
+              <NavigationMenuItem className="border-b border-b-gray-100 border-b-2 py-1 px-2 w-full">
+                Market
+              </NavigationMenuItem>
+            </NavigationMenuList>
           </div>
           <NavigationMenuLink
             href="/"
