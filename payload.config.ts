@@ -10,6 +10,7 @@ import { fileURLToPath } from 'url'
 
 import { News } from 'collections/News'
 import { Category } from 'collections/Category'
+import { funding } from 'collections/Funding'
 import { events } from 'collections/Events'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
@@ -41,7 +42,8 @@ export default buildConfig({
     Media,
     News,
     events,
-    Category
+    Category,
+    funding
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

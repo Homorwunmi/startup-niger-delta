@@ -36,6 +36,25 @@ export const funding: CollectionConfig = {
         { label: 'Robotics', value: 'robotics' },
         { label: 'Others', value: 'others' },
       ]
-    }
+    },
+    {
+      name: 'year',
+      type: 'number',
+      label: 'Year of Funding',
+    },
+    {
+      name: 'logo',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Funding Logo',
+    },
+    {
+      name: 'title',
+      type: 'text',
+      label: 'Funding Title',
+    },
+    // {
+    //   name: ''
+    // }
   ]
 }

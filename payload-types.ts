@@ -72,6 +72,7 @@ export interface Config {
     news: News;
     events: Event;
     category: Category;
+    funding: Funding;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -83,6 +84,7 @@ export interface Config {
     news: NewsSelect<false> | NewsSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
     category: CategorySelect<false> | CategorySelect<true>;
+    funding: FundingSelect<false> | FundingSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -253,6 +255,41 @@ export interface Event {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "funding".
+ */
+export interface Funding {
+  id: string;
+  type?:
+    | (
+        | 'angel-investors'
+        | 'venture-capitalists'
+        | 'corporate-venture-capital'
+        | 'seed-investors'
+        | 'accelerators'
+        | 'incubators'
+      )
+    | null;
+  category?:
+    | (
+        | 'fintech'
+        | 'e-commerce'
+        | 'biotech'
+        | 'agritech'
+        | 'health-tech'
+        | 'edtech'
+        | 'artificial-intelligence'
+        | 'gaming'
+        | 'robotics'
+        | 'others'
+      )
+    | null;
+  year?: number | null;
+  logo?: (string | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -277,6 +314,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'category';
         value: string | Category;
+      } | null)
+    | ({
+        relationTo: 'funding';
+        value: string | Funding;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -439,6 +480,18 @@ export interface EventsSelect<T extends boolean = true> {
 export interface CategorySelect<T extends boolean = true> {
   categoryName?: T;
   description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "funding_select".
+ */
+export interface FundingSelect<T extends boolean = true> {
+  type?: T;
+  category?: T;
+  year?: T;
+  logo?: T;
   updatedAt?: T;
   createdAt?: T;
 }
