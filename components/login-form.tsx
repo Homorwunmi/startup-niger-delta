@@ -37,8 +37,9 @@ export function LoginForm({
         setPassword('');
       }
     } catch (error) {
-      console.error('Login failed:', error);
-      toast.error('Login failed. Please check your credentials.');
+      toast.error(
+        error instanceof Error ? error.message : 'An unexpected error occurred'
+      );
     }
   };
 
@@ -46,9 +47,7 @@ export function LoginForm({
     <form
       className={cn('flex flex-col gap-6', className)}
       {...props}
-      onSubmit={(e) => {
-        handleSubmit(e);
-      }}
+      onSubmit={handleSubmit}
     >
       <div className="flex flex-col items-center text-center">
         <h1 className="text-xl text-green-950">Sign in</h1>
@@ -109,7 +108,7 @@ export function LoginForm({
       </div>
 
       <p className="text-center text-sm">
-        By clicking the button above, you agree to our Terms of Use and Privaccy
+        By clicking the button above, you agree to our Terms of Use and Privacy
         Policy
       </p>
 
