@@ -285,6 +285,7 @@ export interface Funding {
     | null;
   year?: number | null;
   logo?: (string | null) | Media;
+  title?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -492,6 +493,7 @@ export interface FundingSelect<T extends boolean = true> {
   category?: T;
   year?: T;
   logo?: T;
+  title?: T;
   updatedAt?: T;
   createdAt?: T;
 }
